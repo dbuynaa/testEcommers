@@ -1,0 +1,19 @@
+.comment {
+  border: $hr;
+  .rc-rate {
+    font-size: 0.75rem;
+    &-star {
+      margin-right: 2px;
+    }
+  }
+  caption {
+    margin-top: -1px !important;
+    margin-left: 4px !important;
+  }
+  .sbt {
+    text-indent: 1.5rem;
+  }
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,29 @@
+.tabs {
+  &-root {
+  }
+  &-list {
+    flex-shrink: 0;
+    display: flex;
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.12);
+    gap: 1rem;
+    padding-left: 1rem;
+  }
+  &-trigger.btn.ghost {
+    color: $gray;
+    font-size: 14px;
+    padding: 0 0.25rem;
+    height: 2.75rem;
+    border-radius: 0;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    user-select: none;
+    &:hover {
+      color: $blue;
+      background: transparent;
+    }
+    &[data-state='active'] {
+      color: $blue;
+      border-bottom: 2px solid $blue;
+    }
+  }
+}

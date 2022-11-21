@@ -1,0 +1,174 @@
+header {
+  background: $bg-primary;
+  background: linear-gradient(
+    90deg,
+    #060652 0%,
+
+    $bg-primary 100%
+  );
+  color: #fff;
+
+  .search {
+    flex: 1 1 auto;
+    max-width: 600px;
+    position: relative;
+    input {
+      padding-left: 2.75rem;
+    }
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 0.75rem;
+      transform: translateY(-50%);
+      color: $shade-gray;
+      font-size: 1.25rem;
+    }
+  }
+  .product-cats {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    a {
+      margin: 0 1rem;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+      &-active {
+        a {
+          font-weight: 700;
+          color: $primary !important;
+        }
+      }
+    }
+  }
+
+  .top {
+    svg {
+      color: $primary;
+      font-size: 1.25rem;
+    }
+  }
+
+  .logo {
+    width: auto;
+    height: 4rem;
+  }
+  nav {
+    a {
+      font-weight: 700;
+      opacity: 0.8;
+      transition: all 0.3s;
+      position: relative;
+      padding: 0.25rem 0.125rem;
+      &::after {
+        content: '';
+        transition-property: background-color, border-color, color, fill, stroke,
+          opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+        transform: translateX(0) translateY(0.25rem) rotate(0) skewX(0) skewY(0)
+          scaleX(1) scaleY(1);
+        display: block;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 0.125rem;
+        background-color: $primary;
+        opacity: 0;
+      }
+      &:hover {
+        opacity: 1;
+      }
+      &.-active {
+        opacity: 1;
+        &::after {
+          opacity: 1;
+          transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0)
+            scaleX(1) scaleY(1);
+        }
+      }
+    }
+  }
+}
+
+.header-dropdown-overlay {
+  background-color: #fff;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.75rem;
+  min-width: 438px;
+}
+
+.notification,
+.cart-btn,
+.profile-btn {
+  position: relative;
+  overflow: visible;
+  transition: 0.3s background-color;
+  &.btn:hover {
+    background: rgba(256, 256, 256, 0.05);
+  }
+  .bell {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+  &:hover,
+  &[aria-expanded='true'] {
+    background: rgba($color: #fff, $alpha: 0.12);
+    border-radius: 8px;
+    svg {
+      path.-primary {
+        opacity: 1;
+      }
+    }
+  }
+}
+.notification.btn {
+  padding: 0.125rem;
+  &:hover {
+    background: rgba(256, 256, 256, 0.05);
+  }
+}
+
+.cart-btn.btn {
+  padding: 0.5rem;
+
+  svg {
+    font-size: 1.75rem;
+    .-secondary {
+      fill: $primary;
+    }
+    .-primary {
+      fill: #fff;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .badge {
+    top: initial;
+    right: 0;
+    bottom: 0;
+    background-color: $success;
+  }
+  &-items {
+    max-height: 270px;
+  }
+}
+
+.container-progress {
+  background-color: rgb(192, 192, 192);
+  width: 100%;
+  border-radius: 15px;
+}
+
+.done {
+  background-color: $dark-green;
+  color: white;
+  padding: 2%;
+  text-align: right;
+  font-size: 20px;
+  border-radius: 15px;
+}

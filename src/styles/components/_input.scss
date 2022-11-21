@@ -1,0 +1,11 @@
+input {
+  border: 1px solid $blue;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  display: block;
+  width: 100%;
+  &:focus {
+    border-color: $blue;
+    outline: 0;
+  }
+}

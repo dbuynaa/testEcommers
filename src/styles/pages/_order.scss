@@ -1,0 +1,143 @@
+.order {
+  &-steps {
+    overflow: hidden;
+    padding: 0 0;
+    &-step {
+      i {
+        display: none;
+        line-height: 30px;
+        font-size: 14px;
+      }
+      p {
+        line-height: 30px;
+      }
+
+      p,
+      small {
+        font-weight: 500;
+      }
+      .circle {
+        border: 1px solid $blue;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        position: relative;
+        color: $blue;
+      }
+      .px-2 {
+        position: relative;
+        background-color: #fff;
+        display: inline-block;
+      }
+      &.checked {
+        .circle {
+          background: $blue;
+        }
+        i {
+          display: inline;
+          color: #fff;
+        }
+        p {
+          display: none;
+        }
+      }
+      &.current {
+        .circle {
+          background: $blue;
+        }
+        p {
+          color: #fff;
+        }
+        small {
+          color: $blue;
+        }
+      }
+
+      &:not(:last-child) {
+        .circle {
+          &::after {
+            content: "";
+            position: absolute;
+            background-color: $blue;
+            height: 1px;
+            top: 50%;
+            width: 999px;
+            left: 40px;
+          }
+        }
+      }
+    }
+  }
+  &-item {
+    .remainder {
+      display: inline-block;
+      border: $hr;
+      border-radius: 4px;
+      line-height: 24px;
+    }
+    .text-mid-gray {
+      small {
+        display: block;
+        line-height: 28px;
+      }
+    }
+    border: $hr;
+  }
+  &-info {
+    // background-color: $bg-gray;
+    border: $hr;
+    &-item {
+      // font-weight: 500;
+      .col-7 {
+        text-align: right;
+      }
+      &:not(:last-child) {
+        padding-bottom: 12px;
+      }
+    }
+    .btn.btn-type-primary {
+      height: 44px;
+    }
+  }
+  &-loyalty {
+    border: $hr;
+    transition: all 0.1s ease;
+    small {
+      display: block;
+    }
+    .rc-input {
+      border-radius: 8px;
+    }
+    &.active {
+      border-color: $blue;
+      .bold {
+        color: $blue;
+      }
+    }
+  }
+  &-sale {
+    margin-right: -8px;
+    margin-left: -8px;
+    .slick-prev,
+    .slick-next {
+      position: absolute;
+      top: -18px;
+      right: 0%;
+      transform: translateY(-50%);
+      i {
+        font-size: 1rem;
+        color: $mid-gray;
+      }
+    }
+    .slick-disabled {
+      display: none !important;
+    }
+    .slick-prev {
+      right: 3%;
+    }
+    .slick-next {
+      right: 1%;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.col-10 {
+  flex: 0 0 auto;
+  width: 83.33333333%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.items-center {
+  align-items: center;
+}
+.items-stretch {
+  align-items: stretch;
+}
+
+.col-3 {
+  max-width: 25%;
+  flex: 1 1 25%;
+}
+.col-4 {
+  max-width: 33.333333333%;
+  flex: 1 1 33.333333333%;
+}
+
+.col-6 {
+  max-width: 50%;
+  flex: 1 1 50%;
+}
+
+.col-9 {
+  max-width: 75%;
+  flex: 1 1 75%;
+}
+
+.col-12 {
+  max-width: 100%;
+  flex: 1 1 100%;
+}

@@ -1,0 +1,39 @@
+.square-slider {
+  height: 100%;
+  .slick-list,
+  .slick-track {
+    height: 100%;
+    border-radius: 0.5rem;
+  }
+  .slick-slide {
+    div {
+      height: 100%;
+    }
+  }
+  .slick-dots {
+    position: absolute;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    bottom: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    div {
+      height: 18px;
+      width: 18px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $primary;
+      }
+    }
+    .slick-active {
+      div {
+        background-color: $primary;
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+  }
+}

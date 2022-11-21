@@ -1,0 +1,17 @@
+footer {
+  background-color: $bg-primary;
+  color: #fff;
+  a,
+  b {
+    display: block;
+  }
+  b {
+    margin-bottom: 1.5rem;
+  }
+  a {
+    margin-bottom: 0.75rem;
+  }
+}
+.layout-content {
+  min-height: calc(100vh - 436px);
+}

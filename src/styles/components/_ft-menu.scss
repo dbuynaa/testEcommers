@@ -1,0 +1,13 @@
+.ft-menu {
+  &-item {
+    i {
+      font-size: 4rem;
+    }
+    color: $mid-gray;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $blue;
+    }
+  }
+}

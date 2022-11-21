@@ -1,0 +1,19 @@
+.wholesale {
+  .brands {
+    img {
+      height: 64px;
+    }
+  }
+  .timer-banner {
+    min-height: 100%;
+    overflow: hidden;
+    .timer {
+      background-color: $blue;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      border-radius: 3.5rem 3.5rem 0 0;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.products {
+  margin: -0.625rem;
+  .col-4 {
+    padding: 0.625rem;
+  }
+  .banner {
+    background: $blue;
+    &.ratio1x1 {
+      aspect-ratio: 1/1;
+    }
+    &.ratio1x3 {
+      aspect-ratio: 1 / 2.5;
+    }
+  }
+  &-loadmore {
+    background: $mid-gray;
+    color: #fff;
+    width: 100%;
+  }
+}

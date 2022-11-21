@@ -1,0 +1,84 @@
+.switch {
+  position: relative;
+  border-radius: 8px;
+  border: 2px solid;
+  .img-wrap {
+    aspect-ratio: 1 / 1;
+  }
+  &-img {
+    // position: absolute !important;
+    // right: 0;
+    z-index: 0;
+  }
+  &-text {
+    z-index: 1;
+    overflow: visible;
+    h6 b,
+    big.sbt {
+      white-space: nowrap;
+    }
+    big.sbt {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: visible;
+      &::before {
+        content: "";
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transition: width 0.5s, transform 0.5s, opacity 0.5s;
+        transform: translate(-18px, -50%);
+        opacity: 0;
+      }
+    }
+    position: relative;
+    z-index: 1;
+  }
+
+  .switch-active-name {
+    position: relative;
+    padding-left: 1.5rem;
+    &::before {
+      transform: translate(0, -50%) !important;
+      opacity: 1 !important;
+    }
+  }
+
+  &.blue {
+    border-color: $blue;
+    h6 {
+      color: $blue;
+    }
+    big.sbt {
+      &:hover {
+        color: $blue;
+      }
+    }
+    .switch-active-name {
+      color: $blue;
+      &::before {
+        background-color: $blue;
+      }
+    }
+  }
+  &.green {
+    border-color: $dark-green;
+    h6 {
+      color: $dark-green;
+    }
+    big.sbt {
+      &:hover {
+        color: $dark-green;
+      }
+    }
+    .switch-active-name {
+      color: $dark-green;
+      &::before {
+        background-color: $dark-green;
+      }
+    }
+  }
+}

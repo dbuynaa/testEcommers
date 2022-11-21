@@ -1,0 +1,75 @@
+.select {
+  &-trigger {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    padding: 0 15px;
+    font-size: 13px;
+    line-height: 1;
+    height: 35px;
+    gap: 5px;
+    background: #fff;
+    color: $bg-primary;
+    border: 1px solid rgba($color: $bg-primary, $alpha: 0.2);
+    outline: none;
+    &:hover {
+      background: #eeedef;
+    }
+    &:focus {
+      box-shadow: 0 0 0 1px $bg-primary;
+    }
+    &[data-placeholder] {
+      color: $bg-primary;
+    }
+  }
+  &-icon {
+    color: $bg-primary;
+  }
+  &-content {
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 0.325rem;
+    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+      0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  }
+  &-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    background-color: #fff;
+    color: $bg-primary;
+    cursor: default;
+  }
+  &-item {
+    all: unset;
+    font-size: 13px;
+    line-height: 1;
+    color: $bg-primary;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    height: 25px;
+    padding: 0 35px 0 25px;
+    position: relative;
+    user-select: none;
+    &[data-disabled] {
+      color: $shade-gray;
+      pointer-events: none;
+    }
+    &[data-highlighted] {
+      background-color: rgba($color: $bg-primary, $alpha: 0.12);
+      color: $bg-primary;
+    }
+    &-indicator {
+      position: absolute;
+      left: 0;
+      width: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

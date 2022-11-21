@@ -1,0 +1,100 @@
+.text {
+  &-white {
+    color: #fff !important;
+  }
+  &-primary {
+    color: $primary !important;
+  }
+  &-mid-gray {
+    color: $mid-gray;
+  }
+  &-danger {
+    color: $danger !important;
+  }
+  &-blue {
+    color: $blue !important;
+  }
+  &-red {
+    color: $red !important;
+  }
+  &-black {
+    color: #000 !important;
+  }
+
+  &-midline {
+    text-decoration: line-through;
+  }
+  &-nowrap {
+    white-space: nowrap;
+  }
+}
+
+h1 {
+  font: 700 6rem/8rem 'Inter', sans-serif;
+}
+h2 {
+  font: 700 3.5rem/4.5rem 'Inter', sans-serif;
+}
+h3 {
+  font: 700 2.5rem/3.5rem 'Inter', sans-serif;
+}
+h4 {
+  font: 700 2rem/3rem 'Inter', sans-serif;
+}
+h5 {
+  font: 700 1.5rem/2rem 'Inter', sans-serif;
+}
+h6 {
+  font: 400 1.25rem/1.75rem 'Inter', sans-serif;
+}
+
+b {
+  &.sbt {
+    letter-spacing: 0.1px;
+  }
+}
+.sbt {
+  font-size: 14px;
+  line-height: 18px;
+  big {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+big {
+  &.sbt {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.bold {
+  font-weight: 700 !important;
+}
+caption {
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.rc-tabs-tab-btn {
+  .test-text {
+    // background: linear-gradient(
+    //   to right,
+    //   #e73c7e 40%,
+    //   #23d5ab 60%,
+    //   #23a6d5 80%
+    // );
+    // background-size: 200% auto;
+
+    // background-clip: text;
+    // text-fill-color: transparent;
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+
+    // animation: shine 4s linear infinite;
+    // @keyframes shine {
+    //   to {
+    //     background-position: 200% center;
+    //   }
+    // }
+  }
+}
