@@ -2,11 +2,13 @@ import { use } from 'react';
 import { Inter } from '@next/font/google';
 import '../styles/styles.min.css';
 import Header from 'components/header';
-import Provider from 'modules/apolloClient';
+import ApolloProvider from 'modules/apolloClient';
 import AppProvider from 'modules/appContext';
 import UIProvider from 'ui/context';
 import CurrentUser from 'modules/auth/currentUser';
 import choosePos from 'lib/choosePos';
+import 'react-toastify/dist/ReactToastify.min.css';
+import Toast from 'ui/Toast';
 
 const Font = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -26,7 +28,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <Provider>
+        <ApolloProvider>
           <AppProvider>
             <UIProvider>
               <CurrentUser>
@@ -35,7 +37,8 @@ export default function RootLayout({
               </CurrentUser>
             </UIProvider>
           </AppProvider>
-        </Provider>
+        </ApolloProvider>
+        <Toast />
       </body>
     </html>
   );

@@ -41,7 +41,7 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
 
   const rootClassName = clsx(
     'btn',
-    { [variant]: variant, loading: loading, disabled: disabled },
+    { [variant]: variant, '-loading': loading, disabled: disabled || loading },
     className
   );
 
@@ -60,7 +60,7 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
     >
       {children}
       {loading && (
-        <i className="pl-2 m-0 flex">
+        <i className="ps-2 m-0 flex">
           <LoadingDots />
         </i>
       )}

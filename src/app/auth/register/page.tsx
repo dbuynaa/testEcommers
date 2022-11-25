@@ -10,10 +10,13 @@ import { toast } from 'react-toastify';
 
 type FormData = {
   password: string;
-  login: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
 };
 
-const Login = () => {
+const Signup = () => {
   const {
     register,
     handleSubmit,
@@ -24,9 +27,10 @@ const Login = () => {
   const searchParams = useSearchParams();
   const from = searchParams.get('from');
 
-  const [login, { loading }] = useMutation(mutations.login, {
+  const [createUser, { loading }] = useMutation(mutations.createUser, {
     refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
     onCompleted() {
+      toast.success('Таны имэйл рүү баталгаажуулах холбоос илгээлээ.');
       return from ? router.push(from) : router.push('/');
     },
     onError(error, clientOptions?) {
@@ -35,25 +39,60 @@ const Login = () => {
   });
 
   const onSubmit = handleSubmit((data) =>
-    login({
+    createUser({
       variables: { ...data, clientPortalId: process.env.NEXT_PUBLIC_CP_ID },
     })
   );
 
   return (
     <form onSubmit={onSubmit}>
-      <h5 className="text-blue pb-3 text-center">Нэвтрэнэ үү</h5>
+      <h5 className="text-blue pb-3 text-center">Бүртгүүлэх</h5>
       <FormItem
-        label="Hэвтрэх нэр"
-        placeholder="Утасны дугаар эсвэл имэйл"
+        label="Нэр"
+        placeholder="Нэр"
         errorMsgs={{
-          pattern: ' Зөв утасны дугаар эсвэл имэйл оруулана уу',
           required: 'Заавал оруулана уу',
         }}
         errors={errors}
-        {...register('login', {
+        {...register('firstName', {
           required: true,
-          pattern: /^(.+@.+|\d{8})$/,
+        })}
+      />
+      <FormItem
+        label="Овог"
+        placeholder="Овог"
+        errorMsgs={{
+          required: 'Заавал оруулана уу',
+        }}
+        errors={errors}
+        {...register('lastName', {
+          required: true,
+        })}
+      />
+      <FormItem
+        label="Имэйл"
+        placeholder="example@example.com"
+        errorMsgs={{
+          required: 'Заавал оруулана уу',
+          pattern: 'Зөв имэйл оруулана уу',
+        }}
+        errors={errors}
+        {...register('email', {
+          required: true,
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        })}
+      />
+      <FormItem
+        label="Утас"
+        placeholder="Утасны дугаар"
+        errorMsgs={{
+          required: 'Заавал оруулана уу',
+          pattern: 'Зөв утасны дугаар оруулана уу',
+        }}
+        errors={errors}
+        {...register('phone', {
+          required: true,
+          pattern: /\d{8}/,
         })}
       />
       <FormItem
@@ -63,6 +102,8 @@ const Login = () => {
         labelClassName="mt-2"
         errorMsgs={{
           required: 'Заавал оруулана уу',
+          pattern:
+            'Дор хаяж нэг тоо, нэг том жижиг үсэг, дор хаяж 8 ба түүнээс дээш тэмдэгт агуулсан байх ёстой',
         }}
         errors={errors}
         {...register('password', {
@@ -71,7 +112,7 @@ const Login = () => {
       />
 
       <Button className="p-3 mt-3" type="submit" loading={loading}>
-        Нэвтрэх
+        Бүртгүүлэх
       </Button>
 
       <small className="text-center py-3 block text-blue">Эсвэл</small>
@@ -80,12 +121,12 @@ const Login = () => {
         variant="slim"
         className="p-3"
         Component={Link}
-        href="/auth/register"
+        href="/auth/login"
       >
-        Бүртгүүлэх
+        Нэвтрэх
       </Button>
     </form>
   );
 };
 
-export default Login;
+export default Signup;

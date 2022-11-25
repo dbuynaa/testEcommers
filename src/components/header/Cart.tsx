@@ -4,16 +4,36 @@ import CartIcon from 'icons/Cart';
 import Button from 'ui/Button';
 import Dropdown from 'ui/Dropdown';
 import { useCart } from 'modules/appContext';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Empty from 'ui/Empty';
 import Trash from 'icons/Trash';
 import Link from 'next/link';
 import { useShowCart } from 'ui/context';
-import { cartCount, formatCurrency, cartTotalAmount } from 'utils';
+import {
+  cartCount,
+  formatCurrency,
+  cartTotalAmount,
+  getLocal,
+  setLocal,
+} from 'utils';
 
 const Cart = () => {
-  const { cart, changeCount } = useCart();
+  const { cart, changeCount, changeCart } = useCart();
   const { showCart, changeShowCart } = useShowCart();
+
+  useEffect(() => {
+    const localCart = getLocal('cart');
+    if (Array.isArray(localCart)) {
+      changeCart(localCart);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(cart)) {
+      setLocal('cart', cart);
+    }
+  }, [cart]);
 
   const renderContent = () => {
     if (!(cart || []).length) return <Empty size="8rem" />;
@@ -66,7 +86,7 @@ const Cart = () => {
               {formatCurrency(cartTotalAmount(cart))}₮
             </b>
           </small>
-          <Link className="mt-3 btn flat" href="/cart">
+          <Link className="mt-3 btn flat" href="/checkout/cart">
             Худалдан авах
           </Link>
         </div>

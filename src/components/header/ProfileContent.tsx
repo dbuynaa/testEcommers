@@ -4,6 +4,7 @@ import Bags from 'icons/Bags';
 import Stars from 'icons/Stars';
 import AddressCard from 'icons/AddressCard';
 import CircleHeart from 'icons/CircleHeart';
+import Logout from 'modules/auth/logout';
 
 const ProfileContent = () => {
   return (
@@ -22,6 +23,7 @@ const ProfileContent = () => {
       <ProfileItem href="/profile/wishlist" icon={<CircleHeart />}>
         Хүслийн жагсаалт
       </ProfileItem>
+      <Logout />
     </>
   );
 };

@@ -16,7 +16,8 @@ const CurrentUser = ({ children }: any) => {
     fetchPolicy: 'network-only',
     onCompleted(data) {
       const { clientPortalCurrentUser } = data || {};
-      clientPortalCurrentUser && setCurrentUser(clientPortalCurrentUser);
+      console.log('-------------');
+      setCurrentUser(clientPortalCurrentUser);
       setLoadingCurrentUser(false);
     },
   });

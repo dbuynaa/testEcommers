@@ -34,7 +34,7 @@
     border-radius: 0.5rem;
     font-size: 14px;
 
-    span {
+    & > span {
       color: $bg-primary;
       background: rgba($color: $bg-primary, $alpha: 0.12);
       line-height: 1;

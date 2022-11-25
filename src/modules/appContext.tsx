@@ -38,7 +38,6 @@ export const useCart = () => {
         foundItem.count = count;
         setCart({ cart: currentCart });
       } else {
-        console.log(foundItem);
         const index = currentCart.indexOf(foundItem);
         currentCart.splice(index, 1);
         setCart({
