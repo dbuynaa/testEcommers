@@ -1,39 +1,55 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Counter from 'ui/Counter';
-import Button from 'ui/Button';
+import Image from 'ui/Image';
+import Counter from 'modules/checkout/Counter';
+import type { ICartItem } from 'modules/types';
+import { formatCurrency } from 'utils';
 
-const OrderItem = () => {
-  const [count, setCount] = useState(1);
+const OrderItem = ({
+  productImgUrl,
+  productName,
+  unitPrice,
+  productId,
+  count,
+}: ICartItem) => {
   return (
     <div className="row order-item rounded p-3 mb-2">
       <div className="col-3">
-        <div className="img-wrap ratio1x1">
+        <div className="img-wrap ratio1x1 flex justify-center items-center">
           <Image
-            src={`/images/product-${Math.ceil(Math.random() * 4)}.png`}
+            src={productImgUrl}
             alt="Product"
             quality={100}
             layout="fill"
             objectFit="contain"
+            noWrap
           />
         </div>
       </div>
-      <div className="col-9">
+      <div className="col-4">
         <div className="mh-100 row justify-between px-3 items-center">
           <div className="text-mid-gray">
-            <h5 className="text-black">Xiaomi Mi 11T</h5>
             <small>Ухаалаг утас</small>
-            <h6 className="bold text-black">2,199,800₮</h6>
-            <small>Хүргэлтийн хугацаа 2 хоног.</small>
+            <big className="text-blue bold block">{productName}</big>
+
+            {/* <h6 className=" text-black">{formatCurrency(unitPrice)}₮</h6> */}
             <small className="block">
               Боломжит үлдэгдэл:
               <span className="remainder px-2 mx-2">24ш</span>
               байна.
             </small>
           </div>
-          <Counter count={count} setCount={setCount} />
+        </div>
+      </div>
+      <div className="col-5 flex items-stretch">
+        <div className="mh-100 flex flex-col justify-between w-full py-3">
+          <div className="flex justify-end w-full items-center">
+            <p className="bold text-black pe-3">{formatCurrency(unitPrice)}₮</p>
+            <Counter productId={productId} />
+            <p className="bold text-black ps-3">
+              {formatCurrency(unitPrice * count)}₮
+            </p>
+          </div>
         </div>
       </div>
     </div>

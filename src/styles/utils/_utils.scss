@@ -97,6 +97,14 @@
 
 .img-wrap {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 80%;
+    height: 80%;
+    opacity: 0.5;
+  }
 }
 
 .hr {
@@ -127,4 +135,8 @@
 
 .box-shadow-none {
   box-shadow: none;
+}
+
+.w-full {
+  width: 100%;
 }

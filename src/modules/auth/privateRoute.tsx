@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useCurrentUser, useLoadingCurrentUser } from 'modules/appContext';
 import Loading from 'ui/Loading';
 import { useRouter, usePathname } from 'next/navigation';
@@ -7,7 +7,6 @@ import { useRouter, usePathname } from 'next/navigation';
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const { currentUser } = useCurrentUser();
   const { loading: loadingUser } = useLoadingCurrentUser();
-  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 

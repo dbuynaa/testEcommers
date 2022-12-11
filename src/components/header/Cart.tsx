@@ -3,24 +3,28 @@
 import CartIcon from 'icons/Cart';
 import Button from 'ui/Button';
 import Dropdown from 'ui/Dropdown';
-import { useCart } from 'modules/appContext';
+import { useCart, useCurrentUser, useCurrentOrder } from 'modules/appContext';
 import { useEffect } from 'react';
-import Image from 'next/image';
+import Image from 'ui/Image';
 import Empty from 'ui/Empty';
 import Trash from 'icons/Trash';
 import Link from 'next/link';
 import { useShowCart } from 'ui/context';
+import { ICartItem } from '../../modules/types';
 import {
   cartCount,
   formatCurrency,
   cartTotalAmount,
   getLocal,
   setLocal,
+  readFile,
 } from 'utils';
 
 const Cart = () => {
   const { cart, changeCount, changeCart } = useCart();
   const { showCart, changeShowCart } = useShowCart();
+  const { currentUser } = useCurrentUser();
+  const { currentOrder } = useCurrentOrder();
 
   useEffect(() => {
     const localCart = getLocal('cart');
@@ -35,55 +39,76 @@ const Cart = () => {
     }
   }, [cart]);
 
+  const currentCart: ICartItem[] = currentUser
+    ? ((currentOrder || {}).items || []).map(
+        ({ productName, ...rest }: any) => ({
+          name: productName,
+          ...rest,
+        })
+      )
+    : cart || [];
+
   const renderContent = () => {
-    if (!(cart || []).length) return <Empty size="8rem" />;
+    if (!currentCart.length) return <Empty size="8rem" />;
 
     return (
       <>
         <div className="flex items-center justify-between pb-3 cart-header">
-          <b>Таны сагс ( {cart.length} бүтээгдэхүүн )</b>
+          <b>Таны сагс ( {currentCart.length} бүтээгдэхүүн )</b>
           <Button className="cart-clean text-blue" variant="ghost">
             Хоослох
           </Button>
         </div>
-        {cart.map(({ productImageUrl, productId, name, count, unitPrice }) => (
-          <Link
-            href={`/product/${productId}`}
-            className="row cart-item py-2"
-            key={productId}
-          >
-            <div className="col-3">
-              <div className="img-wrap ratio1x1">
-                <Image src={productImageUrl} alt="" fill />
-              </div>
-            </div>
-            <div className="col-9 ps-3">
-              <div className="flex items-stretch justify-between">
-                <div>
-                  <p className="cart-item-title">{name}</p>
-                  <small className="block mt-2">
-                    <b>{formatCurrency(unitPrice)}₮</b>
-                    <span className="text-mid-gray px-2">Tоо ширхэг:</span>
-                    {count}
-                  </small>
+        {currentCart.map(
+          ({ productImgUrl, productId, name, count, unitPrice }) => (
+            <div className="row cart-item py-2" key={productId}>
+              <div className="col-3">
+                <div className="img-wrap ratio1x1">
+                  <Image
+                    src={readFile(productImgUrl || '')}
+                    alt=""
+                    fill
+                    noWrap
+                  />
                 </div>
+              </div>
+              <div className="col-9 ps-3">
+                <div className="flex items-stretch justify-between">
+                  <div>
+                    <Link
+                      href={`/product/${productId}`}
+                      className="cart-item-title"
+                    >
+                      {name}
+                    </Link>
+                    <small className="block mt-2">
+                      <span className="text-mid-gray">
+                        {formatCurrency(unitPrice)}₮
+                      </span>
+                      <span className="text-blue block">
+                        <b className="pe-1 ">{count}</b>
+                        <span>ширхэг</span>
+                      </span>
+                    </small>
+                  </div>
 
-                <Button
-                  variant="ghost"
-                  className="cart-delete"
-                  onClick={() => changeCount({ productId, count: 0 })}
-                >
-                  <Trash />
-                </Button>
+                  <Button
+                    variant="ghost"
+                    className="cart-delete"
+                    onClick={() => changeCount({ productId, count: 0 })}
+                  >
+                    <Trash />
+                  </Button>
+                </div>
               </div>
             </div>
-          </Link>
-        ))}
+          )
+        )}
         <div className="cart-footer pt-3">
           <small className="cart-total block text-mid-gray">
             Нийт дүн:{' '}
             <b className="text-blue">
-              {formatCurrency(cartTotalAmount(cart))}₮
+              {formatCurrency(cartTotalAmount(currentCart))}₮
             </b>
           </small>
           <Link className="mt-3 btn flat" href="/checkout/cart">
@@ -101,7 +126,9 @@ const Cart = () => {
       onOpenChange={changeShowCart}
       trigger={
         <Button className="cart-btn  mx-2" variant="ghost">
-          {!!cartCount(cart) && <div className="badge">{cartCount(cart)}</div>}
+          {!!cartCount(currentCart) && (
+            <div className="badge">{cartCount(currentCart)}</div>
+          )}
           <CartIcon />
         </Button>
       }

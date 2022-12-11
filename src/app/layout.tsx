@@ -9,9 +9,11 @@ import CurrentUser from 'modules/auth/currentUser';
 import choosePos from 'lib/choosePos';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Toast from 'ui/Toast';
+import CurrentOrder from 'modules/checkout/currentOrder';
 
 const Font = Inter({
   subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '700'],
 });
 
 export default function RootLayout({
@@ -19,7 +21,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  use(choosePos());
+  // use(choosePos());
   return (
     <html lang="en" className={Font.className}>
       <head>
@@ -32,8 +34,10 @@ export default function RootLayout({
           <AppProvider>
             <UIProvider>
               <CurrentUser>
-                <Header />
-                {children}
+                <CurrentOrder>
+                  <Header />
+                  {children}
+                </CurrentOrder>
               </CurrentUser>
             </UIProvider>
           </AppProvider>

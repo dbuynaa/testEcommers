@@ -35,7 +35,7 @@ const Product = ({ params }: any) => {
           <h5>{formatCurrency(unitPrice)} ₮</h5>
           <Actions
             {...detail}
-            productImageUrl={fixImageUrl((attachment || {}).url)}
+            productImgUrl={fixImageUrl((attachment || {}).url)}
           />
           {/* <Whislist /> */}
         </div>

@@ -1,20 +1,22 @@
 .form-item {
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 1.5rem;
   label {
     font-weight: 600;
+  }
+  input,
+  textarea {
+    border-color: $danger;
+    padding: 1rem;
   }
   &.error {
     label {
       color: $danger;
     }
-    input {
-      border-color: $danger;
-    }
   }
   small {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 0.25rem;
   }
 }

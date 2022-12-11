@@ -1,12 +1,7 @@
-button {
-  &.btn {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    font-weight: 600;
-  }
-}
-
 .btn {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   padding: 0.5rem 1.5rem;

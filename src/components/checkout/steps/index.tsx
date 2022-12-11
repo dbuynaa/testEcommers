@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 function OrderSteps() {
   const steps = {
     cart: 'Taны сагс',
-    address: 'Хаяг',
+    address: 'Хүргэлтийн Хаяг',
     payment: 'Төлбөр төлөх',
     end: 'Дуусгах',
   };
@@ -45,8 +45,9 @@ function OrderSteps() {
           </div>
         ))}
       </div>
-      <h6 className="p-3">
-        <b>{steps[current as keyof typeof steps]}</b>
+      <h6 className=" row">
+        <b className="col-8 p-3">{steps[current as keyof typeof steps]}</b>
+        <b className="col-4 p-3">Хураангуй</b>
       </h6>
     </>
   );

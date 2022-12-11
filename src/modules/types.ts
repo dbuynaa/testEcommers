@@ -6,10 +6,19 @@ export type IProductBase = {
 };
 
 export type ICartItem = IProductBase & {
+  productName?: string;
   productId: string;
   count: number;
-  productImageUrl: string;
+  productImgUrl: string;
   discountAmount?: number;
   discountPercent?: number;
   bonusCount?: number;
+};
+
+export type IOrder = {
+  items: ICartItem[];
+  registerNumber: string | null;
+  billType: string | null;
+  deliveryInfo: { description: string } | '';
+  _id: string;
 };

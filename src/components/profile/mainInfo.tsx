@@ -1,10 +1,14 @@
 import Image from 'next/image';
+import { useCurrentUser } from 'modules/appContext';
 
 const MainInfo = () => {
+  const { currentUser } = useCurrentUser();
+  const { firstName, email, lastName } = currentUser || {};
+
   return (
     <div className="flex items-center justify-center profile-main p-2">
       <Image
-        src="/profile.jpeg"
+        src="/images/profile.png"
         alt="profile"
         width={44}
         height={44}
@@ -13,8 +17,10 @@ const MainInfo = () => {
       />
 
       <div className="-content ps-3 ">
-        <b className="sbt block">Бат-Эрдэнэ</b>
-        <small className="text-mid-gray">hashbaterdene@gmail.com</small>
+        <b className="sbt block">
+          {firstName} {(lastName || '').split('')[0]}.
+        </b>
+        <small className="text-mid-gray">{email}</small>
       </div>
       {/* <div className="text-mid-gray py-1 ps-3 -content">
         <div className="flex items-center justify-between w-100">

@@ -70,9 +70,10 @@
   }
   &-item {
     border: $hr;
+    position: relative;
     .counter {
       padding: 0.25rem 0;
-      flex-direction: column;
+      // flex-direction: column;
       .btn.ghost {
         font-size: 1rem;
         padding: 0.5rem 0.75rem;
@@ -88,6 +89,14 @@
       border: $hr;
       border-radius: 4px;
       line-height: 24px;
+    }
+    &-loader {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($color: #fff, $alpha: 0.4);
     }
   }
   &-info {
@@ -144,6 +153,40 @@
     }
     .slick-next {
       right: 1%;
+    }
+  }
+  &-address {
+    margin: 0 -0.5rem;
+  }
+}
+.sum {
+  &-buy {
+    background: $blue;
+  }
+}
+.gm-fullscreen-control,
+.gm-noprint,
+.gmnoprint {
+  display: none;
+}
+.google-map {
+  a {
+    display: none !important;
+  }
+}
+.gmap {
+  position: relative;
+  &-btn.btn {
+    background: $blue;
+    font-size: 1.5rem;
+    height: 2.75rem;
+    width: 2.75rem;
+    position: absolute;
+    padding: 0;
+    bottom: 1rem;
+    right: 1.5rem;
+    .ps-2 {
+      padding-left: 0 !important;
     }
   }
 }

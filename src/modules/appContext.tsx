@@ -1,19 +1,29 @@
 'use client';
 import createFastContext from './createContext';
-import type { ICartItem } from './types';
-import { IProductBase } from './types';
+import type { ICartItem, IProductBase, IOrder } from './types';
 import { useShowCart } from 'ui/context';
+import { addToCart, changeCount } from 'utils';
 
 export interface State {
-  cart: ICartItem[];
-  currentUser: any;
+  cart: ICartItem[] | null;
+  currentUser: {
+    email: string;
+    erxesCompanyId: string;
+    erxesCustomerId: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    type: string;
+  } | null;
   loadingCurrentUser: boolean;
+  currentOrder: IOrder | null;
 }
 
 const { Provider: AppProvider, useStore } = createFastContext({
-  cart: [],
+  cart: null,
   currentUser: null,
   loadingCurrentUser: true,
+  currentOrder: null,
 } as State);
 
 export const useCart = () => {
@@ -22,56 +32,34 @@ export const useCart = () => {
 
   const changeCart = (newCart: ICartItem[]) => setCart({ cart: newCart });
 
-  const changeCount = ({
+  const onCompleted = (currentCart: ICartItem[]) => {
+    setCart({ cart: currentCart });
+    return changeShowCart();
+  };
+
+  const changeItemCount = ({
     productId,
     count,
   }: {
     productId: string;
     count: number;
-  }) => {
-    const currentCart = cart.slice();
-    const foundItem: any = currentCart.find(
-      (item: ICartItem) => item.productId === productId
-    );
-    if (foundItem) {
-      if (count > 0) {
-        foundItem.count = count;
-        setCart({ cart: currentCart });
-      } else {
-        const index = currentCart.indexOf(foundItem);
-        currentCart.splice(index, 1);
-        setCart({
-          cart: currentCart,
-        });
-      }
-      return changeShowCart();
-    }
-  };
+  }) =>
+    changeCount({
+      cart,
+      product: { productId, count },
+      onCompleted,
+    });
 
   const addItem = (
-    product: IProductBase & { productImageUrl: string; count: number }
-  ) => {
-    const currentCart = cart.slice();
+    product: IProductBase & { productImgUrl: string; count: number }
+  ) =>
+    addToCart({
+      cart,
+      product,
+      onCompleted,
+    });
 
-    const foundItem = currentCart.find((i) => i.productId === product._id);
-
-    if (foundItem) {
-      const { productId, count } = foundItem;
-      return changeCount({ productId, count: count + product.count });
-    }
-    const cartItem = {
-      ...product,
-      _id: Math.random().toString(),
-      productId: product._id,
-      isTake: 'delivery',
-    };
-
-    currentCart.push(cartItem);
-    setCart({ cart: currentCart });
-    return changeShowCart();
-  };
-
-  return { cart, changeCart, changeCount, addItem };
+  return { cart, changeCart, changeCount: changeItemCount, addItem };
 };
 
 export const useCurrentUser = () => {
@@ -91,9 +79,19 @@ export const useLoadingCurrentUser = () => {
   );
   return {
     loading,
-    setLoadingCurrentUser: (cuLoading: State['loadingCurrentUser']) => {
-      setLoadingCurrentUser({ loadingCurrentUser: cuLoading });
-    },
+    setLoadingCurrentUser: (cuLoading: State['loadingCurrentUser']) =>
+      setLoadingCurrentUser({ loadingCurrentUser: cuLoading }),
+  };
+};
+
+export const useCurrentOrder = () => {
+  const [currentOrder, setCurrentOrder] = useStore(
+    (store) => store.currentOrder
+  );
+
+  return {
+    currentOrder,
+    setCurrentOrder: (order: any) => setCurrentOrder({ currentOrder: order }),
   };
 };
 

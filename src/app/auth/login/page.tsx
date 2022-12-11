@@ -29,7 +29,7 @@ const Login = () => {
     onCompleted() {
       return from ? router.push(from) : router.push('/');
     },
-    onError(error, clientOptions?) {
+    onError(error) {
       return toast.error(error.message);
     },
   });
