@@ -3,10 +3,11 @@ import { useMutation } from '@apollo/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Button from 'ui/Button';
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import FormItem from 'ui/FormItem';
 import { mutations, queries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
+import { validatePassword } from 'utils/constants';
 
 type FormData = {
   password: string;
@@ -17,11 +18,7 @@ type FormData = {
 };
 
 const Signup = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
+  const methods = useForm<FormData>();
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,94 +35,82 @@ const Signup = () => {
     },
   });
 
-  const onSubmit = handleSubmit((data) =>
+  const onSubmit = methods.handleSubmit((data) =>
     createUser({
       variables: { ...data, clientPortalId: process.env.NEXT_PUBLIC_CP_ID },
     })
   );
 
   return (
-    <form onSubmit={onSubmit}>
-      <h5 className="text-blue pb-3 text-center">Бүртгүүлэх</h5>
-      <FormItem
-        label="Нэр"
-        placeholder="Нэр"
-        errorMsgs={{
-          required: 'Заавал оруулана уу',
-        }}
-        errors={errors}
-        {...register('firstName', {
-          required: true,
-        })}
-      />
-      <FormItem
-        label="Овог"
-        placeholder="Овог"
-        errorMsgs={{
-          required: 'Заавал оруулана уу',
-        }}
-        errors={errors}
-        {...register('lastName', {
-          required: true,
-        })}
-      />
-      <FormItem
-        label="Имэйл"
-        placeholder="example@example.com"
-        errorMsgs={{
-          required: 'Заавал оруулана уу',
-          pattern: 'Зөв имэйл оруулана уу',
-        }}
-        errors={errors}
-        {...register('email', {
-          required: true,
-          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        })}
-      />
-      <FormItem
-        label="Утас"
-        placeholder="Утасны дугаар"
-        errorMsgs={{
-          required: 'Заавал оруулана уу',
-          pattern: 'Зөв утасны дугаар оруулана уу',
-        }}
-        errors={errors}
-        {...register('phone', {
-          required: true,
-          pattern: /\d{8}/,
-        })}
-      />
-      <FormItem
-        label="Нууц үг"
-        placeholder="Нууц үг"
-        type="password"
-        labelClassName="mt-2"
-        errorMsgs={{
-          required: 'Заавал оруулана уу',
-          pattern:
-            'Дор хаяж нэг тоо, нэг том жижиг үсэг, дор хаяж 8 ба түүнээс дээш тэмдэгт агуулсан байх ёстой',
-        }}
-        errors={errors}
-        {...register('password', {
-          required: true,
-        })}
-      />
+    <FormProvider {...methods}>
+      <form onSubmit={onSubmit}>
+        <h5 className="text-blue pb-3 text-center">Бүртгүүлэх</h5>
+        <FormItem
+          label="Нэр"
+          placeholder="Нэр"
+          errorMsgs={{
+            required: 'Заавал оруулана уу',
+          }}
+          name="firstName"
+        />
+        <FormItem
+          label="Овог"
+          placeholder="Овог"
+          errorMsgs={{
+            required: 'Заавал оруулана уу',
+          }}
+          name="lastName"
+        />
+        <FormItem
+          label="Имэйл"
+          placeholder="example@example.com"
+          errorMsgs={{
+            required: 'Заавал оруулана уу',
+            pattern: 'Зөв имэйл оруулана уу',
+          }}
+          name="email"
+          validate={{ pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
+        />
+        <FormItem
+          label="Утас"
+          placeholder="Утасны дугаар"
+          errorMsgs={{
+            pattern: 'Зөв утасны дугаар оруулана уу',
+          }}
+          name="phone"
+          validate={{ pattern: /\d{8}/ }}
+        />
+        <FormItem
+          label="Нууц үг"
+          placeholder="Нууц үг"
+          type="password"
+          labelClassName="mt-2"
+          errorMsgs={{
+            pattern:
+              'Дор хаяж нэг тоо, нэг том жижиг үсэг, дор хаяж 8 ба түүнээс дээш тэмдэгт агуулсан байх ёстой',
+          }}
+          validate={{
+            pattern: validatePassword,
+          }}
+          name="password"
+        />
 
-      <Button className="p-3 mt-3" type="submit" loading={loading}>
-        Бүртгүүлэх
-      </Button>
+        <Button className="p-3 mt-3" type="submit" loading={loading}>
+          Бүртгүүлэх
+        </Button>
 
-      <small className="text-center py-3 block text-blue">Эсвэл</small>
+        <small className="text-center py-3 block text-blue">Эсвэл</small>
 
-      <Button
-        variant="slim"
-        className="p-3"
-        Component={Link}
-        href="/auth/login"
-      >
-        Нэвтрэх
-      </Button>
-    </form>
+        <Button
+          variant="slim"
+          className="p-3"
+          Component={Link}
+          href="/auth/login"
+        >
+          Нэвтрэх
+        </Button>
+      </form>
+    </FormProvider>
   );
 };
 

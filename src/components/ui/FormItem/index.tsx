@@ -10,6 +10,7 @@ export interface FormItemProps extends InputProps {
   errorMsgs?: any;
   element?: 'textarea';
   onBlur?: any;
+  validate?: object;
 }
 
 // eslint-disable-next-line react/display-name
@@ -24,6 +25,7 @@ const FormItem: FC<FormItemProps> = (props) => {
     placeholder,
     required = true,
     errorMsgs,
+    validate,
     ...rest
   } = props;
 
@@ -38,24 +40,15 @@ const FormItem: FC<FormItemProps> = (props) => {
     required: 'Заавал оруулана уу',
   };
 
+  const inputProps = {
+    className,
+    placeholder,
+    ...register(name || '', { ...validate, required }),
+  };
+
   const renderInput = () => {
-    if (element === 'textarea')
-      return (
-        <textarea
-          className={clsx(className)}
-          placeholder={placeholder}
-          {...register(name || '', { required })}
-        />
-      );
-    return (
-      <Input
-        pure
-        placeholder={placeholder}
-        {...rest}
-        className={clsx(className)}
-        {...register(name || '', { required })}
-      />
-    );
+    if (element === 'textarea') return <textarea {...inputProps} />;
+    return <Input pure {...inputProps} />;
   };
   //
   return (
