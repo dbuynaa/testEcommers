@@ -14,6 +14,7 @@ export interface State {
     lastName: string;
     phone: string;
     type: string;
+    companyRegistrationNumber: string;
   } | null;
   loadingCurrentUser: boolean;
   currentOrder: IOrder | null;
@@ -70,17 +71,6 @@ export const useCurrentUser = () => {
     setCurrentUser: (cu: State['currentUser']) => {
       setCurrentUser({ currentUser: cu });
     },
-  };
-};
-
-export const useLoadingCurrentUser = () => {
-  const [loading, setLoadingCurrentUser] = useStore(
-    (store) => store.loadingCurrentUser
-  );
-  return {
-    loading,
-    setLoadingCurrentUser: (cuLoading: State['loadingCurrentUser']) =>
-      setLoadingCurrentUser({ loadingCurrentUser: cuLoading }),
   };
 };
 

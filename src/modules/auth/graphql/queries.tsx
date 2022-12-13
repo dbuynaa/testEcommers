@@ -11,6 +11,7 @@ const currentUser = gql`
       erxesCompanyId
       phone
       erxesCustomerId
+      companyRegistrationNumber
     }
   }
 `;

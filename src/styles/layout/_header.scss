@@ -1,11 +1,16 @@
 header {
   background: $bg-primary;
   background: linear-gradient(
-    90deg,
-    #060652 0%,
-
-    $bg-primary 100%
-  );
+      104.19deg,
+      rgba(37, 1, 83, 0) 39.91%,
+      #3b0388 77.15%
+    ),
+    linear-gradient(
+      96.54deg,
+      rgba(6, 189, 196, 0.78) 13.14%,
+      rgba(2, 214, 215, 0) 57.93%
+    ),
+    #440496;
   color: #fff;
 
   .search {

@@ -2,7 +2,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import Loading from 'ui/Loading';
 import { queries } from './graphql';
-import { useCurrentUser, useLoadingCurrentUser } from 'modules/appContext';
+import { useCurrentUser } from 'modules/appContext';
 
 export interface State {
   currentUser: any;
@@ -10,17 +10,16 @@ export interface State {
 
 const CurrentUser = ({ children }: any) => {
   const { setCurrentUser } = useCurrentUser();
-  const { setLoadingCurrentUser } = useLoadingCurrentUser();
 
-  useQuery(queries.currentUser, {
+  const { loading } = useQuery(queries.currentUser, {
     fetchPolicy: 'network-only',
     onCompleted(data) {
       const { clientPortalCurrentUser } = data || {};
       setCurrentUser(clientPortalCurrentUser);
-      setLoadingCurrentUser(false);
     },
   });
 
+  if (loading) return <></>;
   return <>{children}</>;
 };
 

@@ -15,10 +15,23 @@ export type ICartItem = IProductBase & {
   bonusCount?: number;
 };
 
+export type AddressFormData = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  province: string;
+  district: string;
+  street: string;
+  details: string;
+  registerNumber: string;
+  companyName: string;
+};
+
 export type IOrder = {
   items: ICartItem[];
   registerNumber: string | null;
   billType: string | null;
-  deliveryInfo: { description: string } | '';
+  deliveryInfo: (AddressFormData & { description: string }) | null;
   _id: string;
 };

@@ -39,6 +39,12 @@ export const lastOrder = gql`
   }
 `;
 
-const queries = { lastOrder };
+const ordersCheckCompany = `
+  query ordersCheckCompany($registerNumber: String!) {
+    ordersCheckCompany(registerNumber: $registerNumber)
+  }
+`;
+
+const queries = { lastOrder, ordersCheckCompany };
 
 export default queries;

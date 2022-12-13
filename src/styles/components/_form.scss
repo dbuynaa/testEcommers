@@ -6,10 +6,13 @@
   }
   input,
   textarea {
-    border-color: $danger;
     padding: 1rem;
   }
   &.error {
+    input,
+    textarea {
+      border-color: $danger;
+    }
     label {
       color: $danger;
     }

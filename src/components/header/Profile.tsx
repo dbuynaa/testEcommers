@@ -3,20 +3,12 @@
 import User from 'icons/User';
 import Button from 'ui/Button';
 import Dropdown from 'ui/Dropdown';
-import { useCurrentUser, useLoadingCurrentUser } from 'modules/appContext';
+import { useCurrentUser } from 'modules/appContext';
 import ProfileContent from './ProfileContent';
 import Link from 'next/link';
 
 const Profile = () => {
   const { currentUser } = useCurrentUser();
-  const { loading } = useLoadingCurrentUser();
-
-  if (loading)
-    return (
-      <Button className="profile-btn" variant="ghost">
-        <User />
-      </Button>
-    );
 
   if (!currentUser)
     return (

@@ -157,6 +157,29 @@
   }
   &-address {
     margin: 0 -0.5rem;
+    input.inline {
+      width: auto;
+    }
+    input[type='checkbox'] {
+      height: 1rem;
+      width: 1rem;
+      &:checked {
+        accent-color: $blue;
+      }
+    }
+    .-ebarimt {
+      background: $bg-gray;
+      transition: height 0.3s ease-in-out;
+      label {
+        cursor: pointer;
+        margin-bottom: 0;
+      }
+    }
+    .-disabled {
+      position: relative;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   }
 }
 .sum {

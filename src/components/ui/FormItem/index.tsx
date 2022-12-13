@@ -1,63 +1,63 @@
 'use client';
-import { FC, forwardRef } from 'react';
+import { FC } from 'react';
 import Input, { InputProps } from 'ui/Input';
 import clsx from 'clsx';
-import { mergeRefs } from 'react-merge-refs';
+import { useFormContext } from 'react-hook-form';
 
 export interface FormItemProps extends InputProps {
   label?: string;
   labelClassName?: string;
-  errors: any;
   errorMsgs?: any;
   element?: 'textarea';
   onBlur?: any;
 }
 
 // eslint-disable-next-line react/display-name
-const FormItem: FC<FormItemProps> = forwardRef((props, inputRef) => {
+const FormItem: FC<FormItemProps> = (props) => {
   const {
     name,
     label,
-    errors,
-    errorMsgs,
     labelClassName,
     className,
     element,
     pure,
-    onBlur,
-    onChange,
     placeholder,
+    required = true,
+    errorMsgs,
     ...rest
   } = props;
 
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   const error = errors[name || ''];
+  const errorMessages = {
+    ...(errorMsgs || {}),
+    required: 'Заавал оруулана уу',
+  };
 
   const renderInput = () => {
     if (element === 'textarea')
       return (
         <textarea
-          name={name}
-          ref={mergeRefs([inputRef])}
           className={clsx(className)}
-          onBlur={onBlur}
-          onChange={onChange}
           placeholder={placeholder}
+          {...register(name || '', { required })}
         />
       );
     return (
       <Input
-        name={name}
         pure
-        ref={inputRef}
-        onBlur={onBlur}
-        onChange={onChange}
         placeholder={placeholder}
         {...rest}
         className={clsx(className)}
+        {...register(name || '', { required })}
       />
     );
   };
-
+  //
   return (
     <div className={clsx('form-item', { error: error?.type })}>
       <label htmlFor={name} className={clsx('ps-2', labelClassName)}>
@@ -66,11 +66,11 @@ const FormItem: FC<FormItemProps> = forwardRef((props, inputRef) => {
       {renderInput()}
       {error?.type && (
         <small className="block text-danger ps-2">
-          {errorMsgs[error.type]}
+          {errorMessages[error.type as any]}
         </small>
       )}
     </div>
   );
-});
+};
 
 export default FormItem;

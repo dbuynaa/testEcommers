@@ -3,12 +3,7 @@
 
 import { ReactNode, useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import {
-  useCurrentUser,
-  useLoadingCurrentUser,
-  useCurrentOrder,
-  useCart,
-} from 'modules/appContext';
+import { useCurrentUser, useCurrentOrder, useCart } from 'modules/appContext';
 import { addToCart, cleanCart } from 'utils';
 import { queries } from './graphql';
 import { ICartItem } from '../types';
@@ -17,7 +12,6 @@ import useOrderData from 'lib/useOrderData';
 
 const CurrentOrder = ({ children }: { children: ReactNode }) => {
   const { currentUser } = useCurrentUser();
-  const { loading: loadUser } = useLoadingCurrentUser();
   const { setCurrentOrder } = useCurrentOrder();
   const { orderCU } = useOrderCU();
   const orderData = useOrderData();
@@ -47,8 +41,7 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    !loadUser &&
-      (currentUser || {}).erxesCustomerId &&
+    (currentUser || {}).erxesCustomerId &&
       getCurrentOrder({
         variables: {
           statuses: NEW,
@@ -58,7 +51,7 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
           sortDirection: -1,
         },
       });
-  }, [loadUser, currentUser]);
+  }, [currentUser]);
 
   return <>{children}</>;
 };
