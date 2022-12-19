@@ -3,7 +3,7 @@ import createFastContext from 'modules/createContext';
 
 const { Provider, useStore } = createFastContext({
   activeCategoryName: '',
-  productsCount: '',
+  productsCount: 0,
 });
 
 export const useProducts = useStore;

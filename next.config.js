@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.erxes.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'techstore.nmma.co',
+      },
     ],
   },
 };

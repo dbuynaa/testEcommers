@@ -125,8 +125,27 @@
 }
 
 .ratio1x1 {
-  aspect-ratio: 1 / 1;
+  &::before {
+    content: '';
+    padding-bottom: 100%;
+    display: block;
+    width: 100%;
+  }
   width: 100%;
+}
+
+.ratio {
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+  }
+  width: 100%;
+}
+.r-4x3 {
+  &::before {
+    padding-bottom: calc(4 / 3 * 100%);
+  }
 }
 
 .mh-100 {

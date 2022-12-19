@@ -1,0 +1,15 @@
+.search {
+  flex: 1 1 auto;
+  position: relative;
+  input {
+    padding-left: 2.75rem;
+  }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    color: $shade-gray;
+    font-size: 1.25rem;
+  }
+}

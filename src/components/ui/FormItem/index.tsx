@@ -44,6 +44,7 @@ const FormItem: FC<FormItemProps> = (props) => {
     className,
     placeholder,
     ...register(name || '', { ...validate, required }),
+    ...rest,
   };
 
   const renderInput = () => {

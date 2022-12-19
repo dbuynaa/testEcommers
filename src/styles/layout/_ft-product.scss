@@ -6,52 +6,18 @@
 
   &.big {
     min-height: 100%;
-    h5 {
-      font-size: 2rem;
-    }
   }
   &.small {
-    aspect-ratio: 1 / 1;
-    &.purple {
-      background-color: $purple;
-    }
-    &.red-orange {
-      background-color: $red-orange;
-    }
+    padding-bottom: 100%;
   }
   &.long {
-    aspect-ratio: 25 / 6;
-    background: $dark-green;
-    .col.img-absolute {
-      bottom: -20%;
-      right: -2%;
-    }
+    padding-bottom: 50%;
   }
 
-  &-row {
-    align-items: stretch !important;
-    position: relative;
-  }
   overflow: hidden;
   cursor: pointer;
-  .col {
-    position: relative;
-    z-index: 1;
-    &.img-absolute {
-      z-index: 0;
-      position: absolute;
-      bottom: -25%;
-      right: -20%;
-    }
-  }
   img {
     transition: transform 0.3s ease-in-out;
     object-fit: cover;
-    z-index: 0;
-  }
-  &:hover {
-    img {
-      transform: scale(1.02);
-    }
   }
 }

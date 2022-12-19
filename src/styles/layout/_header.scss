@@ -1,24 +1,8 @@
 header {
   background: $bg-primary;
-  background: #39394d;
   color: #fff;
 
-  .search {
-    flex: 1 1 auto;
-    max-width: 600px;
-    position: relative;
-    input {
-      padding-left: 2.75rem;
-    }
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 0.75rem;
-      transform: translateY(-50%);
-      color: $shade-gray;
-      font-size: 1.25rem;
-    }
-  }
+  
   .product-cats {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     a {
@@ -50,6 +34,7 @@ header {
     width: auto;
     height: 4rem;
   }
+
   nav {
     a {
       font-weight: 700;

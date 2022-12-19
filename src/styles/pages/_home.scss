@@ -1,30 +1,96 @@
-.home {
-  &-product-tabs {
-    .header {
-      border: $hr;
-    }
-    .-slider {
-      .slick-prev,
-      .slick-next {
-        position: absolute;
-        top: -40px;
-        right: 0%;
-        transform: translateY(-50%);
-        i {
-          font-size: 1rem;
-          color: $mid-gray;
-        }
-      }
+.ft-cats {
+  .row {
+    margin: 0 -1.5rem;
+  }
+  img {
+    object-fit: contain;
+  }
+}
 
-      .slick-prev {
-        right: 5%;
-      }
-      .slick-next {
-        right: 3%;
+.cat-banner {
+  .-banner {
+    min-height: 100%;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+    }
+    & > img:last-of-type {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+      -moz-transition: opacity 0.5s ease-in-out;
+      -webkit-transition: opacity 0.5s ease-in-out;
+    }
+    &:hover > img:last-of-type {
+      opacity: 0;
+    }
+  }
+  .-header {
+    border: $hr;
+  }
+  .-slider {
+    min-height: 100%;
+    display: flex !important;
+    .slick-track {
+      display: flex !important;
+      min-height: 100%;
+    }
+    .slick-list {
+      width: 100%;
+    }
+    .slick-track .slick-slide {
+      display: flex !important;
+      height: auto !important;
+      & > div {
+        width: 100%;
       }
     }
-    & > .row-stretch {
-      margin-right: -8px;
+    .slick-prev,
+    .slick-next {
+      position: absolute;
+      padding: 0.5rem;
+      top: -3rem;
+      right: 0%;
+      line-height: 1;
+
+      svg {
+        font-size: 1.15rem;
+        color: $mid-gray;
+      }
+    }
+
+    .slick-prev {
+      right: 7%;
+      transform: translateY(-50%) rotate(180deg);
+      transform-origin: 50% 50%;
+    }
+    .slick-next {
+      transform: translateY(-50%);
+      right: 3%;
+    }
+    .-more {
+      background: $bg-gray;
+      min-height: 100%;
+      display: flex !important;
+      svg {
+        font-size: 1.5rem;
+      }
+    }
+    .-item,
+    .product {
+      min-height: 100%;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .-item {
+      align-items: stretch;
+    }
+    .product {
+      flex: 1 1 auto;
+    }
+    .img-wrap {
+      flex: 1 1 auto;
+      aspect-ratio: initial;
     }
   }
 }

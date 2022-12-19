@@ -8,6 +8,12 @@ body {
   font-feature-settings: 'tnum';
   overflow-x: hidden;
   overflow-y: overlay;
+  & > .loading {
+    min-height: 70vh;
+  }
+}
+
+* {
   &::-webkit-scrollbar {
     width: 8px !important;
     border-radius: 23px;
@@ -24,6 +30,7 @@ body {
     background-color: #8e8e8e;
   }
 }
+
 html {
   font-size: 14px;
 }
@@ -72,8 +79,8 @@ label {
 
 .loading {
   width: 100%;
-  min-height: 70vh;
-  font-size: 25rem;
+  min-height: 100%;
+  font-size: 15rem;
   opacity: 0.3;
   svg {
     animation: fadeIn 0.4s both;
