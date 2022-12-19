@@ -44,12 +44,11 @@ const FormItem: FC<FormItemProps> = (props) => {
     className,
     placeholder,
     ...register(name || '', { ...validate, required }),
-    ...rest,
   };
 
   const renderInput = () => {
     if (element === 'textarea') return <textarea {...inputProps} />;
-    return <Input pure {...inputProps} />;
+    return <Input pure {...inputProps} {...rest} />;
   };
   //
   return (
