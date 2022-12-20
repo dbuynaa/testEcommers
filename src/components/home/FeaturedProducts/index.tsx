@@ -1,19 +1,11 @@
 import FeaturedProduct from './FeaturedProduct';
 import { use } from 'react';
-import { getGridBanners } from 'lib/wp/posts';
+import { getGridBanners, sortPosts } from 'lib/wp/posts';
 
 const FeaturedProducts = () => {
   const { posts } = use(getGridBanners());
 
-  const sortedPosts = (posts || []).sort(function (a, b) {
-    if (a.info.sort < b.info.sort) {
-      return -1;
-    }
-    if (a.info.sort > b.info.sort) {
-      return 1;
-    }
-    return 0;
-  });
+  const sortedPosts = sortPosts(posts);
 
   return (
     <div className="row ft-product-row">

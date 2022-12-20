@@ -24,6 +24,7 @@ const Image: FC<
     fallBack,
     noWrap,
     withLoader,
+    sizes,
     ...rest
   } = props;
   const fixedSrc = readFile(src || '');
@@ -51,9 +52,12 @@ const Image: FC<
           ? 'skelton-wave next-image-loading'
           : 'next-image-completed'
       )}
-      sizes="(max-width: 768px) 100vw,
+      sizes={
+        sizes ||
+        `(max-width: 768px) 100vw,
       (max-width: 1200px) 50vw,
-      33vw"
+      33vw`
+      }
     />
   );
 

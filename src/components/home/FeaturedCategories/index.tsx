@@ -1,6 +1,6 @@
 import FeaturedCategory from './FeaturedCategory';
 import { use } from 'react';
-import { getFtCats } from 'lib/wp/posts';
+import { getFtCats, sortPosts } from 'lib/wp/posts';
 
 const FeaturedCategories = () => {
   const { posts } = use(getFtCats());
@@ -8,7 +8,7 @@ const FeaturedCategories = () => {
     <div className=" my-5 ft-cats">
       <h4 className="bold text-blue text-center mb-4">Онцлох ангилал</h4>
       <div className="row">
-        {(posts || []).map((post, idx) => (
+        {sortPosts(posts || []).map((post, idx) => (
           <FeaturedCategory {...post} key={idx} />
         ))}
       </div>

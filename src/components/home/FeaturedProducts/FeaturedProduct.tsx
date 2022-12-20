@@ -1,20 +1,23 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { WpPost } from 'lib/wp/posts';
 
 interface IProps {
   className: string;
-  featuredImage: { sourceUrl: string };
-  info: { pathname: string };
 }
 
-const FeaturedProduct = ({ className, featuredImage, info }: IProps) => {
+const FeaturedProduct = ({
+  className,
+  featuredImage,
+  custom,
+}: WpPost & IProps) => {
   return (
     <Link
-      href={info.pathname}
+      href={custom.link}
       className={clsx('ft-product flex img-wrap items-center', className)}
     >
-      <Image src={featuredImage.sourceUrl} alt="" fill />
+      <Image src={featuredImage?.sourceUrl || ''} alt="" fill />
     </Link>
   );
 };

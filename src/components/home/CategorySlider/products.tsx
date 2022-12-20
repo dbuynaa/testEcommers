@@ -1,35 +1,22 @@
 'use client';
-import Slider, { Settings } from 'react-slick';
+import Slider from 'react-slick';
 import useGetProducts from 'lib/useGetProducts';
 import Loading from 'ui/Loading';
 import Product from 'components/Products/Product';
-import ChevronLeft from 'icons/ChevronLeft';
-import Button from 'ui/Button';
 import ArrowRight from 'icons/ArrowRight';
 import Link from 'next/link';
+import { slickSettings } from 'utils/constants';
+import Button from 'ui/Button';
 
-const settings: Settings = {
+const changedSettings = {
+  ...slickSettings,
   slidesToShow: 3,
-  speed: 500,
-  infinite: false,
-  arrows: true,
   slidesToScroll: 2,
-  lazyLoad: 'ondemand',
-  prevArrow: (
-    <Button className="slick-prev">
-      <ChevronLeft />
-    </Button>
-  ),
-  nextArrow: (
-    <Button className="slick-next">
-      <ChevronLeft />
-    </Button>
-  ),
 };
 
 const Products = ({ category }: { category: string }) => {
   const { products, loading } = useGetProducts({
-    category: 'YBRrcfqeDPcx4M2Tg',
+    category,
     perPage: 16,
   });
 
@@ -39,9 +26,10 @@ const Products = ({ category }: { category: string }) => {
         <Loading />
       </div>
     );
+
   return (
     <div className="col-9">
-      <Slider {...settings} className="-slider">
+      <Slider {...changedSettings} className="-slider">
         {(products || []).map((el: any, index: number) => (
           <div className="px-2 flex flex-col -item" key={index}>
             <Product {...el} />
@@ -50,7 +38,7 @@ const Products = ({ category }: { category: string }) => {
         <Button
           className="-more text-black me-2"
           Component={Link}
-          href={category}
+          href={'/products?category=' + category}
         >
           <h5>Бүгдийг үзэх</h5>
           <ArrowRight className="ms-2" />

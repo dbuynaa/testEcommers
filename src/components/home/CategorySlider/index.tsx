@@ -7,16 +7,20 @@ const CategorySlider = () => {
   const { posts } = use(getBannerCats());
   return (
     <>
-      {(posts || []).map(({ slug, title, featuredImage, image }) => (
+      {(posts || []).map(({ slug, title, featuredImage, image, custom }) => (
         <div className="cat-banner py-5" key={slug}>
           <div className="-header p-3 mb-3 rounded">
             <h5 className="text-blue">{title}</h5>
           </div>
           <div className="row">
             <Banner
-              {...{ featuredImage, hoverImage: (image || {}).hoverImage }}
+              {...{
+                featuredImage,
+                hoverImage: (image || {}).hoverImage,
+                custom,
+              }}
             />
-            <Products category={(image || {}).pathname} />
+            <Products category={(custom || {}).link} />
           </div>
         </div>
       ))}

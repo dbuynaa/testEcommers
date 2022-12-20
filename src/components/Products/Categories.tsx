@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import Tree from 'rc-tree';
-import ChevronLeft from 'icons/ChevronLeft';
+import ChevronRight from 'icons/ChevronRight';
 import { useProducts } from 'modules/Products/context';
 
 const formatToTree = (root: any, all: any) => {
@@ -72,7 +72,7 @@ const ProductCategories = ({ categories, rootCatergories }: any) => {
           mapToAddKey(categories)
         )}
         icon={<></>}
-        switcherIcon={<ChevronLeft />}
+        switcherIcon={<ChevronRight />}
         motion={motion}
         onSelect={(selectedKeys, info) => {
           if (selectedKeys.length === 0) {
