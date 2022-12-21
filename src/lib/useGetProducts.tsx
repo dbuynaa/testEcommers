@@ -19,7 +19,7 @@ const useGetProducts = ({
     searchValue,
   };
 
-  const { data, loading, refetch, fetchMore } = useQuery(queries.products, {
+  const { data, loading, fetchMore } = useQuery(queries.products, {
     variables: {
       ...commonVariables,
       perPage,
@@ -34,12 +34,6 @@ const useGetProducts = ({
       onCountCompleted && onCountCompleted(productsCount);
     },
   });
-
-  useEffect(() => {
-    refetch(commonVariables);
-    productsCountQuery.refetch(commonVariables);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, searchValue]);
 
   const products = (data || {}).poscProducts || [];
   const productsCount =

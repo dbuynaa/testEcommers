@@ -1,15 +1,13 @@
 'use client';
-import Slider from 'react-slick';
+import Slider from 'ui/Slider';
 import useGetProducts from 'lib/useGetProducts';
 import Loading from 'ui/Loading';
 import Product from 'components/Products/Product';
 import ArrowRight from 'icons/ArrowRight';
 import Link from 'next/link';
-import { slickSettings } from 'utils/constants';
 import Button from 'ui/Button';
 
 const changedSettings = {
-  ...slickSettings,
   slidesToShow: 3,
   slidesToScroll: 2,
 };

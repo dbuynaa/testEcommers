@@ -6,12 +6,14 @@ import SliderBanner from 'components/home/Slider';
 
 export default function Home() {
   return (
-    <div className="container flex flex-col">
-      <FeaturedProducts />
-      <FeaturedCategories />
-      <CategorySlider />
-      <Banner />
-      <SliderBanner />
-    </div>
+    <>
+      <div className="container flex flex-col">
+        <FeaturedProducts />
+        <FeaturedCategories />
+        <CategorySlider />
+        <Banner />
+        <SliderBanner />
+      </div>
+    </>
   );
 }

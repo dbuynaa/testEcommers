@@ -14,15 +14,15 @@ const ProfileContent = () => {
       <ProfileItem href="/profile" icon={<AddressCard />}>
         Хувийн мэдээлэл
       </ProfileItem>
-      <ProfileItem href="/profile/loyalty" icon={<Stars />}>
+      {/* <ProfileItem href="/profile/loyalty" icon={<Stars />}>
         Урамшуулал
-      </ProfileItem>
+      </ProfileItem> */}
       <ProfileItem href="/profile/orders" icon={<Bags />}>
         Миний захиалгууд
       </ProfileItem>
-      <ProfileItem href="/profile/wishlist" icon={<CircleHeart />}>
+      {/* <ProfileItem href="/profile/wishlist" icon={<CircleHeart />}>
         Хүслийн жагсаалт
-      </ProfileItem>
+      </ProfileItem> */}
       <Logout />
     </>
   );

@@ -1,18 +1,14 @@
-'use client';
 import { use } from 'react';
-import Slider, { Settings } from 'react-slick';
-import { slickSettings } from 'utils/constants';
+import Slider from 'ui/Slider';
 import Image from 'ui/Image';
 import { getSliderBanner, sortPosts } from 'lib/wp/posts';
 import Link from 'next/link';
 import Button from 'ui/Button';
 
-const changedSettings: Settings = {
-  ...slickSettings,
+const changedSettings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   dots: true,
-  customPaging: () => <Button />,
 };
 
 const SliderBanner = () => {

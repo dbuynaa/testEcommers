@@ -8,24 +8,27 @@ const FeaturedProducts = () => {
   const sortedPosts = sortPosts(posts);
 
   return (
-    <div className="row ft-product-row">
-      <div className="col-6 p-1">
-        <FeaturedProduct className="big" {...sortedPosts[0]} />
-      </div>
-      <div className="col-6">
-        <div className="row">
-          <div className="col-6 p-1">
-            <FeaturedProduct className="small" {...sortedPosts[1]} />
-          </div>
-          <div className="col-6 p-1">
-            <FeaturedProduct className="small" {...sortedPosts[2]} />
-          </div>
-          <div className="col-12 p-1">
-            <FeaturedProduct className="long" {...sortedPosts[3]} />
+    <>
+      <div className="pt-1"></div>
+      <div className="row ft-product-row">
+        <div className="col-6 p-1">
+          <FeaturedProduct className="big" {...sortedPosts[0]} />
+        </div>
+        <div className="col-6">
+          <div className="row">
+            <div className="col-6 p-1">
+              <FeaturedProduct className="small" {...sortedPosts[1]} />
+            </div>
+            <div className="col-6 p-1">
+              <FeaturedProduct className="small" {...sortedPosts[2]} />
+            </div>
+            <div className="col-12 p-1">
+              <FeaturedProduct className="long" {...sortedPosts[3]} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

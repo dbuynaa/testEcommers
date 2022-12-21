@@ -1,17 +1,26 @@
 footer {
-  background-color: $bg-primary;
-  color: #fff;
-  a,
-  b {
-    display: block;
+  .-content {
+    background-color: $bg-primary;
+    color: #fff;
+    min-height: 350px;
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    img {
+      object-fit: cover;
+    }
   }
-  b {
-    margin-bottom: 1.5rem;
-  }
+
   a {
-    margin-bottom: 0.75rem;
+    display: block;
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
   }
-}
-.layout-content {
-  min-height: calc(100vh - 436px);
+  .btn.naked {
+    padding: 0.75rem;
+    border-radius: 50%;
+    background: #fff;
+  }
 }

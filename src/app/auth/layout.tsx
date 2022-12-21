@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Image
             noWrap
             alt="login"
-            src={page?.featuredImage?.node?.sourceUrl || ''}
+            src={page?.featuredImage?.sourceUrl || ''}
             sizes="50vw"
             fill
           />

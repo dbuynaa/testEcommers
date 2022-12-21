@@ -7,7 +7,7 @@ const custom = `
   }
 `;
 
-const featuredImage = (size?: 'LARGE' | 'MEDIUM') => `
+export const featuredImage = (size?: 'LARGE' | 'MEDIUM') => `
   featuredImage {
     node {
       ${size ? `sourceUrl(size: ${size})` : 'sourceUrl'}

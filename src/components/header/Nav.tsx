@@ -6,12 +6,12 @@ const Nav = () => {
       <NavLink href="/" className="me-2">
         Нүүр
       </NavLink>
-      <NavLink href="/trade-in" className="mx-2">
+      {/* <NavLink href="/trade-in" className="mx-2">
         Trade in
       </NavLink>
       <NavLink href="/wholesale" className="test-text mx-2">
         Бөөндий
-      </NavLink>
+      </NavLink> */}
       <NavLink href="/technews" className="ms-2">
         Мэдээ, мэдээлэл
       </NavLink>

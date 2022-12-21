@@ -1,10 +1,10 @@
 'use client';
-import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { cleanCart } from 'utils';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useCurrentUser } from 'modules/appContext';
+import Form from 'ui/Form';
 import FormItem from 'ui/FormItem';
 import Map from 'components/checkout/address/map';
 import Layout from 'components/checkout/layout';
@@ -31,7 +31,7 @@ const Address = () => {
       };
     };
   const [latLong, setLatLong] = useState<any>(marker);
-  const methods = useForm<AddressFormData>({
+  const formArgs = {
     defaultValues: {
       ...rest,
       firstName: firstName || currentUser?.firstName,
@@ -40,46 +40,24 @@ const Address = () => {
       email: email || currentUser?.email,
       registerNumber: registerNumber || currentUser?.companyRegistrationNumber,
     },
-  });
+  };
 
-  // useEffect(() => {
-  //   if (orderData) {
-  //     const {
-  //       firstName,
-  //       lastName,
-  //       phone,
-  //       email,
-  //       description,
-  //       marker,
-  //       ...rest
-  //     } = deliveryInfo as AddressFormData & {
-  //       description: string;
-  //       marker: {
-  //         lat: string;
-  //         lng: string;
-  //       };
-  //     };
-  //     console.log({
-  //       ...rest,
-  //       firstName: firstName || currentUser?.firstName,
-  //       lastName: lastName || currentUser?.lastName,
-  //       phone: phone || currentUser?.phone,
-  //       email: email || currentUser?.email,
-  //       registerNumber:
-  //         registerNumber || currentUser?.companyRegistrationNumber,
-  //     });
-  //     setLatLong(marker);
-  //   }
-  // }, [orderData, currentUser]);
+  useEffect(() => {
+    if (orderData) {
+      setLatLong(marker);
+    }
+  }, []);
 
-  const onSubmit = methods.handleSubmit((data) => {
+  const onSubmit = (data: AddressFormData) => {
     if (latLong) {
+      const { registerNumber, ...rest } = data;
       return orderCU({
         variables: {
           ...restData,
           items: cleanCart(cart),
+          registerNumber: registerNumber,
           deliveryInfo: {
-            ...data,
+            ...rest,
             marker: latLong,
             description: `Аймаг/Хот: ${data.province},  Сум/Дүүрэг: ${data.district}, Баг/Хороо: ${data.street}, Дэлгэрэнгүй: ${data.details} `,
           },
@@ -87,87 +65,85 @@ const Address = () => {
       });
     }
     return toast.error('Газрын зураг дээр байршилаа сонгоно уу');
-  });
+  };
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={onSubmit}>
-        <Layout
-          action={
-            <>
-              <Button
-                type="submit"
-                className="sum-buy block w-full p-3"
-                loading={loading}
-              >
-                Үргэлжлүүлэх
-              </Button>
-            </>
-          }
-        >
-          <div className="row px-3 order-address">
-            <div className="col-6 px-2">
-              <FormItem
-                label="Захиалагчийн нэр"
-                placeholder="Бат-эрдэнэ"
-                name="firstName"
-              />
-            </div>
-            <div className="col-6 px-2">
-              <FormItem
-                label="Захиалагчийн Овог"
-                placeholder="Хашбат"
-                name="lastName"
-              />
-            </div>
-            <div className="col-6 px-2">
-              <FormItem
-                label="Захиалагчийн утасны дугаар"
-                placeholder="99999999"
-                name="phone"
-              />
-            </div>
-            <div className="col-6 px-2">
-              <FormItem
-                label="Захиалагчийн и-мэйл хаяг"
-                placeholder="example@example.com"
-                name="email"
-              />
-            </div>
-            <Ebarimt />
-            <div className="col-4 px-2">
-              <FormItem
-                label="Хот/Aймаг"
-                placeholder="Улаанбаатар"
-                name="province"
-              />
-            </div>
-            <div className="col-4 px-2">
-              <FormItem
-                label="Дүүрэг/сум"
-                placeholder="Баянгол"
-                name="district"
-              />
-            </div>
-            <div className="col-4 px-2">
-              <FormItem label="Хороо/баг" placeholder="6-хороо" name="street" />
-            </div>
-            <div className="col-12 px-2">
-              <FormItem
-                label="Дэлгэрэнгүй хаяг"
-                placeholder="Алтан өргөө цогцолбор, Наран ундраа төв"
-                element="textarea"
-                name="details"
-              />
-            </div>
-            <div className="form-item col-12">
-              <label className="ps-3 block">Газрын зураг</label>
-              <Map latLong={latLong} setLatLong={setLatLong} />
-            </div>
+    <Form args={formArgs} onSubmit={onSubmit}>
+      <Layout
+        action={
+          <>
+            <Button
+              type="submit"
+              className="sum-buy  w-full p-3"
+              loading={loading}
+            >
+              Үргэлжлүүлэх
+            </Button>
+          </>
+        }
+      >
+        <div className="row px-3 order-address">
+          <div className="col-6 px-2">
+            <FormItem
+              label="Захиалагчийн нэр"
+              placeholder="Бат-эрдэнэ"
+              name="firstName"
+            />
           </div>
-        </Layout>
-      </form>
-    </FormProvider>
+          <div className="col-6 px-2">
+            <FormItem
+              label="Захиалагчийн Овог"
+              placeholder="Хашбат"
+              name="lastName"
+            />
+          </div>
+          <div className="col-6 px-2">
+            <FormItem
+              label="Захиалагчийн утасны дугаар"
+              placeholder="99999999"
+              name="phone"
+            />
+          </div>
+          <div className="col-6 px-2">
+            <FormItem
+              label="Захиалагчийн и-мэйл хаяг"
+              placeholder="example@example.com"
+              name="email"
+            />
+          </div>
+          <Ebarimt />
+          <div className="col-4 px-2">
+            <FormItem
+              label="Хот/Aймаг"
+              placeholder="Улаанбаатар"
+              name="province"
+            />
+          </div>
+          <div className="col-4 px-2">
+            <FormItem
+              label="Дүүрэг/сум"
+              placeholder="Баянгол"
+              name="district"
+            />
+          </div>
+          <div className="col-4 px-2">
+            <FormItem label="Хороо/баг" placeholder="6-хороо" name="street" />
+          </div>
+          <div className="col-12 px-2">
+            <FormItem
+              label="Дэлгэрэнгүй хаяг"
+              placeholder="Алтан өргөө цогцолбор, Наран ундраа төв"
+              element="textarea"
+              name="details"
+            />
+          </div>
+          <div className="form-item col-12">
+            <label className="ps-3 block">Газрын зураг</label>
+            <Map latLong={latLong} setLatLong={setLatLong} />
+          </div>
+        </div>
+      </Layout>
+    </Form>
   );
 };
 

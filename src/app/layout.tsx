@@ -10,6 +10,7 @@ import choosePos from 'lib/choosePos';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Toast from 'ui/Toast';
 import CurrentOrder from 'modules/checkout/currentOrder';
+import Footer from 'components/footer';
 
 const Font = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -33,12 +34,13 @@ export default function RootLayout({
         <ApolloProvider>
           <AppProvider>
             <UIProvider>
-              <CurrentUser>
-                <CurrentOrder>
-                  <Header />
-                  {children}
-                </CurrentOrder>
-              </CurrentUser>
+              <Header />
+              <div className="min-height-screen">
+                <CurrentUser>
+                  <CurrentOrder>{children}</CurrentOrder>
+                </CurrentUser>
+              </div>
+              <Footer />
             </UIProvider>
           </AppProvider>
         </ApolloProvider>

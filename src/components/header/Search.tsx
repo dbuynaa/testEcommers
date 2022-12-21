@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import useGetProducts from 'lib/useGetProducts';
 import Product from 'components/Products/Product';
 import Loading from 'ui/Loading';
+import Empty from 'ui/Empty';
 
 const Search = () => {
   const [show, setShow] = useState(false);
@@ -14,6 +15,9 @@ const Search = () => {
   const { products, productsCount, loading } = useGetProducts({ searchValue });
 
   const renderResult = () => {
+    if (!searchValue)
+      return <Empty size="8rem" message="Хайх утгаа оруулана уу" />;
+
     if (loading) return <Loading />;
 
     return (
@@ -27,7 +31,7 @@ const Search = () => {
         <div className="row">
           {(products || []).map((el: any) => (
             <div className="col-3 p-3" key={el._id}>
-              <Product {...el} />
+              <Product {...el} onClick={() => setShow(false)} />
             </div>
           ))}
         </div>
@@ -36,7 +40,7 @@ const Search = () => {
   };
 
   return (
-    <div className="search ms-5" onClick={() => setShow(true)}>
+    <div className="search ms-5">
       <Popover
         open={show}
         onOpenChange={() => setShow((prev) => !prev)}
@@ -55,7 +59,11 @@ const Search = () => {
           {renderResult()}
         </div>
       </Popover>
-      <Input placeholder="Хайх..." value={searchValue} />
+      <Input
+        placeholder="Хайх..."
+        value={searchValue}
+        onClick={() => setShow(true)}
+      />
       <Magnify />
     </div>
   );

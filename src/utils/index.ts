@@ -92,8 +92,7 @@ export const changeCount = ({
 export const addToCart = ({ product, cart, onCompleted }: ICartUtil) => {
   const currentCart = (cart || []).slice();
 
-  console.log(currentCart, 'in add to');
-  const foundItem = findItem(cart || [], product._id);
+  const foundItem = findItem(cart || [], product.productId || product._id);
 
   if (foundItem) {
     return changeCount({

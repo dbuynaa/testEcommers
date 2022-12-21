@@ -92,13 +92,13 @@ const Cart = () => {
                     </small>
                   </div>
 
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     className="cart-delete"
                     onClick={() => changeCount({ productId, count: 0 })}
                   >
                     <Trash />
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>

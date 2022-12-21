@@ -9,6 +9,7 @@ import { useLazyQuery, gql } from '@apollo/client';
 import { queries } from './graphql';
 import { toast } from 'react-toastify';
 import useOrderData from 'lib/useOrderData';
+import LoadingDots from 'ui/LoadingDots';
 
 const Ebarimt = () => {
   const orderData = useOrderData();
@@ -32,13 +33,19 @@ const Ebarimt = () => {
   );
 
   useEffect(() => {
-    if ((registerNumber || '').length >= 7) {
+    setValue('companyName', '');
+    if ((registerNumber || '').length > 6) {
       checkRegister({ variables: { registerNumber } });
     }
   }, [registerNumber]);
 
   return (
-    <div className={clsx('-ebarimt rounded col-12 my-3', expand && 'expand')}>
+    <div
+      className={clsx(
+        '-ebarimt rounded col-12 my-3 relative',
+        expand && 'expand'
+      )}
+    >
       <label className="col-12 flex items-center p-3 ">
         <Input
           type="checkbox"
@@ -53,7 +60,7 @@ const Ebarimt = () => {
         </small>
       </label>
       {expand && (
-        <div className="row px-2">
+        <div className="row px-2 ">
           <div className="col-6 px-2">
             <FormItem
               label="Байгууллагын регистрийн дугаар"
@@ -69,6 +76,11 @@ const Ebarimt = () => {
               disabled
             />
           </div>
+          {loading && (
+            <div className="-load flex items-center justify-center inset-0">
+              <LoadingDots />
+            </div>
+          )}
         </div>
       )}
     </div>

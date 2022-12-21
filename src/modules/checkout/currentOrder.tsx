@@ -18,7 +18,7 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
   const { cart } = useCart();
   const NEW = ['new'];
 
-  const [getCurrentOrder] = useLazyQuery(queries.lastOrder, {
+  const [getCurrentOrder, { loading }] = useLazyQuery(queries.lastOrder, {
     fetchPolicy: 'network-only',
     onCompleted({ fullOrders }) {
       const order = (fullOrders || [])[0];
@@ -52,6 +52,8 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
         },
       });
   }, [currentUser]);
+
+  if (loading) return null;
 
   return <>{children}</>;
 };

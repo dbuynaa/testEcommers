@@ -42,10 +42,12 @@ export const getPosts = async (
   };
 };
 
-export function mapPostData(post: any = { featuredImage: { node: null } }) {
+export function mapPostData(
+  post: WpPost & { featuredImage: { node?: any } }
+): WpPost {
   const data = { ...post };
 
-  data.featuredImage = data.featuredImage.node;
+  data.featuredImage = data?.featuredImage?.node;
 
   return data;
 }
