@@ -8,9 +8,6 @@ body {
   font-feature-settings: 'tnum';
   overflow-x: hidden;
   overflow-y: overlay;
-  & > .loading {
-    min-height: 70vh;
-  }
 }
 
 * {
@@ -57,6 +54,13 @@ a[disabled] {
   cursor: not-allowed;
 }
 
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
 li {
   list-style: none;
 }
@@ -64,7 +68,7 @@ li {
 label {
   display: block;
   color: $blue;
-  margin-bottom: 4px;
+  margin-bottom: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
 }
@@ -74,10 +78,6 @@ label {
   min-height: 100%;
   font-size: 15rem;
   opacity: 0.3;
-  svg {
-    animation: fadeIn 0.4s both;
-    animation-timing-function: ease;
-  }
 }
 
 @keyframes fadeIn {

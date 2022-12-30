@@ -15,16 +15,10 @@ type FormData = {
 
 const Login = () => {
   const methods = useForm<FormData>();
-
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const from = searchParams.get('from');
 
   const [login, { loading }] = useMutation(mutations.login, {
     refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
-    onCompleted() {
-      return from ? router.push(from) : router.push('/');
-    },
     onError(error) {
       return toast.error(error.message);
     },

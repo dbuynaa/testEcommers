@@ -11,21 +11,21 @@
     height: 35px;
     gap: 5px;
     background: #fff;
-    color: $bg-primary;
-    border: 1px solid rgba($color: $bg-primary, $alpha: 0.2);
+    color: $blue;
+    border: 1px solid rgba($color: $blue, $alpha: 0.2);
     outline: none;
     &:hover {
       background: #eeedef;
     }
     &:focus {
-      box-shadow: 0 0 0 1px $bg-primary;
+      box-shadow: 0 0 0 1px $blue;
     }
     &[data-placeholder] {
-      color: $bg-primary;
+      color: $blue;
     }
   }
   &-icon {
-    color: $bg-primary;
+    color: $blue;
   }
   &-content {
     overflow: hidden;
@@ -40,14 +40,14 @@
     justify-content: center;
     height: 1.5rem;
     background-color: #fff;
-    color: $bg-primary;
+    color: $blue;
     cursor: default;
   }
   &-item {
     all: unset;
     font-size: 13px;
     line-height: 1;
-    color: $bg-primary;
+    color: $blue;
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -60,8 +60,8 @@
       pointer-events: none;
     }
     &[data-highlighted] {
-      background-color: rgba($color: $bg-primary, $alpha: 0.12);
-      color: $bg-primary;
+      background-color: rgba($color: $blue, $alpha: 0.12);
+      color: $blue;
     }
     &-indicator {
       position: absolute;

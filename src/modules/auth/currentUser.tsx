@@ -1,15 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Loading from 'ui/Loading';
 import { queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
+import { useEffect } from 'react';
 
 export interface State {
   currentUser: any;
 }
 
 const CurrentUser = ({ children }: any) => {
-  const { setCurrentUser } = useCurrentUser();
+  const { currentUser, setCurrentUser } = useCurrentUser();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const from = searchParams.get('from');
+
+  const router = useRouter();
 
   const { loading } = useQuery(queries.currentUser, {
     fetchPolicy: 'network-only',
@@ -19,7 +27,18 @@ const CurrentUser = ({ children }: any) => {
     },
   });
 
-  if (loading) return <></>;
+  useEffect(() => {
+    if (currentUser && pathname?.includes('/auth')) {
+      from ? router.push(from) : router.push('/');
+    }
+  }, [currentUser]);
+
+  if (loading) return <Loading className="min-height-screen" />;
+
+  if (currentUser && pathname?.includes('/auth')) {
+    return null;
+  }
+
   return <>{children}</>;
 };
 

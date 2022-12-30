@@ -13,9 +13,9 @@ const PrivateRoute = ({ children }: { children: ReactNode }) => {
     if (!currentUser) {
       router.push(`/auth/login?from=${pathname}`);
     }
-  }, []);
+  }, [currentUser]);
 
-  if (!currentUser) return <Loading />;
+  if (!currentUser) return <Loading className="min-height-screen" />;
 
   return <>{children}</>;
 };

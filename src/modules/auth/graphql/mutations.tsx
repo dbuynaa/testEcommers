@@ -77,7 +77,7 @@ const userEdit = gql`
     $phone: String
     $type: String
     $companyName: String
-    $companyRegistrationNumber: Int
+    $companyRegistrationNumber: String
     $password: String
   ) {
     clientPortalUsersEdit(

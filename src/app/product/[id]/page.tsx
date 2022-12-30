@@ -10,7 +10,6 @@ import Tabs, {
   TabsContent,
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
-import Whislist from 'components/ProductDetail/Whislist';
 
 const Product = ({ params }: any) => {
   const { id } = params;
@@ -23,6 +22,7 @@ const Product = ({ params }: any) => {
       'http://plugin_core_api',
       `${process.env.NEXT_PUBLIC_ERXES_API_URL}`
     );
+
   return (
     <div className="container prDtl">
       <div className="row py-4">
@@ -37,7 +37,6 @@ const Product = ({ params }: any) => {
             {...detail}
             productImgUrl={fixImageUrl((attachment || {}).url)}
           />
-          {/* <Whislist /> */}
         </div>
       </div>
       <Tabs defaultValue="intro">

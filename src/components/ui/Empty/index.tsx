@@ -4,7 +4,7 @@ const Empty = ({
   size,
   message = 'Хоосон байна',
 }: {
-  size: string;
+  size?: string;
   message?: string;
 }) => {
   return (

@@ -2,7 +2,7 @@
 
 import User from 'icons/User';
 import Button from 'ui/Button';
-import Dropdown from 'ui/Dropdown';
+import Dropdown, { DropdownItem } from 'ui/Dropdown';
 import { useCurrentUser } from 'modules/appContext';
 import ProfileContent from './ProfileContent';
 import Link from 'next/link';
@@ -30,7 +30,7 @@ const Profile = () => {
         </Button>
       }
     >
-      <ProfileContent />
+      <ProfileContent ItemComponent={DropdownItem} />
     </Dropdown>
   );
 };

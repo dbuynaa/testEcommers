@@ -1,8 +1,12 @@
-import Logo from 'icons/logo';
-export default function Loading() {
+import LoadingDots from 'ui/LoadingDots';
+import clsx from 'clsx';
+
+export default function Loading({ className }: { className?: string }) {
   return (
-    <div className="flex items-center justify-center loading">
-      <Logo />
+    <div
+      className={clsx('flex items-center justify-center loading', className)}
+    >
+      <LoadingDots />
     </div>
   );
 }

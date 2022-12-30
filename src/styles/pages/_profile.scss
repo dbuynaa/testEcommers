@@ -52,6 +52,27 @@
       color: $bg-primary;
     }
   }
+  .-order-item {
+    border: 1px solid rgba($color: #000, $alpha: 0.12);
+    font-weight: 600;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    p {
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+  }
+
+  &-back.btn {
+    color: rgba($color: #000, $alpha: 0.6);
+    padding: 0;
+    font-weight: 500;
+    font-size: 1.15rem;
+    &:hover {
+      background: transparent;
+    }
+  }
 }
 
 .profile-tabs {
@@ -90,4 +111,14 @@
   position: absolute;
   right: 25%;
   bottom: -8%;
+}
+
+.order-status {
+  background: $warning;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.25rem;
+  &.green {
+    background: $success;
+  }
 }

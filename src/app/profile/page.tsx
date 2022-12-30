@@ -1,5 +1,9 @@
+import { TabsContent } from 'components/ProductDetail/Tabs';
+import { usePathname } from 'next/navigation';
+
 const Profile = () => {
-  return <div>Profile</div>;
+  const pathname = usePathname();
+  return <TabsContent value={pathname || ''}>Profile</TabsContent>;
 };
 
 export default Profile;

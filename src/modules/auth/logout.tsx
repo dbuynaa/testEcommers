@@ -1,23 +1,19 @@
 'use client';
 import { useMutation } from '@apollo/client';
 import Button from 'ui/Button';
-import { useRouter } from 'next/navigation';
 import { mutations, queries } from './graphql';
 import LogoutIcon from 'icons/Logout';
 
-const Logout = () => {
-  const router = useRouter();
+const Logout = ({ Component }: any) => {
   const [userLogout, { loading }] = useMutation(mutations.logout, {
-    onCompleted() {
-      router.refresh();
-    },
     refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
   });
+
   return (
-    <div>
+    <Component asChild>
       <Button
         variant="ghost"
-        className="profile-item text-mid-gray flex w-100 items-center p-2 justify-start"
+        className="profile-item text-mid-gray flex w-100 items-center p-2 justify-start text-regular"
         loading={loading}
         onClick={() => userLogout()}
       >
@@ -26,7 +22,7 @@ const Logout = () => {
         </span>
         Гарах
       </Button>
-    </div>
+    </Component>
   );
 };
 

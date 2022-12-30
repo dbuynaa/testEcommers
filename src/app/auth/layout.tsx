@@ -5,7 +5,7 @@ import { getLogin } from 'lib/wp/page';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { page } = use(getLogin());
   return (
-    <div className="container ">
+    <div className="container">
       <div className="row login">
         <div className="col-6 relative">
           <Image

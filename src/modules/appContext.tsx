@@ -15,6 +15,7 @@ export interface State {
     phone: string;
     type: string;
     companyRegistrationNumber: string;
+    _id: string;
   } | null;
   loadingCurrentUser: boolean;
   currentOrder: IOrder | null;

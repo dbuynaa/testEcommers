@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import { useCurrentUser } from 'modules/appContext';
 
@@ -6,7 +7,7 @@ const MainInfo = () => {
   const { firstName, email, lastName } = currentUser || {};
 
   return (
-    <div className="flex items-center justify-center profile-main p-2">
+    <div className="flex items-center profile-main p-2">
       <Image
         src="/images/profile.png"
         alt="profile"
