@@ -19,6 +19,7 @@ export interface State {
   } | null;
   loadingCurrentUser: boolean;
   currentOrder: IOrder | null;
+  config: any;
 }
 
 const { Provider: AppProvider, useStore } = createFastContext({
@@ -26,6 +27,7 @@ const { Provider: AppProvider, useStore } = createFastContext({
   currentUser: null,
   loadingCurrentUser: true,
   currentOrder: null,
+  config: null,
 } as State);
 
 export const useCart = () => {
@@ -83,6 +85,14 @@ export const useCurrentOrder = () => {
   return {
     currentOrder,
     setCurrentOrder: (order: any) => setCurrentOrder({ currentOrder: order }),
+  };
+};
+
+export const useConfig = () => {
+  const [config, setConfig] = useStore((store) => store.config);
+  return {
+    config,
+    setConfig: (conf: any) => setConfig({ config: conf }),
   };
 };
 

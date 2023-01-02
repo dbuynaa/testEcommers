@@ -16,6 +16,14 @@ const currentUser = gql`
   }
 `;
 
-const queries = { currentUser };
+const currentConfig = gql`
+  query CurrentConfig {
+    currentConfig {
+      deliveryConfig
+    }
+  }
+`;
+
+const queries = { currentUser, currentConfig };
 
 export default queries;

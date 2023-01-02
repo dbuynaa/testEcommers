@@ -19,7 +19,7 @@ const OrderStatus = ({
   const updatedStatus = !!paidDate && status === 'new' ? 'paid' : status;
 
   return (
-    <div className="pt-1 flex items-center">
+    <div className="pt-1 flex items-center order-status-container">
       <span className={clsx('order-status me-2', isGreen && 'green')}></span>
       {obj[updatedStatus as keyof typeof obj]}
     </div>

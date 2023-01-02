@@ -1,24 +1,21 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import { use } from 'react';
-import { Inter } from '@next/font/google';
-import '../styles/styles.min.css';
+import 'styles/styles.min.css';
 import Header from 'components/header';
 import ApolloProvider from 'modules/apolloClient';
 import AppProvider from 'modules/appContext';
 import UIProvider from 'ui/context';
 import CurrentUser from 'modules/auth/currentUser';
-import choosePos from 'lib/choosePos';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Toast from 'ui/Toast';
 import CurrentOrder from 'modules/checkout/currentOrder';
 import Footer from 'components/footer';
+import Config from 'modules/auth/Config';
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // use(choosePos());
   return (
     <html lang="mn">
       <head>
@@ -42,13 +39,15 @@ export default function RootLayout({
         <ApolloProvider>
           <AppProvider>
             <UIProvider>
-              <Header />
-              <div className="min-height-screen">
-                <CurrentUser>
-                  <CurrentOrder>{children}</CurrentOrder>
-                </CurrentUser>
-              </div>
-              <Footer />
+              <Config>
+                <Header />
+                <div className="min-height-screen">
+                  <CurrentUser>
+                    <CurrentOrder>{children}</CurrentOrder>
+                  </CurrentUser>
+                </div>
+                <Footer />
+              </Config>
             </UIProvider>
           </AppProvider>
         </ApolloProvider>

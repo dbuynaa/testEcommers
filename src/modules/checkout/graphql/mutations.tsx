@@ -77,6 +77,32 @@ const orderItemChangeStatus = gql`
   }
 `;
 
+const generateInvoiceUrl = `
+  mutation GenerateInvoiceUrl(
+    $amount: Float!
+    $companyId: String
+    $contentType: String
+    $contentTypeId: String
+    $customerId: String
+    $description: String
+    $email: String
+    $paymentIds: [String]
+    $phone: String
+  ) {
+    generateInvoiceUrl(
+      amount: $amount
+      companyId: $companyId
+      contentType: $contentType
+      contentTypeId: $contentTypeId
+      customerId: $customerId
+      description: $description
+      email: $email
+      paymentIds: $paymentIds
+      phone: $phone
+    )
+  }
+`;
+
 const mutations = {
   ordersAdd,
   ordersEdit,
@@ -84,6 +110,7 @@ const mutations = {
   ordersSettlePayment,
   orderChangeStatus,
   orderItemChangeStatus,
+  generateInvoiceUrl,
 };
 
 export default mutations;
