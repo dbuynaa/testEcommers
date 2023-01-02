@@ -1,27 +1,26 @@
 'use client';
 import { useMutation, useLazyQuery } from '@apollo/client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { mutations, queries } from './graphql';
 import { useConfig } from 'modules/appContext';
 import Loading from 'ui/Loading';
 
 const Config = ({ children }: any) => {
   const { setConfig } = useConfig();
+  const [loading, setLoading] = useState(true);
 
-  const [getConfig, { loading }] = useLazyQuery(queries.currentConfig, {
+  const [getConfig] = useLazyQuery(queries.currentConfig, {
     onCompleted(data) {
+      setLoading(false);
       setConfig(data);
     },
   });
 
-  const [posChooseConfig, { loading: load }] = useMutation(
-    mutations.posChooseConfig,
-    {
-      onCompleted() {
-        getConfig();
-      },
-    }
-  );
+  const [posChooseConfig] = useMutation(mutations.posChooseConfig, {
+    onCompleted() {
+      getConfig();
+    },
+  });
 
   useEffect(() => {
     posChooseConfig({
@@ -30,7 +29,7 @@ const Config = ({ children }: any) => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading || load) return <Loading className="min-h-full" />;
+  if (loading) return <Loading className="min-h-full" />;
 
   return children;
 };
