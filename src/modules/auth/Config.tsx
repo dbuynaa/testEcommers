@@ -12,7 +12,8 @@ const Config = ({ children }: any) => {
   const [getConfig] = useLazyQuery(queries.currentConfig, {
     onCompleted(data) {
       setLoading(false);
-      setConfig(data);
+      const currentConfig = (data || {}).currentConfig;
+      setConfig(currentConfig);
     },
   });
 

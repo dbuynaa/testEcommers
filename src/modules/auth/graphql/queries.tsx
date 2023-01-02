@@ -19,7 +19,8 @@ const currentUser = gql`
 const currentConfig = gql`
   query CurrentConfig {
     currentConfig {
-      deliveryConfig
+      erxesAppToken
+      paymentIds
     }
   }
 `;

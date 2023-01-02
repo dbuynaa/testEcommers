@@ -30,7 +30,7 @@ const ProductsContainer = () => {
     inView && handleLoadMore();
   }, [products.length, inView]);
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading className="min-height-screen" />;
 
   if (!products.length || !productsCount) return <div>Хоосон байна</div>;
 

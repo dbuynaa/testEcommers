@@ -57,7 +57,9 @@ const Page = ({ params }: { params: { id: string } }) => {
     <>
       <div className="flex justify-between items-center pt-4">
         <OrderStatus status={status} paidDate={paidDate} />
-        {!paidDate && <PaymentBtn />}
+        {!paidDate && (
+          <PaymentBtn totalAmount={totalAmount} orderId={params.id} />
+        )}
       </div>
       <b className="block my-5">
         <big className="">

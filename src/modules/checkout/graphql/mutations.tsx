@@ -27,6 +27,7 @@ const ordersAddPayment = gql`
     $cardAmount: Float
     $cardInfo: JSON
     $receivableAmount: Float
+    $mobileAmount: Float
   ) {
     ordersAddPayment(
       _id: $_id
@@ -34,6 +35,7 @@ const ordersAddPayment = gql`
       cardAmount: $cardAmount
       cardInfo: $cardInfo
       receivableAmount: $receivableAmount
+      mobileAmount: $mobileAmount
     ) {
       _id
     }
