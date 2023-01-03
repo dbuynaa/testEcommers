@@ -75,3 +75,24 @@
   max-width: 100%;
   flex: 1 1 100%;
 }
+
+@media (min-width: 768px) {
+  .col-md-12 {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .col-md-6 {
+    max-width: 50%;
+    flex: 1 1 50%;
+  }
+
+  .col-md-4 {
+    max-width: 33.333333333%;
+    flex: 1 1 33.333333333%;
+  }
+
+  .col-md-2 {
+    max-width: calc(100% / 6);
+    flex: 1 1 calc(100% / 6);
+  }
+}

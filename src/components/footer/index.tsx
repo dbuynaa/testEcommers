@@ -28,12 +28,12 @@ const Footer = () => {
         )}
         <div className="container c-xl py-5 relative">
           <div className="row">
-            <div className="col-4">
+            <div className="col-12 col-md-4">
               <Link href="/news">Мэдээ мэдээлэл</Link>
               <Link href="/terms-of-service">Үйлчилгээний нөхцөл</Link>
               <Link href="/privacy-policy">Нууцлалын бодлого</Link>
             </div>
-            <div className="col-4">
+            <div className="col-12 col-md-4">
               <Link href={'mailto: ' + mail} className="flex items-center">
                 <Button variant="naked" className="text-blue me-3">
                   <Mail />
@@ -47,7 +47,7 @@ const Footer = () => {
                 <span>{(phone || '').split('').join('')}</span>
               </Link>
             </div>
-            <div className="col-4">
+            <div className="col-12 col-md-4">
               <Link
                 className="flex items-start"
                 href={map || ''}

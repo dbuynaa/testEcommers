@@ -387,3 +387,13 @@
 .ps-5 {
   padding-left: 3rem !important;
 }
+
+@media (min-width: 768px) {
+  .my-md-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  .mb-md-4 {
+    margin-bottom: 1.5rem !important;
+  }
+}

@@ -5,8 +5,10 @@ import { getFtCats, sortPosts } from 'lib/wp/posts';
 const FeaturedCategories = () => {
   const { posts } = use(getFtCats());
   return (
-    <div className=" my-5 ft-cats">
-      <h4 className="bold text-blue text-center mb-4">Онцлох ангилал</h4>
+    <div className="my-md-5 my-4 ft-cats">
+      <h4 className="bold text-blue text-center mb-md-4 mb-0">
+        Онцлох ангилал
+      </h4>
       <div className="row">
         {sortPosts(posts || []).map((post, idx) => (
           <FeaturedCategory {...post} key={idx} />
