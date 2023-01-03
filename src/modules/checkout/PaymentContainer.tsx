@@ -28,14 +28,14 @@ const PaymentContainer = ({
 
   const invoiceUrl = (data || {}).generateInvoiceUrl || '';
 
-  const [addPayment, { loading: loadingAdd }] = useMutation(
-    mutations.ordersAddPayment,
+  const [makePayment, { loading: loadingMakePayment }] = useMutation(
+    mutations.ordersMakePayment,
     {
       refetchQueries: [
         {
           query: queries.orderDetail,
         },
-        'orderDetail',
+        'OrderDetail',
       ],
       onError(error) {
         toast.error(error.message);
@@ -60,11 +60,13 @@ const PaymentContainer = ({
           .filter(({ status }: any) => status === 'paid')
           .reduce((total: number, { amount }: any) => total + amount, 0);
 
-        if (paidAmount === totalAmount) {
-          addPayment({
+        if (paidAmount >= totalAmount) {
+          makePayment({
             variables: {
-              _id: orderId,
-              mobileAmount: parseFloat(totalAmount),
+              id: orderId,
+              doc: {
+                mobileAmount: parseFloat(totalAmount),
+              },
             },
           });
           return;
@@ -100,7 +102,7 @@ const PaymentContainer = ({
     return removeEventListener('message', () => {});
   }, []);
 
-  if (loading || loadingInvoices || loadingAdd)
+  if (loading || loadingInvoices || loadingMakePayment)
     return <Loading className="min-height-screen" />;
 
   return (

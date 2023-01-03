@@ -42,30 +42,19 @@ const ordersAddPayment = gql`
   }
 `;
 
-const ordersSettlePayment = gql`
-  mutation ordersSettlePayment(
-    $_id: String!
-    $billType: String!
-    $registerNumber: String
-  ) {
-    ordersSettlePayment(
-      _id: $_id
-      billType: $billType
-      registerNumber: $registerNumber
-    ) {
-      success
-      lotteryWarningMsg
-      errorCode
-      message
-      getInformation
-    }
-  }
-`;
-
 const orderChangeStatus = gql`
   mutation orderChangeStatus($_id: String!, $status: String) {
     orderChangeStatus(_id: $_id, status: $status) {
       _id
+    }
+  }
+`;
+
+const ordersMakePayment = gql`
+  mutation OrdersMakePayment($id: String!, $doc: OrderPaymentInput) {
+    ordersMakePayment(_id: $id, doc: $doc) {
+      amount
+      billId
     }
   }
 `;
@@ -109,7 +98,7 @@ const mutations = {
   ordersAdd,
   ordersEdit,
   ordersAddPayment,
-  ordersSettlePayment,
+  ordersMakePayment,
   orderChangeStatus,
   orderItemChangeStatus,
   generateInvoiceUrl,
