@@ -65,7 +65,7 @@ const PaymentContainer = ({
             variables: {
               id: orderId,
               doc: {
-                mobileAmount: parseFloat(totalAmount),
+                cashAmount: parseFloat(totalAmount),
               },
             },
           });
