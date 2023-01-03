@@ -135,9 +135,9 @@ const putResponseFields = `
   billType
 `;
 
-const orderDetail = `
-  query orderDetail($_id: String) {
-    orderDetail(_id: $_id) {
+const orderDetail = gql`
+query OrderDetail($id: String, $customerId: String) {
+  orderDetail(_id: $id, customerId: $customerId) {
       ${orderFields}
 
       items {

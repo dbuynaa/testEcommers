@@ -33,7 +33,7 @@ const PaymentContainer = ({
     {
       refetchQueries: [
         {
-          query: gql(queries.orderDetail),
+          query: queries.orderDetail,
         },
         'orderDetail',
       ],

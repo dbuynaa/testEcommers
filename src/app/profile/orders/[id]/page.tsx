@@ -1,18 +1,21 @@
 'use client';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { queries } from 'modules/checkout/graphql';
-import Button from 'ui/Button';
 import OrderStatus from 'components/profile/orderStatus';
 import LoadingDots from 'ui/LoadingDots';
 import NoData from 'icons/Robot';
 import { toast } from 'react-toastify';
 import Image from 'ui/Image';
 import PaymentBtn from 'components/profile/PaymentBtn';
+import { useCurrentUser } from 'modules/appContext';
 
 const Page = ({ params }: { params: { id: string } }) => {
-  const { loading, data } = useQuery(gql(queries.orderDetail), {
+  const { currentUser } = useCurrentUser();
+
+  const { loading, data } = useQuery(queries.orderDetail, {
     variables: {
-      _id: params.id,
+      id: params.id,
+      customerId: (currentUser || {}).erxesCustomerId,
     },
     onError(error) {
       toast.error(error.message);

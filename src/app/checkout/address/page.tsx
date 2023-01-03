@@ -19,7 +19,7 @@ const Address = () => {
   const orderData = useOrderData();
   const { currentUser } = useCurrentUser();
   const { cart, deliveryInfo, registerNumber, ...restData } = orderData;
-  const onCompleted = () => router.push('/checkout/payment');
+  const onCompleted = (id: string) => router.push(`/profile/orders/${id}`);
   const { orderCU, loading } = useOrderCU(onCompleted);
 
   const { firstName, lastName, phone, email, description, marker, ...rest } =
