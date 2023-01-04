@@ -19,6 +19,7 @@ const SliderBanner = () => {
         {sortPosts(posts || []).map(
           ({ title, featuredImage, custom, mobile }, idx) => (
             <Link
+              prefetch={false}
               className="-slide ratio relative"
               key={idx}
               href={custom.link}

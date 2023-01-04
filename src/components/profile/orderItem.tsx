@@ -7,6 +7,7 @@ const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id }: any) => {
     <Link
       href={`/profile/orders/${_id}`}
       className="-order-item row p-4 rounded text-black"
+      prefetch={false}
     >
       <div className="col-3">
         <p className="text-mid-gray">Огноо</p>

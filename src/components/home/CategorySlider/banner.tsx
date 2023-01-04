@@ -7,6 +7,7 @@ const Banner = ({ featuredImage, hoverImage, custom }: any) => {
       <Link
         className="relative img-wrap -banner rounded ratio r-4x3"
         href={'/products?category=' + custom.link}
+        prefetch={false}
       >
         <Image
           src={(hoverImage || {}).sourceUrl || (featuredImage || {}).sourceUrl}

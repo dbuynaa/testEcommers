@@ -15,6 +15,7 @@ const FeaturedProduct = ({
   return (
     <Link
       href={custom.link}
+      prefetch={false}
       className={clsx('ft-product flex img-wrap items-center', className)}
     >
       <Image src={featuredImage?.sourceUrl || ''} alt="" fill />

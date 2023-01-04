@@ -9,10 +9,14 @@ const Layout = ({ children }: any) => {
     <Tabs value={pathname || ''}>
       <TabsList>
         <TabTrigger value="/profile/info">
-          <Link href="/profile/info">Хувийн мэдээлэл</Link>
+          <Link href="/profile/info" prefetch={false}>
+            Хувийн мэдээлэл
+          </Link>
         </TabTrigger>
         <TabTrigger value="/profile/info/change-password">
-          <Link href="/profile/info/change-password">Нууц үг өөрчлөх</Link>
+          <Link href="/profile/info/change-password" prefetch={false}>
+            Нууц үг өөрчлөх
+          </Link>
         </TabTrigger>
       </TabsList>
       {children}

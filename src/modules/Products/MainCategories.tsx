@@ -21,6 +21,7 @@ const MainCategories = () => {
     <div className="flex items-center product-cats">
       {cats.map(({ _id, name }: any) => (
         <Link
+          prefetch={false}
           key={_id}
           href={{ pathname: '/products', query: { category: _id } }}
         >
