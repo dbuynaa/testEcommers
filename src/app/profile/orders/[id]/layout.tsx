@@ -11,6 +11,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         Component={Link}
         className="profile-back"
         riffle={false}
+        prefetch={false}
         href="/profile/orders"
       >
         <ArrowLeft className="me-3" />

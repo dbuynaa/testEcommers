@@ -23,6 +23,7 @@ const NavItem = ({
       href={href}
       variant="ghost"
       className={clsx('navbar-item', pathname === href && '-active')}
+      prefetch={false}
     >
       <div>
         {icon}

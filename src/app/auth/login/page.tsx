@@ -62,6 +62,7 @@ const Login = () => {
         <Button
           variant="slim"
           className="p-3"
+          prefetch={false}
           Component={Link}
           href="/auth/register"
         >

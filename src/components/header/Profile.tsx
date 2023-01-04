@@ -17,6 +17,7 @@ const Profile = () => {
         className="profile-btn"
         variant="ghost"
         Component={Link}
+        prefetch={false}
       >
         <User />
       </Button>

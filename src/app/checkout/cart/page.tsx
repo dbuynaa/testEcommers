@@ -13,6 +13,7 @@ const Cart = () => {
         <Button
           className="block w-full p-3 sum-buy"
           Component={Link}
+          prefetch={false}
           href="/checkout/address"
         >
           Худалдан авах

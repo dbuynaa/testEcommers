@@ -106,6 +106,7 @@ const Signup = () => {
           className="p-3"
           Component={Link}
           href="/auth/login"
+          prefetch={false}
         >
           Нэвтрэх
         </Button>
