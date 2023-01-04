@@ -12,11 +12,9 @@ const Footer = () => {
 
   const { phone, mail, map } = page?.contact || {};
 
-  console.log(page?.featuredImage?.sourceUrl);
-
   return (
     <footer>
-      <div className="-content py-4 relative">
+      <div className="-content py-md-4 relative">
         {page?.featuredImage?.sourceUrl && (
           <Image
             sizes="100vw"
@@ -28,7 +26,7 @@ const Footer = () => {
         )}
         <div className="container c-xl py-5 relative">
           <div className="row">
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-md-4 pb-3">
               <Link href="/news">Мэдээ мэдээлэл</Link>
               <Link href="/terms-of-service">Үйлчилгээний нөхцөл</Link>
               <Link href="/privacy-policy">Нууцлалын бодлого</Link>
@@ -40,7 +38,7 @@ const Footer = () => {
                 </Button>
                 <span>{mail}</span>
               </Link>
-              <Link href={'tel: ' + phone} className="flex items-center">
+              <Link href={'tel: ' + phone} className="flex items-center pb-3">
                 <Button variant="naked" className="text-blue me-3">
                   <Phone />
                 </Button>
@@ -64,7 +62,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="-author container c-xl flex justify-end p-4">
+      <div className="-author container c-xl row justify-end p-3">
         Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}.
         <b className="ps-1">Techstore - Технологийн дэлгүүр</b>
       </div>

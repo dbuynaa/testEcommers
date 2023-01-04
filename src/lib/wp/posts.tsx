@@ -76,4 +76,9 @@ export type WpPost = {
   imgbanner?: {
     ratio: number;
   };
+  mobile?: {
+    img: {
+      sourceUrl: string;
+    };
+  };
 };

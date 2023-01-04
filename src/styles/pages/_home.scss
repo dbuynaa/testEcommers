@@ -1,6 +1,7 @@
 .ft-cats {
+  overflow: hidden;
   .row {
-    margin: -0.75rem;
+    margin: -1.5rem;
     overflow: hidden;
   }
   img {
@@ -47,18 +48,26 @@
     }
     .slick-prev,
     .slick-next {
-      top: -3rem;
+      top: 50%;
       transform: translateY(-50%);
       svg {
-        color: $mid-gray;
+        color: #000;
+      }
+      background: #fff;
+      z-index: 1;
+      padding: 0.875rem;
+      border-radius: 50%;
+      box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px 0px;
+      &.slick-disabled {
+        display: none !important;
       }
     }
 
     .slick-prev {
-      right: 5.5%;
+      left: 1.5rem;
     }
     .slick-next {
-      right: 1.5%;
+      right: 1.5rem;
     }
     .-more {
       background: $bg-gray;

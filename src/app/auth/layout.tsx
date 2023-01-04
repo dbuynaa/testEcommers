@@ -7,16 +7,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="container">
       <div className="row login">
-        <div className="col-6 relative">
+        <div className="col-0 col-md-6 relative">
           <Image
             noWrap
             alt="login"
             src={page?.featuredImage?.sourceUrl || ''}
-            sizes="50vw"
+            sizes="(max-width: 768px) 0vw, 50vw"
             fill
           />
         </div>
-        <div className="col-6 flex items-center justify-center">{children}</div>
+        <div className="col-12 col-md-6 flex items-center justify-center">
+          {children}
+        </div>
       </div>
     </div>
   );

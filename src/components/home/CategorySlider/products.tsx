@@ -10,6 +10,24 @@ import Button from 'ui/Button';
 const changedSettings = {
   slidesToShow: 3,
   slidesToScroll: 2,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1.2,
+        slidesToScroll: 1,
+      },
+    },
+  ],
 };
 
 const Products = ({ category }: { category: string }) => {
@@ -26,7 +44,7 @@ const Products = ({ category }: { category: string }) => {
     );
 
   return (
-    <div className="col-9">
+    <div className="col-12 col-md-9">
       <Slider {...changedSettings} className="-slider">
         {(products || []).map((el: any, index: number) => (
           <div className="px-2 flex flex-col -item" key={index}>

@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { use, useRef } from 'react';
 import Banner from './banner';
 import Products from './products';
 import { getBannerCats } from 'lib/wp/posts';

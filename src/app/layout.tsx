@@ -10,6 +10,7 @@ import Toast from 'ui/Toast';
 import CurrentOrder from 'modules/checkout/currentOrder';
 import Footer from 'components/footer';
 import Config from 'modules/auth/Config';
+import NavigationBar from 'components/header/NavigationBar';
 
 export default function RootLayout({
   children,
@@ -47,6 +48,7 @@ export default function RootLayout({
                   </CurrentUser>
                 </div>
                 <Footer />
+                <NavigationBar />
               </Config>
             </UIProvider>
           </AppProvider>

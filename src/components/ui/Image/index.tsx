@@ -25,6 +25,7 @@ const Image: FC<
     noWrap,
     withLoader,
     sizes,
+    className,
     ...rest
   } = props;
   const fixedSrc = readFile(src || '');
@@ -48,6 +49,7 @@ const Image: FC<
       onLoadingComplete={handleComplete}
       className={cls(
         'next-image',
+        className,
         isImageLoading
           ? 'skelton-wave next-image-loading'
           : 'next-image-completed'

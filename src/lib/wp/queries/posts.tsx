@@ -75,12 +75,13 @@ export const SLIDER_BANNER = gql`
   query SLIDER_BANNER {
     posts(where: { categoryName: "slider" }, last: 12) {
       nodes {
-        featuredImage {
-          node {
+        ${featuredImage()}
+        ${custom}
+        mobile {
+          img {
             sourceUrl
           }
         }
-        ${custom}
         title
       }
     }

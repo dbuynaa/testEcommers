@@ -26,3 +26,45 @@
     padding: 10%;
   }
 }
+
+@media (max-width: 768px) {
+  .cat-banner {
+    .-slider {
+      margin: 1rem -0.5rem;
+      .slick-prev,
+      .slick-next {
+        display: none !important;
+      }
+    }
+    .img-wrap {
+      padding-bottom: 120%;
+    }
+  }
+  .banner-slider {
+    .-slide {
+      &::before {
+        padding-bottom: 133%;
+      }
+      .-desktop {
+        display: none;
+      }
+    }
+    .slick-next,
+    .slick-prev {
+      display: none !important;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    display: none;
+  }
+  .banner-slider {
+    .-slide {
+      .-mobile {
+        display: none;
+      }
+    }
+  }
+}
