@@ -5,12 +5,14 @@ import type { WpPost } from 'lib/wp/posts';
 
 interface IProps {
   className: string;
+  sizes?: string;
 }
 
 const FeaturedProduct = ({
   className,
   featuredImage,
   custom,
+  sizes,
 }: WpPost & IProps) => {
   return (
     <Link
@@ -21,9 +23,8 @@ const FeaturedProduct = ({
         src={featuredImage?.sourceUrl || ''}
         alt=""
         fill
-        sizes="(max-width: 768px) 100vw,
-              50vw"
         priority
+        sizes={sizes}
       />
     </Link>
   );

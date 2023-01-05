@@ -18,7 +18,13 @@ const ImageGallery = ({ images }: any) => {
       >
         {images.map((url: any, index: any) => (
           <div key={index} className="img-wrap">
-            <Image src={url} alt="product" fill quality={100} />
+            <Image
+              src={url}
+              alt="product"
+              fill
+              quality={100}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         ))}
       </Slider>
@@ -46,7 +52,12 @@ const ImageGallery = ({ images }: any) => {
           {images.map((url: any, index: any) => (
             <div key={index} className="p-2">
               <div className="img-wrap">
-                <Image src={url} alt="product" fill />
+                <Image
+                  src={url}
+                  alt="product"
+                  fill
+                  sizes="(max-width: 768px) 20vw, 10vw"
+                />
               </div>
             </div>
           ))}

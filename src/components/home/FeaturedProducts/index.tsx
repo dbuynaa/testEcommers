@@ -12,18 +12,34 @@ const FeaturedProducts = () => {
       <div className="pt-1"></div>
       <div className="row ft-product-row">
         <div className="col-md-6 col-12 p-1">
-          <FeaturedProduct className="big" {...sortedPosts[0]} />
+          <FeaturedProduct
+            className="big"
+            {...sortedPosts[0]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1360px) 50vw, 680px"
+          />
         </div>
         <div className="col-md-6 col-12">
           <div className="row">
             <div className="col-6 p-1">
-              <FeaturedProduct className="small" {...sortedPosts[1]} />
+              <FeaturedProduct
+                className="small"
+                {...sortedPosts[1]}
+                sizes="(max-width: 768px) 50vw, (max-width: 1360px) 25vw, 340px"
+              />
             </div>
             <div className="col-6 p-1">
-              <FeaturedProduct className="small" {...sortedPosts[2]} />
+              <FeaturedProduct
+                className="small"
+                {...sortedPosts[2]}
+                sizes="(max-width: 768px) 50vw, (max-width: 1360px) 25vw, 340px"
+              />
             </div>
             <div className="col-12 p-1">
-              <FeaturedProduct className="long" {...sortedPosts[3]} />
+              <FeaturedProduct
+                className="long"
+                {...sortedPosts[3]}
+                sizes="(max-width: 768px) 100vw, (max-width: 1360px) 50vw, 680px"
+              />
             </div>
           </div>
         </div>
