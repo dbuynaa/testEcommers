@@ -10,14 +10,13 @@ import Button from 'ui/Button';
 const changedSettings = {
   slidesToShow: 3,
   slidesToScroll: 2,
+  dots: false,
   responsive: [
     {
       breakpoint: 1024,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
-        infinite: true,
-        dots: true,
       },
     },
     {
