@@ -138,6 +138,18 @@
   }
   .order-product {
     border-bottom: 1px solid rgba($color: #000, $alpha: 0.12);
+    .img-wrap {
+      width: 140px;
+      &::before {
+        content: '';
+        padding-bottom: 100%;
+        width: 100%;
+        display: block;
+      }
+    }
+    & > .row {
+      flex: 1 1 auto;
+    }
     &-name {
       font-weight: 500;
     }
@@ -147,4 +159,29 @@
       font-size: 0.875rem;
     }
   }
+}
+.ebarimt {
+  max-width: 450px;
+  width: 100vw;
+  .qr-code {
+    line-height: 0;
+    font-size: 260px;
+    text-align: center;
+  }
+  .row {
+    align-items: center;
+    padding-bottom: 0.75rem;
+  }
+  .text-mid-gray {
+    font-size: 0.875rem;
+    padding-right: 0.75rem;
+  }
+  font-weight: 600;
+  b {
+    font-weight: 600;
+  }
+}
+.payments {
+  width: calc(100vw - 3rem);
+  max-width: 900px;
 }

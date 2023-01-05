@@ -1,15 +1,23 @@
 import PrivateRoute from 'modules/auth/privateRoute';
-import ProfileContent from 'components/header/ProfileContent';
+import dynamic from 'next/dynamic';
+import CheckDevice from 'modules/CheckDevice';
+
+const ProfileContent = dynamic(
+  () => import('components/header/ProfileContent'),
+  {
+    suspense: true,
+  }
+);
 
 const Layout = ({ children }: any) => {
   return (
     <PrivateRoute>
-      <div className="container py-5 profile">
-        <div className="row px-3">
-          <div className="col-3 pe-4">
-            <ProfileContent ItemComponent="div" />
+      <div className="container py-3 py-md-5 profile">
+        <div className="row px-md-3">
+          <div className="col-0 col-md-3 pe-md-4">
+            <CheckDevice Desktop={<ProfileContent ItemComponent="div" />} />
           </div>
-          <div className="col-9">{children}</div>
+          <div className="col-12 col-md-9">{children}</div>
         </div>
       </div>
     </PrivateRoute>

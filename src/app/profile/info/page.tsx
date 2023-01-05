@@ -33,15 +33,15 @@ const Info = () => {
 
   return (
     <Form onSubmit={onSubmit} args={args}>
-      <div className="row py-3 px-2">
-        <div className="col-6 px-2">
+      <div className="row py-3 px-md-2">
+        <div className="col-12 col-md-6 px-md-2">
           <FormItem name="firstName" label="Нэр" />
         </div>
-        <div className="col-6 px-2">
+        <div className="col-12 col-md-6 px-md-2">
           <FormItem name="lastName" label="Oвог" />
         </div>
-        <div className="col-9"></div>
-        <div className="col-3">
+        <div className="col-6 col-md-9"></div>
+        <div className="col-6 col-md-3">
           <Button
             className="w-100 py-3 bg-blue"
             type="submit"

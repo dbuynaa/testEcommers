@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <ArrowLeft className="me-3" />
         Миний захиалгууд
       </Button>
-      <div className="p-5 -main my-3 rounded">
+      <div className="p-md-5 -main my-3 rounded">
         <h5 className="text-blue hr pb-3">Захиалгын мэдээлэл</h5>
         {children}
       </div>

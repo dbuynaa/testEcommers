@@ -1,7 +1,9 @@
 'use client';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import Xmark from 'icons/Xmark';
 // import Xmark from 'icons/Xmark';
 import { ReactNode } from 'react';
+import Button from 'ui/Button';
 
 const Modal = ({
   trigger,
@@ -15,6 +17,11 @@ const Modal = ({
         <DialogPrimitive.Overlay className="modal-overlay" />
         <DialogPrimitive.Content className="modal-content">
           {children}
+          <DialogPrimitive.Close asChild>
+            <Button variant="slim" className="p-3 modal-close">
+              <Xmark />
+            </Button>
+          </DialogPrimitive.Close>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>

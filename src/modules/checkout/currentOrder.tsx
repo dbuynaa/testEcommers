@@ -22,7 +22,7 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
     fetchPolicy: 'network-only',
     onCompleted({ fullOrders }) {
       const order = (fullOrders || [])[0];
-      if (order) {
+      if (!(order || {}).paidDate) {
         setCurrentOrder(order);
       }
 

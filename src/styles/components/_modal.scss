@@ -20,22 +20,18 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90vw;
+
     max-width: 1000px;
-    max-height: 85vh;
-    padding: 25px;
+    max-height: 100vh;
+    padding: 1.5rem;
+    overflow: scroll;
     z-index: 1005;
-    // .-close {
-    //   position: absolute;
-    //   top: -1px;
-    //   right: -1px;
-    //   display: inline-block;
-    //   height: 42px;
-    //   width: 42px;
-    //   background: $main-color;
-    //   color: #fff;
-    //   box-shadow: none;
-    // }
+  }
+  &-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    box-shadow: none;
   }
 }
 

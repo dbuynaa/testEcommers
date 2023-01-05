@@ -12,7 +12,7 @@ const Nav = () => {
       <NavLink href="/wholesale" className="test-text mx-2">
         Бөөндий
       </NavLink> */}
-      <NavLink href="/technews" className="ms-2">
+      <NavLink href="/news" className="ms-2">
         Мэдээ, мэдээлэл
       </NavLink>
     </nav>

@@ -17,6 +17,7 @@ export const lastOrder = gql`
     ) {
       _id
       deliveryInfo
+      paidDate
       registerNumber
       items {
         _id
@@ -119,20 +120,11 @@ const customerFields = `
 `;
 
 const putResponseFields = `
-  date
-  vat
-  cityTax
-  registerNo
   billId
   lottery
-  qrData
-  success
-  lotteryWarningMsg
-  errorCode
-  message
-  getInformation
-  returnBillId
+  qrData 
   billType
+  amount
 `;
 
 const orderDetail = gql`

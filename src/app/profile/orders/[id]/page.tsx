@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import Image from 'ui/Image';
 import PaymentBtn from 'components/profile/PaymentBtn';
 import { useCurrentUser } from 'modules/appContext';
+import Ebarimt from 'components/profile/Ebarimt';
 
 const Page = ({ params }: { params: { id: string } }) => {
   const { currentUser } = useCurrentUser();
@@ -42,7 +43,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   const { orderDetail } = data;
 
-  const { paidDate, status, totalAmount, deliveryInfo, items } =
+  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
     orderDetail || {};
 
   const {
@@ -63,82 +64,99 @@ const Page = ({ params }: { params: { id: string } }) => {
         {!paidDate && (
           <PaymentBtn totalAmount={totalAmount} orderId={params.id} />
         )}
+        {(putResponses || []).length > 0 && (
+          <Ebarimt putResponses={putResponses} />
+        )}
       </div>
-      <b className="block my-5">
-        <big className="">
-          <b>Хүргэлтийн мэдээлэл</b>
-        </big>
-        <div className="row pt-3">
-          <div className="col-4">
-            <small className="text-mid-gray">Хот/аймаг</small>
-            <big className="block">{province}</big>
+
+      {(province || district || street || details) && (
+        <b className="block my-5">
+          <big className="">
+            <b>Хүргэлтийн мэдээлэл</b>
+          </big>
+          <div className="row pt-3">
+            {province && (
+              <div className="col-12 col-md-4">
+                <small className="text-mid-gray">Хот/аймаг</small>
+                <big className="block">{province}</big>
+              </div>
+            )}
+            {district && (
+              <div className="col-4">
+                <small className="text-mid-gray">Дүүрэг</small>
+                <big className="block">{district}</big>
+              </div>
+            )}
+            {street && (
+              <div className="col-4">
+                <small className="text-mid-gray">Хороо/баг</small>
+                <big className="block">{street}</big>
+              </div>
+            )}
+            {details && (
+              <div className="col-12 pt-3">
+                <small className="text-mid-gray">Дэлгэрэнгүй</small>
+                <big className="block">{details}</big>
+              </div>
+            )}
           </div>
-          <div className="col-4">
-            <small className="text-mid-gray">Дүүрэг</small>
-            <big className="block">{district}</big>
+        </b>
+      )}
+      {(firstName || lastName || phone || email) && (
+        <b className="block my-5">
+          <big className="">
+            <b>Захиалагчийн мэдээлэл</b>
+          </big>
+          <div className="row justify-between pt-3 -">
+            {firstName && (
+              <div>
+                <small className="text-mid-gray">Нэр</small>
+                <big className="block">{firstName}</big>
+              </div>
+            )}
+            {lastName && (
+              <div>
+                <small className="text-mid-gray">Oвог</small>
+                <big className="block">{lastName}</big>
+              </div>
+            )}
+            {phone && (
+              <div>
+                <small className="text-mid-gray">Утас</small>
+                <big className="block">{phone}</big>
+              </div>
+            )}
+            {email && (
+              <div>
+                <small className="text-mid-gray">Имэйл</small>
+                <big className="block">{email}</big>
+              </div>
+            )}
           </div>
-          <div className="col-4">
-            <small className="text-mid-gray">Хороо/баг</small>
-            <big className="block">{street}</big>
-          </div>
-          <div className="col-12 pt-3">
-            <small className="text-mid-gray">Дэлгэрэнгүй</small>
-            <big className="block">{details}</big>
-          </div>
-        </div>
-      </b>
-      <b className="block my-5">
-        <big className="">
-          <b>Захиалагчийн мэдээлэл</b>
-        </big>
-        <div className="flex justify-between pt-3">
-          <div>
-            <small className="text-mid-gray">Нэр</small>
-            <big className="block">{firstName}</big>
-          </div>
-          <div>
-            <small className="text-mid-gray">Oвог</small>
-            <big className="block">{lastName}</big>
-          </div>
-          <div>
-            <small className="text-mid-gray">Утас</small>
-            <big className="block">{phone}</big>
-          </div>
-          <div>
-            <small className="text-mid-gray">Имэйл</small>
-            <big className="block">{email}</big>
-          </div>
-        </div>
-      </b>
+        </b>
+      )}
       <div className="block mt-5">
         <big>
           <b>Таны захиалсан бараанууд</b>
         </big>
         {items.map(
           ({ productName, unitPrice, count, productId }: any, idx: number) => (
-            <div
-              className="flex py-3 items-center justify-between order-product"
-              key={idx}
-            >
-              <div className="flex items-center">
-                <Image
-                  src="/images/item.png"
-                  alt=""
-                  noWrap
-                  height={120}
-                  width={120}
-                />
-                <div className="order-product-name ps-3">
+            <div className="flex py-3 order-product" key={idx}>
+              <div className="img-wrap">
+                <Image src="/images/item.png" alt="" noWrap fill />
+              </div>
+              <div className="row items-center justify-between ps-3">
+                <div className="order-product-name ">
                   <small className="text-mid-gray block">{productId}</small>
                   <big>{productName}</big>
                 </div>
-              </div>
-              <div className="flex items-center">
-                {unitPrice.toLocaleString()} ₮
-                <div className="mx-3 px-2 rounded order-product-count">
-                  x{count}
+                <div className="flex items-center">
+                  {unitPrice.toLocaleString()} ₮
+                  <div className="mx-3 px-2 rounded order-product-count">
+                    x{count}
+                  </div>
+                  <b>{(unitPrice * count).toLocaleString()} ₮</b>
                 </div>
-                <b>{(unitPrice * count).toLocaleString()} ₮</b>
               </div>
             </div>
           )
