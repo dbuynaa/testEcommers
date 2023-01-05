@@ -12,12 +12,7 @@ const Product = ({
   const price = formatCurrency(unitPrice);
 
   return (
-    <Link
-      className="product "
-      href={`/product/${_id}`}
-      onClick={onClick}
-      prefetch={false}
-    >
+    <Link className="product " href={`/product/${_id}`} onClick={onClick}>
       <div className="img-wrap">
         <Image src="/images/product-6.jpeg" alt="" fill />
       </div>

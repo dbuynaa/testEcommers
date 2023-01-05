@@ -54,7 +54,6 @@ const Products = ({ category }: { category: string }) => {
         <Button
           className="-more text-black me-2"
           Component={Link}
-          prefetch={false}
           href={'/products?category=' + category}
         >
           <h5>Бүгдийг үзэх</h5>

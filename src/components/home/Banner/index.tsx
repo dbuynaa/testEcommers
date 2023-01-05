@@ -9,7 +9,7 @@ const Banner = () => {
     <>
       {(posts || []).map(({ featuredImage, imgbanner, title, custom }, idx) => (
         <div className="py-3 py-md-5" key={idx}>
-          <Link href={custom.link} className="relative" prefetch={false}>
+          <Link href={custom.link} className="relative">
             <div
               className="-space"
               style={{ paddingBottom: imgbanner?.ratio + '%' }}

@@ -4,9 +4,7 @@ export const BreadcrumbItem = ({ href, children }: any) => {
   if (href)
     return (
       <li className="breadcrumb-item">
-        <Link href={href} prefetch={false}>
-          {children}
-        </Link>
+        <Link href={href}>{children}</Link>
       </li>
     );
 

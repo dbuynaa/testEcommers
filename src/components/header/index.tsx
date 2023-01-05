@@ -30,7 +30,7 @@ const Header = () => {
         <div className="flex py-3 justify-between">
           <div className="">
             <div className="flex items-center">
-              <Link href="/" prefetch={false}>
+              <Link href="/">
                 <Logo className="logo" />
               </Link>
               <CheckDevice Desktop={<Search />} Mobile={null} />

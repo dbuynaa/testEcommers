@@ -27,15 +27,9 @@ const Footer = () => {
         <div className="container c-xl py-5 relative">
           <div className="row">
             <div className="col-12 col-md-4 pb-3">
-              <Link href="/news" prefetch={false}>
-                Мэдээ мэдээлэл
-              </Link>
-              <Link href="/terms-of-service" prefetch={false}>
-                Үйлчилгээний нөхцөл
-              </Link>
-              <Link href="/privacy-policy" prefetch={false}>
-                Нууцлалын бодлого
-              </Link>
+              <Link href="/news">Мэдээ мэдээлэл</Link>
+              <Link href="/terms-of-service">Үйлчилгээний нөхцөл</Link>
+              <Link href="/privacy-policy">Нууцлалын бодлого</Link>
             </div>
             <div className="col-12 col-md-4">
               <Link href={'mailto: ' + mail} className="flex items-center">

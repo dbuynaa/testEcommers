@@ -78,7 +78,6 @@ const Cart = () => {
                     <Link
                       href={`/product/${productId}`}
                       className="cart-item-title"
-                      prefetch={false}
                     >
                       {name}
                     </Link>
@@ -112,11 +111,7 @@ const Cart = () => {
               {formatCurrency(cartTotalAmount(currentCart))}₮
             </b>
           </small>
-          <Link
-            className="mt-3 btn flat"
-            href="/checkout/cart"
-            prefetch={false}
-          >
+          <Link className="mt-3 btn flat" href="/checkout/cart">
             Худалдан авах
           </Link>
         </div>

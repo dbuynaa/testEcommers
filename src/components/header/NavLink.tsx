@@ -12,7 +12,6 @@ const NavLink = ({ children, href, className, ...rest }: any) => {
       href={href}
       className={clsx(className, { '-active': href === pathname })}
       {...rest}
-      prefetch={false}
     >
       {children}
     </Link>
