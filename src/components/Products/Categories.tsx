@@ -34,9 +34,10 @@ const motion = {
 const ProductCategories = ({ categories, rootCatergories }: any) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const activeCat = searchParams.get('category');
   const [expandedKeys, setExpandedKeys] = useState<any>();
-  const [, setStore] = useProducts(
+  const [store, setStore] = useProducts(
     ({ activeCategoryName }) => activeCategoryName
   );
 
@@ -66,7 +67,11 @@ const ProductCategories = ({ categories, rootCatergories }: any) => {
     <div className="tree-animation">
       <p className="p-2 sbt text-mid-gray">Бүтээгдэхүүний ангилал</p>
       <Tree
-        expandedKeys={expandedKeys}
+        expandedKeys={
+          pathname !== '/categories'
+            ? expandedKeys
+            : categories.map(({ order }: any) => order)
+        }
         treeData={formatToTree(
           mapToAddKey(rootCatergories),
           mapToAddKey(categories)

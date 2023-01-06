@@ -7,10 +7,10 @@ const Products = ({ children }: { children: React.ReactNode }) => {
     <div className="container pt-3">
       <div className="row">
         <ProductsContext>
-          <div className="col-3 pe-4">
+          <div className="col-12 col-md-3 pe-md-4">
             <Categories />
           </div>
-          <div className="col-9">
+          <div className="col-12 col-md-9">
             <Header />
             {children}
           </div>

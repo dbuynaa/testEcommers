@@ -27,14 +27,15 @@ footer {
 }
 .navbar {
   position: fixed;
-  bottom: 0;
   left: 0;
   right: 0;
   z-index: 100;
   background: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 0px 8px;
   transition: all 200ms ease-in-out 0s;
-
+  &.fixed {
+    bottom: 0;
+  }
   &-item {
     color: $mid-gray;
     padding: 0.75rem;

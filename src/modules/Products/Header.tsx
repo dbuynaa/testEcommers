@@ -10,7 +10,7 @@ const Header = () => {
   );
 
   return (
-    <div className="pb-4 flex items-center justify-between">
+    <div className="pb-4 flex items-center justify-between products-header">
       <div className="flex items-center">
         <b className="sbt pe-2 text-blue">
           {activeCategoryName && activeCategoryName}

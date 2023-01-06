@@ -1,6 +1,7 @@
 .products {
   margin: -0.625rem;
-  .col-4 {
+  padding-bottom: 2rem;
+  .col-md-4 {
     padding: 0.625rem;
   }
   .banner {
@@ -16,5 +17,22 @@
     background: $mid-gray;
     color: #fff;
     width: 100%;
+  }
+}
+.mobile-cats {
+  overflow-x: auto;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  .btn.slim {
+    padding: 0.75rem;
+    white-space: nowrap;
+    width: auto;
+    overflow: initial;
+    display: inline-block;
+    &.-active {
+      background: $blue;
+      color: #fff;
+    }
   }
 }

@@ -1,0 +1,16 @@
+.categories {
+  .tree-animation {
+    & > .text-mid-gray {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $blue;
+    }
+  }
+}
+.search-page {
+  .search-input {
+    z-index: 100;
+    width: 100%;
+    background: #fff;
+  }
+}

@@ -12,7 +12,9 @@ import Empty from 'ui/Empty';
 const Search = () => {
   const [show, setShow] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const { products, productsCount, loading } = useGetProducts({ searchValue });
+  const { products, productsCount, loading, getProducts } = useGetProducts({
+    searchValue,
+  });
 
   const renderResult = () => {
     if (!searchValue)

@@ -7,7 +7,10 @@ import NavItem from './NavItem';
 
 const NavigationBar = () => {
   return (
-    <div className="navbar px-2 flex justify-between items-center">
+    <div
+      className="navbar px-2 flex justify-between items-center fixed"
+      id="navbar"
+    >
       <NavItem text="Нүүр" icon={<HomeIcon />} href="/" />
       <NavItem text="Ангилал" icon={<Bars />} href="/categories" />
       <NavItem text="Хайх" icon={<Magnify />} href="/search" />

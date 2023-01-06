@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { queries } from 'modules/Products/graphql';
 
 const FETCH_MORE_PER_PAGE = 24;
@@ -19,21 +19,27 @@ const useGetProducts = ({
     searchValue,
   };
 
-  const { data, loading, fetchMore } = useQuery(queries.products, {
-    variables: {
-      ...commonVariables,
-      perPage,
-      page: 1,
-    },
-  });
+  const [getProducts, { data, loading, fetchMore }] = useLazyQuery(
+    queries.products,
+    {
+      variables: {
+        ...commonVariables,
+        perPage,
+        page: 1,
+      },
+    }
+  );
 
-  const productsCountQuery = useQuery(queries.productsCount, {
-    variables: commonVariables,
-    onCompleted(data) {
-      const productsCount = (data || {}).poscProductsTotalCount || 0;
-      onCountCompleted && onCountCompleted(productsCount);
-    },
-  });
+  const [getProductsCount, productsCountQuery] = useLazyQuery(
+    queries.productsCount,
+    {
+      variables: commonVariables,
+      onCompleted(data) {
+        const productsCount = (data || {}).poscProductsTotalCount || 0;
+        onCountCompleted && onCountCompleted(productsCount);
+      },
+    }
+  );
 
   const products = (data || {}).poscProducts || [];
   const productsCount =
@@ -60,6 +66,10 @@ const useGetProducts = ({
   };
 
   return {
+    getProducts: () => {
+      getProducts();
+      getProductsCount();
+    },
     loading: loading || productsCountQuery.loading,
     handleLoadMore,
     products,

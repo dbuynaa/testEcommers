@@ -6,6 +6,7 @@ import Product from 'components/Products/Product';
 import ArrowRight from 'icons/ArrowRight';
 import Link from 'next/link';
 import Button from 'ui/Button';
+import { useEffect } from 'react';
 
 const changedSettings = {
   slidesToShow: 3,
@@ -30,10 +31,14 @@ const changedSettings = {
 };
 
 const Products = ({ category }: { category: string }) => {
-  const { products, loading } = useGetProducts({
+  const { products, loading, getProducts } = useGetProducts({
     category,
     perPage: 16,
   });
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   if (loading)
     return (

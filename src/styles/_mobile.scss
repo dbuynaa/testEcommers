@@ -28,6 +28,11 @@
 }
 
 @media (max-width: 768px) {
+  header {
+    .logo {
+      height: 2.5rem;
+    }
+  }
   .tabs {
     &-trigger.btn.ghost {
       a {
@@ -81,6 +86,15 @@
     .-main {
       border: 0;
     }
+  }
+  .products-header {
+    .sbt.pe-2 {
+      display: none;
+    }
+  }
+  .product-name {
+    -webkit-line-clamp: 2;
+    height: 3rem;
   }
 }
 

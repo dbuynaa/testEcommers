@@ -1,11 +1,7 @@
 import Logo from 'icons/logo';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import Top from './top';
-import { Fragment, memo } from 'react';
-// import Notification from './Notification';
 import Cart from './Cart';
-import Profile from './Profile';
 import CheckDevice from 'modules/CheckDevice';
 
 const Nav = dynamic(() => import('./Nav'), {
@@ -22,11 +18,14 @@ const Search = dynamic(() => import('./Search'), {
   suspense: true,
 });
 
+const Profile = dynamic(() => import('./Profile'), {
+  suspense: true,
+});
+
 const Header = () => {
   return (
     <header>
       <div className="container pt-1">
-        {/* <Top /> */}
         <div className="flex py-3 justify-between">
           <div className="">
             <div className="flex items-center">
@@ -38,9 +37,8 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center">
-            {/* <Notification /> */}
             <Cart />
-            <Profile />
+            <CheckDevice Desktop={<Profile />} />
           </div>
         </div>
         <CheckDevice Desktop={<MainCategories />} Mobile={null} />
@@ -49,4 +47,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

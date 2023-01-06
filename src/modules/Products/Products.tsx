@@ -15,16 +15,21 @@ const ProductsContainer = () => {
   const category = searchParams.get('category');
   const [fieldValue, setStore] = useProducts((store) => store.productsCount);
 
-  const { handleLoadMore, loading, products, productsCount } = useGetProducts({
-    searchValue,
-    category,
-    onCountCompleted: (productsCount: number) => setStore({ productsCount }),
-  });
+  const { handleLoadMore, loading, products, productsCount, getProducts } =
+    useGetProducts({
+      searchValue,
+      category,
+      onCountCompleted: (productsCount: number) => setStore({ productsCount }),
+    });
 
   const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
   });
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   useEffect(() => {
     inView && handleLoadMore();
@@ -37,7 +42,7 @@ const ProductsContainer = () => {
   return (
     <>
       {products.map((el: any) => (
-        <div className="col-4 pb-4" key={el._id}>
+        <div className="col-6 col-md-4" key={el._id}>
           <Product {...el} />
         </div>
       ))}
