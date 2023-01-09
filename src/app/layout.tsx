@@ -42,7 +42,7 @@ export default function RootLayout({
             <UIProvider>
               <Config>
                 <Header />
-                <div className="min-height-screen">
+                <div className="layout">
                   <CurrentUser>
                     <CurrentOrder>{children}</CurrentOrder>
                   </CurrentUser>

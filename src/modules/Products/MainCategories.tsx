@@ -18,7 +18,7 @@ const MainCategories = () => {
   const cats = use(getMainCategories());
 
   return (
-    <div className="flex items-center product-cats">
+    <div className="flex items-center product-cats scroll">
       {cats.map(({ _id, name }: any) => (
         <Link
           key={_id}

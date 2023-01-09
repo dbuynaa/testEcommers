@@ -2,12 +2,13 @@ header {
   background: $bg-primary;
   color: #fff;
 
+  box-shadow: 0 3px 12px rgb(0 0 0 / 20%);
   .product-cats {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     overflow-x: auto;
     a {
       margin: 0 1rem;
-      font-size: 13px;
+      font-size: 1rem;
       font-weight: 600;
       padding: 0.5rem 0;
       opacity: 0.8;
@@ -34,7 +35,7 @@ header {
 
   .logo {
     width: auto;
-    height: 4rem;
+    height: 3.5rem;
   }
 
   nav {
@@ -72,6 +73,25 @@ header {
             scaleX(1) scaleY(1);
         }
       }
+    }
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: calc(8.25rem + 1px);
+  overflow: hidden;
+  .product-cats {
+    transform: translateY(0);
+  }
+  &.down {
+    height: 6rem;
+    .product-cats {
+      transform: translateY(-100%);
+      z-index: -1;
+      position: relative;
     }
   }
 }

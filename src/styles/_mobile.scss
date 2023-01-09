@@ -163,4 +163,13 @@
       background-color: #8e8e8e;
     }
   }
+  .prDtl {
+    .-controls {
+      flex-wrap: nowrap;
+      & > .btn {
+        padding: 0.95rem;
+        border: 2px solid transparent;
+      }
+    }
+  }
 }
