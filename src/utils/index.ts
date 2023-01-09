@@ -56,10 +56,10 @@ type ICartUtil = {
 };
 
 export const findItem: (
-  cart: ICartItem[],
+  cart: ICartItem[] | null,
   productId: string
 ) => ICartItem | undefined = (cart, productId) => {
-  return cart.find((item) => item.productId === productId);
+  return (cart || []).find((item) => item.productId === productId);
 };
 
 export const changeCount = ({

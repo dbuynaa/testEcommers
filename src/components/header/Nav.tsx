@@ -13,7 +13,7 @@ const Nav = () => {
         Бөөндий
       </NavLink> */}
       <NavLink href="/news" className="ms-2">
-        Мэдээ, мэдээлэл
+        Technews
       </NavLink>
     </nav>
   );

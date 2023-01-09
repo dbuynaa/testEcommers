@@ -116,6 +116,7 @@
 .hr {
   border-bottom: 1px solid rgba($color: #000000, $alpha: 0.08);
 }
+
 .yt-video {
   aspect-ratio: 16 / 9;
   width: 100%;
@@ -126,18 +127,15 @@
 }
 
 .ratio3x1 {
-  aspect-ratio: 3 / 1;
-  width: 100%;
+  &::before {
+    padding-bottom: calc(100% / 3);
+  }
 }
 
 .ratio1x1 {
   &::before {
-    content: '';
     padding-bottom: 100%;
-    display: block;
-    width: 100%;
   }
-  width: 100%;
 }
 
 .ratio {

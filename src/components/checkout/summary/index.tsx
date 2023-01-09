@@ -10,8 +10,8 @@ const Summary = () => {
   const cart = (currentOrder || {}).items || [];
 
   return (
-    <div className="sum">
-      <div className="mx-3 order-info p-3 rounded">
+    <div className="sum mb-3">
+      <div className="order-info p-md-3 rounded">
         {cart.map(({ _id, productName, count, unitPrice }: ICartItem) => (
           <div className="row mb-1 " key={_id}>
             <span className="col-6">{productName}</span>

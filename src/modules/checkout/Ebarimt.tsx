@@ -61,14 +61,14 @@ const Ebarimt = () => {
       </label>
       {expand && (
         <div className="row px-2 ">
-          <div className="col-6 px-2">
+          <div className="col-md-6 col-12 px-2">
             <FormItem
               label="Байгууллагын регистрийн дугаар"
               placeholder="Байгууллагын регистрийн дугаар"
               name="registerNumber"
             />
           </div>
-          <div className="col-6 px-2 -disabled">
+          <div className="col-md-6 col-12 px-2 -disabled">
             <FormItem
               label="Байгууллагын нэр"
               placeholder="Байгууллагын нэр"

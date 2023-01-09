@@ -90,21 +90,21 @@ const Address = () => {
               name="firstName"
             />
           </div>
-          <div className="col-6 px-2">
+          <div className="col-md-6 col-12 px-2">
             <FormItem
               label="Захиалагчийн Овог"
               placeholder="Хашбат"
               name="lastName"
             />
           </div>
-          <div className="col-6 px-2">
+          <div className="col-md-6 col-12 px-2">
             <FormItem
               label="Захиалагчийн утасны дугаар"
               placeholder="99999999"
               name="phone"
             />
           </div>
-          <div className="col-6 px-2">
+          <div className="col-md-6 col-12 px-2">
             <FormItem
               label="Захиалагчийн и-мэйл хаяг"
               placeholder="example@example.com"
@@ -112,21 +112,21 @@ const Address = () => {
             />
           </div>
           <Ebarimt />
-          <div className="col-4 px-2">
+          <div className="col-md-4 col-12 px-2">
             <FormItem
               label="Хот/Aймаг"
               placeholder="Улаанбаатар"
               name="province"
             />
           </div>
-          <div className="col-4 px-2">
+          <div className="col-md-4 col-12 px-2">
             <FormItem
               label="Дүүрэг/сум"
               placeholder="Баянгол"
               name="district"
             />
           </div>
-          <div className="col-4 px-2">
+          <div className="col-md-4 col-12 px-2">
             <FormItem label="Хороо/баг" placeholder="6-хороо" name="street" />
           </div>
           <div className="col-12 px-2">

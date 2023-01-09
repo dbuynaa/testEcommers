@@ -53,7 +53,7 @@ const Map = ({ latLong, setLatLong }: any) => {
         <GoogleMap
           onClick={getUserLocation}
           clickableIcons={false}
-          mapContainerClassName="google-map -img-wrap ratio3x1"
+          mapContainerClassName="google-map ratio ratio3x1 ratio-md-2x3"
           options={{ center: center, zoom }}
         >
           {latLong && (

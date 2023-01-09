@@ -96,6 +96,42 @@
     -webkit-line-clamp: 2;
     height: 3rem;
   }
+  .ratio-md-2x3 {
+    &::before {
+      padding-bottom: calc(100% / 2 * 3);
+    }
+  }
+  .order-summary {
+    position: fixed;
+    bottom: 4.5rem;
+    background: #fff;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem;
+    box-shadow: rgb(0 0 0 / 15%) 0px 0px 8px;
+    .order-info {
+      border: 0;
+    }
+    border-radius: 1rem 1rem 0 0;
+  }
+  .prDtl {
+    .-controls {
+      gap: 0;
+      & > .btn {
+        padding: 0.95rem;
+        &.slim {
+          max-width: 60%;
+          margin-left: 1rem;
+        }
+        &.flat {
+          max-width: 100%;
+          flex: 1 1 100%;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {

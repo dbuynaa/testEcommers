@@ -28,7 +28,7 @@ const ImageGallery = ({ images }: any) => {
           </div>
         ))}
       </Slider>
-      <div className="px-5 my-4">
+      <div className="px-md-5 my-4">
         <Slider
           asNavFor={nav1}
           ref={(slider2) => setNav2(slider2)}

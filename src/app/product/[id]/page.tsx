@@ -26,10 +26,10 @@ const Product = ({ params }: any) => {
   return (
     <div className="container prDtl">
       <div className="row py-4">
-        <div className="col-6">
+        <div className="col-12 col-md-6">
           <ImageGallery images={[fixImageUrl((attachment || {}).url)]} />
         </div>
-        <div className="col-6 px-5 prDtl-actions">
+        <div className="col-12 col-md-6 px-md-5 prDtl-actions">
           <h5>{name}</h5>
           <div className="sbt text-mid-gray pb-3"></div>
           <h5>{formatCurrency(unitPrice)} ₮</h5>
@@ -41,8 +41,12 @@ const Product = ({ params }: any) => {
       </div>
       <Tabs defaultValue="intro">
         <TabsList>
-          <TabTrigger value="intro">Дэлгэрэнгүй</TabTrigger>
-          <TabTrigger value="review">Шүүмж</TabTrigger>
+          <TabTrigger value="intro">
+            <div className="p-3">Дэлгэрэнгүй</div>
+          </TabTrigger>
+          {/* <TabTrigger value="review">
+            <div className="p-3">Шүүмж</div>
+          </TabTrigger> */}
         </TabsList>
         <TabsContent value="intro">
           <Description description={description} />
