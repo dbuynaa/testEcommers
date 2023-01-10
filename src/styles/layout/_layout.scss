@@ -67,6 +67,9 @@ footer {
       }
     }
   }
+  &.down {
+    bottom: -5.5rem;
+  }
 }
 .layout {
   min-height: calc(100vh - 8.75rem - 1px);
