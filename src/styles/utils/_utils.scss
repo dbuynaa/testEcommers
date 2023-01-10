@@ -85,9 +85,8 @@
 }
 
 .hover-scroll {
-  overflow-y: overlay;
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 3px !important;
   }
   &::-webkit-scrollbar-track {
     background-color: transparent;
@@ -103,6 +102,7 @@
 
 .img-wrap {
   position: relative;
+  display: block;
   svg {
     width: 80%;
     height: 80%;
@@ -118,8 +118,9 @@
 }
 
 .yt-video {
-  aspect-ratio: 16 / 9;
-  width: 100%;
+  &::before {
+    padding-bottom: calc(100% / 16 * 9);
+  }
 }
 .ratio11x100 {
   aspect-ratio: 100 / 11;

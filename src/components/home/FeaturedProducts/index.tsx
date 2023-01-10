@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
 
   return (
     <>
-      <div className="pt-1"></div>
+      <div className="pt-2"></div>
       <div className="row ft-product-row">
         <div className="col-md-6 col-12 p-1">
           <FeaturedProduct

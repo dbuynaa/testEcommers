@@ -1,0 +1,68 @@
+'use client';
+
+import Slider from 'react-slick';
+import NewsItem from './item';
+
+const NewsSlider = () => {
+  const settings = {
+    slidesToShow: 4,
+    speed: 500,
+
+    infinite: false,
+    // prevArrow: (
+    //   <div className="slick-prev">
+    //     <i className="fas fa-chevron-left"></i>
+    //   </div>
+    // ),
+    // nextArrow: (
+    //   <div className="slick-next">
+    //     <i className="fas fa-chevron-right"></i>
+    //   </div>
+    // ),
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 770,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 570,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+        },
+      },
+    ],
+  };
+  return (
+    <div>
+      <h5 className="text-blue slider-news-title">hi</h5>
+      <div className="news-slider">
+        <Slider {...settings}>
+          <div className="p-2">
+            <NewsItem className="news-slider-item" />
+          </div>
+          <div className="p-2">
+            <NewsItem className="news-slider-item" />
+          </div>
+          <div className="p-2">
+            <NewsItem className="news-slider-item" />
+          </div>
+          <div className="p-2">
+            <NewsItem className="news-slider-item" />
+          </div>
+          <div className="p-2">
+            <NewsItem className="news-slider-item" />
+          </div>
+        </Slider>
+      </div>
+    </div>
+  );
+};
+
+export default NewsSlider;

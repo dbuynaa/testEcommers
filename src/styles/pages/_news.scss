@@ -1,73 +1,96 @@
 .news {
   &-banner {
-    .img-wrap {
-      height: 100%;
-      width: 100%;
-      padding-top: 59%;
-    }
-
+    position: relative;
     &-tag {
       position: absolute;
       left: 0;
       background-color: #f0c808;
       top: 2rem;
     }
-    &-content {
+    .-content {
       position: absolute;
       left: 0;
       width: 100%;
       bottom: 0;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-start;
       color: #fff;
-      margin: 30px;
+      background: linear-gradient(
+        0deg,
+        rgb(57, 57, 77),
+        rgba(57, 57, 77, 0) 50%
+      );
+      .-tag {
+        font-weight: 500;
+      }
+      .btn.slim {
+        color: #fff;
+        text-transform: uppercase;
+        padding: 0.75rem 1.5rem;
+        border-color: #fff;
+      }
+    }
+  }
+  &-header {
+    align-items: stretch;
+    .col-12.col-md-4 {
+      overflow: hidden;
+      position: relative;
     }
   }
 
-  &-scroll {
-    position: relative;
-    aspect-ratio: 8 / 9;
-  }
-
   &-thumb {
+    flex-wrap: nowrap;
+
     .img-wrap {
-      aspect-ratio: 16 / 9;
+      max-width: 140px;
+      flex: 0 0 140px;
+      margin-right: 1rem;
+    }
+    big {
+      padding-bottom: 1rem;
     }
     + .news-thumb {
       margin-top: 1rem;
     }
-    &-content {
-      .row {
-        min-width: 100%;
+  }
+  &-item {
+    font-weight: 500;
+  }
+  &-slider {
+    margin: 0 -0.5rem;
+    &-item {
+      big {
+        padding-top: 0.5rem;
+      }
+      .img-wrap.ratio::before {
+        padding-bottom: 64.25%;
+      }
+      .news-item-content {
+        width: 100%;
       }
     }
-    .text-mid-gray {
-      height: 100%;
-    }
-  }
-  .other {
-    .img-wrap {
-      aspect-ratio: 16 / 9;
-    }
-  }
+    // .slick-prev,
+    // .slick-next {
+    //   position: absolute;
+    //   top: -4%;
+    //   right: 0%;
+    //   transform: translateY(-50%);
+    //   i {
+    //     font-size: 1.25rem;
+    //   }
+    // }
 
-  .news-slider {
-    .slick-prev,
-    .slick-next {
-      position: absolute;
-      top: -4%;
-      right: 0%;
-      transform: translateY(-50%);
-      i {
-        font-size: 1.25rem;
-      }
-    }
+    // .slick-prev {
+    //   right: 2%;
+    // }
 
-    .slick-prev {
-      right: 2%;
-    }
-
-    .slick-list {
-      padding-bottom: 3%;
-    }
+    // .slick-list {
+    //   padding-bottom: 3%;
+    // }
   }
 }
 

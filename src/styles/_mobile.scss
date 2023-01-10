@@ -48,7 +48,7 @@
         display: none !important;
       }
     }
-    .img-wrap {
+    .product .img-wrap {
       padding-bottom: 120%;
     }
   }
@@ -138,6 +138,14 @@
       top: -6rem;
     }
   }
+  .news {
+    &-banner {
+      margin-bottom: 1rem;
+      .yt-video::before {
+        padding-bottom: 80%;
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -152,7 +160,7 @@
     }
   }
 
-  * {
+  body {
     &::-webkit-scrollbar {
       width: 8px !important;
       border-radius: 23px;
@@ -177,5 +185,13 @@
         border: 2px solid transparent;
       }
     }
+  }
+
+  .news-scroll {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
   }
 }
