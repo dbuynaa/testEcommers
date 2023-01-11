@@ -12,6 +12,8 @@ import Footer from 'components/footer';
 import Config from 'modules/auth/Config';
 import NavigationBar from 'components/header/NavigationBar';
 
+export const revalidate = 60;
+
 export default function RootLayout({
   children,
 }: {
