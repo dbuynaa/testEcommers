@@ -143,7 +143,7 @@ const Page = ({ params }: { params: { id: string } }) => {
           ({ productName, unitPrice, count, productId }: any, idx: number) => (
             <div className="flex py-3 order-product" key={idx}>
               <div className="img-wrap">
-                <Image src="/images/item.png" alt="" noWrap fill />
+                <Image src="/images/item.png" alt="" />
               </div>
               <div className="row items-center justify-between ps-3">
                 <div className="order-product-name ">

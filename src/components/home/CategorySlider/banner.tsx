@@ -10,11 +10,9 @@ const Banner = ({ featuredImage, hoverImage, custom }: any) => {
       >
         <Image
           src={(hoverImage || {}).sourceUrl || (featuredImage || {}).sourceUrl}
-          fill
           alt=""
-          noWrap
         />
-        <Image src={(featuredImage || {}).sourceUrl} fill alt="" noWrap />
+        <Image src={(featuredImage || {}).sourceUrl} fill alt="" />
       </Link>
     </div>
   );

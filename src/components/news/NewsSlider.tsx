@@ -2,8 +2,15 @@
 
 import Slider from 'react-slick';
 import NewsItem from './item';
+import type { ReactNode } from 'react';
 
-const NewsSlider = () => {
+const NewsSlider = ({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title: string;
+}) => {
   const settings = {
     slidesToShow: 4,
     speed: 500,
@@ -41,25 +48,9 @@ const NewsSlider = () => {
   };
   return (
     <div>
-      <h5 className="text-blue slider-news-title">hi</h5>
+      <h5 className="text-blue slider-news-title">{title}</h5>
       <div className="news-slider">
-        <Slider {...settings}>
-          <div className="p-2">
-            <NewsItem className="news-slider-item" />
-          </div>
-          <div className="p-2">
-            <NewsItem className="news-slider-item" />
-          </div>
-          <div className="p-2">
-            <NewsItem className="news-slider-item" />
-          </div>
-          <div className="p-2">
-            <NewsItem className="news-slider-item" />
-          </div>
-          <div className="p-2">
-            <NewsItem className="news-slider-item" />
-          </div>
-        </Slider>
+        <Slider {...settings}>{children}</Slider>
       </div>
     </div>
   );

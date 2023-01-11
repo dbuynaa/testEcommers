@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Image from 'next/image';
+import Image from 'ui/Image';
 import Link from 'next/link';
 import type { WpPost } from 'lib/wp/posts';
 
@@ -22,7 +22,6 @@ const FeaturedProduct = ({
       <Image
         src={featuredImage?.sourceUrl || ''}
         alt=""
-        fill
         priority
         sizes={sizes}
       />

@@ -1,22 +1,13 @@
 import NewsItem from './item';
-const Scroll = () => {
+import type { WpPost } from 'lib/wp/posts';
+
+const Scroll = ({ posts }: { posts: WpPost[] }) => {
   return (
     <div className=" col-12 col-md-4">
       <div className="news-scroll hover-scroll ps-md-3">
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
-        <NewsItem className="news-thumb" />
+        {(posts || []).map((post: any) => (
+          <NewsItem className="news-thumb" {...post} key={post._id} />
+        ))}
       </div>
     </div>
   );

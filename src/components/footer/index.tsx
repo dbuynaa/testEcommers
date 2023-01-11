@@ -1,6 +1,6 @@
 import Mail from 'icons/Mail';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'ui/Image';
 import Button from 'ui/Button';
 import Phone from 'icons/ThinPhone';
 import Marker from 'icons/Marker';
@@ -20,8 +20,6 @@ const Footer = () => {
             sizes="100vw"
             src={page?.featuredImage?.sourceUrl || ''}
             alt="techstore footer"
-            fill
-            quality={100}
           />
         )}
         <div className="container c-xl py-5 relative">

@@ -87,3 +87,19 @@ export const SLIDER_BANNER = gql`
     }
   }
 `;
+
+export const NEWS = gql`
+  query NewQuery {
+    posts(
+      where: { categoryName: "news", orderby: { field: DATE, order: DESC } }
+      last: 10
+    ) {
+      nodes {
+        id
+        date
+        ${featuredImage()}
+        title
+      }
+    }
+  }
+`;

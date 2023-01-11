@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Slider from 'react-slick';
-import Image from 'next/image';
+import Image from 'ui/Image';
 
 const ImageGallery = ({ images }: any) => {
   const [nav1, setNav1] = useState<any>();
@@ -21,7 +21,6 @@ const ImageGallery = ({ images }: any) => {
             <Image
               src={url}
               alt="product"
-              fill
               quality={100}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -55,7 +54,6 @@ const ImageGallery = ({ images }: any) => {
                 <Image
                   src={url}
                   alt="product"
-                  fill
                   sizes="(max-width: 768px) 20vw, 10vw"
                 />
               </div>

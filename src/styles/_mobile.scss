@@ -21,12 +21,6 @@
   }
 }
 
-@media (max-width: 680px) {
-  .news {
-    padding: 10%;
-  }
-}
-
 @media (max-width: 768px) {
   header {
     .logo {
@@ -142,7 +136,7 @@
     &-banner {
       margin-bottom: 1rem;
       .yt-video::before {
-        padding-bottom: 80%;
+        padding-bottom: 100%;
       }
     }
   }

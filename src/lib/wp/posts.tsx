@@ -3,6 +3,7 @@ import {
   FT_CATEGORIES,
   BANNER_CATS,
   IMG_BANNER,
+  NEWS,
   SLIDER_BANNER,
 } from './queries/posts';
 import { getApolloClient } from './client';
@@ -28,6 +29,8 @@ export async function getImgBanner() {
 export async function getSliderBanner() {
   return await getPosts(SLIDER_BANNER);
 }
+
+export const getNews = async () => await getPosts(NEWS);
 
 export const getPosts = async (
   query: DocumentNode
@@ -68,6 +71,8 @@ export type WpPost = {
   custom: { order: number; link: string };
   title?: string;
   slug?: string;
+  date?: string;
+  id?: string;
   image?: {
     hoverImage?: {
       sourceUrl: string;

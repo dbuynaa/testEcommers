@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+import Image from 'ui/Image';
 import { useCurrentUser } from 'modules/appContext';
 
 const MainInfo = () => {

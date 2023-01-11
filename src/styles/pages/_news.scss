@@ -1,4 +1,7 @@
 .news {
+  img {
+    object-fit: cover;
+  }
   &-banner {
     position: relative;
     &-tag {
@@ -31,6 +34,7 @@
         text-transform: uppercase;
         padding: 0.75rem 1.5rem;
         border-color: #fff;
+        font-weight: 600;
       }
     }
   }
@@ -92,10 +96,6 @@
     //   padding-bottom: 3%;
     // }
   }
-}
-
-.slider-news-title {
-  padding: 10px;
 }
 
 .play-logo {

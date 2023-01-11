@@ -14,12 +14,7 @@ const Banner = () => {
               className="-space"
               style={{ paddingBottom: imgbanner?.ratio + '%' }}
             />
-            <Image
-              src={featuredImage?.sourceUrl || ''}
-              alt={title || ''}
-              noWrap
-              fill
-            />
+            <Image src={featuredImage?.sourceUrl || ''} alt={title || ''} />
           </Link>
         </div>
       ))}

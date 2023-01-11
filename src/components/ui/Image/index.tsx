@@ -10,7 +10,6 @@ const Image: FC<
     src?: string;
     alt?: string;
     fallBack?: string;
-    noWrap?: boolean;
     withLoader?: boolean;
   }
 > = (props) => {
@@ -22,7 +21,6 @@ const Image: FC<
     width,
     height,
     fallBack,
-    noWrap,
     withLoader,
     sizes,
     className,
@@ -42,8 +40,9 @@ const Image: FC<
     height,
     onError,
   };
+  if (srcI === '/product.png') return <Logo />;
 
-  const renderImage = () => (
+  return (
     <NextImage
       {...updatedProps}
       onLoadingComplete={handleComplete}
@@ -57,25 +56,10 @@ const Image: FC<
       sizes={
         sizes ||
         `(max-width: 768px) 100vw,
-      (max-width: 1200px) 50vw,
-      33vw`
+  (max-width: 1200px) 50vw,
+  33vw`
       }
     />
-  );
-
-  if (srcI === '/product.png')
-    return noWrap ? (
-      <Logo />
-    ) : (
-      <div className="img-wrap flex items-center justify-center">
-        <Logo />
-      </div>
-    );
-
-  return noWrap ? (
-    renderImage()
-  ) : (
-    <div className="img-wrap">{renderImage()}</div>
   );
 };
 
