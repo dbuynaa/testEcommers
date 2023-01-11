@@ -110,31 +110,91 @@
 }
 
 .news-detail {
-  .c-xl {
-    & > * {
-      margin: auto;
-      max-width: 768px;
+  font-weight: 500;
+  font-size: 1.2rem;
+  .-date {
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+  img {
+    max-width: 100%;
+  }
+  .share {
+    border-radius: 50%;
+    font-size: 1.25rem;
+    padding: 1rem;
+    border: 1px dashed;
+    &.-facebook {
+      color: #475993;
+      border-color: #475993;
+    }
+    &.-twitter {
+      color: #1da2f2;
+      border-color: #1da2f2;
+    }
+    &-container {
+      gap: 1rem;
     }
   }
-  .img-wrap {
+}
+
+.aligncenter,
+.alignleft,
+.alignright {
+  display: block;
+  padding: 0;
+}
+
+.aligncenter {
+  float: none;
+  margin: 0.5em auto 1em;
+}
+
+.alignright {
+  float: right;
+  margin: 0.5em 0 1em 1em;
+}
+
+.alignleft {
+  float: left;
+  margin: 0.5em 1em 1em 0;
+}
+
+.wp-caption {
+  padding: 5px 0;
+  border: 1px solid #555;
+  background: #444;
+  text-align: center;
+}
+
+.wp-caption img {
+  display: inline;
+}
+
+.wp-caption p.wp-caption-text {
+  margin: 5px 0 0;
+  padding: 0;
+  text-align: center;
+  font-size: 75%;
+  font-weight: 100;
+  font-style: italic;
+  color: #ddd;
+}
+
+.wp-embed-aspect-16-9 {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    max-width: 1124px;
+    padding-bottom: 56.25%;
   }
-
-  article {
+  iframe {
+    position: absolute;
     width: 100%;
-    font-weight: 500;
-    margin: auto;
-
-    // text-align: justify;
-    & > * {
-      text-indent: 60px;
-      margin: 0.75rem auto;
-    }
-    img {
-      width: 100%;
-      height: auto;
-    }
+    top: 0;
+    left: 0;
+    height: 100%;
   }
 }

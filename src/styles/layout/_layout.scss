@@ -72,5 +72,6 @@ footer {
   }
 }
 .layout {
-  min-height: calc(100vh - 8.75rem - 1px);
+  min-height: 100vh;
+  padding-top: calc(8.25rem + 1px);
 }

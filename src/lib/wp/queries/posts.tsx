@@ -103,3 +103,20 @@ export const NEWS = gql`
     }
   }
 `;
+
+export const NEWS_DETAIL = gql`
+  query PostBySlug($id: ID!) {
+    post(id: $id, idType: ID) {
+      id
+      content
+      date
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      title
+      slug
+    }
+  }
+`;

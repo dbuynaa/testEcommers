@@ -5,6 +5,7 @@ import {
   IMG_BANNER,
   NEWS,
   SLIDER_BANNER,
+  NEWS_DETAIL,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -31,6 +32,21 @@ export async function getSliderBanner() {
 }
 
 export const getNews = async () => await getPosts(NEWS);
+
+export async function getPostById(id: string) {
+  const apolloClient = getApolloClient();
+
+  const data = await apolloClient.query({
+    ...getGqlQuery(NEWS_DETAIL),
+    variables: { id },
+  });
+
+  const post = data?.data.post;
+
+  return {
+    post,
+  };
+}
 
 export const getPosts = async (
   query: DocumentNode
