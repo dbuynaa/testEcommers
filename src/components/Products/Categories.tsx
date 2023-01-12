@@ -50,16 +50,20 @@ const ProductCategories = ({ categories, rootCatergories }: any) => {
 
   useEffect(() => {
     if (activeCat) {
-      const { order, name } =
-        categories.find(({ _id }: any) => _id === activeCat) || {};
-      const parentKeys = [] as any;
-      const orderArr = (order || '').split('/');
+      const newActiveCats = [] as string[];
+      const getExpandedKeys: any = (currentId: string) => {
+        const cat = categories.find(({ _id }: any) => _id === currentId);
 
-      orderArr.forEach((element: string, idx: number) =>
-        parentKeys.push(orderArr.slice(0, idx + 1).join('/'))
-      );
-      setStore({ activeCategoryName: name });
-      setExpandedKeys(parentKeys);
+        if (cat) {
+          newActiveCats.push(cat.order);
+          cat._id === activeCat && setStore({ activeCategoryName: cat.name });
+          if (!cat.isRoot) {
+            return getExpandedKeys(cat.parentId);
+          }
+        }
+      };
+      getExpandedKeys(activeCat);
+      setExpandedKeys(newActiveCats);
     }
   }, [activeCat]);
 

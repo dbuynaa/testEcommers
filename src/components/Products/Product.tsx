@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'ui/Image';
-import { formatCurrency } from 'utils';
+import { formatCurrency, readFile } from 'utils';
 import { IProductBase } from '../../modules/types';
 
 const Product = ({
@@ -8,14 +8,15 @@ const Product = ({
   name,
   unitPrice,
   onClick,
-}: IProductBase & { onClick?: () => void }) => {
+  attachment,
+}: IProductBase & { onClick?: () => void; attachment: { url: string } }) => {
   const price = formatCurrency(unitPrice);
 
   return (
     <Link className="product" href={`/product/${_id}`} onClick={onClick}>
       <div className="img-wrap">
         <Image
-          src="/images/product-6.jpeg"
+          src={readFile(attachment.url)}
           alt=""
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
         />

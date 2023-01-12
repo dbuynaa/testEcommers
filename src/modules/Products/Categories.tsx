@@ -24,9 +24,9 @@ const CategoriesContainer = () => {
 
   const categories = (data || {}).poscProductCategories || [];
 
-  const rootCatergories =
-    categories.find(({ order }: any) => !order.includes('/')) ||
-    categories.filter(({ order }: any) => order.split('/').length <= 2);
+  const rootCatergories = categories.filter(
+    ({ parentId }: { parentId: string }) => !parentId
+  );
 
   if (pathname === '/categories')
     return (

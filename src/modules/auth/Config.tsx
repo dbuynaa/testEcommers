@@ -7,7 +7,7 @@ import Loading from 'ui/Loading';
 
 const Config = ({ children }: any) => {
   const { setConfig } = useConfig();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [getConfig] = useLazyQuery(queries.currentConfig, {
     onCompleted(data) {
@@ -21,6 +21,7 @@ const Config = ({ children }: any) => {
     onCompleted() {
       getConfig();
     },
+    onError() {},
   });
 
   useEffect(() => {

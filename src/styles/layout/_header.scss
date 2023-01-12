@@ -5,11 +5,10 @@ header {
   box-shadow: 0 3px 12px rgb(0 0 0 / 20%);
   .product-cats {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
-    overflow-x: auto;
     a {
-      margin: 0 1rem;
-      font-size: 1rem;
-      font-weight: 600;
+      margin: 0 0.75rem;
+      font-size: 13px;
+      font-weight: 500;
       padding: 0.5rem 0;
       opacity: 0.8;
       white-space: nowrap;

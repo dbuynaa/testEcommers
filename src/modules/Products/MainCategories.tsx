@@ -15,14 +15,15 @@ async function getMainCategories() {
 }
 
 const MainCategories = () => {
-  const cats = use(getMainCategories());
+  const { rootCatergories } = use(getCategories());
 
   return (
-    <div className="flex items-center product-cats scroll">
-      {cats.map(({ _id, name }: any) => (
+    <div className="flex items-center product-cats hover-scroll -x">
+      {rootCatergories.map(({ _id, name }: any) => (
         <Link
           key={_id}
           href={{ pathname: '/products', query: { category: _id } }}
+          prefetch={false}
         >
           {name}
         </Link>

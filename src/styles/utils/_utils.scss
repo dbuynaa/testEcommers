@@ -82,6 +82,12 @@
   &:hover {
     overflow-y: overlay;
   }
+  &.-x {
+    overflow-x: hidden;
+    &:hover {
+      overflow-x: overlay;
+    }
+  }
 }
 
 .hover-scroll {
@@ -96,7 +102,12 @@
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: rgba($color: #000, $alpha: 0.25);
+    background-color: $mid-gray;
+  }
+  &.-x {
+    &::-webkit-scrollbar {
+      height: 4px !important;
+    }
   }
 }
 
