@@ -47,5 +47,4 @@ const Detail = ({ params }: any) => {
     </article>
   );
 };
-
 export default Detail;

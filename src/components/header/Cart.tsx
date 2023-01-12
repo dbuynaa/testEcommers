@@ -64,7 +64,12 @@ const Cart = () => {
             <div className="row cart-item py-2" key={productId}>
               <div className="col-3">
                 <div className="img-wrap ratio ratio1x1">
-                  <Image src={readFile(productImgUrl || '')} alt="" />
+                  <Image
+                    src={readFile(productImgUrl || '')}
+                    alt=""
+                    sizes="(max-width: 768px) 33vw,
+  10vw"
+                  />
                 </div>
               </div>
               <div className="col-9 ps-3">

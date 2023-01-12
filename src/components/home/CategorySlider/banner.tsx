@@ -11,8 +11,17 @@ const Banner = ({ featuredImage, hoverImage, custom }: any) => {
         <Image
           src={(hoverImage || {}).sourceUrl || (featuredImage || {}).sourceUrl}
           alt=""
+          sizes="(max-width: 768px) 100vw,
+          (max-width: 1500px) 25vw,
+          20vw"
         />
-        <Image src={(featuredImage || {}).sourceUrl} fill alt="" />
+        <Image
+          src={(featuredImage || {}).sourceUrl}
+          alt=""
+          sizes="(max-width: 768px) 100vw,
+          (max-width: 1500px) 25vw,
+          20vw"
+        />
       </Link>
     </div>
   );

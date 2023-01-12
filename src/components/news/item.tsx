@@ -15,7 +15,15 @@ const NewsItem = ({
   return (
     <div className={clsx('news-item row', className)}>
       <div className="img-wrap ratio">
-        <Image alt="" src={featuredImage?.sourceUrl || ''} />
+        <Image
+          alt=""
+          src={featuredImage?.sourceUrl || ''}
+          sizes={
+            className === 'news-thumb'
+              ? '(max-width: 768px) 33vw, (max-width: 1450px) 15vw, 10vw'
+              : '(max-width: 768px) 100vw, (max-width: 1450px) 25vw, 20vw'
+          }
+        />
       </div>
       <div className="news-item-content ">
         <big className="block">{title}</big>

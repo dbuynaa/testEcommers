@@ -13,7 +13,7 @@ const ProductsContainer = () => {
   const searchParams = useSearchParams();
   const searchValue = searchParams.get('search');
   const category = searchParams.get('category');
-  const [fieldValue, setStore] = useProducts((store) => store.productsCount);
+  const [, setStore] = useProducts((store) => store.productsCount);
 
   const { handleLoadMore, loading, products, productsCount, getProducts } =
     useGetProducts({

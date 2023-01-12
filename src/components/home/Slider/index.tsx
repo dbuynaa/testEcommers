@@ -27,7 +27,6 @@ const SliderBanner = () => {
               <Image
                 alt={title || ''}
                 src={featuredImage?.sourceUrl || ''}
-                quality={100}
                 sizes="(max-width: 768px) 0vw, (max-width: 1360px) 100vw, 1360px"
                 className="-desktop"
               />
@@ -35,7 +34,6 @@ const SliderBanner = () => {
                 alt={title || ''}
                 src={mobile?.img?.sourceUrl || featuredImage?.sourceUrl || ''}
                 className="-mobile"
-                quality={100}
                 sizes="(max-width: 768px) 100vw, 0vw"
               />
             </Link>

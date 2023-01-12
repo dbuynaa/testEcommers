@@ -16,7 +16,7 @@ const OrderItem = ({
     <div className="row order-item rounded p-3 mb-2">
       <div className="col-2">
         <div className="img-wrap ratio ratio1x1 flex justify-center items-center">
-          <Image src={productImgUrl} alt="Product" />
+          <Image src={productImgUrl} alt="Product" sizes="20vw" />
         </div>
       </div>
       <div className="col-10 row">

@@ -14,7 +14,11 @@ const Product = ({
   return (
     <Link className="product" href={`/product/${_id}`} onClick={onClick}>
       <div className="img-wrap">
-        <Image src="/images/product-6.jpeg" alt="" />
+        <Image
+          src="/images/product-6.jpeg"
+          alt=""
+          sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
+        />
       </div>
       <p className="product-name mb-2 mt-3">{name}</p>
       <div className="flex items-center justify-between">

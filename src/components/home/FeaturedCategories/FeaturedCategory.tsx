@@ -6,7 +6,13 @@ const FeaturedCategory = ({ title, featuredImage, custom }: WpPost) => {
   return (
     <Link className="col-6 col-md-2 text-center p-4" href={custom.link}>
       <div className="img-wrap ratio ratio1x1">
-        <Image src={featuredImage?.sourceUrl || ''} alt={title || ''} />
+        <Image
+          src={featuredImage?.sourceUrl || ''}
+          alt={title || ''}
+          sizes='sizes="(max-width: 768px) 50vw,
+          (max-width: 1500px) 25vw,
+          20vw"'
+        />
       </div>
       <big className="text-black">{title}</big>
     </Link>
