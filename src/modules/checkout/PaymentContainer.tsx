@@ -3,7 +3,6 @@ import { useMutation, gql, useLazyQuery } from '@apollo/client';
 import { mutations, queries } from './graphql';
 import { useConfig, useCurrentUser } from 'modules/appContext';
 import { toast } from 'react-toastify';
-import { useSearchParams } from 'next/navigation';
 import Loading from 'ui/Loading';
 import { useEffect } from 'react';
 
@@ -18,7 +17,7 @@ const PaymentContainer = ({
   const { currentUser } = useCurrentUser();
 
   const [generateInvoiceUrl, { loading, data }] = useMutation(
-    gql(mutations.generateInvoiceUrl),
+    mutations.generateInvoiceUrl,
     {
       onError(error) {
         toast.error(error.message);

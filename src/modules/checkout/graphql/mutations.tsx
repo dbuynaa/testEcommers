@@ -68,7 +68,7 @@ const orderItemChangeStatus = gql`
   }
 `;
 
-const generateInvoiceUrl = `
+const generateInvoiceUrl = gql`
   mutation GenerateInvoiceUrl(
     $amount: Float!
     $companyId: String
@@ -94,6 +94,12 @@ const generateInvoiceUrl = `
   }
 `;
 
+const orderCancel = gql`
+  mutation OrdersCancel($id: String!) {
+    ordersCancel(_id: $id)
+  }
+`;
+
 const mutations = {
   ordersAdd,
   ordersEdit,
@@ -102,6 +108,7 @@ const mutations = {
   orderChangeStatus,
   orderItemChangeStatus,
   generateInvoiceUrl,
+  orderCancel,
 };
 
 export default mutations;

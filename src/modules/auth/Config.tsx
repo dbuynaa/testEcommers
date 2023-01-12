@@ -7,7 +7,7 @@ import Loading from 'ui/Loading';
 
 const Config = ({ children }: any) => {
   const { setConfig } = useConfig();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [getConfig] = useLazyQuery(queries.currentConfig, {
     onCompleted(data) {
