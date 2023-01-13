@@ -1,6 +1,6 @@
 import OrderSteps from 'components/checkout/steps';
-import PrivateRoute from 'modules/auth/privateRoute';
 import Summary from 'components/checkout/summary';
+import ScrollWrapper from 'components/header/Wrapper';
 
 const Layout = ({ children, action }: any) => {
   return (
@@ -9,10 +9,10 @@ const Layout = ({ children, action }: any) => {
       <div className="row">
         <div className="col-md-8 col-12 mb-3">{children}</div>
         <div className="col-md-4 col-12">
-          <div className="mx-md-3 order-summary">
+          <ScrollWrapper className="mx-md-3 order-summary scroll">
             <Summary />
             {action}
-          </div>
+          </ScrollWrapper>
         </div>
       </div>
     </div>

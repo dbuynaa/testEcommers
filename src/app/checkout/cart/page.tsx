@@ -4,9 +4,11 @@ import useOrderData from 'lib/useOrderData';
 import Layout from 'components/checkout/layout';
 import Button from 'ui/Button';
 import Link from 'next/link';
+import { useCart } from 'modules/appContext';
 
 const Cart = () => {
   const { cart } = useOrderData();
+  const { cart: carti } = useCart();
   return (
     <Layout
       action={

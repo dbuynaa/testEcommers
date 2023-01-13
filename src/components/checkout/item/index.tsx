@@ -38,13 +38,9 @@ const OrderItem = ({
         <div className="col-12 col-md-6 flex items-stretch">
           <div className="mh-100 flex flex-col justify-between w-full py-3">
             <div className="flex justify-end w-full items-center">
-              <p className="bold text-black pe-3">
-                {formatCurrency(unitPrice)}₮
-              </p>
+              <p className="bold text-black pe-3">{unitPrice}₮</p>
               <Counter productId={productId} />
-              <p className="bold text-black ps-3">
-                {formatCurrency(unitPrice * count)}₮
-              </p>
+              <p className="bold text-black ps-3">{unitPrice * count}₮</p>
             </div>
           </div>
         </div>

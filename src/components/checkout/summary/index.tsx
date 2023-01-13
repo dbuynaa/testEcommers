@@ -1,7 +1,6 @@
 'use client';
 import { ICartItem } from 'modules/types';
 import { useCurrentOrder, useCart } from 'modules/appContext';
-
 import { formatCurrency, cartTotalAmount } from 'utils';
 
 const Summary = () => {
