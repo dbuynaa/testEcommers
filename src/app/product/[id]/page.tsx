@@ -15,7 +15,10 @@ const Product = ({ params }: any) => {
   const { id } = params;
   const detail = use(getProductDetail(id));
 
-  const { attachment, name, unitPrice, description } = detail;
+  const { attachment, name, unitPrice, description, code, productCount } =
+    detail;
+
+  console.log(detail);
 
   const fixImageUrl = (url: string = '') =>
     url.replace(
@@ -31,8 +34,13 @@ const Product = ({ params }: any) => {
         </div>
         <div className="col-12 col-md-6 px-md-5 prDtl-actions">
           <h5>{name}</h5>
-          <div className="sbt text-mid-gray pb-3"></div>
-          <h5>{formatCurrency(unitPrice)} ₮</h5>
+          <div className="sbt text-mid-gray pb-3">
+            Бүтээгдэхүүний код: {code}
+          </div>
+          <h4>{unitPrice.toLocaleString()} ₮</h4>
+          {/* <div className="-count text-mid-gray">
+            {productCount} 5 ширхэг бэлэн байна
+          </div> */}
           <Actions
             {...detail}
             productImgUrl={fixImageUrl((attachment || {}).url)}
@@ -41,16 +49,20 @@ const Product = ({ params }: any) => {
       </div>
       <Tabs defaultValue="intro">
         <TabsList>
-          <TabTrigger value="intro">
-            <div className="p-3">Дэлгэрэнгүй</div>
-          </TabTrigger>
+          {description && (
+            <TabTrigger value="intro">
+              <div className="p-3">Дэлгэрэнгүй</div>
+            </TabTrigger>
+          )}
           {/* <TabTrigger value="review">
             <div className="p-3">Шүүмж</div>
           </TabTrigger> */}
         </TabsList>
-        <TabsContent value="intro">
-          <Description description={description} />
-        </TabsContent>
+        {description && (
+          <TabsContent value="intro">
+            <Description description={description} />
+          </TabsContent>
+        )}
       </Tabs>
     </div>
   );

@@ -24,7 +24,7 @@ const Header = () => {
         <SelectItem value="new-to-old">Шинэ нь эхэндээ</SelectItem>
         <SelectItem value="newr">Хуучин нь эхэндээ</SelectItem>
         <SelectItem value="negw">Үнэ өсөхөөр</SelectItem>
-        <SelectItem value="negw">Үнэ буурахаар</SelectItem>
+        <SelectItem value="neg">Үнэ буурахаар</SelectItem>
       </Select>
     </div>
   );

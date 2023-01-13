@@ -8,7 +8,7 @@ header {
     a {
       margin: 0 0.75rem;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       padding: 0.5rem 0;
       opacity: 0.8;
       white-space: nowrap;
@@ -80,7 +80,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 2;
   height: calc(8.25rem + 1px);
   overflow: hidden;
   .product-cats {
@@ -109,6 +109,17 @@ header {
   position: relative;
   overflow: visible;
   transition: 0.3s background-color;
+  &.btn {
+    padding: 1rem;
+  }
+  & > small {
+    white-space: nowrap;
+    color: rgba($color: #fff, $alpha: 0.8);
+    position: absolute;
+    bottom: 0;
+    font-size: 8px;
+    font-weight: 700;
+  }
   &.btn:hover {
     background: rgba(256, 256, 256, 0.05);
   }

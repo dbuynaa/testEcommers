@@ -23,7 +23,6 @@ const MainCategories = () => {
         <Link
           key={_id}
           href={{ pathname: '/products', query: { category: _id } }}
-          prefetch={false}
         >
           {name}
         </Link>

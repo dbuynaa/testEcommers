@@ -22,6 +22,7 @@ const products = gql`
     poscProducts(searchValue: $searchValue, categoryId: $categoryId, type: $type, page: $page, perPage: $perPage) {
       ${commonFields}
       unitPrice
+      productCount
       attachment {
         url
       }

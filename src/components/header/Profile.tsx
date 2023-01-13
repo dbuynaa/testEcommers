@@ -19,6 +19,7 @@ const Profile = () => {
         Component={Link}
       >
         <User />
+        <small className="block">Нэвтрэх</small>
       </Button>
     );
 
@@ -27,6 +28,7 @@ const Profile = () => {
       trigger={
         <Button className="profile-btn" variant="ghost">
           <User />
+          <small className="block">Профайл</small>
         </Button>
       }
     >

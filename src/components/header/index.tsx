@@ -34,8 +34,6 @@ const Header = () => {
                 <Link href="/">
                   <Logo className="logo" />
                 </Link>
-
-                <Link href="/products"></Link>
                 <CheckDevice Desktop={<Search />} Mobile={null} />
                 <CheckDevice Desktop={<Nav />} Mobile={null} />
               </div>

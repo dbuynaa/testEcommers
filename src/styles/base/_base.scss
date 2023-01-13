@@ -9,6 +9,9 @@ body {
   overflow-x: hidden;
   width: 100vw;
   overflow-y: overlay;
+  & > div:last-of-type {
+    z-index: 100 !important;
+  }
 }
 
 html {
