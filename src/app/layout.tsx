@@ -11,8 +11,9 @@ import CurrentOrder from 'modules/checkout/currentOrder';
 import Footer from 'components/footer';
 import Config from 'modules/auth/Config';
 import NavigationBar from 'components/header/NavigationBar';
+import Script from 'next/script';
 
-export const revalidate = 60;
+export const revalidate = 600;
 
 export default function RootLayout({
   children,
@@ -37,6 +38,17 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         ></link>
+        <script
+          data-partytown-config
+          dangerouslySetInnerHTML={{
+            __html: `
+          partytown = {
+            lib: "/_next/static/~partytown/",
+            forward: ["gtag"]           
+          };
+        `,
+          }}
+        />
       </head>
       <body>
         <ApolloProvider>
@@ -56,7 +68,29 @@ export default function RootLayout({
           </AppProvider>
         </ApolloProvider>
         <Toast />
+        <script
+          type="text/partytown"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${gtag.GA_TRACKING_ID}', { 
+                page_path: window.location.pathname,
+            });
+        `,
+          }}
+        />
+        <Script
+          strategy="worker"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+        />
       </body>
     </html>
   );
 }
+
+const gtag = {
+  GA_TRACKING_ID: 'GTM-KWD7T33',
+};
