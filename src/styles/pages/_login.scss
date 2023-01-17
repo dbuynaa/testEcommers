@@ -1,23 +1,5 @@
-.login-banner {
-  background: linear-gradient(-45deg, #2b3b92, #e73c7e, #44529f, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-}
-
 .login {
-  min-height: calc(100vh - 11rem);
-
+  min-height: calc(100vh - 8.25rem - 1px);
   form {
     max-width: 100%;
     width: 320px;

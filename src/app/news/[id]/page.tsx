@@ -5,6 +5,7 @@ import Image from 'ui/Image';
 import Button from 'ui/Button';
 import Twitter from 'icons/Twitter';
 import Link from 'next/link';
+import FacebookShare from 'components/news/FacebookShare';
 
 const Detail = ({ params }: any) => {
   const { post } = use(getPostById(decodeURIComponent(params.id)));
@@ -20,6 +21,7 @@ const Detail = ({ params }: any) => {
         <Image src={featuredImage.node.sourceUrl} alt="" sizes="100vw" />
       </div>
       <div className="pt-4 container c-md flex items-center justify-end share-container">
+        <FacebookShare title={title} id={params.id} />
         <Button
           className="-twitter share"
           variant="slim"

@@ -115,6 +115,7 @@ export const NEWS_DETAIL = gql`
           sourceUrl
         }
       }
+      excerpt
       title
       slug
     }

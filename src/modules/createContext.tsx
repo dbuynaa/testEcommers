@@ -6,7 +6,9 @@ import React, {
   useContext,
   useCallback,
   useSyncExternalStore,
+  useEffect,
 } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function createFastContext<Store>(initialState: Store) {
   function useStoreData(): {
@@ -42,6 +44,10 @@ export default function createFastContext<Store>(initialState: Store) {
   const StoreContext = createContext<UseStoreDataReturnType | null>(null);
 
   function Provider({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
+    useEffect(() => {
+      window.scroll(0, 0);
+    }, [pathname]);
     return (
       <StoreContext.Provider value={useStoreData()}>
         {children}
