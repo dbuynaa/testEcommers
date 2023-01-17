@@ -12,6 +12,7 @@ import Footer from 'components/footer';
 import Config from 'modules/auth/Config';
 import NavigationBar from 'components/header/NavigationBar';
 import Script from 'next/script';
+import { Partytown } from '@builder.io/partytown/react';
 
 export const revalidate = 600;
 
@@ -38,7 +39,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         ></link>
-        <script
+        <Partytown debug={true} forward={['dataLayer.push']} />
+        {/* <script
           data-partytown-config
           dangerouslySetInnerHTML={{
             __html: `
@@ -48,7 +50,7 @@ export default function RootLayout({
           };
         `,
           }}
-        />
+        /> */}
       </head>
       <body>
         <ApolloProvider>
