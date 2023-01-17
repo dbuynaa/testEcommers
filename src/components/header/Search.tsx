@@ -23,7 +23,11 @@ const Search = () => {
 
   const renderResult = () => {
     if (!searchValue)
-      return <Empty size="8rem" message="Хайх утгаа оруулана уу" />;
+      return (
+        <div className="my-5 py-5">
+          <Empty size="8rem" message="Хайх утгаа оруулана уу" />
+        </div>
+      );
 
     if (loading) return <Loading className="py-5 my-5" />;
 
@@ -62,7 +66,7 @@ const Search = () => {
   return (
     <CheckDevice
       Desktop={
-        <div className="search ms-5">
+        <div className="search ms-5 col-8">
           <Suspense>
             <Popover
               open={show}

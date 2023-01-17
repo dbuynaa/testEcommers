@@ -117,7 +117,7 @@ header {
     color: rgba($color: #fff, $alpha: 0.8);
     position: absolute;
     bottom: 0;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 700;
   }
   &.btn:hover {
@@ -146,8 +146,6 @@ header {
 }
 
 .cart-btn.btn {
-  padding: 0.5rem;
-
   svg {
     font-size: 1.75rem;
     .-secondary {

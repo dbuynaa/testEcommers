@@ -130,6 +130,7 @@ const Cart = () => {
             <div className="badge">{cartCount(currentCart)}</div>
           )}
           <CartIcon />
+          <small className="block">Сагс</small>
         </Button>
       }
     >

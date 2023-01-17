@@ -28,8 +28,8 @@ const Header = () => {
     <ScrollWrapper className="header scroll">
       <header>
         <div className="container pt-1">
-          <div className="flex py-3 justify-between bg-blue">
-            <div className="">
+          <div className="flex py-3 justify-between">
+            <div className="col-9">
               <div className="flex items-center">
                 <Link href="/">
                   <Logo className="logo" />
