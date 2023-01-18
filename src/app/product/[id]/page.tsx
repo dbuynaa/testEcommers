@@ -18,7 +18,9 @@ const Product = ({ params }: any) => {
   const { attachment, name, unitPrice, description, code, productCount } =
     detail;
 
-  console.log(detail);
+  if (!name || !unitPrice) {
+    return null;
+  }
 
   const fixImageUrl = (url: string = '') =>
     url.replace(
@@ -37,7 +39,7 @@ const Product = ({ params }: any) => {
           <div className="sbt text-mid-gray pb-3">
             Бүтээгдэхүүний код: {code}
           </div>
-          <h4>{unitPrice.toLocaleString()} ₮</h4>
+          <h4>{(unitPrice || '').toLocaleString()} ₮</h4>
           {/* <div className="-count text-mid-gray">
             {productCount} 5 ширхэг бэлэн байна
           </div> */}

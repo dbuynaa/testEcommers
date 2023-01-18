@@ -80,7 +80,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-const gtag = {
-  GA_TRACKING_ID: 'GTM-KWD7T33',
-};

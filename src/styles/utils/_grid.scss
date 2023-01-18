@@ -97,6 +97,11 @@
     flex: 1 1 66.66666666%;
   }
 
+  .col-md-7 {
+    max-width: calc(100% / 12 * 7);
+    flex: calc(100% / 12 * 7);
+  }
+
   .col-md-6 {
     max-width: 50%;
     flex: 1 1 50%;

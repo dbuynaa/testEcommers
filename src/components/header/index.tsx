@@ -29,7 +29,7 @@ const Header = () => {
       <header>
         <div className="container pt-1">
           <div className="flex py-3 justify-between">
-            <div className="col-9">
+            <div className="col-md-7">
               <div className="flex items-center">
                 <Link href="/">
                   <Logo className="logo" />

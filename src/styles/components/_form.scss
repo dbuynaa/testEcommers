@@ -31,4 +31,26 @@
     left: 0;
     bottom: 0.25rem;
   }
+  &.checkbox-holder {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 0;
+    .relative {
+      margin-top: 0.5rem;
+      padding-right: 1rem;
+      input {
+        transform: scale(1.5);
+        accent-color: $blue;
+      }
+    }
+    // align-items: center;
+    label {
+      font-weight: 400;
+      margin-bottom: 0;
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
 }

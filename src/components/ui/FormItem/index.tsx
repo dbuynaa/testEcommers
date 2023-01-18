@@ -1,5 +1,5 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, useState, ReactNode } from 'react';
 import Input, { InputProps } from 'ui/Input';
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
@@ -8,7 +8,7 @@ import Eye from 'icons/Eye';
 import EyeSlash from 'icons/EyeSlash';
 
 export interface FormItemProps extends InputProps {
-  label?: string;
+  label?: string | ReactNode;
   labelClassName?: string;
   errorMsgs?: any;
   element?: 'textarea';
@@ -59,7 +59,12 @@ const FormItem: FC<FormItemProps> = (props) => {
 
   //
   return (
-    <div className={clsx('form-item', { error: error?.type })}>
+    <div
+      className={clsx('form-item', {
+        error: error?.type,
+        'checkbox-holder': type === 'checkbox',
+      })}
+    >
       <label htmlFor={name} className={labelClassName}>
         {label}
       </label>
@@ -80,7 +85,7 @@ const FormItem: FC<FormItemProps> = (props) => {
           </Button>
         )}
       </div>
-      {error?.type && (
+      {type !== 'checkbox' && error?.type && (
         <small className="block text-danger ps-2">
           {errorMessages[error.type as any]}
         </small>

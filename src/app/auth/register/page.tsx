@@ -94,6 +94,16 @@ const Signup = () => {
           }}
           name="password"
         />
+        <FormItem
+          type="checkbox"
+          label={
+            <p>
+              Би <Link href="/terms-of-service">Үйлчилгээний нөхцөлийг</Link>{' '}
+              уншиж танилцан зөвшөөрч байна.
+            </p>
+          }
+          name="privacy"
+        />
 
         <Button className="p-3 mt-3" type="submit" loading={loading}>
           Бүртгүүлэх

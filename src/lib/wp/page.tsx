@@ -1,4 +1,4 @@
-import { LOGIN, FOOTER } from './queries/page';
+import { LOGIN, FOOTER, TERMS_OF_USE } from './queries/page';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
 import type { DocumentNode } from 'graphql';
@@ -23,6 +23,10 @@ export async function getLogin() {
 
 export async function getFooter() {
   return await getPage(FOOTER);
+}
+
+export async function getTermsOfUse() {
+  return await getPage(TERMS_OF_USE);
 }
 
 export type WpPage = {
