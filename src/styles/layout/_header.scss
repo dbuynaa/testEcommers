@@ -163,6 +163,7 @@ header {
     right: 0;
     bottom: 0;
     background-color: $success;
+    z-index: 1;
   }
   &-items {
     max-height: 270px;

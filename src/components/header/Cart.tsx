@@ -7,10 +7,10 @@ import { useCart, useCurrentUser, useCurrentOrder } from 'modules/appContext';
 import { useEffect } from 'react';
 import Image from 'ui/Image';
 import Empty from 'ui/Empty';
-import Trash from 'icons/Trash';
 import Link from 'next/link';
 import { useShowCart } from 'ui/context';
 import { ICartItem } from '../../modules/types';
+import useOrderCancel from 'lib/useOrderCancel';
 import {
   cartCount,
   formatCurrency,
@@ -21,10 +21,11 @@ import {
 } from 'utils';
 
 const Cart = () => {
-  const { cart, changeCount, changeCart } = useCart();
+  const { cart, changeCart } = useCart();
   const { showCart, changeShowCart } = useShowCart();
   const { currentUser } = useCurrentUser();
   const { currentOrder } = useCurrentOrder();
+  const { loading, orderCancel } = useOrderCancel();
 
   useEffect(() => {
     const localCart = getLocal('cart');
@@ -48,6 +49,13 @@ const Cart = () => {
       )
     : cart || [];
 
+  const toEmptyCart = () => {
+    if (!currentUser) {
+      return changeCart([]);
+    }
+    return orderCancel({ variables: { id: currentOrder?._id } });
+  };
+
   const renderContent = () => {
     if (!currentCart.length) return <Empty size="8rem" />;
 
@@ -55,8 +63,13 @@ const Cart = () => {
       <>
         <div className="flex items-center justify-between pb-3 cart-header">
           <b>Таны сагс ( {currentCart.length} бүтээгдэхүүн )</b>
-          <Button className="cart-clean text-blue" variant="ghost">
-            Хоослох
+          <Button
+            className="cart-clean text-blue"
+            variant="ghost"
+            onClick={toEmptyCart}
+            loading={loading}
+          >
+            {!loading && 'Хоослох'}
           </Button>
         </div>
         {currentCart.map(
@@ -67,8 +80,7 @@ const Cart = () => {
                   <Image
                     src={readFile(productImgUrl || '')}
                     alt=""
-                    sizes="(max-width: 768px) 33vw,
-  10vw"
+                    sizes="(max-width: 768px) 33vw, 10vw"
                   />
                 </div>
               </div>

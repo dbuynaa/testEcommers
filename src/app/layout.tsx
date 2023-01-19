@@ -12,7 +12,6 @@ import CurrentOrder from 'modules/checkout/currentOrder';
 import Footer from 'components/footer';
 import Config from 'modules/auth/Config';
 import NavigationBar from 'components/header/NavigationBar';
-import Script from 'next/script';
 import { Partytown } from '@builder.io/partytown/react';
 
 export const revalidate = 600;
@@ -25,10 +24,6 @@ export default function RootLayout({
   return (
     <html lang="mn">
       <head>
-        <title>Techstore</title>
-        <meta charSet="UTF-8" />
-        <meta name="description" content="The official distributor of Xiami" />
-        <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -51,6 +46,17 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-KWD7T33')`,
           }}
         />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Techstore" />
+        <meta
+          property="og:description"
+          content="The official distributor of Xiami | Xiami-гийн албан ёсны борлуулагч"
+        />
+        <meta property="og:image" content="" />
       </head>
       <body>
         <ApolloProvider>

@@ -49,22 +49,19 @@ const Address = () => {
   }, []);
 
   const onSubmit = (data: AddressFormData) => {
-    if (latLong) {
-      const { registerNumber, ...rest } = data;
-      return orderCU({
-        variables: {
-          ...restData,
-          items: cleanCart(cart),
-          registerNumber: registerNumber,
-          deliveryInfo: {
-            ...rest,
-            marker: latLong,
-            description: `Аймаг/Хот: ${data.province},  Сум/Дүүрэг: ${data.district}, Баг/Хороо: ${data.street}, Дэлгэрэнгүй: ${data.details} `,
-          },
+    const { registerNumber, ...rest } = data;
+    return orderCU({
+      variables: {
+        ...restData,
+        items: cleanCart(cart),
+        registerNumber: registerNumber,
+        deliveryInfo: {
+          ...rest,
+          marker: latLong,
+          description: `Аймаг/Хот: ${data.province},  Сум/Дүүрэг: ${data.district}, Баг/Хороо: ${data.street}, Дэлгэрэнгүй: ${data.details} `,
         },
-      });
-    }
-    return toast.error('Газрын зураг дээр байршилаа сонгоно уу');
+      },
+    });
   };
 
   return (

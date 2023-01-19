@@ -13,7 +13,7 @@ const useOrderCU = (onCompleted?: any) => {
       changeCart([]);
       onCompleted && onCompleted(_id);
     },
-    refetchQueries: [{ query: queries.lastOrder }, 'FullOrders'],
+    refetchQueries: [{ query: queries.lastOrder }, 'LastOrder'],
     onError(error) {
       toast.error(error.message);
     },
@@ -27,7 +27,7 @@ const useOrderCU = (onCompleted?: any) => {
         changeCart([]);
         return onCompleted && onCompleted(_id);
       },
-      refetchQueries: [{ query: queries.lastOrder }, 'FullOrders'],
+      refetchQueries: [{ query: queries.lastOrder }, 'LastOrder'],
       onError(error) {
         toast.error(error.message);
       },

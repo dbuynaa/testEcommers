@@ -6,11 +6,13 @@ import useOrderData from 'lib/useOrderData';
 import useOrderCU from 'lib/useOrderCU';
 import { findItem, changeCount, cleanCart } from 'utils';
 import LoadingDots from 'ui/LoadingDots';
+import useOrderCancel from 'lib/useOrderCancel';
 
 const Counter = ({ productId }: { productId: string }) => {
   const orderData = useOrderData();
   const { cart } = orderData;
   const { orderCU, loading } = useOrderCU();
+  const { orderCancel, loading: loadingCancel } = useOrderCancel();
   const cartItem = findItem(cart, productId);
 
   const handleChange = (number: number) => {
@@ -18,8 +20,11 @@ const Counter = ({ productId }: { productId: string }) => {
       cart,
       product: { productId, count: number },
     });
+    if (newCart.length === 0) return;
     orderCU({ variables: { ...orderData, items: cleanCart(newCart) } });
   };
+
+  const loadingAction = loading || loadingCancel;
 
   return (
     <>
@@ -27,7 +32,7 @@ const Counter = ({ productId }: { productId: string }) => {
         <Button
           className="minus"
           variant="ghost"
-          disabled={loading}
+          disabled={loadingAction}
           onClick={() => handleChange((cartItem?.count || 0) - 1)}
         >
           <Minus />
@@ -45,13 +50,13 @@ const Counter = ({ productId }: { productId: string }) => {
         <Button
           className="plus"
           variant="ghost"
-          disabled={loading}
+          disabled={loadingAction}
           onClick={() => handleChange((cartItem?.count || 0) + 1)}
         >
           <Plus />
         </Button>
       </div>
-      {loading && (
+      {loadingAction && (
         <div className="order-item-loader flex items-center justify-center rounded">
           <LoadingDots />
         </div>

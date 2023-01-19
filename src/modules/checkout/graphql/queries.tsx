@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const lastOrder = gql`
-  query FullOrders(
+  query LastOrder(
     $customerId: String
     $statuses: [String]
     $perPage: Int

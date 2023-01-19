@@ -2,7 +2,6 @@ import { use } from 'react';
 
 import getProductDetail from 'lib/getProductDetail';
 import ImageGallery from 'components/ProductDetail/Images';
-import { formatCurrency } from 'utils';
 import Actions from 'components/ProductDetail/Actions';
 import Tabs, {
   TabsList,

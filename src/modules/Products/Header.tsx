@@ -16,7 +16,7 @@ const Header = () => {
         <b className="sbt pe-2 text-blue">
           {activeCategoryName && activeCategoryName}
         </b>
-        {productsCount && (
+        {!!productsCount && (
           <div className="sbt text-mid-gray">{productsCount} бүтээгдэхүүн</div>
         )}
       </div>
