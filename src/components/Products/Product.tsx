@@ -16,7 +16,7 @@ const Product = ({
     <Link className="product" href={`/product/${_id}`} onClick={onClick}>
       <div className="img-wrap">
         <Image
-          src={readFile(attachment.url)}
+          src={readFile((attachment || {}).url || '')}
           alt=""
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
         />
