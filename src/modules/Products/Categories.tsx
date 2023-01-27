@@ -16,6 +16,8 @@ const MobileCategories = dynamic(
   }
 );
 
+// test
+
 const CategoriesContainer = () => {
   const { data, loading } = useQuery(queries.productCategories);
   const pathname = usePathname();
