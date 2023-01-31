@@ -7,8 +7,8 @@ const useGetProducts = ({
   onCountCompleted,
   searchValue,
   perPage = FETCH_MORE_PER_PAGE,
-  sortField,
-  sortDirection,
+  sortField = 'createdAt',
+  sortDirection = -1,
 }: {
   category?: string | null;
   onCountCompleted?: any;

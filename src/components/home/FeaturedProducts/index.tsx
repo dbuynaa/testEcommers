@@ -8,14 +8,13 @@ const FeaturedProducts = () => {
   const sortedPosts = sortPosts(posts);
 
   return (
-    <>
-      <div className="pt-2"></div>
-      <div className="row ft-product-row">
+    <div className="my-md-5 my-4">
+      <div className="row ft-product-row px-3">
         <div className="col-md-6 col-12 p-1">
           <FeaturedProduct
             className="big"
             {...sortedPosts[0]}
-            sizes="(max-width: 768px) 100vw, (max-width: 1360px) 50vw, 680px"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
         <div className="col-md-6 col-12">
@@ -44,7 +43,7 @@ const FeaturedProducts = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

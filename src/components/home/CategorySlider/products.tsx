@@ -9,8 +9,8 @@ import Button from 'ui/Button';
 import { useEffect } from 'react';
 
 const changedSettings = {
-  slidesToShow: 5,
-  slidesToScroll: 4,
+  slidesToShow: 4,
+  slidesToScroll: 3,
   dots: false,
   responsive: [
     {

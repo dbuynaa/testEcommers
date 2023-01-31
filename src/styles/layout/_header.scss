@@ -7,15 +7,9 @@ header {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     a {
       margin: 0 0.75rem;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 0.5rem 0;
-      opacity: 0.8;
+      font-size: 1rem;
+      padding: 0.75rem 0;
       white-space: nowrap;
-
-      &:hover {
-        opacity: 1;
-      }
       &-active {
         a {
           font-weight: 700;
@@ -81,7 +75,7 @@ header {
   top: 0;
   width: 100%;
   z-index: 2;
-  height: calc(8.25rem + 1px);
+  height: calc(9rem + 1px);
   overflow: hidden;
   .product-cats {
     transform: translateY(0);

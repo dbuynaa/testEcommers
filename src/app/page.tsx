@@ -7,15 +7,13 @@ import Latest from 'components/home/Latest';
 
 export default function Home() {
   return (
-    <>
-      <div className="container flex flex-col">
-        <FeaturedProducts />
-        <FeaturedCategories />
-        <CategorySlider />
-        <Banner />
-        <Latest />
-        <SliderBanner />
-      </div>
-    </>
+    <div className="flex flex-col home">
+      <FeaturedProducts />
+      <FeaturedCategories />
+      <CategorySlider />
+      <Banner />
+      <Latest />
+      <SliderBanner />
+    </div>
   );
 }

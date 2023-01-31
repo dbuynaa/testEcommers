@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <>
       {(posts || []).map(({ featuredImage, imgbanner, title, custom }, idx) => (
-        <div className="py-3 py-md-5" key={idx}>
+        <div className="my-md-5 my-4 container" key={idx}>
           <Link href={custom.link} className="relative block">
             <div
               className="-space"

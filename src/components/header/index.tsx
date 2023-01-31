@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <ScrollWrapper className="header scroll">
       <header>
-        <div className="container pt-1">
+        <div className="px-3 pt-1">
           <div className="flex py-3 justify-between">
             <div className="col-md-7">
               <div className="flex items-center">

@@ -8,7 +8,7 @@ const CategorySlider = () => {
   return (
     <>
       {(posts || []).map(({ slug, title, featuredImage, image, custom }) => (
-        <div className="cat-banner py-5" key={slug}>
+        <div className="cat-banner my-md-5 my-4 container" key={slug}>
           <div className="-header p-3 mb-3 rounded">
             <h5 className="text-blue">{title}</h5>
           </div>

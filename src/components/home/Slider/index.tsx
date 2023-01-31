@@ -13,8 +13,11 @@ const changedSettings = {
 const SliderBanner = () => {
   const { posts } = use(getSliderBanner());
   return (
-    <div className="py-5">
-      <Slider {...changedSettings} className="banner-slider">
+    <div className="my-md-5 my-4">
+      <Slider
+        {...changedSettings}
+        className="banner-slider slick-arrow-standart"
+      >
         {sortPosts(posts || []).map(
           ({ title, featuredImage, custom, mobile }, idx) => (
             <Link

@@ -9,9 +9,8 @@ import ArrowRight from 'icons/ArrowRight';
 
 const Latest = () => {
   const { products, loading, getProducts } = useGetProducts({
-    sortField: 'createdAt',
     perPage: 16,
-    sortDirection: -1,
+    category: '',
   });
 
   useEffect(() => {
@@ -19,8 +18,11 @@ const Latest = () => {
   }, []);
 
   return (
-    <div className="col-12 col-md-9">
-      <Slider {...changedSettings} className="-slider">
+    <div className="container my-md-5 my-4">
+      <h4 className="text-blue text-center mb-md-4 mb-0">
+        Шинээр ирсэн бүтээгдэхүүн
+      </h4>
+      <Slider {...changedSettings} className="-slider slick-arrow-standart">
         {(products || []).map((el: any, index: number) => (
           <div className="px-2 flex flex-col -item" key={index}>
             <Product {...el} />

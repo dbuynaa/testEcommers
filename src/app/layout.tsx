@@ -62,16 +62,16 @@ export default function RootLayout({
         <ApolloProvider>
           <AppProvider>
             <UIProvider>
-              <Config>
-                <Header />
-                <div className="layout">
-                  <CurrentUser>
-                    <CurrentOrder>{children}</CurrentOrder>
-                  </CurrentUser>
-                </div>
-                <Footer />
-                <NavigationBar />
-              </Config>
+              {/* <Config> */}
+              <Header />
+              <div className="layout">
+                <CurrentUser>
+                  <CurrentOrder>{children}</CurrentOrder>
+                </CurrentUser>
+              </div>
+              <Footer />
+              <NavigationBar />
+              {/* </Config> */}
             </UIProvider>
           </AppProvider>
         </ApolloProvider>
