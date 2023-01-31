@@ -4,28 +4,14 @@ import dynamic from 'next/dynamic';
 import Cart from './Cart';
 import CheckDevice from 'modules/CheckDevice';
 import ScrollWrapper from './Wrapper';
-
-const Nav = dynamic(() => import('./Nav'), {
-  suspense: true,
-});
-const MainCategories = dynamic(
-  () => import('modules/Products/MainCategories'),
-  {
-    suspense: true,
-  }
-);
-
-const Search = dynamic(() => import('./Search'), {
-  suspense: true,
-});
-
-const Profile = dynamic(() => import('./Profile'), {
-  suspense: true,
-});
+import MainCategories from 'modules/Products/MainCategories';
+import Nav from './Nav';
+import Search from './Search';
+import Profile from './Profile';
 
 const Header = () => {
   return (
-    <ScrollWrapper className="header scroll">
+    <ScrollWrapper className="header scroll ">
       <header>
         <div className="px-3 px-md-4 pt-1">
           <div className="flex py-3 justify-between">
@@ -34,13 +20,13 @@ const Header = () => {
                 <Link href="/">
                   <Logo className="logo" />
                 </Link>
-                <CheckDevice Desktop={<Search />} Mobile={null} />
-                <CheckDevice Desktop={<Nav />} Mobile={null} />
+                <Search />
+                <Nav />
               </div>
             </div>
             <div className="flex items-center">
               <Cart />
-              <CheckDevice Desktop={<Profile />} />
+              <Profile />
             </div>
           </div>
           <CheckDevice Desktop={<MainCategories />} Mobile={null} />

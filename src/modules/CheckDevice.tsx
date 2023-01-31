@@ -12,10 +12,11 @@ const CheckDevice = ({
   Desktop?: ReactNode;
 }) => {
   const windowSize = useWindowSize();
+  console.log(windowSize.width);
 
   return (
     <Suspense fallback={<Loading />}>
-      {(windowSize.width || 0) <= 768 ? Mobile : Desktop}
+      {!!windowSize.width && (windowSize.width || 0) <= 768 ? Mobile : Desktop}
     </Suspense>
   );
 };

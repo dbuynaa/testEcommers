@@ -2,7 +2,6 @@
 'use client';
 import { useQuery } from '@apollo/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import Loading from 'ui/Loading';
 import { queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
 import { useEffect } from 'react';
@@ -32,8 +31,6 @@ const CurrentUser = ({ children }: any) => {
       from ? router.push(from) : router.push('/');
     }
   }, [currentUser]);
-
-  if (loading) return <Loading className="min-height-screen" />;
 
   if (currentUser && pathname?.includes('/auth')) {
     return null;

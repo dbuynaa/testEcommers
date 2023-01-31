@@ -53,8 +53,6 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
       });
   }, [currentUser]);
 
-  if (loading) return null;
-
   return <>{children}</>;
 };
 

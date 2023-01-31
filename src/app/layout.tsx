@@ -10,11 +10,17 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Toast from 'ui/Toast';
 import CurrentOrder from 'modules/checkout/currentOrder';
 import Footer from 'components/footer';
-import Config from 'modules/auth/Config';
 import NavigationBar from 'components/header/NavigationBar';
 import { Partytown } from '@builder.io/partytown/react';
+import { Inter as FontSans } from '@next/font/google';
+import clsx from 'clsx';
 
 export const revalidate = 600;
+
+const fontSans = FontSans({
+  subsets: ['latin', 'cyrillic-ext'],
+  variable: '--font-inter',
+});
 
 export default function RootLayout({
   children,
@@ -22,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="mn">
+    <html lang="mn" className={clsx('font-sans', fontSans.variable)}>
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -34,7 +40,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
-        ></link>
+        ></link> */}
         <Partytown debug={true} forward={['dataLayer.push']} />
         <script
           type="text/partytown"
@@ -46,23 +52,11 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-KWD7T33')`,
           }}
         />
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Techstore" />
-        <meta
-          property="og:description"
-          content="The official distributor of Xiami | Xiami-гийн албан ёсны борлуулагч"
-        />
-        <meta property="og:image" content="" />
       </head>
       <body>
         <ApolloProvider>
           <AppProvider>
             <UIProvider>
-              {/* <Config> */}
               <Header />
               <div className="layout">
                 <CurrentUser>
@@ -71,7 +65,6 @@ export default function RootLayout({
               </div>
               <Footer />
               <NavigationBar />
-              {/* </Config> */}
             </UIProvider>
           </AppProvider>
         </ApolloProvider>

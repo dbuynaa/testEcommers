@@ -126,6 +126,9 @@
 }
 
 @media (min-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
   .navbar {
     display: none;
   }
