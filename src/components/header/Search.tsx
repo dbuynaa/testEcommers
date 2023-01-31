@@ -14,7 +14,7 @@ const Popover = dynamic(() => import('ui/Popover'), {
   suspense: true,
 });
 
-const Search = () => {
+const Search = ({ inHead }: { inHead: boolean }) => {
   const [show, setShow] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const { products, productsCount, loading, getProducts } = useGetProducts({
@@ -66,7 +66,7 @@ const Search = () => {
   return (
     <CheckDevice
       Desktop={
-        <div className="search ms-5 col-8">
+        <div className={clsx('search ms-5 col-8', inHead && 'hidden-mobile')}>
           <Suspense>
             <Popover
               open={show}
@@ -90,7 +90,7 @@ const Search = () => {
         </div>
       }
       Mobile={
-        <div className="search-page pb-4">
+        <div className={clsx('search-page pb-4', inHead && 'hidden-mobile')}>
           <div className={clsx('search m-3')}>{renderInput()}</div>
           <b className="block text-blue px-3 pb-3">Тохирох бүтээгдэхүүнүүд</b>
           <div className="px-3">{renderResult()}</div>

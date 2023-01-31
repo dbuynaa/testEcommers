@@ -20,7 +20,7 @@ const Header = () => {
                 <Link href="/">
                   <Logo className="logo" />
                 </Link>
-                <Search />
+                <Search inHead />
                 <Nav />
               </div>
             </div>

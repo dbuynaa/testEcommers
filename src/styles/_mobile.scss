@@ -1,4 +1,7 @@
 @media (max-width: 768px) {
+  .hidden-mobile {
+    display: none !important;
+  }
   header {
     .logo {
       height: 2.5rem;
@@ -126,9 +129,6 @@
 }
 
 @media (min-width: 768px) {
-  .hidden-mobile {
-    display: none;
-  }
   .navbar {
     display: none;
   }

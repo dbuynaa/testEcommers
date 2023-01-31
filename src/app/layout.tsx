@@ -18,7 +18,7 @@ import clsx from 'clsx';
 export const revalidate = 600;
 
 const fontSans = FontSans({
-  subsets: ['latin', 'cyrillic-ext'],
+  subsets: ['latin', 'cyrillic-ext', 'cyrillic'],
   variable: '--font-inter',
 });
 
