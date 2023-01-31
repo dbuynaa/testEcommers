@@ -3,6 +3,7 @@ import FeaturedCategories from 'components/home/FeaturedCategories';
 import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
+import Latest from 'components/home/Latest';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <FeaturedCategories />
         <CategorySlider />
         <Banner />
+        <Latest />
         <SliderBanner />
       </div>
     </>

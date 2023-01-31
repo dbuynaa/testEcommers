@@ -70,7 +70,8 @@
     font-weight: 500;
 
     img {
-      width: 100%;
+      max-width: 100%;
+      height: auto !important;
     }
     & > p {
       padding-bottom: 0.75rem;

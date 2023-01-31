@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { queries } from 'modules/Products/graphql';
 
 const FETCH_MORE_PER_PAGE = 24;
@@ -8,11 +7,15 @@ const useGetProducts = ({
   onCountCompleted,
   searchValue,
   perPage = FETCH_MORE_PER_PAGE,
+  sortField,
+  sortDirection,
 }: {
   category?: string | null;
   onCountCompleted?: any;
   searchValue?: string | null;
   perPage?: number;
+  sortField?: string;
+  sortDirection?: number;
 }) => {
   const commonVariables = {
     categoryId: category,
@@ -24,6 +27,8 @@ const useGetProducts = ({
     {
       variables: {
         ...commonVariables,
+        sortField,
+        sortDirection,
         perPage,
         page: 1,
       },

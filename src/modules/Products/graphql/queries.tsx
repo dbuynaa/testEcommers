@@ -18,16 +18,16 @@ const productCategories = gql`
 `;
 
 const products = gql`
-  query poscProducts($searchValue: String, $type: String, $categoryId: String, $page: Int, $perPage: Int) {
-    poscProducts(searchValue: $searchValue, categoryId: $categoryId, type: $type, page: $page, perPage: $perPage) {
+query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue: String, $sortDirection: Int, $sortField: String){ 
+  poscProducts(categoryId: $categoryId, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField) {
       ${commonFields}
       unitPrice
       productCount
       attachment {
         url
       }
-    }
   }
+}
 `;
 const productsCount = gql`
   query productsCount(

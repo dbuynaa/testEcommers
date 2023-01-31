@@ -3,7 +3,6 @@ import Slider from 'ui/Slider';
 import Image from 'ui/Image';
 import { getSliderBanner, sortPosts } from 'lib/wp/posts';
 import Link from 'next/link';
-import Button from 'ui/Button';
 
 const changedSettings = {
   slidesToShow: 1,

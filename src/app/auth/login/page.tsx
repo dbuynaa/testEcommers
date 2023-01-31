@@ -53,6 +53,12 @@ const Login = () => {
           name="password"
         />
 
+        <p className="text-right">
+          <Link href={'/auth/forgot-password'} className="text-blue">
+            Та нууц үгээ мартсан уу?
+          </Link>
+        </p>
+
         <Button className="p-3 mt-3" type="submit" loading={loading}>
           Нэвтрэх
         </Button>
