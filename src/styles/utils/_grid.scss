@@ -127,4 +127,18 @@
     max-width: calc(100% / 6);
     flex: 1 1 calc(100% / 6);
   }
+
+  .col-xl-20 {
+    max-width: 20%;
+    flex: 1 1 20%;
+  }
+
+  .col-xl-3 {
+    max-width: 25%;
+    flex: 1 1 25%;
+  }
+  .col-xl-10 {
+    flex: 0 0 83.33333333%;
+    max-width: 83.33333333%;
+  }
 }

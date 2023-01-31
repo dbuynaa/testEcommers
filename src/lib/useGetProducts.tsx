@@ -14,8 +14,8 @@ const useGetProducts = ({
   onCountCompleted?: any;
   searchValue?: string | null;
   perPage?: number;
-  sortField?: string;
-  sortDirection?: number;
+  sortField?: string | null;
+  sortDirection?: number | null;
 }) => {
   const commonVariables = {
     categoryId: category,
