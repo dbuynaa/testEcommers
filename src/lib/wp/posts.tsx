@@ -36,15 +36,20 @@ export const getNews = async () => await getPosts(NEWS);
 export async function getPostById(id: string) {
   const apolloClient = getApolloClient();
 
-  const data = await apolloClient.query({
-    ...getGqlQuery(NEWS_DETAIL),
-    variables: { id },
-  });
+  if (id !== '[id]') {
+    const data = await apolloClient.query({
+      ...getGqlQuery(NEWS_DETAIL),
+      variables: { id },
+    });
 
-  const post = data?.data.post;
+    const post = data?.data.postBy;
 
+    return {
+      post,
+    };
+  }
   return {
-    post,
+    post: {},
   };
 }
 

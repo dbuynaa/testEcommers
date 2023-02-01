@@ -12,7 +12,6 @@ const CheckDevice = ({
   Desktop?: ReactNode;
 }) => {
   const windowSize = useWindowSize();
-  console.log(windowSize.width);
 
   return (
     <Suspense fallback={<Loading />}>

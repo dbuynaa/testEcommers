@@ -14,7 +14,7 @@ const Popover = dynamic(() => import('ui/Popover'), {
   suspense: true,
 });
 
-const Search = ({ inHead }: { inHead: boolean }) => {
+const Search = ({ inHead }: { inHead?: boolean }) => {
   const [show, setShow] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const { products, productsCount, loading, getProducts } = useGetProducts({

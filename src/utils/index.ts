@@ -31,7 +31,6 @@ export const cartTotalAmount = (cart: ICartItem[]) =>
 
 export const getLocal = (name: string) => {
   if (typeof window !== 'undefined') {
-    console.log(localStorage.getItem(name), 'get Local');
     try {
       return (
         !!localStorage.getItem(name) &&

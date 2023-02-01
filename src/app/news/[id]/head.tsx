@@ -3,7 +3,10 @@ import { use } from 'react';
 
 const Head = ({ params }: { params: { id: string } }) => {
   const { post } = use(getPostById(decodeURIComponent(params.id)));
-  const { title, featuredImage, excerpt } = post;
+
+  const { title, featuredImage, excerpt } = post || {};
+
+  if (!title) return null;
 
   return (
     <>

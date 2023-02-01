@@ -11,6 +11,9 @@ const Detail = ({ params }: any) => {
   const { post } = use(getPostById(decodeURIComponent(params.id)));
 
   const { title, date, featuredImage, content } = post;
+
+  if (!title) return null;
+
   return (
     <article className="container news-detail py-5">
       <div className="-date text-mid-gray">

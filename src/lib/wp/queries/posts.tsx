@@ -106,7 +106,7 @@ export const NEWS = gql`
 
 export const NEWS_DETAIL = gql`
   query PostBySlug($id: ID!) {
-    post(id: $id, idType: ID) {
+    postBy(id: $id) {
       id
       content
       date
