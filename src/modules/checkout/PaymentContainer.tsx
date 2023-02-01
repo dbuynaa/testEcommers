@@ -39,7 +39,6 @@ const PaymentContainer = ({
       onError(error) {
         toast.error(error.message);
       },
-      onCompleted() {},
     }
   );
 

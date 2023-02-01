@@ -140,10 +140,13 @@ const Page = ({ params }: { params: { id: string } }) => {
           <b>Таны захиалсан бараанууд</b>
         </big>
         {items.map(
-          ({ productName, unitPrice, count, productId }: any, idx: number) => (
+          (
+            { productName, unitPrice, count, productId, attachment }: any,
+            idx: number
+          ) => (
             <div className="flex py-3 order-product" key={idx}>
               <div className="img-wrap">
-                <Image src="/images/item.png" alt="" sizes="20vw" />
+                <Image src={(attachment || {}).url} alt="" sizes="20vw" />
               </div>
               <div className="row items-center justify-between ps-3">
                 <div className="order-product-name ">
