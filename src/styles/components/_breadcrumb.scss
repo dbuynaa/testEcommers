@@ -15,10 +15,17 @@
       float: left;
       padding-right: 0.5rem;
       color: #6c757d;
-      content: "/";
+      content: '/';
     }
     &:last-child {
       color: $blue;
+    }
+  }
+  .breadcrumb-item a:hover {
+    color: $blue;
+    text-decoration: underline;
+    &::after {
+      text-decoration: none;
     }
   }
 }

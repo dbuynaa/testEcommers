@@ -1,6 +1,6 @@
 import { use, useRef } from 'react';
 import Banner from './banner';
-import Products from './products';
+import ProductsSlider from 'modules/Products/Slider';
 import { getBannerCats } from 'lib/wp/posts';
 
 const CategorySlider = () => {
@@ -20,7 +20,9 @@ const CategorySlider = () => {
                 custom,
               }}
             />
-            <Products category={(custom || {}).link} />
+            <div className="col-12 col-md-9">
+              <ProductsSlider category={(custom || {}).link} slidesToShow={4} />
+            </div>
           </div>
         </div>
       ))}

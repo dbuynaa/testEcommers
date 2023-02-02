@@ -2,30 +2,46 @@ import Link from 'next/link';
 import { use } from 'react';
 import getCategories from 'lib/getCategories';
 
-const Breadcrumb = ({ categoryId }: { categoryId: string }) => {
+const Breadcrumb = ({
+  categoryId,
+  name,
+}: {
+  categoryId: string;
+  name: string;
+}) => {
   const { categories } = use(getCategories());
-  console.log(categories);
 
-  const category = (categories || []).find(
-    ({ _id }: any) => _id === categoryId
-  );
+  const category =
+    (categories || []).find(({ _id }: any) => _id === categoryId) || {};
+
+  const findCatByCode = (str: string) => {
+    return (categories || []).find(
+      ({ code }: { code: string }) => str === code
+    );
+  };
+
+  const codes = category.order.split('/') || [];
+  const parentCodes = codes.slice(0, codes.indexOf(category.code));
+
+  const parentCats = parentCodes.map((code: string) => findCatByCode(code));
 
   return (
-    <div className="py-4 container c-xl">
+    <div className="py-4">
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
           <Link href="/">Нүүр</Link>
         </li>
+        {parentCats.map(({ _id, name: catName }: any) => (
+          <li className="breadcrumb-item" key={_id}>
+            <Link href={`/products?category=${_id}`}>{catName}</Link>
+          </li>
+        ))}
         <li className="breadcrumb-item">
-          <Link href="/products?category=smartphones">Ухаалаг утас</Link>
+          <Link href={`/products?category=${category._id}`}>
+            {category.name}
+          </Link>
         </li>
-        <li className="breadcrumb-item">
-          <Link href="/products?category=samsung">Samsung</Link>
-        </li>
-        <li className="breadcrumb-item">
-          <Link href="/products?category=samsung-s-series">S series</Link>
-        </li>
-        <li className="breadcrumb-item">Galaxy S22 Ultra /128GB/</li>
+        <li className="breadcrumb-item">{name}</li>
       </ol>
     </div>
   );

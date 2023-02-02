@@ -42,8 +42,8 @@ const Product = ({ params }: any) => {
   }
 
   return (
-    <div className="container c-xl prDtl">
-      <Breadcrumb categoryId={categoryId} />
+    <div className="container prDtl">
+      <Breadcrumb categoryId={categoryId} name={name} />
       <div className="row pb-4">
         <div className="col-12 col-md-6">
           <ImageGallery
