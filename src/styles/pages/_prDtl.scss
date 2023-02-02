@@ -12,8 +12,9 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      i {
+      svg {
         font-size: 1.25rem;
+        color: #000;
       }
     }
     .slick-active.slick-current {
@@ -43,6 +44,11 @@
       // color: $blue;
     }
   }
+
+  &-description {
+    font-weight: 500;
+  }
+
   .-controls {
     gap: 0.75rem;
     & > .btn {
@@ -59,13 +65,11 @@
     }
   }
 
-  .-description {
+  &-overview {
     strong {
       color: $blue;
     }
-    * {
-      font-family: 'Inter' sans-serif !important;
-    }
+
     font-size: 14px;
     font-weight: 500;
 
@@ -75,6 +79,29 @@
     }
     & > p {
       padding-bottom: 0.75rem;
+    }
+
+    video {
+      max-width: 100%;
+    }
+    .yt-video {
+      position: relative;
+      &::before {
+        content: '';
+        width: 100%;
+        display: block;
+        padding-bottom: 56.25%;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
     }
   }
   &-review {

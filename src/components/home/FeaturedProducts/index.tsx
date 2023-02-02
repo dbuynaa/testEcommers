@@ -23,21 +23,21 @@ const FeaturedProducts = () => {
               <FeaturedProduct
                 className="small"
                 {...sortedPosts[1]}
-                sizes="(max-width: 768px) 50vw, (max-width: 1360px) 25vw, 340px"
+                sizes="(max-width: 768px) 50vw, 25vw"
               />
             </div>
             <div className="col-6 p-1">
               <FeaturedProduct
                 className="small"
                 {...sortedPosts[2]}
-                sizes="(max-width: 768px) 50vw, (max-width: 1360px) 25vw, 340px"
+                sizes="(max-width: 768px) 50vw,  25vw"
               />
             </div>
             <div className="col-12 p-1">
               <FeaturedProduct
                 className="long"
                 {...sortedPosts[3]}
-                sizes="(max-width: 768px) 100vw, (max-width: 1360px) 50vw, 680px"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>

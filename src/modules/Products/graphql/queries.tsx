@@ -50,12 +50,16 @@ const productDetail = gql`
       attachment {
         url
       }
+      attachmentMore {
+        url
+      }
       category {
         _id
         order
         name
         isRoot
       }
+      categoryId
       code
       createdAt
       customFieldsData

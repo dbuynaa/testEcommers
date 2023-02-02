@@ -60,7 +60,7 @@ export const IMG_BANNER = gql`
   query IMG_BANNER {
     posts(where: { categoryName: "img_banner" }, last: 12) {
       nodes {
-        ${featuredImage('LARGE')}
+        ${featuredImage()}
         ${custom}
         title
         imgbanner {
@@ -118,6 +118,20 @@ export const NEWS_DETAIL = gql`
       excerpt
       title
       slug
+    }
+  }
+`;
+
+export const PRODUCT_DETAIL = gql`
+  query ProductInfo($slug: String) {
+    postBy(slug: $slug) {
+      content
+      title
+      productInfo {
+        accessories
+        description
+        youtubeUrl
+      }
     }
   }
 `;

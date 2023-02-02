@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import Image from 'ui/Image';
+import ChevronRight from 'icons/ChevronRight';
+import ChevronLeft from 'icons/ChevronLeft';
 
 const ImageGallery = ({ images }: any) => {
   const [nav1, setNav1] = useState<any>();
@@ -10,10 +12,10 @@ const ImageGallery = ({ images }: any) => {
   return (
     <>
       <Slider
-        asNavFor={nav2}
-        ref={(slider1) => setNav1(slider1)}
         fade={true}
         arrows={false}
+        asNavFor={nav2}
+        ref={(slider1) => setNav1(slider1)}
         className="prDtl__slider"
       >
         {images.map((url: any, index: any) => (
@@ -27,29 +29,33 @@ const ImageGallery = ({ images }: any) => {
           </div>
         ))}
       </Slider>
-      <div className="px-md-5 my-4">
+      <div className="px-md-5 my-4 img-nav-container">
         <Slider
-          asNavFor={nav1}
-          ref={(slider2) => setNav2(slider2)}
           slidesToShow={4}
           swipeToSlide={true}
           focusOnSelect={true}
           infinite={false}
           arrows={true}
           className="img-nav"
+          asNavFor={nav1}
+          ref={(slider2) => setNav2(slider2)}
           prevArrow={
             <div className="slick-prev">
-              <i className="fas fa-chevron-left"></i>
+              <ChevronLeft />
             </div>
           }
           nextArrow={
             <div className="slick-next">
-              <i className="fas fa-chevron-right"></i>
+              <ChevronRight />
             </div>
           }
         >
           {images.map((url: any, index: any) => (
-            <div key={index} className="p-2">
+            <div
+              key={index}
+              className="p-2"
+              // onClick={() => nav1.current.slickGoTo(index)}
+            >
               <div className="img-wrap">
                 <Image
                   src={url}

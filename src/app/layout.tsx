@@ -11,8 +11,8 @@ import Toast from 'ui/Toast';
 import CurrentOrder from 'modules/checkout/currentOrder';
 import Footer from 'components/footer';
 import NavigationBar from 'components/header/NavigationBar';
-import { Partytown } from '@builder.io/partytown/react';
-import { Inter as FontSans } from '@next/font/google';
+// import { Partytown } from '@builder.io/partytown/react';
+import { Open_Sans as FontSans } from '@next/font/google';
 import clsx from 'clsx';
 
 export const revalidate = 600;
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="mn" className={clsx('font-sans', fontSans.variable)}>
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <Partytown />
+        {/* <Partytown forward={['dataLayer.push']} />
         <script
           type="text/partytown"
           dangerouslySetInnerHTML={{
@@ -41,7 +41,7 @@ export default function RootLayout({
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-KWD7T33')`,
           }}
-        />
+        /> */}
       </head>
       <body>
         <ApolloProvider>

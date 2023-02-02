@@ -6,6 +6,7 @@ import {
   NEWS,
   SLIDER_BANNER,
   NEWS_DETAIL,
+  PRODUCT_DETAIL,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -66,6 +67,25 @@ export const getPosts = async (
   };
 };
 
+export const getProductInfo = async (slug: string) => {
+  const apolloClient = getApolloClient();
+  if (slug) {
+    const data = await apolloClient
+      .query({
+        ...getGqlQuery(PRODUCT_DETAIL),
+        variables: {
+          slug,
+        },
+      })
+      .catch((e) => console.log(e.message));
+    const post = data?.data?.postBy;
+    return {
+      post,
+    };
+  }
+  return { post: {} };
+};
+
 export function mapPostData(
   post: WpPost & { featuredImage: { node?: any } }
 ): WpPost {
@@ -94,6 +114,12 @@ export type WpPost = {
   slug?: string;
   date?: string;
   id?: string;
+  content?: string;
+  productInfo?: {
+    accessories?: string;
+    description?: string;
+    youtubeUrl?: string;
+  };
   image?: {
     hoverImage?: {
       sourceUrl: string;

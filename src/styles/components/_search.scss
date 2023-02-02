@@ -5,6 +5,9 @@
     padding-left: 2.75rem;
     border-color: $bg-primary;
   }
+  &-trigger {
+    -webkit-appearance: initial !important;
+  }
   svg {
     position: absolute;
     top: 50%;
