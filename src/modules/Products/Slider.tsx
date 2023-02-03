@@ -33,9 +33,10 @@ const ProductsSlider = ({
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          arrows: false,
+          swipeToSlide: true,
+          slidesToShow: 1.05,
           slidesToScroll: 1,
-          centerMode: true,
         },
       },
     ],

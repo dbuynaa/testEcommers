@@ -1,4 +1,7 @@
 @media (max-width: 768px) {
+  .breadcrumb {
+    display: none;
+  }
   .hidden-mobile {
     display: none !important;
   }

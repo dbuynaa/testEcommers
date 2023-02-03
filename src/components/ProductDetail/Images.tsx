@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 import Image from 'ui/Image';
 import ChevronRight from 'icons/ChevronRight';
@@ -9,6 +9,21 @@ import ChevronLeft from 'icons/ChevronLeft';
 const ImageGallery = ({ images }: any) => {
   const [nav1, setNav1] = useState<any>();
   const [nav2, setNav2] = useState<any>();
+
+  const changedSettings = {
+    slidesToShow: 4,
+    dots: false,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <Slider
@@ -31,8 +46,7 @@ const ImageGallery = ({ images }: any) => {
       </Slider>
       <div className="px-md-5 my-4 img-nav-container">
         <Slider
-          slidesToShow={4}
-          swipeToSlide={true}
+          {...changedSettings}
           focusOnSelect={true}
           infinite={false}
           arrows={true}

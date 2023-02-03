@@ -1,5 +1,4 @@
 import { use } from 'react';
-
 import getProductDetail from 'lib/getProductDetail';
 import ImageGallery from 'components/ProductDetail/Images';
 import Actions from 'components/ProductDetail/Actions';
@@ -73,14 +72,11 @@ const Product = ({ params }: any) => {
       </div>
       <Tabs defaultValue="intro">
         <TabsList>
-          {description && (
+          {_id && (
             <TabTrigger value="intro">
               <div className="p-3">Дэлгэрэнгүй</div>
             </TabTrigger>
           )}
-          {/* <TabTrigger value="review">
-            <div className="p-3">Шүүмж</div>
-          </TabTrigger> */}
         </TabsList>
         {_id && (
           <TabsContent value="intro">
