@@ -1,13 +1,13 @@
 @media (max-width: 768px) {
-  .breadcrumb {
-    display: none;
-  }
   .hidden-mobile {
     display: none !important;
   }
   header {
     .logo {
       height: 2.5rem;
+    }
+    .profile-btn.btn {
+      padding: 0.5rem 0;
     }
   }
   .tabs {

@@ -66,6 +66,19 @@ export const useCart = () => {
   return { cart, changeCart, changeCount: changeItemCount, addItem };
 };
 
+export const useLoadingCurrentUser = () => {
+  const [loadingCurrentUser, setLoadingCurrentUser] = useStore(
+    (store) => store.loadingCurrentUser
+  );
+
+  return {
+    loadingCurrentUser,
+    setLoadingCurrentUser: (loading: State['loadingCurrentUser']) => {
+      setLoadingCurrentUser({ loadingCurrentUser: loading });
+    },
+  };
+};
+
 export const useCurrentUser = () => {
   const [currentUser, setCurrentUser] = useStore((store) => store.currentUser);
 

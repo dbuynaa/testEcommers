@@ -100,19 +100,15 @@ header {
 .notification,
 .cart-btn,
 .profile-btn {
-  position: relative;
+  // position: relative;
   overflow: visible;
   transition: 0.3s background-color;
+  flex-direction: column;
   &.btn {
-    padding: 1rem;
+    padding: 0.5rem;
   }
   & > small {
     white-space: nowrap;
-    color: rgba($color: #fff, $alpha: 0.8);
-    position: absolute;
-    bottom: 0;
-    font-size: 10px;
-    font-weight: 700;
   }
   &.btn:hover {
     background: rgba(256, 256, 256, 0.05);
@@ -120,16 +116,6 @@ header {
   .bell {
     height: 2.5rem;
     width: 2.5rem;
-  }
-  &:hover,
-  &[aria-expanded='true'] {
-    background: rgba($color: #fff, $alpha: 0.12);
-    border-radius: 8px;
-    svg {
-      path.-primary {
-        opacity: 1;
-      }
-    }
   }
 }
 .notification.btn {

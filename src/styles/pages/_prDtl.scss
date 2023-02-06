@@ -8,6 +8,11 @@
     }
   }
   .img-nav {
+    &-container {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
     .slick-prev,
     .slick-next {
       position: absolute;
@@ -74,10 +79,6 @@
     font-size: 14px;
     font-weight: 500;
 
-    img {
-      max-width: 100%;
-      height: auto !important;
-    }
     & > p {
       padding-bottom: 0.75rem;
     }
@@ -102,6 +103,16 @@
         left: 0;
         right: 0;
         bottom: 0;
+      }
+    }
+    .promotion {
+      margin: 0 -1rem;
+      img {
+        width: 100%;
+        height: auto !important;
+      }
+      & > * {
+        width: 100%;
       }
     }
   }

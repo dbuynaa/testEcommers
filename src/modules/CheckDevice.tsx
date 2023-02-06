@@ -7,15 +7,19 @@ import Loading from 'ui/Loading';
 const CheckDevice = ({
   Mobile = null,
   Desktop = null,
+  fallBack = <Loading />,
 }: {
   Mobile?: ReactNode;
   Desktop?: ReactNode;
+  fallBack?: ReactNode;
 }) => {
-  const windowSize = useWindowSize();
+  const { width } = useWindowSize();
 
   return (
-    <Suspense fallback={<Loading />}>
-      {!!windowSize.width && (windowSize.width || 0) <= 768 ? Mobile : Desktop}
+    <Suspense fallback={fallBack}>
+      {!!width && width <= 768 && Mobile}
+      {!!width && width >= 768 && Desktop}
+      {/* {!!windowSize.width && (windowSize.width || 0) <= 768 ? Mobile : Desktop} */}
     </Suspense>
   );
 };

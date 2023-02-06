@@ -3,7 +3,7 @@
 import { useQuery } from '@apollo/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { queries } from './graphql';
-import { useCurrentUser } from 'modules/appContext';
+import { useCurrentUser, useLoadingCurrentUser } from 'modules/appContext';
 import { useEffect } from 'react';
 
 export interface State {
@@ -12,17 +12,19 @@ export interface State {
 
 const CurrentUser = ({ children }: any) => {
   const { currentUser, setCurrentUser } = useCurrentUser();
+  const { setLoadingCurrentUser } = useLoadingCurrentUser();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const from = searchParams.get('from');
 
   const router = useRouter();
 
-  const { loading } = useQuery(queries.currentUser, {
+  useQuery(queries.currentUser, {
     fetchPolicy: 'network-only',
     onCompleted(data) {
       const { clientPortalCurrentUser } = data || {};
       setCurrentUser(clientPortalCurrentUser);
+      setLoadingCurrentUser(false);
     },
   });
 

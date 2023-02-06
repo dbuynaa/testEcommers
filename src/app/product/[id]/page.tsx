@@ -41,37 +41,39 @@ const Product = ({ params }: any) => {
   }
 
   return (
-    <div className="container prDtl">
-      <Breadcrumb categoryId={categoryId} name={name} />
-      <div className="row pb-4">
-        <div className="col-12 col-md-6">
-          <ImageGallery
-            images={[fixImageUrl((attachment || {}).url), ...moreImage]}
-          />
-        </div>
-        <div className="col-12 col-md-6 px-md-5 prDtl-actions">
-          <h5>{name}</h5>
-          <div className="sbt text-mid-gray pb-3">
-            Бүтээгдэхүүний код: {code}
+    <>
+      <div className="container prDtl">
+        <Breadcrumb categoryId={categoryId} name={name} />
+        <div className="row pb-4">
+          <div className="col-12 col-md-6">
+            <ImageGallery
+              images={[fixImageUrl((attachment || {}).url), ...moreImage]}
+            />
           </div>
-          <h4>{(unitPrice || '').toLocaleString()} ₮</h4>
-          <div className="-count text-mid-gray">
-            <b>{productCount || 5}</b> ширхэг бэлэн байна
+          <div className="col-12 col-md-6 px-md-5 prDtl-actions">
+            <h5>{name}</h5>
+            <div className="sbt text-mid-gray pb-3">
+              Бүтээгдэхүүний код: {code}
+            </div>
+            <h4>{(unitPrice || '').toLocaleString()} ₮</h4>
+            <div className="-count text-mid-gray">
+              <b>{productCount || 5}</b> ширхэг бэлэн байна
+            </div>
+
+            <div
+              dangerouslySetInnerHTML={{ __html: description }}
+              className="pt-4 prDtl-description"
+            />
+
+            <Actions
+              {...detail}
+              productImgUrl={fixImageUrl((attachment || {}).url)}
+            />
           </div>
-
-          <div
-            dangerouslySetInnerHTML={{ __html: description }}
-            className="pt-4 prDtl-description"
-          />
-
-          <Actions
-            {...detail}
-            productImgUrl={fixImageUrl((attachment || {}).url)}
-          />
         </div>
       </div>
       <Tabs defaultValue="intro">
-        <TabsList>
+        <TabsList className="container">
           {_id && (
             <TabTrigger value="intro">
               <div className="p-3">Дэлгэрэнгүй</div>
@@ -84,7 +86,7 @@ const Product = ({ params }: any) => {
           </TabsContent>
         )}
       </Tabs>
-    </div>
+    </>
   );
 };
 

@@ -18,7 +18,7 @@ const MainCategories = () => {
   const { rootCatergories } = use(getCategories());
 
   return (
-    <div className="flex items-center product-cats hover-scroll -x">
+    <div className="flex items-center product-cats hover-scroll -x px-3 px-md-4">
       {rootCatergories.map(({ _id, name }: any) => (
         <Link
           key={_id}
