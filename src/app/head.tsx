@@ -12,7 +12,7 @@ export default function Head() {
       <meta property="og:title" content="Techstore" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.techstore.mn" />
-      <meta property="og:image" content="https://www.techstore.mn/og.jpg" />
+      <meta property="og:image" content="https://www.techstore.mn/ogg.jpg" />
       <meta name="twitter:title" content="Techstore" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://www.techstore.mn" />
