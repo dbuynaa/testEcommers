@@ -23,16 +23,10 @@ const ordersEdit = gql`
 const ordersAddPayment = gql`
   mutation ordersAddPayment(
     $_id: String!
-    $cashAmount: Float
-    $cardAmount: Float
-    $cardInfo: JSON
-    $receivableAmount: Float
     $mobileAmount: Float
   ) {
     ordersAddPayment(
       _id: $_id
-      cashAmount: $cashAmount
-      cardAmount: $cardAmount
       cardInfo: $cardInfo
       receivableAmount: $receivableAmount
       mobileAmount: $mobileAmount

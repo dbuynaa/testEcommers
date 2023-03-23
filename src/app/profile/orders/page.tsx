@@ -1,4 +1,4 @@
-'use client';
+ 'use client';
 import { useCurrentUser } from 'modules/appContext';
 import { queries } from 'modules/checkout/graphql';
 import OrderItem from 'components/profile/orderItem';

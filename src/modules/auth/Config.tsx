@@ -1,7 +1,6 @@
 'use client';
-import { useMutation, useQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { mutations, queries } from './graphql';
+import { useQuery } from '@apollo/client';
+import { queries } from './graphql';
 import { useConfig } from 'modules/appContext';
 import Loading from 'ui/Loading';
 

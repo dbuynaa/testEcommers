@@ -104,7 +104,7 @@ const PaymentContainer = ({
     return <Loading className="min-height-screen payments" />;
 
   return (
-    <iframe className="min-height-screen  payments" src={invoiceUrl}></iframe>
+    <iframe className="min-height-screen payments" src={invoiceUrl}></iframe>
   );
 };
 

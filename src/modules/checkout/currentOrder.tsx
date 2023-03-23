@@ -18,12 +18,12 @@ const CurrentOrder = ({ children }: { children: ReactNode }) => {
   const { cart } = useCart();
   const NEW = ['new'];
 
-  const [getCurrentOrder, { loading }] = useLazyQuery(queries.lastOrder, {
+  const [getCurrentOrder] = useLazyQuery(queries.lastOrder, {
     fetchPolicy: 'network-only',
     onCompleted({ fullOrders }) {
       const order = (fullOrders || [])[0];
       if (!(order || {}).paidDate) {
-        setCurrentOrder(order);
+        setCurrentOrder(order); 
       }
 
       if ((cart || []).length > 0) {

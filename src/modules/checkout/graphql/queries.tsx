@@ -32,10 +32,6 @@ export const lastOrder = gql`
         productName
         unitPrice
       }
-      qpayInvoice {
-        _id
-        amount
-      }
     }
   }
 `;
@@ -77,11 +73,8 @@ export const orderFields = `
   number
   status
   paidDate
-  cardAmount
   mobileAmount
-  cashAmount
   totalAmount
-  receivableAmount
   slotCode
   registerNumber
   customerId
@@ -147,12 +140,6 @@ query OrderDetail($id: String, $customerId: String) {
 
       user {
         ${customerFields}
-      }
-
-      cardPayments {
-        _id
-        amount
-        cardInfo
       }
 
       putResponses {
