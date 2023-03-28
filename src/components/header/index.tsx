@@ -33,13 +33,13 @@ const Header = () => {
           </div>
         </div>
         <div className="flex items-center product-cats hover-scroll -x px-3 px-md-4"></div>
-        {/* <CheckDevice
+        <CheckDevice
           Desktop={<MainCategories />}
           Mobile={null}
           fallBack={
             <div className="flex items-center product-cats hover-scroll -x px-3 px-md-4"></div>
           }
-        /> */}
+        />
       </header>
     </ScrollWrapper>
   );
