@@ -1,6 +1,7 @@
 import Button from 'ui/Button';
 import Modal from 'ui/Modal';
 import { QRCodeSVG } from 'qrcode.react';
+import { formatCurrency } from 'utils';
 
 const types = {
   '1': 'Хувь хүн',
@@ -36,7 +37,7 @@ const Ebarimt = ({ putResponses }: any) => {
 
                 <div className="row">
                   <div className="text-mid-gray"> Бүртгүүлэх дүн :</div>
-                  <b>{amount.toLocaleString()}₮</b>
+                  <b>{formatCurrency(amount)}</b>
                 </div>
               </div>
             </div>

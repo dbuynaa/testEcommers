@@ -19,6 +19,8 @@ export const lastOrder = gql`
       deliveryInfo
       paidDate
       registerNumber
+      totalAmount
+      mobileAmount
       items {
         _id
         count

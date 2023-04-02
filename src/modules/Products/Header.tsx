@@ -1,20 +1,17 @@
-'use client';
+
 
 import Select, { SelectItem } from 'ui/Select';
-import { useProducts } from './context';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {
+  useProductsCount,
+  useActiveCategoryName,
+} from 'modules/Products/context';
+import { useRouter } from 'next/router';
 
 const Header = () => {
-  const [productsCount] = useProducts((store) => store.productsCount);
-  const [activeCategoryName] = useProducts(
-    ({ activeCategoryName }) => activeCategoryName
-  );
+  const activeCategoryName = useActiveCategoryName();
+  const productsCount = useProductsCount();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const sortField = searchParams.get('sortField');
-  const sortDirection = searchParams.get('sortDirection');
-  const categoryId = searchParams.get('category');
-
+  const { category: categoryId, sortField, sortDirection } = router.query;
   const handleValueChange = (value: string) => {
     const params = value.split('&');
     router.push(

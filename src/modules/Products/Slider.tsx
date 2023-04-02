@@ -1,4 +1,4 @@
-'use client';
+
 import Slider from 'ui/Slider';
 import useGetProducts from 'lib/useGetProducts';
 import Loading from 'ui/Loading';

@@ -1,6 +1,6 @@
 body {
   color: rgba(0, 0, 0, 0.85);
-  font-size: 14px;
+  font-size: 16px;
   font-variant: tabular-nums;
   line-height: 1.5;
   background-color: #fff;
@@ -11,17 +11,11 @@ body {
   & > div:last-of-type {
     z-index: 100 !important;
   }
-}
-
-.font-sans {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+  font-family: 'Rubik', sans-serif;
 }
 
 html {
-  font-size: 14px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 

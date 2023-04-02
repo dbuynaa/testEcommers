@@ -1,4 +1,4 @@
-'use client';
+
 
 import ReactSlider, { Settings } from 'react-slick';
 import ChevronRight from 'icons/ChevronRight';

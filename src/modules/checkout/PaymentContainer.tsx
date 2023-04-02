@@ -1,4 +1,4 @@
-'use client';
+
 import { useMutation, gql, useLazyQuery } from '@apollo/client';
 import { mutations, queries } from './graphql';
 import { useConfig, useCurrentUser } from 'modules/appContext';
@@ -25,6 +25,8 @@ const PaymentContainer = ({
     }
   );
 
+  console.log(config);
+
   const invoiceUrl = (data || {}).generateInvoiceUrl || '';
 
   const [makePayment, { loading: loadingMakePayment }] = useMutation(
@@ -45,7 +47,7 @@ const PaymentContainer = ({
   const [getInvoices, { loading: loadingInvoices }] = useLazyQuery(
     gql(queries.invoices),
     {
-      context: { headers: { 'erxes-app-token': config.erxesAppToken } },
+      context: { headers: { 'erxes-app-token': (config || {}).erxesAppToken } },
       variables: {
         contentType: 'pos:orders',
         contentTypeId: orderId,

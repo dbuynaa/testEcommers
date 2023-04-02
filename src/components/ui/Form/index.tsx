@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+
 import { FormProvider, useForm, FieldValues } from 'react-hook-form';
 import { ReactNode, useEffect } from 'react';
 

@@ -51,9 +51,9 @@
     }
   }
 
-  &-description {
-    font-weight: 500;
-  }
+  // &-description {
+  //   font-weight: 00;
+  // }
 
   .-controls {
     gap: 0.75rem;
@@ -77,7 +77,6 @@
     }
 
     font-size: 14px;
-    font-weight: 500;
 
     & > p {
       padding-bottom: 0.75rem;

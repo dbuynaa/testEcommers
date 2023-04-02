@@ -129,6 +129,13 @@
   .layout {
     padding-top: 5rem;
   }
+  .login {
+    & > img {
+      right: 100% !important;
+      width: 0% !important;
+      display: none;
+    }
+  }
 }
 
 @media (min-width: 768px) {

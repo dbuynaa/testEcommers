@@ -1,4 +1,4 @@
-'use client';
+
 import Image from 'ui/Image';
 import { useCurrentUser } from 'modules/appContext';
 

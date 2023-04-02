@@ -1,4 +1,4 @@
-'use client';
+
 import { GoogleMap, MarkerF, LoadScriptNext } from '@react-google-maps/api';
 import LocationCross from 'icons/LocationCross';
 import { useState } from 'react';

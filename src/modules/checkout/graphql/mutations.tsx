@@ -21,10 +21,7 @@ const ordersEdit = gql`
 `;
 
 const ordersAddPayment = gql`
-  mutation ordersAddPayment(
-    $_id: String!
-    $mobileAmount: Float
-  ) {
+  mutation ordersAddPayment($_id: String!, $mobileAmount: Float) {
     ordersAddPayment(
       _id: $_id
       cardInfo: $cardInfo
@@ -88,7 +85,7 @@ const generateInvoiceUrl = gql`
   }
 `;
 
-const orderCancel = gql`
+const ordersCancel = gql`
   mutation OrdersCancel($id: String!) {
     ordersCancel(_id: $id)
   }
@@ -102,7 +99,7 @@ const mutations = {
   orderChangeStatus,
   orderItemChangeStatus,
   generateInvoiceUrl,
-  orderCancel,
+  ordersCancel,
 };
 
 export default mutations;

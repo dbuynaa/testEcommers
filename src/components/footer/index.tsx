@@ -7,18 +7,16 @@ import Marker from 'icons/Marker';
 import { use } from 'react';
 import { getFooter } from 'lib/wp/page';
 
-const Footer = () => {
-  const { page } = use(getFooter());
-
-  const { phone, mail, map } = page?.contact || {};
+const Footer = ({ footer }: any) => {
+  const { phone, mail, map } = footer?.contact || {};
 
   return (
     <footer>
       <div className="-content py-md-4 relative">
-        {page?.featuredImage?.sourceUrl && (
+        {footer?.featuredImage?.sourceUrl && (
           <Image
             sizes="100vw"
-            src={page?.featuredImage?.sourceUrl || ''}
+            src={footer?.featuredImage?.sourceUrl || ''}
             alt="techstore footer"
           />
         )}
@@ -53,7 +51,7 @@ const Footer = () => {
                   <Marker />
                 </Button>
                 <div
-                  dangerouslySetInnerHTML={{ __html: page?.content || '' }}
+                  dangerouslySetInnerHTML={{ __html: footer?.content || '' }}
                 />
               </Link>
             </div>

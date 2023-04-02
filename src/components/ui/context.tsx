@@ -1,4 +1,4 @@
-'use client';
+
 import createFastContext from 'modules/createContext';
 
 export interface State {

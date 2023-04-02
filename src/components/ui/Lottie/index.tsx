@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+
 
 import { useRef, useEffect, useState, ReactNode } from 'react';
 import type { LottiePlayer } from 'lottie-web';

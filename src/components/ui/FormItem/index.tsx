@@ -1,4 +1,4 @@
-'use client';
+
 import { FC, useState, ReactNode } from 'react';
 import Input, { InputProps } from 'ui/Input';
 import clsx from 'clsx';
@@ -61,11 +61,10 @@ const FormItem: FC<FormItemProps> = (props) => {
   return (
     <div
       className={clsx('form-item', {
-        error: error?.type,
         'checkbox-holder': type === 'checkbox',
       })}
     >
-      <label htmlFor={name} className={labelClassName}>
+      <label htmlFor={name} className={clsx(labelClassName, { required })}>
         {label}
       </label>
       <div className="relative">
@@ -86,9 +85,7 @@ const FormItem: FC<FormItemProps> = (props) => {
         )}
       </div>
       {type !== 'checkbox' && error?.type && (
-        <small className="block text-danger ps-2">
-          {errorMessages[error.type as any]}
-        </small>
+        <p className="block text-danger">{errorMessages[error.type as any]}</p>
       )}
     </div>
   );

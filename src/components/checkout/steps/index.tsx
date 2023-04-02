@@ -1,4 +1,4 @@
-'use client';
+
 
 import clsx from 'clsx';
 import Check from 'icons/Check';

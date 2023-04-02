@@ -70,14 +70,12 @@ export const getPosts = async (
 export const getProductInfo = async (slug: string) => {
   const apolloClient = getApolloClient();
   if (slug) {
-    const data = await apolloClient
-      .query({
-        ...getGqlQuery(PRODUCT_DETAIL),
-        variables: {
-          slug,
-        },
-      })
-      .catch((e) => console.log(e.message));
+    const data = await apolloClient.query({
+      ...getGqlQuery(PRODUCT_DETAIL),
+      variables: {
+        slug,
+      },
+    });
     const post = data?.data?.postBy;
     return {
       post,
@@ -90,9 +88,9 @@ export function mapPostData(
   post: WpPost & { featuredImage: { node?: any } }
 ): WpPost {
   const data = { ...post };
-
-  data.featuredImage = data?.featuredImage?.node;
-
+  if (data?.featuredImage) {
+    data.featuredImage = data?.featuredImage?.node;
+  }
   return data;
 }
 

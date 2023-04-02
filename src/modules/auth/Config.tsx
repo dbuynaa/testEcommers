@@ -1,4 +1,4 @@
-'use client';
+
 import { useQuery } from '@apollo/client';
 import { queries } from './graphql';
 import { useConfig } from 'modules/appContext';

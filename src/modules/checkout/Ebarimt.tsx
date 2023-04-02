@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+
 import { useState, useEffect } from 'react';
 import Input from 'ui/Input';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -8,14 +8,14 @@ import FormItem from 'ui/FormItem';
 import { useLazyQuery, gql } from '@apollo/client';
 import { queries } from './graphql';
 import { toast } from 'react-toastify';
-import useOrderData from 'lib/useOrderData';
 import LoadingDots from 'ui/LoadingDots';
+import { useCurrentOrder } from 'modules/appContext';
 
 const Ebarimt = () => {
-  const orderData = useOrderData();
   const { control, setValue } = useFormContext();
+  const { currentOrder } = useCurrentOrder();
   const registerNumber = useWatch({ control, name: 'registerNumber' });
-  const [expand, setExpand] = useState(!!orderData.registerNumber);
+  const [expand, setExpand] = useState(!!(currentOrder || {}).registerNumber);
 
   const [checkRegister, { loading }] = useLazyQuery(
     gql(queries.ordersCheckCompany),
@@ -42,11 +42,11 @@ const Ebarimt = () => {
   return (
     <div
       className={clsx(
-        '-ebarimt rounded col-12 my-3 relative',
+        '-ebarimt rounded col-12 mb-4 relative',
         expand && 'expand'
       )}
     >
-      <label className="col-12 flex items-center p-3 ">
+      <label className="col-12 flex items-center p-3">
         <Input
           type="checkbox"
           className="inline"

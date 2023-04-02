@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import OrderStatus from './orderStatus';
+import { formatCurrency } from 'utils';
 
 const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id }: any) => {
   return (
@@ -24,7 +25,7 @@ const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id }: any) => {
       </div>
       <div className="col-6 col-md-3 text-right">
         <p className="text-mid-gray">Дүн</p>
-        <div className="pt-1">{totalAmount.toLocaleString()} ₮</div>
+        <div className="pt-1">{formatCurrency(totalAmount)}</div>
       </div>
     </Link>
   );

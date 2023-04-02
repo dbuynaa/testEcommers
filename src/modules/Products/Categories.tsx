@@ -1,4 +1,4 @@
-'use client';
+
 import dynamic from 'next/dynamic';
 import { useQuery } from '@apollo/client';
 import { queries } from './graphql';

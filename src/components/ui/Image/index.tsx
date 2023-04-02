@@ -1,4 +1,4 @@
-'use client';
+
 import { useState, FC, memo } from 'react';
 import NextImage, { ImageProps } from 'next/image';
 import cls from 'classnames';
@@ -11,6 +11,7 @@ const Image: FC<
     alt?: string;
     fallBack?: string;
     withLoader?: boolean;
+    contain?: boolean;
   }
 > = (props) => {
   const {
@@ -24,6 +25,7 @@ const Image: FC<
     withLoader,
     sizes,
     className,
+    contain,
     ...rest
   } = props;
   const fixedSrc = readFile(src || '');
@@ -51,7 +53,8 @@ const Image: FC<
         className,
         isImageLoading
           ? 'skelton-wave next-image-loading'
-          : 'next-image-completed'
+          : 'next-image-completed',
+        contain ? 'object-contain' : 'object-cover'
       )}
       sizes={
         sizes ||

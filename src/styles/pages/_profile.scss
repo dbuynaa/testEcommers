@@ -9,21 +9,10 @@
     padding: 0.505rem;
     color: #fff;
     svg {
-      font-size: 1.625rem;
+      font-size: 1.75rem;
 
       .-secondary {
         fill: $primary;
-      }
-      .-primary {
-        opacity: 0.8;
-        transition: all 0.2s ease;
-      }
-    }
-    &:hover {
-      svg {
-        .-primary {
-          opacity: 1;
-        }
       }
     }
   }

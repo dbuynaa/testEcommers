@@ -16,7 +16,7 @@ const FeaturedProduct = ({
 }: WpPost & IProps) => {
   return (
     <Link
-      href={custom.link}
+      href={(custom || {}).link}
       className={clsx('ft-product flex img-wrap items-center', className)}
     >
       <Image

@@ -1,6 +1,6 @@
-'use client';
+
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Button from 'ui/Button';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -15,10 +15,11 @@ const MobileCategories = ({
   categories: ICategory[];
   rootCatergories: any;
 }) => {
+  const router = useRouter();
+  const { category } = router.query;
+
   const [renderCats, setRenderCats] =
     useState<(ICategory | undefined)[]>(rootCatergories);
-  const searchParams = useSearchParams();
-  const category = searchParams.get('category');
 
   const findChildren: IFindChildren = (parent) => {
     const children = categories.filter(({ parentId }) => parentId === parent);

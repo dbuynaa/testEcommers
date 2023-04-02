@@ -25,7 +25,7 @@ export const FOOTER = gql`
 
 export const TERMS_OF_USE = gql`
   query TERMS_OF_USE {
-    pageBy(uri: "terms-of-use") {
+    pageBy(uri: "terms-of-use") { 
       content
     }
   }

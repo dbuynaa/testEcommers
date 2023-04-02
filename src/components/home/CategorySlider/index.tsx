@@ -1,31 +1,33 @@
-import { use, useRef } from 'react';
 import Banner from './banner';
 import ProductsSlider from 'modules/Products/Slider';
-import { getBannerCats } from 'lib/wp/posts';
 
-const CategorySlider = () => {
-  const { posts } = use(getBannerCats());
+const CategorySlider = ({ bannerCats }: any) => {
   return (
     <>
-      {(posts || []).map(({ slug, title, featuredImage, image, custom }) => (
-        <div className="cat-banner my-md-5 my-4 container" key={slug}>
-          <div className="-header p-3 mb-3 rounded">
-            <h5 className="text-blue">{title}</h5>
-          </div>
-          <div className="row">
-            <Banner
-              {...{
-                featuredImage,
-                hoverImage: (image || {}).hoverImage,
-                custom,
-              }}
-            />
-            <div className="col-12 col-md-9">
-              <ProductsSlider category={(custom || {}).link} slidesToShow={4} />
+      {(bannerCats || []).map(
+        ({ slug, title, featuredImage, image, custom }: any) => (
+          <div className="cat-banner my-md-5 my-4 container" key={slug}>
+            <div className="-header p-3 mb-3 rounded">
+              <h5 className="text-blue">{title}</h5>
+            </div>
+            <div className="row">
+              <Banner
+                {...{
+                  featuredImage,
+                  hoverImage: (image || {}).hoverImage,
+                  custom,
+                }}
+              />
+              <div className="col-12 col-md-9">
+                <ProductsSlider
+                  category={(custom || {}).link}
+                  slidesToShow={4}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </>
   );
 };

@@ -1,29 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
 
 import Product from 'components/Products/Product';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Loading from 'ui/Loading';
 import { useInView } from 'react-intersection-observer';
-import { useProducts } from './context';
+import { useSetProductsCount } from './context';
 import useGetProducts from 'lib/useGetProducts';
 
 const ProductsContainer = () => {
-  const searchParams = useSearchParams();
-  const searchValue = searchParams.get('search');
-  const category = searchParams.get('category');
-  const sortField = searchParams.get('sortField');
-  const sortDirection = searchParams.get('sortDirection');
-  const [, setStore] = useProducts((store) => store.productsCount);
+  const setCount = useSetProductsCount();
+  const router = useRouter();
+  const { searchValue, category, sortField, sortDirection } = router.query;
 
   const { handleLoadMore, loading, products, productsCount, getProducts } =
     useGetProducts({
-      searchValue,
-      category,
-      sortField,
+      searchValue: (searchValue || '').toString(),
+      category: (category || '').toString(),
+      sortField: (sortField || '').toString(),
       sortDirection: Number(sortDirection),
-      onCountCompleted: (productsCount: number) => setStore({ productsCount }),
+      onCountCompleted: (productsCount: number) => setCount(productsCount),
     });
 
   const { ref, inView } = useInView({

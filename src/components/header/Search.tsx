@@ -1,4 +1,4 @@
-'use client';
+
 import Input from 'ui/Input';
 import Magnify from 'icons/Magnify';
 import { useState, Suspense } from 'react';
@@ -66,7 +66,7 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
   return (
     <CheckDevice
       Desktop={
-        <div className={clsx('search ms-5 col-8', inHead && 'hidden-mobile')}>
+        <div className={clsx('search ms-5 col-6', inHead && 'hidden-mobile')}>
           <Suspense>
             <Popover
               open={show}

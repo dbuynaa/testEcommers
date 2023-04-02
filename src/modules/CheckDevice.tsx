@@ -1,4 +1,4 @@
-'use client';
+
 import useWindowSize from 'lib/useWindowSize';
 import type { ReactNode } from 'react';
 import { Suspense } from 'react';

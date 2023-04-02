@@ -1,4 +1,4 @@
-'use client';
+
 import { useMutation } from '@apollo/client';
 import Button from 'ui/Button';
 import { mutations, queries } from './graphql';

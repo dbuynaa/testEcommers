@@ -1,18 +1,8 @@
-import { use } from 'react';
-import { getProductInfo } from 'lib/wp/posts';
 import Video from './Video';
 import ProductsSlider from 'modules/Products/Slider';
 
-const Description = ({
-  _id,
-  categoryId,
-}: {
-  _id: string;
-  categoryId: string;
-}) => {
-  const { post } = use(getProductInfo((_id || '').toLowerCase()));
-
-  const { content, productInfo } = post || {};
+const Description = ({ wp, categoryId }: { wp: any; categoryId: string }) => {
+  const { content, productInfo } = wp || {};
 
   const { youtubeUrl, description } = productInfo || {};
 

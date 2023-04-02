@@ -1,16 +1,14 @@
 import Link from 'next/link';
-import { use } from 'react';
-import getCategories from 'lib/getCategories';
 
 const Breadcrumb = ({
   categoryId,
   name,
+  categories,
 }: {
   categoryId: string;
   name: string;
+  categories?: any;
 }) => {
-  const { categories } = use(getCategories());
-
   const category =
     (categories || []).find(({ _id }: any) => _id === categoryId) || {};
 

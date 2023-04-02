@@ -1,7 +1,6 @@
 import { use } from 'react';
 import Slider from 'ui/Slider';
 import Image from 'ui/Image';
-import { getSliderBanner, sortPosts } from 'lib/wp/posts';
 import Link from 'next/link';
 
 const changedSettings = {
@@ -10,16 +9,15 @@ const changedSettings = {
   dots: true,
 };
 
-const SliderBanner = () => {
-  const { posts } = use(getSliderBanner());
+const SliderBanner = ({ sliderBanners }: any) => {
   return (
-    <div className="my-md-5 my-4">
+    <div className="my-md-5 my-4 container">
       <Slider
         {...changedSettings}
         className="banner-slider slick-arrow-standart"
       >
-        {sortPosts(posts || []).map(
-          ({ title, featuredImage, custom, mobile }, idx) => (
+        {(sliderBanners || []).map(
+          ({ title, featuredImage, custom, mobile }: any, idx: number) => (
             <Link
               className="-slide ratio relative"
               key={idx}

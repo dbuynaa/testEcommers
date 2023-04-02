@@ -1,38 +1,35 @@
-'use client';
+
 
 import { useState } from 'react';
 import Button from 'ui/Button';
 import Counter from 'ui/Counter';
-import { useCart } from 'modules/appContext';
-import { IProductBase } from 'modules/types';
-import useAddToCart from 'lib/useAddToCart';
-import { findItem } from 'utils';
-import { useRouter } from 'next/navigation';
+import { useHandleCart } from 'modules/contextHooks';
+import { IProduct } from 'modules/types';
+import useHandleBuy from 'lib/useHandleBuy';
 
-const Actions = (props: IProductBase & { productImgUrl: string }) => {
-  const router = useRouter();
+const Actions = (props: IProduct) => {
+  const { name, unitPrice, attachment, _id } = props;
   const [count, setCount] = useState<number>(1);
-  const { addToCart, loading } = useAddToCart();
-  const { cart } = useCart();
+  const { handleBuy } = useHandleBuy();
+  const { handleAddToCart, loading } = useHandleCart();
 
-  const handleBuy = () => {
-    if (!findItem(cart, props._id)) {
-      addToCart({ ...props, count });
-    }
-    return router.push('/checkout/cart');
-  };
+  const handleAdd = () =>
+    handleAddToCart({ name, unitPrice, attachment, _id, count });
 
   return (
     <div className="row items-center -controls pt-5">
       <Counter count={count} setCount={setCount} />
-      <Button
-        variant="slim"
-        onClick={() => addToCart({ ...props, count })}
-        loading={loading}
-      >
+      <Button variant="slim" onClick={handleAdd} loading={loading}>
         Сагсанд нэмэх
       </Button>
-      <Button onClick={handleBuy}>Худалдан авах</Button>
+      <Button
+        onClick={() => {
+          handleAdd();
+          handleBuy();
+        }}
+      >
+        Худалдан авах
+      </Button>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Tree from 'rc-tree';
 import ChevronRight from 'icons/ChevronRight';
-import { useProducts } from 'modules/Products/context';
+import { useSetActiveCategoryName } from 'modules/Products/context';
 
 const formatToTree = (root: any, all: any) => {
   const result: any = [];
@@ -33,13 +33,9 @@ const motion = {
 
 const ProductCategories = ({ categories, rootCatergories }: any) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const activeCat = searchParams.get('category');
+  const { category: activeCat } = router.query;
   const [expandedKeys, setExpandedKeys] = useState<any>();
-  const [store, setStore] = useProducts(
-    ({ activeCategoryName }) => activeCategoryName
-  );
+  const setActiveCatName = useSetActiveCategoryName();
 
   const mapToAddKey = (arr: any) =>
     arr.map((cat: any) => ({
@@ -56,7 +52,7 @@ const ProductCategories = ({ categories, rootCatergories }: any) => {
 
         if (cat) {
           newActiveCats.push(cat.order);
-          cat._id === activeCat && setStore({ activeCategoryName: cat.name });
+          cat._id === activeCat && setActiveCatName(cat.name);
           if (!cat.isRoot) {
             return getExpandedKeys(cat.parentId);
           }
@@ -72,7 +68,7 @@ const ProductCategories = ({ categories, rootCatergories }: any) => {
       <p className="p-2 sbt text-mid-gray">Бүтээгдэхүүний ангилал</p>
       <Tree
         expandedKeys={
-          pathname !== '/categories'
+          router.pathname !== '/categories'
             ? expandedKeys
             : categories.map(({ order }: any) => order)
         }

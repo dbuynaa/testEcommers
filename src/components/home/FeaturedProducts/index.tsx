@@ -1,19 +1,14 @@
 import FeaturedProduct from './FeaturedProduct';
-import { use } from 'react';
-import { getGridBanners, sortPosts } from 'lib/wp/posts';
+import { sortPosts } from 'lib/wp/posts';
 
-const FeaturedProducts = () => {
-  const { posts } = use(getGridBanners());
-
-  const sortedPosts = sortPosts(posts);
-
+const FeaturedProducts = ({ ftItems }: any) => {
   return (
     <div className="my-md-5 my-4">
       <div className="row ft-product-row px-3">
         <div className="col-md-6 col-12 p-1">
           <FeaturedProduct
             className="big"
-            {...sortedPosts[0]}
+            {...ftItems[0]}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
@@ -22,21 +17,21 @@ const FeaturedProducts = () => {
             <div className="col-6 p-1">
               <FeaturedProduct
                 className="small"
-                {...sortedPosts[1]}
+                {...ftItems[1]}
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
             </div>
             <div className="col-6 p-1">
               <FeaturedProduct
                 className="small"
-                {...sortedPosts[2]}
+                {...ftItems[2]}
                 sizes="(max-width: 768px) 50vw,  25vw"
               />
             </div>
             <div className="col-12 p-1">
               <FeaturedProduct
                 className="long"
-                {...sortedPosts[3]}
+                {...ftItems[3]}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

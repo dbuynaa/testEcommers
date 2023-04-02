@@ -1,14 +1,19 @@
 .form-item {
   position: relative;
   padding-bottom: 1.5rem;
+  font-size: 14px;
   label {
-    font-weight: 500;
+    font-weight: 400;
+    font-size: inherit;
+    margin-bottom: 0.5rem;
+    &.required {
+      &::before {
+        content: '* ';
+        color: $danger;
+      }
+    }
   }
-  input,
-  textarea {
-    padding: 1rem;
-    font-weight: 500;
-  }
+
   .-pass {
     position: absolute;
     right: 1px;

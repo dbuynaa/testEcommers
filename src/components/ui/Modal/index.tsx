@@ -1,4 +1,4 @@
-'use client';
+
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Xmark from 'icons/Xmark';
 // import Xmark from 'icons/Xmark';

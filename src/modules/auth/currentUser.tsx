@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+
 import { useQuery } from '@apollo/client';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { queries } from './graphql';
-import { useCurrentUser, useLoadingCurrentUser } from 'modules/appContext';
+import { useCurrentUser } from 'modules/appContext';
 import { useEffect } from 'react';
 
 export interface State {
@@ -11,13 +11,12 @@ export interface State {
 }
 
 const CurrentUser = ({ children }: any) => {
-  const { currentUser, setCurrentUser } = useCurrentUser();
-  const { setLoadingCurrentUser } = useLoadingCurrentUser();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const from = searchParams.get('from');
+  const { currentUser, setCurrentUser, setLoadingCurrentUser } =
+    useCurrentUser();
 
   const router = useRouter();
+  const { pathname, query } = router;
+  const { from } = query;
 
   useQuery(queries.currentUser, {
     fetchPolicy: 'network-only',
@@ -29,8 +28,8 @@ const CurrentUser = ({ children }: any) => {
   });
 
   useEffect(() => {
-    if (currentUser && pathname?.includes('/auth')) {
-      from ? router.push(from) : router.push('/');
+    if (currentUser && router.pathname?.includes('/auth')) {
+      from ? router.push(from + ' ') : router.push('/');
     }
   }, [currentUser]);
 

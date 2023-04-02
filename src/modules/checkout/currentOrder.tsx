@@ -1,59 +1,62 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-'use client';
-
-import { ReactNode, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/client';
-import { useCurrentUser, useCurrentOrder, useCart } from 'modules/appContext';
-import { addToCart, cleanCart } from 'utils';
+import { useCart, useCurrentUser, useCurrentOrder } from 'modules/appContext';
+import useHandleOrder from 'lib/useHandleOrder';
+import { useQuery } from '@apollo/client';
 import { queries } from './graphql';
-import { ICartItem } from '../types';
-import useOrderCU from 'lib/useOrderCU';
-import useOrderData from 'lib/useOrderData';
+import { useEffect } from 'react';
+import { addToCart, cleanCart } from 'utils';
 
-const CurrentOrder = ({ children }: { children: ReactNode }) => {
+const NEW = ['new'];
+
+const CurrentOrder = ({ children }) => {
+  const { cart, setCart } = useCart();
   const { currentUser } = useCurrentUser();
-  const { setCurrentOrder } = useCurrentOrder();
-  const { orderCU } = useOrderCU();
-  const orderData = useOrderData();
-  const { cart } = useCart();
-  const NEW = ['new'];
+  const { currentOrder, setCurrentOrder, setLoadingCurrentOrder } =
+    useCurrentOrder();
+  const { handleOrder } = useHandleOrder();
 
-  const [getCurrentOrder] = useLazyQuery(queries.lastOrder, {
+  const { loading, data } = useQuery(queries.lastOrder, {
     fetchPolicy: 'network-only',
-    onCompleted({ fullOrders }) {
-      const order = (fullOrders || [])[0];
-      if (!(order || {}).paidDate) {
-        setCurrentOrder(order); 
-      }
-
-      if ((cart || []).length > 0) {
-        let currentCart = (order || {}).items || [];
-        (cart || []).forEach((item) =>
-          addToCart({
-            cart: currentCart,
-            product: item,
-            onCompleted: (newCart: ICartItem[]) => (currentCart = newCart),
-          })
-        );
-        orderCU({ variables: { ...orderData, items: cleanCart(currentCart) } });
-      }
+    variables: {
+      statuses: NEW,
+      customerId: (currentUser || {}).erxesCustomerId,
+      perPage: 1,
+      sortField: 'createdAt',
+      sortDirection: -1,
     },
+    skip: !currentUser,
+    onCompleted: () => setLoadingCurrentOrder(false),
   });
 
   useEffect(() => {
-    (currentUser || {}).erxesCustomerId &&
-      getCurrentOrder({
-        variables: {
-          statuses: NEW,
-          customerId: (currentUser || {}).erxesCustomerId,
-          perPage: 1,
-          sortField: 'createdAt',
-          sortDirection: -1,
-        },
-      });
-  }, [currentUser]);
+    if (loading) return;
 
-  return <>{children}</>;
+    const order = ((data || {}).fullOrders || [])[0];
+    if ((order || {}).mobileAmount !== 0) {
+      setCurrentOrder(null);
+    } else {
+      setCurrentOrder(order);
+    }
+
+    if ((cart || []).length > 0) {
+      let currentCart = (order || {}).items || [];
+      (cart || []).forEach((item) => {
+        addToCart({
+          cart: currentCart,
+          product: item,
+          onCompleted: (newCart) => (currentCart = newCart),
+        });
+      });
+      handleOrder({
+        items: cleanCart(currentCart),
+      });
+
+      setCart([]);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  return children;
 };
 
 export default CurrentOrder;

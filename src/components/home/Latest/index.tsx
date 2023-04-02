@@ -1,4 +1,4 @@
-'use client';
+
 import ProductsSlider from 'modules/Products/Slider';
 
 const Latest = () => {

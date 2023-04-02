@@ -1,11 +1,10 @@
-'use client';
-import createFastContext from './createContext';
+import { useCallback, useState } from 'react';
+import { createContext, useContextSelector } from 'use-context-selector';
+import { getLocal, setLocal } from 'utils';
 import type { ICartItem, IProductBase, IOrder } from './types';
-import { useShowCart } from 'ui/context';
-import { addToCart, changeCount } from 'utils';
 
 export interface State {
-  cart: ICartItem[] | null;
+  cart: ICartItem[];
   currentUser: {
     email: string;
     erxesCompanyId: string;
@@ -18,95 +17,128 @@ export interface State {
     _id: string;
   } | null;
   loadingCurrentUser: boolean;
+  loadingCurrentOrder: boolean;
   currentOrder: IOrder | null;
   config: any;
+  setCart: (cart: ICartItem[]) => void;
+  setCurrentUser: (user: State['currentUser']) => void;
+  setLoadingCurrentUser: (loading: boolean) => void;
+  setCurrentOrder: (order: State['currentOrder']) => void;
+  setConfig: (config: State['config']) => void;
+  setLoadingCurrentOrder: (loading: boolean) => void;
 }
 
-const { Provider: AppProvider, useStore } = createFastContext({
-  cart: null,
-  currentUser: null,
-  loadingCurrentUser: true,
-  currentOrder: null,
-  config: null,
-} as State);
-
-export const useCart = () => {
-  const [cart, setCart] = useStore((store) => store.cart);
-  const { changeShowCart } = useShowCart();
-
-  const changeCart = (newCart: ICartItem[]) => setCart({ cart: newCart });
-
-  const onCompleted = (currentCart: ICartItem[]) => {
-    setCart({ cart: currentCart });
-    return changeShowCart();
-  };
-
-  const changeItemCount = ({
-    productId,
-    count,
-  }: {
-    productId: string;
-    count: number;
-  }) =>
-    changeCount({
-      cart,
-      product: { productId, count },
-      onCompleted,
-    });
-
-  const addItem = (
-    product: IProductBase & { productImgUrl: string; count: number }
-  ) =>
-    addToCart({
-      cart,
-      product,
-      onCompleted,
-    });
-
-  return { cart, changeCart, changeCount: changeItemCount, addItem };
-};
-
-export const useLoadingCurrentUser = () => {
-  const [loadingCurrentUser, setLoadingCurrentUser] = useStore(
-    (store) => store.loadingCurrentUser
-  );
+const useStore = () => {
+  const [cart, setCart] = useState<ICartItem[]>(getLocal('cart') || []);
+  const [currentUser, setCurrentUser] = useState<State['currentUser']>(null);
+  const [loadingCurrentUser, setLoadingCurrentUser] =
+    useState<State['loadingCurrentUser']>(true);
+  const [currentOrder, setCurrentOrder] = useState<State['currentOrder']>(null);
+  const [loadingCurrentOrder, setLoadingCurrentOrder] =
+    useState<State['loadingCurrentOrder']>(true);
+  const [config, setConfig] = useState<State['config']>(null);
 
   return {
+    cart,
+    currentUser,
     loadingCurrentUser,
-    setLoadingCurrentUser: (loading: State['loadingCurrentUser']) => {
-      setLoadingCurrentUser({ loadingCurrentUser: loading });
-    },
+    currentOrder,
+    config,
+    loadingCurrentOrder,
+    setCart: useCallback((cart: ICartItem[]) => {
+      setCart(cart);
+      setLocal('cart', cart);
+    }, []),
+    setCurrentUser: useCallback(
+      (user: State['currentUser']) => setCurrentUser(user),
+      []
+    ),
+    setLoadingCurrentUser: useCallback(
+      (loading: boolean) => setLoadingCurrentUser(loading),
+      []
+    ),
+    setCurrentOrder: useCallback(
+      (order: State['currentOrder']) => setCurrentOrder(order),
+      []
+    ),
+    setConfig: useCallback((config: State['config']) => setConfig(config), []),
+    setLoadingCurrentOrder: useCallback(
+      (loading: boolean) => setLoadingCurrentOrder(loading),
+      []
+    ),
   };
+};
+
+export const StoreContext = createContext<State>({} as State);
+
+export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
+  const store = useStore();
+  return (
+    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
+  );
+};
+
+export const useCart = () => {
+  const cart = useContextSelector(StoreContext, (store) => store.cart);
+  const setCart = useContextSelector(StoreContext, (store) => store.setCart);
+  return { cart, setCart };
 };
 
 export const useCurrentUser = () => {
-  const [currentUser, setCurrentUser] = useStore((store) => store.currentUser);
-
+  const currentUser = useContextSelector(
+    StoreContext,
+    (store) => store?.currentUser
+  );
+  const setCurrentUser = useContextSelector(
+    StoreContext,
+    (store) => store?.setCurrentUser
+  );
+  const loadingCurrentUser = useContextSelector(
+    StoreContext,
+    (store) => store?.loadingCurrentUser
+  );
+  const setLoadingCurrentUser = useContextSelector(
+    StoreContext,
+    (store) => store?.setLoadingCurrentUser
+  );
   return {
     currentUser,
-    setCurrentUser: (cu: State['currentUser']) => {
-      setCurrentUser({ currentUser: cu });
-    },
+    setCurrentUser,
+    loadingCurrentUser,
+    setLoadingCurrentUser,
   };
 };
 
 export const useCurrentOrder = () => {
-  const [currentOrder, setCurrentOrder] = useStore(
+  const currentOrder = useContextSelector(
+    StoreContext,
     (store) => store.currentOrder
   );
-
+  const setCurrentOrder = useContextSelector(
+    StoreContext,
+    (store) => store.setCurrentOrder
+  );
+  const loadingCurrentOrder = useContextSelector(
+    StoreContext,
+    (store) => store.loadingCurrentOrder
+  );
+  const setLoadingCurrentOrder = useContextSelector(
+    StoreContext,
+    (store) => store.setLoadingCurrentOrder
+  );
   return {
     currentOrder,
-    setCurrentOrder: (order: any) => setCurrentOrder({ currentOrder: order }),
+    setCurrentOrder,
+    loadingCurrentOrder,
+    setLoadingCurrentOrder,
   };
 };
 
 export const useConfig = () => {
-  const [config, setConfig] = useStore((store) => store.config);
-  return {
-    config,
-    setConfig: (conf: any) => setConfig({ config: conf }),
-  };
+  const config = useContextSelector(StoreContext, (store) => store.config);
+  const setConfig = useContextSelector(
+    StoreContext,
+    (store) => store.setConfig
+  );
+  return { config, setConfig };
 };
-
-export default AppProvider;
