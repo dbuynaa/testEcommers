@@ -8,9 +8,11 @@ import { useEffect } from 'react';
 const PaymentContainer = ({
   totalAmount,
   orderId,
+  phone,
 }: {
   totalAmount: string;
   orderId: string;
+  phone: string;
 }) => {
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
@@ -23,8 +25,6 @@ const PaymentContainer = ({
       },
     }
   );
-
-  console.log(config);
 
   const invoiceUrl = (data || {}).generateInvoiceUrl || '';
 
@@ -81,6 +81,7 @@ const PaymentContainer = ({
             customerType: 'customer',
             description: orderId + '-' + '',
             paymentIds: config.paymentIds,
+            phone: phone || currentUser?.phone || '',
           },
         });
       },

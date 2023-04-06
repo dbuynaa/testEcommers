@@ -67,7 +67,7 @@ const Page = () => {
       <div className="flex justify-between items-center pt-4">
         <OrderStatus status={status} paidDate={paidDate} />
         {!paidDate && (
-          <PaymentBtn totalAmount={totalAmount} orderId={id + ''} />
+          <PaymentBtn totalAmount={totalAmount} orderId={id + ''} phone={phone}/>
         )}
         {(putResponses || []).length > 0 && (
           <Ebarimt putResponses={putResponses} />

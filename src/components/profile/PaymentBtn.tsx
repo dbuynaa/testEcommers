@@ -6,14 +6,16 @@ import Config from 'modules/auth/Config';
 const PaymentBtn = ({
   totalAmount,
   orderId,
+  phone,
 }: {
   totalAmount: string;
   orderId: string;
+  phone: string;
 }) => {
   return (
     <Modal trigger={<Button className="-pay-btn bg-blue">Төлбөр төлөх</Button>}>
       <Config>
-        <PaymentContainer totalAmount={totalAmount} orderId={orderId} />
+        <PaymentContainer totalAmount={totalAmount} orderId={orderId} phone={phone}/>
       </Config>
     </Modal>
   );
