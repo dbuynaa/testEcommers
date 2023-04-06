@@ -134,7 +134,6 @@ query OrderDetail($id: String, $customerId: String) {
       customer {
         firstName
         lastName
-        middleName
         primaryEmail
         primaryPhone
         code
