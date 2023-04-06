@@ -1,4 +1,3 @@
-
 import { useMutation, gql, useLazyQuery } from '@apollo/client';
 import { mutations, queries } from './graphql';
 import { useConfig, useCurrentUser } from 'modules/appContext';
@@ -79,6 +78,7 @@ const PaymentContainer = ({
             customerId: currentUser?.erxesCustomerId
               ? currentUser?.erxesCustomerId
               : 'empty',
+            customerType: 'customer',
             description: orderId + '-' + '',
             paymentIds: config.paymentIds,
           },
