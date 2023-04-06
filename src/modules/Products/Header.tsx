@@ -1,5 +1,3 @@
-
-
 import Select, { SelectItem } from 'ui/Select';
 import {
   useProductsCount,
@@ -14,9 +12,14 @@ const Header = () => {
   const { category: categoryId, sortField, sortDirection } = router.query;
   const handleValueChange = (value: string) => {
     const params = value.split('&');
-    router.push(
-      `/products?category=${categoryId}&sortField=${params[0]}&sortDirection=${params[1]}`
-    );
+    router.push({
+      pathname: '/products',
+      query: {
+        category: categoryId || '',
+        sortField: params[0],
+        sortDirection: params[1],
+      },
+    });
   };
 
   const value = `${sortField || 'createdAt'}&${sortDirection || '-1'}`;

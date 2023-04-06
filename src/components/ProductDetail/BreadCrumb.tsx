@@ -18,7 +18,7 @@ const Breadcrumb = ({
     );
   };
 
-  const codes = category.order.split('/') || [];
+  const codes = (category.order || '').split('/') || [];
   const parentCodes = codes.slice(0, codes.indexOf(category.code));
 
   const parentCats = parentCodes.map((code: string) => findCatByCode(code));
