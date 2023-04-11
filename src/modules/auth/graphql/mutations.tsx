@@ -133,6 +133,18 @@ const fbLogin = gql`
   }
 `;
 
+const googleLogin = gql`
+  mutation ClientPortalGoogleAuthentication(
+    $clientPortalId: String
+    $code: String
+  ) {
+    clientPortalGoogleAuthentication(
+      clientPortalId: $clientPortalId
+      code: $code
+    )
+  }
+`;
+
 const mutations = {
   login,
   logout,
@@ -145,6 +157,7 @@ const mutations = {
   userVerify,
   posChooseConfig,
   fbLogin,
+  googleLogin,
 };
 
 export default mutations;

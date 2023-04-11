@@ -18,7 +18,7 @@ const FbLogin = () => {
   const getGoogleUrl = (from) => {
     const rootUrl = `https://accounts.google.com/o/oauth2/v2/auth`;
     const options = {
-      redirect_uri: `https://tech-store-13.vercel.app/auth/login`,
+      redirect_uri: `https://tech-store-13.vercel.app/auth/verifyGoogle`,
       client_id:
         '1057893484797-gkbmo1kp4nuk7r3a997c03bb80b6ibqs.apps.googleusercontent.com',
       access_type: 'offline',
@@ -36,25 +36,9 @@ const FbLogin = () => {
     return `${rootUrl}?${qs.toString()}`;
   };
 
-  const [login, { loading }] = useMutation(mutations.fbLogin, {
-    refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
-    onError(error) {
-      return toast.error(error.message);
-    },
-  });
-
-  const handleClick = () =>
-    login({
-      variables: {
-        clientPortalId: process.env.NEXT_PUBLIC_CP_ID,
-      },
-    });
-
   return (
     <Button
       className="google-btn flex items-center"
-      onClick={handleClick}
-      loading={loading}
       Component={Link}
       href={getGoogleUrl('/auth/login')}
       variant="slim"

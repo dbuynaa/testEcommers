@@ -17,6 +17,10 @@ const Register = dynamic(() => import('modules/auth/register'), {
   suspense: true,
 });
 
+const VerifyGoogle = dynamic(() => import('modules/auth/GoogleAuth'), {
+  suspense: true,
+});
+
 const Auth = ({ image, type }: { image?: string; type: string }) => {
   return (
     <Layout image={image}>
@@ -24,6 +28,7 @@ const Auth = ({ image, type }: { image?: string; type: string }) => {
         {type === 'login' && <Login />}
         {type === 'forgot-password' && <ForgotPassword />}
         {type === 'register' && <Register />}
+        {type === 'verifyGoogle' && <VerifyGoogle/>}
       </Suspense>
     </Layout>
   );
