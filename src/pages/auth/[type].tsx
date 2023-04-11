@@ -17,7 +17,7 @@ const Register = dynamic(() => import('modules/auth/register'), {
   suspense: true,
 });
 
-const VerifyGoogle = dynamic(() => import('modules/auth/GoogleAuth'), {
+const VerifyGoogle = dynamic(() => import('modules/auth/verifyGoogle'), {
   suspense: true,
 });
 
@@ -28,7 +28,7 @@ const Auth = ({ image, type }: { image?: string; type: string }) => {
         {type === 'login' && <Login />}
         {type === 'forgot-password' && <ForgotPassword />}
         {type === 'register' && <Register />}
-        {type === 'verifyGoogle' && <VerifyGoogle/>}
+        {type === 'verifyGoogle' && <VerifyGoogle />}
       </Suspense>
     </Layout>
   );
@@ -51,6 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { type: 'login' } },
       { params: { type: 'register' } },
       { params: { type: 'forgot-password' } },
+      { params: { type: 'verifyGoogle' } },
     ],
     fallback: false,
   };

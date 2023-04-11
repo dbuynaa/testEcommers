@@ -17,20 +17,21 @@ const VerifyGoogle = () => {
   });
 
   useEffect(() => {
-    login({
-      variables: {
-        code,
-        clientPortalId: process.env.NEXT_PUBLIC_CP_ID,
-      },
-    })
-      .then((result) => {
-        if (result?.data?.clientPortalGoogleAuthentication === 'loggedin') {
-          router.push('/');
-        }
+    code &&
+      login({
+        variables: {
+          code,
+          clientPortalId: process.env.NEXT_PUBLIC_CP_ID,
+        },
       })
-      .catch((e) => {
-        console.error('error: ', e.message);
-      });
+        .then((result) => {
+          if (result?.data?.clientPortalGoogleAuthentication === 'loggedin') {
+            router.push('/');
+          }
+        })
+        .catch((e) => {
+          console.error('error: ', e.message);
+        });
   }, [code, login, router]);
 
   return <Loading />;
