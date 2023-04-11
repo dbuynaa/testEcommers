@@ -17,7 +17,7 @@ const FbLogin = () => {
   const getGoogleUrl = (from) => {
     const rootUrl = `https://accounts.google.com/o/oauth2/v2/auth`;
     const options = {
-      redirect_uri: `http://localhost:3001/auth/login`,
+      redirect_uri: `${domain}/auth/login`,
       client_id:
         '72981302453-gk1aq46nlhaen1b4q14f2hbe6tsugq0s.apps.googleusercontent.com',
       access_type: 'offline',
