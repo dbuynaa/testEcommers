@@ -12,6 +12,8 @@ import Layout from 'components/profile/layout';
 import { useRouter } from 'next/router';
 import OrderDetailLayout from 'components/profile/OrderDetailLayout';
 import { readFile } from 'utils';
+import Button from 'ui/Button';
+import Link from 'next/link';
 
 const Page = () => {
   const router = useRouter();
@@ -64,14 +66,29 @@ const Page = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center pt-4">
+      <div className="row items-center order-detail-actions pt-4">
         <OrderStatus status={status} paidDate={paidDate} />
-        {!paidDate && (
-          <PaymentBtn totalAmount={totalAmount} orderId={id + ''} phone={phone}/>
-        )}
-        {(putResponses || []).length > 0 && (
-          <Ebarimt putResponses={putResponses} />
-        )}
+        <div className="row items-center">
+          {!paidDate && (
+            <PaymentBtn
+              totalAmount={totalAmount}
+              orderId={id + ''}
+              phone={phone}
+            />
+          )}
+          {(putResponses || []).length > 0 ? (
+            <Ebarimt putResponses={putResponses} />
+          ) : (
+            <Button
+              className="-pay-btn ms-3"
+              variant="slim"
+              Component={Link}
+              href="/leasing"
+            >
+              Зээлээр худалдан авах
+            </Button>
+          )}
+        </div>
       </div>
 
       {(province || district || street || details) && (

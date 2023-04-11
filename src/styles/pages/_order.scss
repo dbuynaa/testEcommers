@@ -185,6 +185,11 @@
       cursor: not-allowed;
     }
   }
+  &-detail {
+    &-actions {
+      justify-content: space-between;
+    }
+  }
 }
 
 .sum {
