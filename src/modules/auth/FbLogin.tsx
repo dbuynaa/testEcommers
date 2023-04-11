@@ -17,6 +17,7 @@ const FbLogin = () => {
 
   const responseFacebook = (response) => {
     const { accessToken } = response;
+    console.log(accessToken, 'haha');
     if (accessToken) {
       login({
         variables: {
@@ -24,7 +25,7 @@ const FbLogin = () => {
           accessToken,
         },
         onCompleted() {
-          router.push(from + '' || '/');
+          router.push((from || '/') + '');
         },
       });
     }
@@ -33,7 +34,7 @@ const FbLogin = () => {
   return (
     <FacebookLogin
       icon={<Facebook />}
-      appId={'6015659281875597'}
+      appId={'2166997233507546'}
       callback={responseFacebook}
       className="btn flat"
       textButton="Facebook - ээр нэвтрэх"

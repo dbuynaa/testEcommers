@@ -20,7 +20,7 @@ const FbLogin = () => {
     const options = {
       redirect_uri: `${domain}/auth/login`,
       client_id:
-        '72981302453-gk1aq46nlhaen1b4q14f2hbe6tsugq0s.apps.googleusercontent.com',
+        '1057893484797-gkbmo1kp4nuk7r3a997c03bb80b6ibqs.apps.googleusercontent.com',
       access_type: 'offline',
       response_type: 'code',
       prompt: 'consent',
