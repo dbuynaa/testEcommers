@@ -5,6 +5,7 @@ import { mutations, queries } from './graphql';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Google from 'icons/Google';
 
 const FbLogin = () => {
   const [domain, setDomain] = useState('');
@@ -56,8 +57,10 @@ const FbLogin = () => {
       loading={loading}
       Component={Link}
       href={getGoogleUrl('/auth/login')}
+      variant="slim"
     >
-      Googleeer newtreh
+      <Google className="mr-2" />
+      Google - ээр нэвтрэх
     </Button>
   );
 };
