@@ -22,9 +22,7 @@
     h5 {
       padding-bottom: 1rem;
     }
-    .btn.flat {
-      background: $blue;
-    }
+
     .btn.flat,
     .btn.slim {
       width: 100%;
@@ -35,6 +33,37 @@
       line-height: 1;
       font-weight: 700;
       font-size: 0.875rem;
+    }
+    .forgot-password,
+    .register-link,
+    .or {
+      font-size: 14px;
+    }
+
+    .or {
+      color: $shade-gray;
+    }
+
+    .login-btn {
+      background: $blue;
+    }
+    .login-btn,
+    .kep-login-facebook.metro {
+      padding: 0.75rem;
+    }
+    .kep-login-facebook.metro {
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      text-transform: initial;
+      margin: 0.5rem 0;
+      background: rgb(59, 89, 152);
+      width: 100%;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      svg {
+        font-size: 1.05rem;
+        margin-right: 0.5rem;
+      }
     }
   }
 }

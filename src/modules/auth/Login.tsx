@@ -5,6 +5,8 @@ import { useForm, FormProvider } from 'react-hook-form';
 import FormItem from 'ui/FormItem';
 import { mutations, queries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
+import FbLogin from './FbLogin';
+import GoogleAuth from './GoogleAuth';
 
 type FormData = {
   password: string;
@@ -46,30 +48,27 @@ const Login = () => {
           label="Нууц үг"
           placeholder="Нууц үг"
           type="password"
-          labelClassName="mt-2"
           name="password"
         />
 
-        <p className="text-right">
+        <p className="text-right forgot-password">
           <Link href={'/auth/forgot-password'} className="text-blue">
             Та нууц үгээ мартсан уу?
           </Link>
         </p>
 
-        <Button className="p-3 mt-3" type="submit" loading={loading}>
+        <Button className="mt-3 login-btn" type="submit" loading={loading}>
           Нэвтрэх
         </Button>
-
-        <small className="text-center py-3 block text-blue">Эсвэл</small>
-
-        <Button
-          variant="slim"
-          className="p-3"
-          Component={Link}
-          href="/auth/register"
-        >
-          Бүртгүүлэх
-        </Button>
+        <p className="text-center p-2 register-link">
+          Шинэ хэрэглэгч болох
+          <Link href={'/auth/register'} className="text-blue px-2">
+            Бүртгүүлэх
+          </Link>
+        </p>
+        <p className="text-center or py-2">Эсвэл</p>
+        <FbLogin />
+        <GoogleAuth />
       </form>
     </FormProvider>
   );

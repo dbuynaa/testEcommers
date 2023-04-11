@@ -121,6 +121,18 @@ const posChooseConfig = gql`
   }
 `;
 
+const fbLogin = gql`
+  mutation ClientPortalFacebookAuthentication(
+    $clientPortalId: String!
+    $accessToken: String
+  ) {
+    clientPortalFacebookAuthentication(
+      clientPortalId: $clientPortalId
+      accessToken: $accessToken
+    )
+  }
+`;
+
 const mutations = {
   login,
   logout,
@@ -132,6 +144,7 @@ const mutations = {
   forgotPassword,
   userVerify,
   posChooseConfig,
+  fbLogin,
 };
 
 export default mutations;
