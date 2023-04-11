@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Google from 'icons/Google';
 
-const FbLogin = () => {
+const GoogleLogin = () => {
   const [domain, setDomain] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const FbLogin = () => {
   const getGoogleUrl = (from) => {
     const rootUrl = `https://accounts.google.com/o/oauth2/v2/auth`;
     const options = {
-      redirect_uri: `https://tech-store-13.vercel.app/auth/verifyGoogle`,
+      redirect_uri: `https://${domain}/auth/verifyGoogle`,
       client_id:
         '1057893484797-gkbmo1kp4nuk7r3a997c03bb80b6ibqs.apps.googleusercontent.com',
       access_type: 'offline',
@@ -49,4 +49,4 @@ const FbLogin = () => {
   );
 };
 
-export default FbLogin;
+export default GoogleLogin;
