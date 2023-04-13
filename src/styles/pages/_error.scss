@@ -1,0 +1,20 @@
+.error-page {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .error-content {
+    text-align: center;
+    .img-wrap {
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+    }
+    h3 {
+      font-weight: bolder;
+      font-size: 42px;
+    }
+    .btn.flat {
+      background-color: $blue;
+    }
+  }
+}
