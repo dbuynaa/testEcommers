@@ -10,11 +10,15 @@ import { NextSeo } from 'next-seo';
 
 const PostDetail = ({ post }) => {
   const { title, featuredImage, excerpt, id, content, date } = post || {};
+  const removeTag = (html: any) => {
+    const desc = html.slice(3, -5);
+    return desc;
+  };
   return (
     <>
       <NextSeo
         title={title}
-        description={excerpt}
+        description={removeTag(excerpt)}
         openGraph={{
           url: `${process.env.NEXT_PUBLIC_URL}/news/${id}`,
           images: [
