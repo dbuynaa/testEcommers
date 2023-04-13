@@ -6,6 +6,8 @@ import Footer from './footer';
 import CurrentOrder from 'modules/checkout/currentOrder';
 import CurrentUser from 'modules/auth/currentUser';
 import NavigationBar from 'components/header/NavigationBar';
+import Head from 'next/head';
+import { DefaultSeo } from 'next-seo';
 
 const Layout = ({
   children,
@@ -17,18 +19,54 @@ const Layout = ({
   footer: any;
 }) => {
   return (
-    <ApolloProvider>
-      <StoreProvider>
-        <CurrentUser>
-          <CurrentOrder>
-            <Header mainCategories={mainCategories} />
-            <div className="layout">{children}</div>
-            <Footer footer={footer} />
-            <NavigationBar />
-          </CurrentOrder>
-        </CurrentUser>
-      </StoreProvider>
-    </ApolloProvider>
+    <>
+      <Head>
+        <meta
+          name="keywords"
+          content="Технологийн дэлгүүр,  Xiaomi, ухаалаг утас, зурагт, угаалгын машин, Amazefit, mi, oneplus"
+        />
+        <meta name="author" content="Techstore" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="google" content="nositelinkssearchbox" />
+        <meta name="google" content="notranslate" />
+      </Head>
+      <DefaultSeo
+        title="Techstore | Технологийн дэлгүүр"
+        description="Технологийн дэвшлийг Тechstore -оос..."
+        openGraph={{
+          type: 'website',
+          locale: 'mn_MN',
+          url: 'https://techstore.mn/',
+          site_name: 'Techstore',
+          images: [
+            {
+              url: '/images/og.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Techstore',
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@techstore',
+          site: '@techstore',
+          cardType: 'summary_large_image',
+        }}
+      />
+      <ApolloProvider>
+        <StoreProvider>
+          <CurrentUser>
+            <CurrentOrder>
+              <Header mainCategories={mainCategories} />
+              <div className="layout">{children}</div>
+              <Footer footer={footer} />
+              <NavigationBar />
+            </CurrentOrder>
+          </CurrentUser>
+        </StoreProvider>
+      </ApolloProvider>
+    </>
   );
 };
 

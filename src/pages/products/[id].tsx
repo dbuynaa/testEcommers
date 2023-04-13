@@ -11,7 +11,8 @@ import Breadcrumb from 'components/ProductDetail/BreadCrumb';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import getCategories from 'lib/getCategories';
 import { getProductInfo } from 'lib/wp/posts';
-import { formatCurrency } from 'utils';
+import { formatCurrency, readFile } from 'utils';
+import { NextSeo } from 'next-seo';
 
 const Product = ({ detail, categories, wp }: any) => {
   const {
@@ -26,14 +27,8 @@ const Product = ({ detail, categories, wp }: any) => {
     categoryId,
   } = detail;
 
-  const fixImageUrl = (url: string = '') =>
-    url.replace(
-      'http://plugin_core_api',
-      `${process.env.NEXT_PUBLIC_ERXES_API_URL}`
-    );
-
   const moreImage = (attachmentMore || []).map(({ url }: { url: string }) =>
-    fixImageUrl(url)
+    readFile(url)
   );
 
   if (!name || !unitPrice) {
@@ -42,6 +37,21 @@ const Product = ({ detail, categories, wp }: any) => {
 
   return (
     <>
+      <NextSeo
+        title={name}
+        description={'#' + code}
+        openGraph={{
+          url: `https://www.technews.mn/products/${_id}`,
+          images: [
+            {
+              url: readFile((attachment || {}).url),
+              width: 800,
+              height: 600,
+              alt: name,
+            },
+          ],
+        }}
+      />
       <div className="container prDtl">
         <Breadcrumb
           categoryId={categoryId}
@@ -51,7 +61,7 @@ const Product = ({ detail, categories, wp }: any) => {
         <div className="row pb-4">
           <div className="col-12 col-md-6">
             <ImageGallery
-              images={[fixImageUrl((attachment || {}).url), ...moreImage]}
+              images={[readFile((attachment || {}).url), ...moreImage]}
             />
           </div>
           <div className="col-12 col-md-6 px-md-5 prDtl-actions">
@@ -71,7 +81,7 @@ const Product = ({ detail, categories, wp }: any) => {
 
             <Actions
               {...detail}
-              productImgUrl={fixImageUrl((attachment || {}).url)}
+              productImgUrl={readFile((attachment || {}).url)}
             />
           </div>
         </div>

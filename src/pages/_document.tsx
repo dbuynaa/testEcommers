@@ -7,7 +7,13 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link href="/images/logo.svg" rel="shortcut icon" />
+          <meta charSet="UTF-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1"
+          />
+          <link href="/images/logo.png" rel="shortcut icon" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
@@ -18,6 +24,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
           ></link>
+
           <Partytown forward={['dataLayer.push']} />
           <script
             type="text/partytown"

@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 
 const NewsBanner = ({ post }: { post: WpPost }) => {
-  const { featuredImage, title, date, id } = post || {};
+  const { featuredImage, title, date, id } = post;
   return (
     <div className="col-12 col-md-8">
       <div className="news-banner ">

@@ -1,5 +1,4 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
 import { getPostById } from 'lib/wp/posts';
 import dayjs from 'dayjs';
 import Image from 'ui/Image';
@@ -7,22 +6,27 @@ import Button from 'ui/Button';
 import Twitter from 'icons/Twitter';
 import Link from 'next/link';
 import FacebookShare from 'components/news/FacebookShare';
+import { NextSeo } from 'next-seo';
 
 const PostDetail = ({ post }) => {
   const { title, featuredImage, excerpt, id, content, date } = post || {};
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_URL}/news/${id}`}
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={excerpt} />
-        <meta property="og:image" content={featuredImage.node.sourceUrl} />
-      </Head>
+      <NextSeo
+        title={title}
+        description={excerpt}
+        openGraph={{
+          url: `${process.env.NEXT_PUBLIC_URL}/news/${id}`,
+          images: [
+            {
+              url: featuredImage.node.sourceUrl,
+              width: 800,
+              height: 600,
+              alt: title,
+            },
+          ],
+        }}
+      />
       <article className="container news-detail py-5">
         <div className="-date text-mid-gray">
           {dayjs(date).format('MM сарын DD, YYYY')}
