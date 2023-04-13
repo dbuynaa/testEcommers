@@ -6,6 +6,7 @@ export type IProductBase = {
 export type IProduct = IProductBase & {
   name: string;
   code?: string;
+  productCount?: number;
   attachment: {
     url: string;
   };

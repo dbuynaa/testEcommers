@@ -4,6 +4,7 @@ import 'styles/styles.min.css';
 import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
   pageProps: any;

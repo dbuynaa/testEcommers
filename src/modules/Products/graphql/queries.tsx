@@ -59,6 +59,7 @@ const productDetail = gql`
         name
         isRoot
       }
+      productCount
       categoryId
       code
       createdAt

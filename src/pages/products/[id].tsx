@@ -71,7 +71,7 @@ const Product = ({ detail, categories, wp }: any) => {
             </div>
             <h4>{formatCurrency(unitPrice)}</h4>
             <div className="-count text-mid-gray">
-              <b>{productCount || 5}</b> ширхэг бэлэн байна
+              <b>{productCount || 0}</b> ширхэг бэлэн байна
             </div>
 
             <div

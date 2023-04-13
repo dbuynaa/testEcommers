@@ -8,6 +8,7 @@ import CurrentUser from 'modules/auth/currentUser';
 import NavigationBar from 'components/header/NavigationBar';
 import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
+import Toast from 'ui/Toast';
 
 const Layout = ({
   children,
@@ -34,6 +35,9 @@ const Layout = ({
       <DefaultSeo
         title="Techstore | Технологийн дэлгүүр"
         description="Технологийн дэвшлийг Тechstore -оос..."
+        facebook={{
+          appId: '235931783264550',
+        }}
         openGraph={{
           type: 'website',
           locale: 'mn_MN',
@@ -66,6 +70,7 @@ const Layout = ({
           </CurrentUser>
         </StoreProvider>
       </ApolloProvider>
+      <Toast />
     </>
   );
 };

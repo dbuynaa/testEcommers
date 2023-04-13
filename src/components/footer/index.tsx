@@ -4,11 +4,11 @@ import Image from 'ui/Image';
 import Button from 'ui/Button';
 import Phone from 'icons/ThinPhone';
 import Marker from 'icons/Marker';
-import { use } from 'react';
-import { getFooter } from 'lib/wp/page';
+import Facebook from 'icons/Facebook';
+import Instagram from '../icons/Instagram';
 
 const Footer = ({ footer }: any) => {
-  const { phone, mail, map } = footer?.contact || {};
+  const { phone, mail, map, facebook, instagram } = footer?.contact || {};
 
   return (
     <footer>
@@ -35,11 +35,23 @@ const Footer = ({ footer }: any) => {
                 </Button>
                 <span>{mail}</span>
               </Link>
-              <Link href={'tel: ' + phone} className="flex items-center pb-3">
+              <Link href={'tel: ' + phone} className="flex items-center ">
                 <Button variant="naked" className="text-blue me-3">
                   <Phone />
                 </Button>
                 <span>{(phone || '').split('').join('')}</span>
+              </Link>
+              <Link href={facebook} className="flex items-center ">
+                <Button variant="naked" className="text-blue me-3">
+                  <Facebook />
+                </Button>
+                <span>TechStore</span>
+              </Link>
+              <Link href={instagram} className="flex items-center pb-3">
+                <Button variant="naked" className="text-blue me-3">
+                  <Instagram />
+                </Button>
+                <span>@techstoremongolia</span>
               </Link>
             </div>
             <div className="col-12 col-md-4">
