@@ -147,6 +147,22 @@
       margin-left: 0 !important;
     }
   }
+  .branch {
+    margin-bottom: 1rem;
+    .img-wrap {
+      border-radius: 0.5rem;
+    }
+    &-content {
+      padding: 1rem 0;
+      h6 {
+        padding-bottom: 1rem;
+      }
+    }
+    &-timetable {
+      padding-top: 0rem;
+      padding: 0 0 0 1.875rem;
+    }
+  }
 }
 
 @media (min-width: 768px) {

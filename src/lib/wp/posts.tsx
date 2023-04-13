@@ -7,6 +7,7 @@ import {
   SLIDER_BANNER,
   NEWS_DETAIL,
   PRODUCT_DETAIL,
+  BRANCHES,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -33,6 +34,8 @@ export async function getSliderBanner() {
 }
 
 export const getNews = async () => await getPosts(NEWS);
+
+export const getBranches = async () => await getPosts(BRANCHES);
 
 export async function getPostById(id: string) {
   const apolloClient = getApolloClient();
@@ -130,5 +133,10 @@ export type WpPost = {
     img: {
       sourceUrl: string;
     };
+  };
+  branchInfo?: {
+    address: string;
+    more: string;
+    phone: string;
   };
 };

@@ -135,3 +135,20 @@ export const PRODUCT_DETAIL = gql`
     }
   }
 `;
+
+export const BRANCHES = gql`
+  query Branches {
+    posts(where: { categoryName: "branches" }) {
+      nodes {
+        ${featuredImage()}
+        branchInfo {
+          address
+          more
+          phone
+        }
+        content
+        title
+      }
+    }
+  }
+`;
