@@ -31,6 +31,7 @@
     "lottie-web": "^5.9.6",
     "next": "13.2.3",
     "next-seo": "^6.0.0",
+    "next-share": "^0.20.0",
     "nprogress": "^0.2.0",
     "qrcode.react": "^3.1.0",
     "rc-tree": "^5.7.0",

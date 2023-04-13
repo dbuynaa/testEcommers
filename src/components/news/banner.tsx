@@ -25,7 +25,9 @@ const NewsBanner = ({ post }: { post: WpPost }) => {
             #technews{' '}
             <span className="ps-1">{dayjs(date).format('YYYY-MM-DD')}</span>
           </p>
-          <h5>{title}</h5>
+          <Link href={`/news/${id}`}>
+            <h5>{title}</h5>
+          </Link>
           <Button
             variant="slim"
             className="mt-3"

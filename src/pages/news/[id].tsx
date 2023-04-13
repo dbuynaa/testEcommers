@@ -2,12 +2,10 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import { getPostById } from 'lib/wp/posts';
 import dayjs from 'dayjs';
 import Image from 'ui/Image';
-import Button from 'ui/Button';
-import Twitter from 'icons/Twitter';
-import Link from 'next/link';
-import FacebookShare from 'components/news/FacebookShare';
 import { NextSeo } from 'next-seo';
-
+import { FacebookShareButton } from 'next-share';
+import Facebook from 'icons/Facebook';
+import Button from 'ui/Button';
 const PostDetail = ({ post }) => {
   const { title, featuredImage, excerpt, id, content, date } = post || {};
   const removeTag = (html: any) => {
@@ -40,15 +38,15 @@ const PostDetail = ({ post }) => {
           <Image src={featuredImage.node.sourceUrl} alt="" sizes="100vw" />
         </div>
         <div className="pt-4 container c-md flex items-center justify-end share-container">
-          <FacebookShare title={title} id={id} />
-          <Button
-            className="-twitter share"
-            variant="slim"
-            Component={Link}
-            href={`${process.env.NEXT_PUBLIC_URL}`}
+          <FacebookShareButton
+            url={'https://www.techstore.mn/news/' + id}
+            title={post.title}
+            quote={post.description}
           >
-            <Twitter />
-          </Button>
+            <Button className="share -facebook">
+              <Facebook />
+            </Button>
+          </FacebookShareButton>
         </div>
         <div
           className="py-4 container c-md"

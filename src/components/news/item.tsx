@@ -26,7 +26,9 @@ const NewsItem = ({
         />
       </div>
       <div className="news-item-content ">
-        <big className="block">{title}</big>
+        <Link href={`/news/${id}`}>
+          <big className="block">{title}</big>
+        </Link>
         <div className="flex justify-between text-mid-gray items-center">
           {dayjs(date).format('YYYY-MM-DD')}
           <Button
