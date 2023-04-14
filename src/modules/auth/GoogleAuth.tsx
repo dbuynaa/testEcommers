@@ -20,7 +20,7 @@ const GoogleLogin = () => {
     const options = {
       redirect_uri: `https://${domain}/auth/verifyGoogle`,
       client_id:
-        '1057893484797-gkbmo1kp4nuk7r3a997c03bb80b6ibqs.apps.googleusercontent.com',
+        '72981302453-gk1aq46nlhaen1b4q14f2hbe6tsugq0s.apps.googleusercontent.com',
       access_type: 'offline',
       response_type: 'code',
       prompt: 'consent',
