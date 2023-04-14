@@ -34,7 +34,7 @@ const FbLogin = () => {
   return (
     <FacebookLogin
       icon={<Facebook />}
-      appId={'2166997233507546'}
+      appId={'6015659281875597'}
       callback={responseFacebook}
       className="btn flat"
       textButton="Facebook - ээр нэвтрэх"
