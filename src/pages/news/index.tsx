@@ -1,11 +1,11 @@
 import NewsBanner from 'components/news/banner';
 import Scroll from 'components/news/scroll';
-import Other from 'components/news/Other';
-import { getNews } from 'lib/wp/posts';
+import Video from 'components/news/Video';
+import { getNews, getVideos } from 'lib/wp/posts';
 import type { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 
-const News = ({ posts }) => {
+const News = ({ posts, videos }) => {
   const lastPost = (posts || [])[0] || {};
 
   return (
@@ -30,7 +30,7 @@ const News = ({ posts }) => {
           <NewsBanner post={lastPost} />
           <Scroll posts={(posts || []).slice(1)} />
         </div>
-        <Other />
+        <Video posts={videos} />
       </div>
     </>
   );
@@ -38,9 +38,10 @@ const News = ({ posts }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { posts } = await getNews();
+  const { posts: videos } = await getVideos();
 
   return {
-    props: { posts },
+    props: { posts, videos },
   };
 };
 

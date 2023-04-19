@@ -190,6 +190,22 @@
       justify-content: space-between;
     }
   }
+  &-end {
+    display: flex;
+    align-items: flex-start;
+    svg {
+      font-size: 1.5rem;
+      min-width: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    .btn.ghost {
+      padding: 0.5rem 0.75rem;
+    }
+    &-modal {
+      min-height: 20vh;
+      min-width: 20vh;
+    }
+  }
 }
 
 .sum {

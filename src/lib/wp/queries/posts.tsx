@@ -152,3 +152,18 @@ export const BRANCHES = gql`
     }
   }
 `;
+
+export const VIDEOS = gql`
+  query Videos {
+    posts(where: { categoryName: "video" }) {
+      nodes {
+        ${featuredImage()}
+        date
+        title
+        video {
+          videoId
+        }
+      }
+    }
+  }
+`;

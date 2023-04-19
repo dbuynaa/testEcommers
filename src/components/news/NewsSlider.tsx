@@ -1,5 +1,3 @@
-
-
 import Slider from 'react-slick';
 import NewsItem from './item';
 import type { ReactNode } from 'react';
@@ -48,7 +46,7 @@ const NewsSlider = ({
   };
   return (
     <div>
-      <h5 className="text-blue slider-news-title">{title}</h5>
+      <h5 className="text-blue slider-news-title mb-4">{title}</h5>
       <div className="news-slider">
         <Slider {...settings}>{children}</Slider>
       </div>

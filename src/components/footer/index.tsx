@@ -23,9 +23,14 @@ const Footer = ({ footer }: any) => {
         <div className="container c-xl py-5 relative">
           <div className="row">
             <div className="col-12 col-md-4 pb-3">
-              <Link href="/news">Мэдээ мэдээлэл</Link>
+              <Link href="/about">Бидний тухай</Link>
               <Link href="/terms-of-service">Үйлчилгээний нөхцөл</Link>
-              {/* <Link href="/privacy-policy">Нууцлалын бодлого</Link> */}
+              <Link
+                href="https://www.zangia.mn/company/JC-electronics"
+                target="_blank"
+              >
+                Ажлын байр
+              </Link>
               <Link href="/branches">Салбарууд</Link>
             </div>
             <div className="col-12 col-md-4">

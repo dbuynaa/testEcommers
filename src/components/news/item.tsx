@@ -14,7 +14,7 @@ const NewsItem = ({
 }: WpPost & { className: string }) => {
   return (
     <div className={clsx('news-item row', className)}>
-      <div className="img-wrap ratio">
+      <div className="img-wrap ratio">  
         <Image
           alt=""
           src={featuredImage?.sourceUrl || ''}

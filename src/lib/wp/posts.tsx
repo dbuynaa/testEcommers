@@ -8,6 +8,7 @@ import {
   NEWS_DETAIL,
   PRODUCT_DETAIL,
   BRANCHES,
+  VIDEOS,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -31,6 +32,10 @@ export async function getImgBanner() {
 
 export async function getSliderBanner() {
   return await getPosts(SLIDER_BANNER);
+}
+
+export async function getVideos() {
+  return await getPosts(VIDEOS);
 }
 
 export const getNews = async () => await getPosts(NEWS);
