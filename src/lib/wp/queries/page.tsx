@@ -32,3 +32,12 @@ export const TERMS_OF_USE = gql`
     }
   }
 `;
+
+export const ABOUT = gql`
+  query TERMS_OF_USE {
+    pageBy(uri: "about") {
+      ${featuredImage()}
+      content
+    }
+  }
+`;
