@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'techstore.nmma.co',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
   },
   webpack: (config) => {
