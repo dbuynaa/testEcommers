@@ -9,7 +9,7 @@ const OrderEnd = () => {
       <div className="col-4"></div>
       <div className="col-8 text-mid-gray order-end pt-3 items-center">
         <Question />
-        <p>
+        <div>
           Хэрвээ та манайд байгаа төлбөрийн хэрэгслүүдээс өөрөөр төлбөрөө
           төлөхийг хүсвэл{' '}
           <Modal trigger={<Button variant="ghost">энд</Button>}>
@@ -18,7 +18,7 @@ const OrderEnd = () => {
             </div>
           </Modal>{' '}
           дарна уу
-        </p>
+        </div>
       </div>
     </div>
   );
