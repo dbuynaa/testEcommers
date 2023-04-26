@@ -22,7 +22,7 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
   poscProducts(categoryId: $categoryId, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField) {
       ${commonFields}
       unitPrice
-      productCount
+      remainder
       attachment {
         url
       }
@@ -59,7 +59,6 @@ const productDetail = gql`
         name
         isRoot
       }
-      productCount
       categoryId
       code
       createdAt
