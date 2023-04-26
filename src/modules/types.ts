@@ -10,6 +10,7 @@ export type IProduct = IProductBase & {
   attachment: {
     url: string;
   };
+  remainder?: number;
 };
 
 export type ItemBase = {
