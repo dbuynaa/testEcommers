@@ -1,31 +1,32 @@
+import { useRouter } from 'next/router';
 import Video from './Video';
 import ProductsSlider from 'modules/Products/Slider';
 
 const Description = ({ wp, categoryId }: { wp: any; categoryId: string }) => {
+  const router = useRouter();
   const { content, productInfo } = wp || {};
 
   const { youtubeUrl, description } = productInfo || {};
 
   return (
     <div className="prDtl-overview text-blue py-4 container">
-      <h6 className="pb-2">
+      <big className="pb-2 block">
         <b>Бүтээгдэхүүний танилцуулга</b>
-      </h6>
+      </big>
       <big className="py-3 sbt d-block">{description}</big>
-      <div className="row my-5">
-        <div className="col-12 col-md-6 pe-md-2">
+      <div className="my-4">
+        <Video src={youtubeUrl} />
+      </div>
+      <ProductsSlider
+        category={categoryId}
+        slidesToShow={4}
+        except={[router.query.id?.toString() || '']}
+        head={
           <div className="mb-3">
-            <b>Онцлох видео:</b>
-          </div>
-          <Video src={youtubeUrl} />
-        </div>
-        <div className="col-12 col-md-6 pt-4 pt-md-0">
-          <div className="mb-3 ps-md-2">
             <b>Ижил төстэй бүтээгдэхүүн:</b>
           </div>
-          <ProductsSlider category={categoryId} slidesToShow={2} />
-        </div>
-      </div>
+        }
+      />
       {content && (
         <div
           dangerouslySetInnerHTML={{ __html: content }}

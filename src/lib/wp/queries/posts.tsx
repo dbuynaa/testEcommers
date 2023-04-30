@@ -167,3 +167,14 @@ export const VIDEOS = gql`
     }
   }
 `;
+
+export const BRANDS = gql`
+ query Videos {
+    posts(where: { categoryName: "brands" }) {
+      nodes {
+        title
+        ${featuredImage()}
+      }
+    }
+  }
+`;

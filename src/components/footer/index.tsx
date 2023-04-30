@@ -46,13 +46,21 @@ const Footer = ({ footer }: any) => {
                 </Button>
                 <span>{(phone || '').split('').join('')}</span>
               </Link>
-              <Link href={facebook} className="flex items-center ">
+              <Link
+                href={facebook}
+                className="flex items-center"
+                target="_blank"
+              >
                 <Button variant="naked" className="text-blue me-3">
                   <Facebook />
                 </Button>
                 <span>TechStore</span>
               </Link>
-              <Link href={instagram} className="flex items-center pb-3">
+              <Link
+                href={instagram}
+                className="flex items-center pb-3"
+                target="_blank"
+              >
                 <Button variant="naked" className="text-blue me-3">
                   <Instagram />
                 </Button>
@@ -76,9 +84,9 @@ const Footer = ({ footer }: any) => {
           </div>
         </div>
       </div>
-      <div className="-author container c-xl row justify-end p-3">
-        Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}.
-        <b className="ps-1">Techstore - Технологийн дэлгүүр</b>
+      <div className="-author container c-xl row justify-between p-3">
+        Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}
+        <span>Techstore - Технологийн дэлгүүр</span>
       </div>
     </footer>
   );

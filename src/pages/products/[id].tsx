@@ -13,6 +13,7 @@ import getCategories from 'lib/getCategories';
 import { getProductInfo } from 'lib/wp/posts';
 import { formatCurrency, readFile } from 'utils';
 import { NextSeo } from 'next-seo';
+import FeaturedPayments from 'components/ProductDetail/FeaturedPayments';
 
 const Product = ({ detail, categories, wp }: any) => {
   const {
@@ -26,7 +27,7 @@ const Product = ({ detail, categories, wp }: any) => {
     _id,
     categoryId,
   } = detail;
-  
+
   const moreImage = (attachmentMore || []).map(({ url }: { url: string }) =>
     readFile(url)
   );
@@ -39,7 +40,7 @@ const Product = ({ detail, categories, wp }: any) => {
     <>
       <NextSeo
         title={name}
-        description={'#' + code}
+        description={description}
         openGraph={{
           url: `https://www.technews.mn/products/${_id}`,
           images: [
@@ -78,7 +79,7 @@ const Product = ({ detail, categories, wp }: any) => {
               dangerouslySetInnerHTML={{ __html: description }}
               className="pt-4 prDtl-description"
             />
-
+            <FeaturedPayments />
             <Actions
               {...detail}
               productImgUrl={readFile((attachment || {}).url)}

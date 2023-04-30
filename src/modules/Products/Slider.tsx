@@ -1,4 +1,3 @@
-
 import Slider from 'ui/Slider';
 import useGetProducts from 'lib/useGetProducts';
 import Loading from 'ui/Loading';
@@ -13,10 +12,14 @@ const ProductsSlider = ({
   category,
   slidesToShow,
   className,
+  head,
+  except,
 }: {
   category: string;
   slidesToShow: number;
   className?: string;
+  head?: React.ReactNode;
+  except?: string[];
 }) => {
   const changedSettings = {
     slidesToShow,
@@ -54,22 +57,39 @@ const ProductsSlider = ({
 
   if (loading) return <Loading />;
 
+  const filteredProducts = (products || []).filter(
+    (el: any) => !except?.includes(el._id)
+  );
+
+  if (filteredProducts.length === 0) return <></>;
+
   return (
-    <Slider {...changedSettings} className={clsx('-slider', className)}>
-      {(products || []).map((el: any, index: number) => (
-        <div className="px-2 flex flex-col -item" key={index}>
-          <Product {...el} />
-        </div>
-      ))}
-      <Button
-        className="-more text-black me-2"
-        Component={Link}
-        href={'/products?category=' + category}
-      >
-        <h5>Бүгдийг үзэх</h5>
-        <ArrowRight className="ms-2" />
-      </Button>
-    </Slider>
+    <>
+      {!!head && head}
+      <Slider {...changedSettings} className={clsx('-slider', className)}>
+        {(filteredProducts || []).map((el: any, index: number) => (
+          <div
+            className={clsx(
+              'flex flex-col -item',
+              index === 0 ? 'pe-2' : 'px-2'
+            )}
+            key={index}
+          >
+            <Product {...el} />
+          </div>
+        ))}
+        {(products || length) === 16 && (
+          <Button
+            className="-more text-black me-2"
+            Component={Link}
+            href={'/products?category=' + category}
+          >
+            <h5>Бүгдийг үзэх</h5>
+            <ArrowRight className="ms-2" />
+          </Button>
+        )}
+      </Slider>
+    </>
   );
 };
 

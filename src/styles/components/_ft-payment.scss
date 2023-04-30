@@ -1,0 +1,22 @@
+.ft-payment {
+  .btn.slim {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    // background: #ebf0f7;
+    small {
+      font-weight: 400;
+      color: rgba($color: #000, $alpha: 0.5);
+    }
+    .-content {
+      text-align: left;
+      flex: 1 1 auto;
+    }
+    svg {
+      justify-self: flex-end;
+    }
+  }
+}

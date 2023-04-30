@@ -12,7 +12,6 @@ import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
 import Latest from 'components/home/Latest';
-import Head from 'next/head';
 
 const Home = ({
   ftItems,
@@ -28,7 +27,7 @@ const Home = ({
       <CategorySlider bannerCats={bannerCats} />
       <Banner imgBanners={imgBanners} />
       <Latest />
-      <SliderBanner sliderBanners={sliderBanners}/>
+      <SliderBanner sliderBanners={sliderBanners} />
     </div>
   );
 };

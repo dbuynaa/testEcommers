@@ -5,9 +5,11 @@
   margin: 0;
   list-style: none;
   font-size: 13px;
+  flex-wrap: wrap;
   li,
   a {
     color: $mid-gray;
+    white-space: nowrap;
   }
   .breadcrumb-item + .breadcrumb-item {
     padding-left: 0.5rem;

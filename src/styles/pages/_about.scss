@@ -1,0 +1,21 @@
+.about {
+  &-thumbnail {
+    &::before {
+      padding-bottom: calc(3 / 14 * 100%);
+    }
+  }
+  h6 {
+    font-weight: 600;
+  }
+  &-slider {
+    &-item {
+      .img-wrap {
+        height: 80px;
+        width: 150px;
+      }
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}

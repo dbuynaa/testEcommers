@@ -29,7 +29,7 @@
   border: 3px solid $bg-primary;
   position: absolute;
   z-index: auto;
-  min-width: 20px;
+  min-width: 1.3rem;
   padding: 0 4px;
   color: #fff;
   font-weight: 700;
@@ -53,6 +53,9 @@
 }
 .bg-green {
   background-color: $dark-green;
+}
+.bg-shade-gray {
+  background-color: rgba($color: #000, $alpha: 0.05);
 }
 .rounded {
   border-radius: 12px;

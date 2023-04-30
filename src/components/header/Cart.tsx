@@ -1,5 +1,3 @@
-
-
 import CartIcon from 'icons/Cart';
 import Button from 'ui/Button';
 import { useCurrentUser, useCurrentOrder } from 'modules/appContext';
@@ -16,14 +14,18 @@ import { ICartItem } from '../../modules/types';
 import { formatCurrency, readFile } from 'utils';
 import { Dialog, DialogContent, DialogTrigger } from 'components/ui/Dialog';
 import Xmark from 'icons/Xmark';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Cart = () => {
+  const router = useRouter();
   const { currentUser } = useCurrentUser();
   const { currentOrder } = useCurrentOrder();
   const cart = useItems();
   const total = useItemsTotal();
   const count = useItemsCount();
   const { removeAllFromCart, loading } = useHandleCart();
+  const [show, setShow] = useState(false);
 
   const currentCart: ICartItem[] = currentUser
     ? ((currentOrder || {}).items || []).map(
@@ -33,6 +35,13 @@ const Cart = () => {
         })
       )
     : cart || [];
+
+  useEffect(() => {
+    if (show) {
+      setShow(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.pathname]);
 
   const renderContent = () => {
     if (!currentCart.length) return <Empty size="8rem" />;
@@ -96,12 +105,12 @@ const Cart = () => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={show} onOpenChange={() => setShow((prev) => !prev)}>
       <DialogTrigger asChild>
         <Button className="cart-btn mx-2" variant="ghost">
           <CartIcon />
           <small className="block">Сагс</small>
-          <small className="badge">{count ? count : <Xmark />}</small>
+          <small className="badge">{count ? <b>{count}</b> : <Xmark />}</small>
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -112,6 +121,7 @@ const Cart = () => {
             variant="ghost"
             onClick={removeAllFromCart}
             loading={loading}
+            disabled={!cart.length}
           >
             {!loading && 'Хоослох'}
           </Button>

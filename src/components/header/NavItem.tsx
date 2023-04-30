@@ -1,5 +1,3 @@
-
-
 import { usePathname } from 'next/navigation';
 import Button from 'ui/Button';
 import Link from 'next/link';
@@ -18,17 +16,13 @@ const NavItem = ({
   const pathname = usePathname();
 
   return (
-    <Button
-      Component={Link}
+    <Link
       href={href}
-      variant="ghost"
-      className={clsx('navbar-item', pathname === href && '-active')}
+      className={clsx('navbar-item btn ghost', pathname === href && '-active')}
     >
-      <div>
-        {icon}
-        <small className="block">{text}</small>
-      </div>
-    </Button>
+      {icon}
+      <small className="block">{text}</small>
+    </Link>
   );
 };
 

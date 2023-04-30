@@ -163,6 +163,21 @@
       padding: 0 0 0 1.875rem;
     }
   }
+  .about {
+    &-thumbnail {
+      &::before {
+        padding-bottom: calc(7 / 14 * 100%);
+      }
+    }
+    &-slider {
+      &-item {
+        .img-wrap {
+          height: 60px;
+          width: 100px;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {

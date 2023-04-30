@@ -1,4 +1,3 @@
-
 import React, {
   forwardRef,
   ButtonHTMLAttributes,
@@ -22,6 +21,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   riffle?: boolean;
   prefetch?: boolean;
+  passHref?: boolean;
 }
 // eslint-disable-next-line react/display-name
 const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {

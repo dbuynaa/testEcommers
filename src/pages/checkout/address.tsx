@@ -10,6 +10,7 @@ import FormItem from 'ui/FormItem';
 import Map from 'components/checkout/address/map';
 import Ebarimt from 'modules/checkout/Ebarimt';
 import type { AddressFormData } from 'modules/types';
+import AddressList from '../../modules/checkout/AddressList';
 
 const Address = () => {
   const router = useRouter();
@@ -106,6 +107,7 @@ const Address = () => {
             />
           </div>
           <Ebarimt />
+          <AddressList />
           <div className="col-md-4 col-12 px-2">
             <FormItem
               label="Хот/Aймаг"

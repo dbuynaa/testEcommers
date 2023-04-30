@@ -1,5 +1,3 @@
-
-
 import ReactSlider, { Settings } from 'react-slick';
 import ChevronRight from 'icons/ChevronRight';
 import ChevronLeft from 'icons/ChevronLeft';

@@ -9,6 +9,7 @@ import {
   PRODUCT_DETAIL,
   BRANCHES,
   VIDEOS,
+  BRANDS,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -41,6 +42,8 @@ export async function getVideos() {
 export const getNews = async () => await getPosts(NEWS);
 
 export const getBranches = async () => await getPosts(BRANCHES);
+
+export const getBrands = async () => await getPosts(BRANDS);
 
 export async function getPostById(id: string) {
   const apolloClient = getApolloClient();
