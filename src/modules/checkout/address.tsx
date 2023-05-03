@@ -61,7 +61,7 @@ const AddressContainer = () => {
   };
 
   return (
-    <Form args={formArgs} onSubmit={onSubmit}>
+    <Form args={formArgs} handleSubmit={onSubmit}>
       <div className="row px-3 order-address">
         <div className="col-md-6 col-12 px-2">
           <FormItem

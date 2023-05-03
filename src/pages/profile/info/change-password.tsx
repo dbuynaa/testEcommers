@@ -50,7 +50,7 @@ const ChangePassword = () => {
     toast.error('Нууц үг таарахгүй байна');
   };
   return (
-    <Form onSubmit={onSubmit} args={args} reset={reset}>
+    <Form handleSubmit={onSubmit} args={args} reset={reset}>
       <div className="row py-3 px-md-2">
         <div className="col-12 col-md-6 px-md-2">
           <FormItem

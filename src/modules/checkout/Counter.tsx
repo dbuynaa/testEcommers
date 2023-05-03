@@ -11,7 +11,7 @@ const Counter = ({ productId, count, remainder }: ItemBase) => {
   const { loading, handleUpdateCart: updateCart } = useHandleCart();
 
   const handleUpdateCart = (count) => {
-    if (remainder >= count) return updateCart({ productId, count });
+    if (remainder || 0 >= count) return updateCart({ productId, count });
     return toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
   };
 

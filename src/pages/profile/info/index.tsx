@@ -32,7 +32,7 @@ const Info = () => {
     editUser({ variables: { ...value, _id: currentUser?._id } });
 
   return (
-    <Form onSubmit={onSubmit} args={args}>
+    <Form handleSubmit={onSubmit} args={args}>
       <div className="row py-3 px-md-2">
         <div className="col-12 col-md-6 px-md-2">
           <FormItem name="firstName" label="Нэр" />

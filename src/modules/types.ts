@@ -16,7 +16,7 @@ export type IProduct = IProductBase & {
 export type ItemBase = {
   count: number;
   productId: string;
-  remainder: number;
+  remainder?: number;
 };
 
 export type IOrderItem = IProductBase & ItemBase;
@@ -29,7 +29,6 @@ export type IOrderItemResponse = IOrderItem & {
 export type ICartItem = IOrderItem & {
   productImgUrl?: string;
   name: string;
-  remainder: number;
 };
 
 export type AddressFormData = {

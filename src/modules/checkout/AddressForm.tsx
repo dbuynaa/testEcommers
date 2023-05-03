@@ -11,7 +11,7 @@ import { queries } from './graphql';
 import Loading from 'ui/Loading';
 import useHandleOrder from 'lib/useHandleOrder';
 import { useRouter } from 'next/router';
-import UserInfo  from 'components/checkout/address/UserInfo';
+import UserInfo from 'components/checkout/address/UserInfo';
 
 const AddressForm = () => {
   const router = useRouter();
@@ -85,7 +85,7 @@ const AddressForm = () => {
 
   return (
     <Form
-      onSubmit={onSubmit}
+      handleSubmit={onSubmit}
       className="order-address"
       args={{
         defaultValues: {
