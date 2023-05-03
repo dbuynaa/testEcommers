@@ -43,17 +43,6 @@
       right: -50px;
     }
   }
-  &-actions {
-    h4,
-    h5 {
-      font-weight: 800;
-      // color: $blue;
-    }
-  }
-
-  // &-description {
-  //   font-weight: 00;
-  // }
 
   .-controls {
     gap: 0.75rem;
@@ -199,6 +188,56 @@
     font-size: 32px;
     &-star {
       margin: 0 0.5rem !important;
+    }
+  }
+}
+
+.storepay {
+  &-modal {
+    width: 768px;
+    max-width: 97vw;
+    padding: 3rem;
+    text-align: center;
+    h6 {
+      font-weight: 300;
+    }
+    .app-store {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+  &-plan {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    &__item {
+      padding: 1rem;
+      width: 100%;
+      justify-content: flex-start;
+      svg {
+        font-size: 2.5rem;
+      }
+      h6 {
+        font-weight: 700;
+      }
+      .-svg {
+        position: relative;
+        > h6 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          svg {
+            font-size: 1.25rem;
+          }
+        }
+      }
+      .-text {
+        text-align: left;
+        span {
+          color: rgba(0, 0, 0, 0.3);
+        }
+      }
     }
   }
 }

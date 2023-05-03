@@ -7,7 +7,7 @@ import Empty from 'ui/Empty';
 import Layout from 'components/profile/layout';
 
 const Orders = () => {
-  const ORDER_STATUSES = ['new', 'doing', 'done', 'complete', 'reDoing'];
+  const ORDER_STATUSES = ['new', 'doing', 'done', 'complete', 'reDoing', 'pending'];
 
   const { currentUser } = useCurrentUser();
 

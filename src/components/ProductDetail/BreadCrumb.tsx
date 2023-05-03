@@ -1,14 +1,9 @@
 import Link from 'next/link';
+import { useDetailContext } from 'pages/products/[id]';
 
-const Breadcrumb = ({
-  categoryId,
-  name,
-  categories,
-}: {
-  categoryId: string;
-  name: string;
-  categories?: any;
-}) => {
+const Breadcrumb = () => {
+  const { categoryId, categories, name } = useDetailContext();
+
   const category =
     (categories || []).find(({ _id }: any) => _id === categoryId) || {};
 

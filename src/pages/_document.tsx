@@ -14,16 +14,6 @@ export default class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0, minimum-scale=1"
           />
           <link href="/images/logo.png" rel="shortcut icon" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="anonymous"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap"
-            rel="stylesheet"
-          ></link>
 
           <Partytown forward={['dataLayer.push']} />
           <script

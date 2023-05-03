@@ -5,6 +5,7 @@ import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';
 import 'react-toastify/dist/ReactToastify.css';
+import { Rubik } from 'next/font/google';
 
 type Props = {
   pageProps: any;
@@ -15,6 +16,9 @@ type Props = {
   footer: any;
 };
 
+// If loading a variable font, you don't need to specify the font weight
+const rubik = Rubik({ subsets: ['latin', 'cyrillic', 'cyrillic-ext'] });
+
 function MyApp({
   Component,
   pageProps,
@@ -24,9 +28,16 @@ function MyApp({
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
   return (
-    <Layout mainCategories={mainCategories} footer={footer}>
-      {getLayout(<Component {...pageProps} router={router} />)}
-    </Layout>
+    <>
+      <style jsx global>{`
+        html {
+          font-family: ${rubik.style.fontFamily};
+        }
+      `}</style>
+      <Layout mainCategories={mainCategories} footer={footer}>
+        {getLayout(<Component {...pageProps} router={router} />)}
+      </Layout>
+    </>
   );
 }
 

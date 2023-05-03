@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
+import dayjs from 'dayjs';
 
 const Product = ({
   _id,
@@ -9,8 +10,15 @@ const Product = ({
   unitPrice,
   onClick,
   attachment,
-}: IProduct & { onClick?: () => void; attachment: { url: string } }) => {
+  createdAt,
+}: IProduct & {
+  onClick?: () => void;
+  attachment: { url: string };
+  createdAt;
+}) => {
   const price = formatCurrency(unitPrice);
+
+  const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   return (
     <Link
@@ -28,7 +36,9 @@ const Product = ({
       <p className="product-name mb-2 mt-3">{name}</p>
       <div className="flex items-center justify-between">
         <div className="product-price">{price}</div>
-        <small className="product-badge badge sbt">New</small>
+        {diffInDays < 14 && (
+          <small className="product-badge badge sbt">New</small>
+        )}
       </div>
     </Link>
   );

@@ -1,12 +1,12 @@
-
-
 import { useState } from 'react';
 import Slider from 'react-slick';
 import Image from 'ui/Image';
 import ChevronRight from 'icons/ChevronRight';
 import ChevronLeft from 'icons/ChevronLeft';
+import { useDetailContext } from 'pages/products/[id]';
 
-const ImageGallery = ({ images }: any) => {
+const ImageGallery = () => {
+  const { images } = useDetailContext();
   const [nav1, setNav1] = useState<any>();
   const [nav2, setNav2] = useState<any>();
 

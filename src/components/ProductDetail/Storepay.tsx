@@ -1,0 +1,104 @@
+import FeaturedPayment from './FeaturedPayment';
+import Modal from 'ui/Modal';
+import Image from 'ui/Image';
+import Button from 'ui/Button';
+import StorepayIcon from 'icons/Storepay';
+import { useDetailContext } from 'pages/products/[id]';
+import Check from 'icons/Check';
+import Link from 'next/link';
+
+const Storepay = () => {
+  return (
+    <Modal
+      trigger={
+        <FeaturedPayment
+          name="StorePay"
+          image="/images/storepay.png"
+          description="Storepay үйлчилгээг ашиглан төлбөрөө 4 хуваан төлөх боломжтой."
+        />
+      }
+      contentClassName="storepay-modal"
+    >
+      <Image
+        src="/images/sp_logo.png"
+        width={225}
+        height={42}
+        alt=""
+        className="-logo"
+      />
+
+      <h6 className="py-md-5 py-4">
+        Tа хүссэн бүтээгдэхүүнээ ямар ч хүү, шимтгэлгүй 4 хуваан төлөх нөхцөлөөр
+        авах боломжтой
+      </h6>
+
+      <div className="storepay-plan">
+        <h6 className="mb-2">
+          <b>Тооцоолуур</b>
+        </h6>
+        <div className="row mx--2">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <PlanItem index={index + 1} key={index} />
+          ))}
+        </div>
+      </div>
+
+      <p className="py-md-5 py-4">
+        Tа Storepay эрхтэй бол 100,000₮-аас дээш бараа, бүтээгдэхүүнээ <br />{' '}
+        сагслан “Төлбөр төлөх” товч дарж төлбөрийн нөхцөлүүдээс <br/> “Storepay”-ийг
+        сонгон худалдан авалтаа хийгээрэй.
+      </p>
+      <div className="row">
+        <div className="flex justify-end items-center col-12 col-md-4 download">
+          <Link
+            href={'https://apps.apple.com/us/app/storepay/id1470947761'}
+            target="_blank"
+            className="me-2"
+          >
+            <Image src={'/images/gplay.png'} alt="" height={40} width={36} />
+          </Link>
+          <Link
+            href={
+              'https://play.google.com/store/apps/details?id=com.storepay&hl=en_US'
+            }
+            target="_blank"
+            className="ms-2"
+          >
+            <Image
+              src={'/images/app-store.png'}
+              alt=""
+              height={38}
+              width={38}
+              className="app-store"
+            />
+          </Link>
+        </div>
+        <p className="col-0 col-md-6 download-desc">
+          Storepay аппликейшнийг гар утсандаа <br /> татан авч эрхээ нээлгээрэй.
+        </p>
+      </div>
+    </Modal>
+  );
+};
+
+const dateList = ['Өнөөдөр', '15 дахь хоног', '30 дахь хоног', '45 дахь хоног'];
+
+const PlanItem = ({ index }) => {
+  const { unitPrice } = useDetailContext();
+  return (
+    <div className="col-12 col-md-6 p-2">
+      <Button className="storepay-plan__item" variant="slim" riffle={false}>
+        <div className="-svg">
+          <StorepayIcon step={index} />
+          <h6>{index === 4 ? <Check /> : index} </h6>
+        </div>
+        <div className="-text ps-2 ms-1">
+          <span>{dateList[index - 1]}</span>
+          <h6>{(unitPrice / 4).toLocaleString()} ₮</h6>
+        </div>
+      </Button>
+    </div>
+  );
+};
+
+export default Storepay;

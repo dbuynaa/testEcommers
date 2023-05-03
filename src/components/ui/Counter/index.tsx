@@ -2,8 +2,10 @@ import Button from 'ui/Button';
 import Input from 'ui/Input';
 import Minus from 'icons/Minus';
 import Plus from 'icons/Plus';
+import { useDetailContext } from 'pages/products/[id]';
 
 const Counter = ({ count, setCount }: { count: number; setCount: any }) => {
+  const { remainder } = useDetailContext();
   return (
     <div className="counter flex items-center px-1">
       <Button
@@ -26,6 +28,7 @@ const Counter = ({ count, setCount }: { count: number; setCount: any }) => {
         className="plus"
         variant="ghost"
         onClick={() => setCount((num: number) => num + 1)}
+        disabled={remainder < count + 1}
       >
         <Plus />
       </Button>

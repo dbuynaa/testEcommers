@@ -1,13 +1,10 @@
 import FeaturedPayment from './FeaturedPayment';
+import Storepay from './Storepay';
 
 const FeaturedPayments = () => {
   return (
     <>
-      <FeaturedPayment
-        name="StorePay"
-        image="/images/storepay.png"
-        description="Storepay үйлчилгээг ашиглан төлбөрөө 4 хуваан төлөх боломжтой."
-      />
+      <Storepay />
       <FeaturedPayment
         name="Tech Leasing"
         image="/images/techleasing.png"

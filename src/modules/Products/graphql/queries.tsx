@@ -23,6 +23,7 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
       ${commonFields}
       unitPrice
       remainder
+      createdAt
       attachment {
         url
       }

@@ -64,6 +64,42 @@
       border: 0;
     }
   }
+  .storepay {
+    &-modal {
+      padding: 1rem;
+      .-logo {
+        height: 35px;
+        width: 187px;
+        margin-top: 0.5rem;
+      }
+
+      h6 {
+        font-size: 1.15rem;
+      }
+      .download {
+        justify-content: center;
+        &-desc {
+          display: none;
+          visibility: hidden;
+        }
+      }
+    }
+    &-plan {
+      &__item {
+        padding: 0.75rem;
+        svg {
+          font-size: 2rem;
+        }
+        .-svg {
+          > h6 {
+            svg {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
   .products-header {
     .sbt.pe-2 {
       display: none;

@@ -5,9 +5,10 @@ import { useHandleCart, useItems } from 'modules/contextHooks';
 import { ICartItem, IProduct } from 'modules/types';
 import useHandleBuy from 'lib/useHandleBuy';
 import { toast } from 'react-toastify';
+import { useDetailContext } from 'pages/products/[id]';
 
-const Actions = (props: IProduct) => {
-  const { name, unitPrice, attachment, _id, remainder } = props;
+const Actions = () => {
+  const { name, unitPrice, attachment, _id, remainder } = useDetailContext();
   const [count, setCount] = useState<number>(1);
   const cart = useItems();
   const { handleBuy } = useHandleBuy();

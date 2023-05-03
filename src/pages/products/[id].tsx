@@ -14,6 +14,11 @@ import { getProductInfo } from 'lib/wp/posts';
 import { formatCurrency, readFile } from 'utils';
 import { NextSeo } from 'next-seo';
 import FeaturedPayments from 'components/ProductDetail/FeaturedPayments';
+import { createContext, useContext } from 'react';
+
+const DetailContext = createContext({} as any);
+
+export const useDetailContext = () => useContext(DetailContext);
 
 const Product = ({ detail, categories, wp }: any) => {
   const {
@@ -53,54 +58,53 @@ const Product = ({ detail, categories, wp }: any) => {
           ],
         }}
       />
-      <div className="container prDtl">
-        <Breadcrumb
-          categoryId={categoryId}
-          name={name}
-          categories={categories}
-        />
-        <div className="row pb-4">
-          <div className="col-12 col-md-6">
-            <ImageGallery
-              images={[readFile((attachment || {}).url), ...moreImage]}
-            />
-          </div>
-          <div className="col-12 col-md-6 px-md-5 prDtl-actions">
-            <h5>{name}</h5>
-            <div className="sbt text-mid-gray pb-3">
-              Бүтээгдэхүүний код: {code}
+      <DetailContext.Provider
+        value={{
+          ...detail,
+          categories,
+          images: [readFile((attachment || {}).url), ...moreImage],
+        }}
+      >
+        <div className="container prDtl">
+          <Breadcrumb />
+          <div className="row pb-4">
+            <div className="col-12 col-md-6">
+              <ImageGallery />
             </div>
-            <h4>{formatCurrency(unitPrice)}</h4>
-            <div className="-count text-mid-gray">
-              <b>{remainder || 0}</b> ширхэг бэлэн байна
-            </div>
+            <div className="col-12 col-md-6 px-md-5 prDtl-actions">
+              <h5>{name}</h5>
+              <div className="sbt text-mid-gray pb-3">
+                Бүтээгдэхүүний код: {code}
+              </div>
+              <h4>{formatCurrency(unitPrice)}</h4>
+              <div className="-count text-mid-gray">
+                <b>{remainder || 0}</b> ширхэг бэлэн байна
+              </div>
 
-            <div
-              dangerouslySetInnerHTML={{ __html: description }}
-              className="pt-4 prDtl-description"
-            />
-            <FeaturedPayments />
-            <Actions
-              {...detail}
-              productImgUrl={readFile((attachment || {}).url)}
-            />
+              <div
+                dangerouslySetInnerHTML={{ __html: description }}
+                className="pt-4 prDtl-description"
+              />
+              <FeaturedPayments />
+              <Actions />
+            </div>
           </div>
         </div>
-      </div>
-      <Tabs defaultValue="intro">
-        <TabsList className="container">
+        <Tabs defaultValue="intro">
+          <TabsList className="container">
+            {_id && (
+              <TabTrigger value="intro">
+                <div className="p-3">Дэлгэрэнгүй</div>
+              </TabTrigger>
+            )}
+          </TabsList>
           {_id && (
-            <TabTrigger value="intro">
-              <div className="p-3">Дэлгэрэнгүй</div>
-            </TabTrigger>
+            <TabsContent value="intro">
+              <Description categoryId={categoryId} wp={wp} />
+            </TabsContent>
           )}
-        </TabsList>
-        {_id && (
-          <TabsContent value="intro">
-            <Description categoryId={categoryId} wp={wp} />
-          </TabsContent>
-        )}
-      </Tabs>
+        </Tabs>
+      </DetailContext.Provider>
     </>
   );
 };
