@@ -8,6 +8,7 @@ const getProductDetail: (id: string) => Promise<any> = async (id) => {
     const { data } = await apolloClient.query({
       query: queries.productDetail,
       variables: { id },
+      fetchPolicy: 'network-only',
     });
 
     const productDetail = (data || {}).poscProductDetail || {};

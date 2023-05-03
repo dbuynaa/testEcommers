@@ -8,7 +8,7 @@ import Tabs, {
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import getCategories from 'lib/getCategories';
 import { getProductInfo } from 'lib/wp/posts';
 import { formatCurrency, readFile } from 'utils';
@@ -109,7 +109,7 @@ const Product = ({ detail, categories, wp }: any) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = (params || {}).id + '';
   const detail = await getProductDetail(id);
   const { categories } = await getCategories();
@@ -120,7 +120,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       categories,
       wp: post,
     },
-    revalidate: 60,
   };
 };
 
