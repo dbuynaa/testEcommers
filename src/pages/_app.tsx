@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from 'components/layout';
+import 'nprogress/nprogress.css';
 import 'styles/styles.min.css';
 import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';
 import 'react-toastify/dist/ReactToastify.css';
 import { Rubik } from 'next/font/google';
+import NProgress from 'nprogress';
+
+import { Router } from 'next/router';
 
 type Props = {
   pageProps: any;
@@ -27,6 +31,25 @@ function MyApp({
   footer,
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
+
+  useEffect(() => {
+    const start = () => {
+      NProgress.start();
+    };
+    const stop = () => {
+      NProgress.done();
+    };
+
+    Router.events.on('routeChangeStart', start);
+    Router.events.on('routeChangeComplete', stop);
+    Router.events.on('routeChangeError', stop);
+
+    return () => {
+      Router.events.off('routeChangeStart', start);
+      Router.events.off('routeChangeComplete', stop);
+      Router.events.off('routeChangeError', stop);
+    };
+  }, []);
   return (
     <>
       <style jsx global>{`
