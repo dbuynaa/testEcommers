@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { createContext, useContextSelector } from 'use-context-selector';
 import { getLocal, setLocal } from 'utils';
-import type { ICartItem, IProductBase, IOrder } from './types';
+import type { ICartItem, IOrder } from './types';
 
 export interface State {
   cart: ICartItem[];

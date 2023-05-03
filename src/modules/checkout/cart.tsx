@@ -1,4 +1,4 @@
-import OrderItem from 'components/checkout/item';
+import OrderItem from 'modules/checkout/OrderItem';
 import { useItems } from 'modules/contextHooks';
 
 const CartContainer = () => {

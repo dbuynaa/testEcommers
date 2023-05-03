@@ -1,14 +1,14 @@
-
 import { ICartItem } from 'modules/types';
 import { formatCurrency } from 'utils';
 import { useItems, useItemsTotal } from 'modules/contextHooks';
+import clsx from 'clsx';
 
-const Summary = () => {
+const Summary = ({ className }: { className?: string }) => {
   const cart = useItems();
   const total = useItemsTotal();
 
   return (
-    <div className="sum mb-3">
+    <div className={clsx('sum mb-3', className)}>
       <div className="order-info p-md-3 rounded">
         {cart.map(({ _id, name, count, unitPrice }: ICartItem) => (
           <div className="row mb-1 " key={_id}>

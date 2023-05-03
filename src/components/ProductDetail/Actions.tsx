@@ -29,7 +29,7 @@ const Actions = (props: IProduct) => {
     <div className="row items-center -controls pt-5">
       <Counter count={count} setCount={setCount} />
       <Button variant="slim" onClick={handleAdd} loading={loading}>
-        Сагсанд нэмэх
+        {!loading && 'Сагсанд нэмэх'}
       </Button>
       <Button
         onClick={() => {

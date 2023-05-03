@@ -160,12 +160,35 @@ const invoices = `
   }
 `;
 
+const orderItemDetail = gql`
+  query OrderItemDetail($id: String) {
+    poscProductDetail(_id: $id) {
+      remainder
+      category {
+        name
+      }
+    }
+  }
+`;
+
+const addresses = gql`
+  query Addresses {
+    clientPortalCurrentUser {
+      customer {
+        addresses
+      }
+    }
+  }
+`;
+
 const queries = {
+  orderItemDetail,
   lastOrder,
   ordersCheckCompany,
   fullOrders,
   orderDetail,
   invoices,
+  addresses
 };
 
 export default queries;

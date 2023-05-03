@@ -156,7 +156,6 @@
     }
   }
   &-address {
-    margin: 0 -0.5rem;
     input.inline {
       width: auto;
     }
@@ -167,16 +166,23 @@
         accent-color: $blue;
       }
     }
-    .-ebarimt {
-      background: $bg-gray;
+    .order-ebarimt {
       transition: height 0.3s ease-in-out;
+      border: 1px solid rgba($color: #000000, $alpha: 0.12);
+      border-radius: 0.5rem;
+      &-company {
+        padding: 1rem;
+      }
+      &-form {
+        overflow: hidden;
+      }
       label {
         cursor: pointer;
         margin-bottom: 0;
       }
       .-load {
         position: absolute;
-        background-color: rgba($color: #fff, $alpha: 0.4);
+        background-color: rgba($color: #fff, $alpha: 0.3);
       }
     }
     .-disabled {
@@ -240,4 +246,28 @@
   }
 }
 
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .-empty {
+    width: 160px;
+    height: 160px;
+  }
+}
 
+.address {
+  &-item {
+    width: 100%;
+    border: 1px solid rgba($color: #000, $alpha: 0.12);
+    border-radius: 0.5rem;
+    padding: 0.875rem;
+    transition: all 0.3s;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #000;
+  }
+  &-add {
+    overflow: hidden;
+  }
+}

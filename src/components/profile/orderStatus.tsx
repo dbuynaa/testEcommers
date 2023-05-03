@@ -5,6 +5,7 @@ const obj = {
   paid: 'Төлбөр төлөгдсөн', // paidDate
   doing: 'Хүргэлтэнд гарсан', // done || doing
   complete: 'Хүргэгдсэн', // complete
+  pending: 'Xүлээгдэж байна'
 };
 
 const OrderStatus = ({

@@ -12,8 +12,7 @@ import Layout from 'components/profile/layout';
 import { useRouter } from 'next/router';
 import OrderDetailLayout from 'components/profile/OrderDetailLayout';
 import { readFile } from 'utils';
-import Button from 'ui/Button';
-import OrderEnd from 'components/profile/OrderEnd';
+import OrderEnd from 'modules/checkout/OrderEnd';
 
 const Page = () => {
   const router = useRouter();
@@ -71,22 +70,19 @@ const Page = () => {
       <div className="row items-center order-detail-actions pt-4">
         <OrderStatus status={status} paidDate={paidDate} />
         <div className="row items-center">
-          {!paidDate && (
-            <PaymentBtn
-              totalAmount={totalAmount}
-              orderId={id + ''}
-              phone={phone}
-            />
-          )}
-          {isSettled ? (
-            <Ebarimt putResponses={putResponses} />
-          ) : (
-            <Button className="-pay-btn ms-3" variant="slim">
-              Зээлээр худалдан авах
-            </Button>
+          {isSettled && <Ebarimt putResponses={putResponses} />}
+          {status !== 'pending' && !isSettled && (
+            <>
+              <PaymentBtn
+                totalAmount={totalAmount}
+                orderId={id + ''}
+                phone={phone}
+              />
+
+              <OrderEnd />
+            </>
           )}
         </div>
-        {!isSettled && <OrderEnd /> }
       </div>
 
       {(province || district || street || details) && (

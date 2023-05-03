@@ -1,21 +1,18 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
-import { useState, useEffect } from 'react';
-import Input from 'ui/Input';
-import { useFormContext, useWatch } from 'react-hook-form';
-import clsx from 'clsx';
-import FormItem from 'ui/FormItem';
-import { useLazyQuery, gql } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import Checkbox from 'ui/Checkbox';
 import { queries } from './graphql';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import FormItem from 'ui/FormItem';
 import LoadingDots from 'ui/LoadingDots';
-import { useCurrentOrder } from 'modules/appContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Ebarimt = () => {
   const { control, setValue } = useFormContext();
-  const { currentOrder } = useCurrentOrder();
+
+  const isCompany = useWatch({ control, name: 'isCompany' });
   const registerNumber = useWatch({ control, name: 'registerNumber' });
-  const [expand, setExpand] = useState(!!(currentOrder || {}).registerNumber);
 
   const [checkRegister, { loading }] = useLazyQuery(
     gql(queries.ordersCheckCompany),
@@ -26,7 +23,7 @@ const Ebarimt = () => {
       onCompleted(data) {
         const { found, name } = (data || {}).ordersCheckCompany || {};
         if (found) {
-          setValue('companyName', name);
+          setValue('companyName', name || 'Demo company');
         }
       },
     }
@@ -37,52 +34,59 @@ const Ebarimt = () => {
     if ((registerNumber || '').length > 6) {
       checkRegister({ variables: { registerNumber } });
     }
-  }, [registerNumber]);
+  }, [checkRegister, registerNumber, setValue]);
 
   return (
-    <div
-      className={clsx(
-        '-ebarimt rounded col-12 mb-4 relative',
-        expand && 'expand'
-      )}
-    >
-      <label className="col-12 flex items-center p-3">
-        <Input
-          type="checkbox"
-          className="inline"
-          onChange={() => {
-            setExpand((prev) => !prev);
-          }}
-          checked={expand}
-        />
-        <small>
-          <b className="ps-2 text-blue">И-Баримт албан байгууллагаар авах</b>
-        </small>
-      </label>
-      {expand && (
-        <div className="row px-2 ">
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Байгууллагын регистрийн дугаар"
-              placeholder="Байгууллагын регистрийн дугаар"
-              name="registerNumber"
+    <div className="order-ebarimt">
+      <Controller
+        name="isCompany"
+        control={control}
+        defaultValue={false}
+        render={({ field }) => (
+          <label
+            htmlFor="isCompany"
+            className="order-ebarimt-company row items-center"
+          >
+            <Checkbox
+              checked={field.value}
+              onCheckedChange={(isChecked) => field.onChange(isChecked)}
+              id="isCompany"
             />
-          </div>
-          <div className="col-md-6 col-12 px-2 -disabled">
-            <FormItem
-              label="Байгууллагын нэр"
-              placeholder="Байгууллагын нэр"
-              name="companyName"
-              disabled
-            />
-          </div>
-          {loading && (
-            <div className="-load flex items-center justify-center inset-0">
-              <LoadingDots />
+            <span className="ps-3">И-Баримт албан байгууллагаар авах</span>
+          </label>
+        )}
+      />
+      <AnimatePresence>
+        {isCompany && (
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: 'auto' }}
+            exit={{ height: 0 }}
+            className="px-2 row order-ebarimt-form"
+          >
+            <div className="col-12 col-md-6 px-2">
+              <FormItem
+                label="Байгууллагын регистрийн дугаар"
+                name="registerNumber"
+                placeholder="Байгууллагын регистрийн дугаар"
+              />
             </div>
-          )}
-        </div>
-      )}
+            <div className="col-12 col-md-6 px-2 -disabled">
+              <FormItem
+                label="Байгууллагын нэр"
+                name="companyName"
+                placeholder="Байгууллагын нэр"
+                disabled
+              />
+              {loading && (
+                <div className="-load flex items-center justify-center inset-0">
+                  <LoadingDots />
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

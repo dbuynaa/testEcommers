@@ -5,9 +5,15 @@ import Plus from 'icons/Plus';
 import LoadingDots from 'ui/LoadingDots';
 import { useHandleCart } from 'modules/contextHooks';
 import { ItemBase } from 'modules/types';
+import { toast } from 'react-toastify';
 
-const Counter = ({ productId, count }: ItemBase) => {
-  const { loading, handleUpdateCart } = useHandleCart();
+const Counter = ({ productId, count, remainder }: ItemBase) => {
+  const { loading, handleUpdateCart: updateCart } = useHandleCart();
+
+  const handleUpdateCart = (count) => {
+    if (remainder >= count) return updateCart({ productId, count });
+    return toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
+  };
 
   return (
     <>
@@ -16,22 +22,20 @@ const Counter = ({ productId, count }: ItemBase) => {
           className="minus"
           variant="ghost"
           disabled={loading}
-          onClick={() => handleUpdateCart({ productId, count: count - 1 })}
+          onClick={() => handleUpdateCart(count - 1)}
         >
           <Minus />
         </Button>
         <Input
           className="count-wrap text-center"
           value={count}
-          onChange={(e) =>
-            handleUpdateCart({ productId, count: +e.target.value })
-          }
+          onChange={(e) => handleUpdateCart(+e.target.value)}
         />
         <Button
           className="plus"
           variant="ghost"
           disabled={loading}
-          onClick={() => handleUpdateCart({ productId, count: count + 1 })}
+          onClick={() => handleUpdateCart(count + 1)}
         >
           <Plus />
         </Button>

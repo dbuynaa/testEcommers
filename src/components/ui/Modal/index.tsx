@@ -11,7 +11,7 @@ const Modal = ({
   contentClassName,
   ...rest
 }: DialogPrimitive.DialogProps & {
-  trigger: ReactNode;
+  trigger?: ReactNode;
   contentClassName?: string;
 }) => {
   return (

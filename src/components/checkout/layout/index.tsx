@@ -1,22 +1,23 @@
 import OrderSteps from 'components/checkout/steps';
-import Summary from 'components/checkout/summary';
-import ScrollWrapper from 'components/header/Wrapper';
 import PrivateRoute from 'modules/auth/privateRoute';
 
-const Layout = ({ children, action }: any) => {
+const Layout = ({
+  children,
+  title,
+}: {
+  children: React.ReactNode;
+  action?: React.ReactNode;
+  title?: string;
+  summaryClass?: string;
+}) => {
   return (
-    <div className="container  min-height-screen">
-      <OrderSteps />
-      <div className="row">
-        <div className="col-md-8 col-12 mb-3">{children}</div>
-        <div className="col-md-4 col-12">
-          <ScrollWrapper className="mx-md-3 order-summary scroll">
-            <Summary />
-            {action}
-          </ScrollWrapper>
-        </div>
+    <PrivateRoute>
+      <div className="container  min-height-screen">
+        <OrderSteps />
+        {title && <h5 className="pb-3">{title}</h5>}
+        {children}
       </div>
-    </div>
+    </PrivateRoute>
   );
 };
 

@@ -1,5 +1,3 @@
-
-
 import clsx from 'clsx';
 import Check from 'icons/Check';
 import { usePathname } from 'next/navigation';
@@ -45,10 +43,6 @@ function OrderSteps() {
           </div>
         ))}
       </div>
-      <h6 className=" row">
-        <b className="col-8 p-3">{steps[current as keyof typeof steps]}</b>
-        <b className="col-4 p-3">Хураангуй</b>
-      </h6>
     </>
   );
 }

@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { FormProvider, useForm, FieldValues } from 'react-hook-form';
-import { ReactNode, useEffect } from 'react';
+import { FormHTMLAttributes, ReactNode, useEffect } from 'react';
 
 type IForm = {
   children: ReactNode;
   args?: FieldValues;
   onSubmit: (values: any) => void;
   reset?: boolean;
-};
+} & FormHTMLAttributes<HTMLFormElement>;
 
-const Form = ({ children, args, onSubmit, reset }: IForm) => {
+const Form = ({ children, args, onSubmit, reset, ...rest }: IForm) => {
   const methods = useForm(args);
 
   useEffect(() => {
@@ -18,7 +18,9 @@ const Form = ({ children, args, onSubmit, reset }: IForm) => {
   }, [reset]);
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+      <form onSubmit={methods.handleSubmit(onSubmit)} {...rest}>
+        {children}
+      </form>
     </FormProvider>
   );
 };
