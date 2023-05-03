@@ -5,7 +5,7 @@ import { useHandleCart, useItems } from 'modules/contextHooks';
 import { ICartItem, IProduct } from 'modules/types';
 import useHandleBuy from 'lib/useHandleBuy';
 import { toast } from 'react-toastify';
-import { useDetailContext } from 'pages/products/[id]';
+import { useDetailContext } from './Context';
 
 const Actions = () => {
   const { name, unitPrice, attachment, _id, remainder } = useDetailContext();

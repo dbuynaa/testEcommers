@@ -2,7 +2,7 @@ import Button from 'ui/Button';
 import Input from 'ui/Input';
 import Minus from 'icons/Minus';
 import Plus from 'icons/Plus';
-import { useDetailContext } from 'pages/products/[id]';
+import { useDetailContext } from 'components/ProductDetail/Context';
 
 const Counter = ({ count, setCount }: { count: number; setCount: any }) => {
   const { remainder } = useDetailContext();

@@ -1,9 +1,13 @@
 import { useRouter } from 'next/router';
 import Video from './Video';
 import ProductsSlider from 'modules/Products/Slider';
+import { useDetailContext } from './Context';
 
-const Description = ({ wp, categoryId }: { wp: any; categoryId: string }) => {
+const Description = () => {
   const router = useRouter();
+  
+  const { wp, categoryId } = useDetailContext();
+
   const { content, productInfo } = wp || {};
 
   const { youtubeUrl, description } = productInfo || {};

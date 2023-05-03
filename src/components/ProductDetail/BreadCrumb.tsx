@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useDetailContext } from 'pages/products/[id]';
+import { useDetailContext } from 'components/ProductDetail/Context';
 
 const Breadcrumb = () => {
   const { categoryId, categories, name } = useDetailContext();

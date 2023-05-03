@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import Image from 'ui/Image';
 import ChevronRight from 'icons/ChevronRight';
 import ChevronLeft from 'icons/ChevronLeft';
-import { useDetailContext } from 'pages/products/[id]';
+import { useDetailContext } from './Context';
 
 const ImageGallery = () => {
   const { images } = useDetailContext();
