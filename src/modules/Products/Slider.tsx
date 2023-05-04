@@ -38,7 +38,7 @@ const ProductsSlider = ({
         settings: {
           arrows: false,
           swipeToSlide: true,
-          slidesToShow: 1.05,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },

@@ -13,7 +13,6 @@ const NavigationBar = () => {
       <NavItem text="Ангилал" icon={<Bars />} href="/categories" />
       <NavItem text="Хайх" icon={<Magnify />} href="/search" />
       <NavItem text="Technews" icon={<Book />} href="/news" />
-      <NavItem text="Профайл" icon={<UserV />} href="/profile" />
       <div style={{ width: '5rem' }}></div>
     </ScrollWrapper>
   );

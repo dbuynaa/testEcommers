@@ -42,6 +42,7 @@ footer {
     overflow: visible;
     width: 5rem;
     position: relative;
+    flex-direction: column;
     svg {
       font-size: 1.75rem;
     }
