@@ -6,7 +6,7 @@ import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';
 import 'react-toastify/dist/ReactToastify.css';
-import { Rubik } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import NProgress from 'nprogress';
 
 import { Router } from 'next/router';
@@ -21,7 +21,7 @@ type Props = {
 };
 
 // If loading a variable font, you don't need to specify the font weight
-const rubik = Rubik({ subsets: ['latin', 'cyrillic', 'cyrillic-ext'] });
+const open_sans = Open_Sans({ subsets: ['latin', 'cyrillic', 'cyrillic-ext'] });
 
 function MyApp({
   Component,
@@ -54,7 +54,7 @@ function MyApp({
     <>
       <style jsx global>{`
         html {
-          font-family: ${rubik.style.fontFamily};
+          font-family: ${open_sans.style.fontFamily};
         }
       `}</style>
       <Layout mainCategories={mainCategories} footer={footer}>
