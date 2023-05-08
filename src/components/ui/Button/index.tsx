@@ -22,6 +22,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   riffle?: boolean;
   prefetch?: boolean;
   passHref?: boolean;
+  target?: string;
 }
 // eslint-disable-next-line react/display-name
 const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {

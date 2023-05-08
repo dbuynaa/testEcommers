@@ -4,7 +4,7 @@ import type { GetStaticProps } from 'next';
 
 const Branches = ({ posts }) => {
   return (
-    <div className="py-2 py-md-3 px-3 px-md-4">
+    <div className="py-2 py-md-3 container">
       {posts.map((post, index) => (
         <Branch key={index} {...post} />
       ))}

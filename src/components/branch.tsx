@@ -6,12 +6,12 @@ import Calling from 'icons/Calling';
 const Branch = ({ title, branchInfo, content, featuredImage }) => {
   return (
     <div className="row branch">
-      <div className="col-12 col-md-3 p-md-3 ">
+      <div className="col-12 col-md-3 ">
         <div className="img-wrap">
           <Image alt="" src={(featuredImage || {}).sourceUrl} />
         </div>
       </div>
-      <div className="col-12 col-md-6 branch-content">
+      <div className="col-12 col-md-6 branch-content p-3">
         <h6>
           <b>{title}</b>
         </h6>

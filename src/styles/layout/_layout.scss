@@ -3,7 +3,6 @@ footer {
   .-content {
     background-color: $bg-primary;
     color: #fff;
-    min-height: 320px;
 
     .container {
       position: relative;
@@ -16,15 +15,18 @@ footer {
 
   a {
     display: block;
-    &:not(:last-child) {
-      margin-bottom: 1.25rem;
-    }
   }
   .btn.naked {
     padding: 0.5rem;
     border-radius: 50%;
     background: #fff;
-    font-size: 1.15rem;
+    font-size: 0.875rem;
+    svg {
+      min-width: 0.875rem;
+    }
+  }
+  .footer-title {
+    text-transform: uppercase;
   }
 }
 .navbar {

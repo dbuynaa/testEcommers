@@ -7,12 +7,80 @@ import Marker from 'icons/Marker';
 import Facebook from 'icons/Facebook';
 import Instagram from '../icons/Instagram';
 import { useRouter } from 'next/router';
+import { isBlank } from 'utils';
+import clsx from 'clsx';
+
+const FooterTitle = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => <b className={clsx('footer-title sbt block', className)}>{children}</b>;
+
+const Col = ({
+  children,
+  title,
+  titleClass = 'pb-4',
+}: {
+  children: React.ReactNode;
+  title: string;
+  titleClass?: string;
+}) => (
+  <div className="col-12 col-md-3 pb-3">
+    <FooterTitle className={titleClass}>{title}</FooterTitle>
+    {children}
+  </div>
+);
+
+const FooterLink = ({
+  href,
+  children,
+  icon,
+}: {
+  href: string;
+  children?: React.ReactNode;
+  icon?: React.ReactNode;
+}) => {
+  if (icon && !children)
+    return (
+      <Button
+        variant="naked"
+        className="text-blue me-3"
+        href={href}
+        Component={Link}
+        target="_blank"
+      >
+        {icon}
+      </Button>
+    );
+
+  if (icon)
+    return (
+      <Link
+        href={href}
+        target={isBlank(href)}
+        className="flex items-center mb-2 sbt"
+      >
+        <Button variant="naked" className="text-blue me-2">
+          {icon}
+        </Button>
+        <span>{children}</span>
+      </Link>
+    );
+
+  return (
+    <Link href={href} target={isBlank(href)} className="sbt pb-2 mb-1">
+      {children}
+    </Link>
+  );
+};
 
 const Footer = ({ footer }: any) => {
   const { phone, mail, map, facebook, instagram } = footer?.contact || {};
   const router = useRouter();
 
-  if(router.asPath.includes('auth')) return null
+  if (router.asPath.includes('auth')) return null;
 
   return (
     <footer>
@@ -24,67 +92,50 @@ const Footer = ({ footer }: any) => {
             alt="techstore footer"
           />
         )}
-        <div className="container py-5 relative">
+        <div className="container pt-4 pb-2 relative">
           <div className="row">
-            <div className="col-12 col-md-3 pb-3">
-              <Link href="/about">Бидний тухай</Link>
-              <Link href="/terms-of-service">Үйлчилгээний нөхцөл</Link>
-              <Link
-                href="https://www.zangia.mn/company/JC-electronics"
-                target="_blank"
-              >
+            <Col title="Бидний тухай">
+              <FooterLink href="/about">Бидний тухай</FooterLink>
+
+              <FooterLink href="https://www.zangia.mn/company/JC-electronics">
                 Ажлын байр
-              </Link>
-              <Link href="/branches">Салбарууд</Link>
-            </div>
-            <div className="col-12 col-md-3">
-              <Link href={'mailto: ' + mail} className="flex items-center">
-                <Button variant="naked" className="text-blue me-3">
-                  <Mail />
-                </Button>
-                <span>{mail}</span>
-              </Link>
-              <Link href={'tel: ' + phone} className="flex items-center ">
-                <Button variant="naked" className="text-blue me-3">
-                  <Phone />
-                </Button>
-                <span>{(phone || '').split('').join('')}</span>
-              </Link>
-              <Link
-                href={facebook}
-                className="flex items-center"
-                target="_blank"
-              >
-                <Button variant="naked" className="text-blue me-3">
-                  <Facebook />
-                </Button>
-                <span>TechStore</span>
-              </Link>
-              <Link
-                href={instagram}
-                className="flex items-center pb-3"
-                target="_blank"
-              >
-                <Button variant="naked" className="text-blue me-3">
-                  <Instagram />
-                </Button>
-                <span>@techstoremongolia</span>
-              </Link>
-            </div>
-            <div className="col-12 col-md-3">
-              <Link
-                className="flex items-start"
-                href={map || ''}
-                target="_blank"
-              >
-                <Button variant="naked" className="text-blue me-3">
-                  <Marker />
-                </Button>
+              </FooterLink>
+              <FooterLink href="/branches">Салбарууд</FooterLink>
+            </Col>
+            <Col title="ТУСЛАМЖ">
+              <FooterLink href="/terms-of-service">
+                Үйлчилгээний нөхцөл
+              </FooterLink>
+              <FooterLink href="/terms-of-service">
+                Нууцлалын бодлого
+              </FooterLink>
+            </Col>
+            <Col titleClass="pb-3" title="ХОЛБОО БАРИХ">
+              <FooterLink href={'mailto: ' + mail} icon={<Mail />}>
+                {mail}
+              </FooterLink>
+              <FooterLink href={'tel: ' + phone} icon={<Phone />}>
+                {(phone || '').toString()}
+              </FooterLink>
+              <FooterTitle className="py-3 mb-1">БИДНИЙГ ДАГААРАЙ</FooterTitle>
+              <div className="flex items-center pb-2">
+                <FooterLink href={facebook} icon={<Facebook />} />
+                <FooterLink href={instagram} icon={<Instagram />} />
+              </div>
+            </Col>
+            <Col title="ХАЯГ" titleClass="pb-3">
+              <FooterLink href={map || ''} icon={<Marker />}>
                 <div
                   dangerouslySetInnerHTML={{ __html: footer?.content || '' }}
                 />
-              </Link>
-            </div>
+              </FooterLink>
+              <div className="pt-1"></div>
+              <FooterTitle className="pt-4 pb-3">ЦАГИЙН ХУВААРЬ</FooterTitle>
+              <div className="sbt">
+                Даваа-Баасан: 09:00-20:00
+                <br /> Бямба-Ням: 10:00-18:00
+              </div>
+            </Col>
           </div>
         </div>
       </div>

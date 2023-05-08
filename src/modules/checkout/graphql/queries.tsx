@@ -1,5 +1,21 @@
 import { gql } from '@apollo/client';
 
+export const orderItemFields = `
+    _id
+    unitPrice
+    orderId
+    productName
+    count
+    productId
+    isPackage
+    isTake
+    status
+    productImgUrl
+    discountAmount
+    discountPercent
+    bonusCount
+`;
+
 export const lastOrder = gql`
   query LastOrder(
     $customerId: String
@@ -22,17 +38,7 @@ export const lastOrder = gql`
       totalAmount
       mobileAmount
       items {
-        _id
-        count
-        discountAmount
-        discountPercent
-        isPackage
-        isTake
-        orderId
-        productId
-        productImgUrl
-        productName
-        unitPrice
+        ${orderItemFields}
       }
     }
   }
@@ -86,24 +92,6 @@ export const orderFields = `
   origin
   type
   deliveryInfo
-`;
-
-export const orderItemFields = `
-
-    _id
-    unitPrice
-    orderId
-    productName
-    count
-    productId
-    isPackage
-    isTake
-    status
-    productImgUrl
-    discountAmount
-    discountPercent
-    bonusCount
-
 `;
 
 const customerFields = `
@@ -188,7 +176,7 @@ const queries = {
   fullOrders,
   orderDetail,
   invoices,
-  addresses
+  addresses,
 };
 
 export default queries;

@@ -68,12 +68,12 @@
 }
 
 .container {
-  max-width: 1600px;
+  max-width: 1400px;
   width: 100%;
 
   margin: auto;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   &.c-xl {
     max-width: 1216px;
   }
