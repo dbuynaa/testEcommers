@@ -10,9 +10,6 @@
     .logo {
       height: 2.5rem;
     }
-    .profile-btn.btn {
-      padding: 0.5rem 0;
-    }
   }
   .tabs {
     &-trigger.btn.ghost {
@@ -156,7 +153,7 @@
     }
   }
   .header {
-    height: 5rem;
+    height: 3.75rem;
     &.down {
       top: -6rem;
     }
@@ -170,7 +167,7 @@
     }
   }
   .layout {
-    padding-top: 5rem;
+    padding-top: 3.75rem;
   }
   .login {
     & > img {
