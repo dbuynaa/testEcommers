@@ -6,9 +6,13 @@ import Phone from 'icons/ThinPhone';
 import Marker from 'icons/Marker';
 import Facebook from 'icons/Facebook';
 import Instagram from '../icons/Instagram';
+import { useRouter } from 'next/router';
 
 const Footer = ({ footer }: any) => {
   const { phone, mail, map, facebook, instagram } = footer?.contact || {};
+  const router = useRouter();
+
+  if(router.asPath.includes('auth')) return null
 
   return (
     <footer>
@@ -20,9 +24,9 @@ const Footer = ({ footer }: any) => {
             alt="techstore footer"
           />
         )}
-        <div className="container c-xl py-5 relative">
+        <div className="container py-5 relative">
           <div className="row">
-            <div className="col-12 col-md-4 pb-3">
+            <div className="col-12 col-md-3 pb-3">
               <Link href="/about">Бидний тухай</Link>
               <Link href="/terms-of-service">Үйлчилгээний нөхцөл</Link>
               <Link
@@ -33,7 +37,7 @@ const Footer = ({ footer }: any) => {
               </Link>
               <Link href="/branches">Салбарууд</Link>
             </div>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-md-3">
               <Link href={'mailto: ' + mail} className="flex items-center">
                 <Button variant="naked" className="text-blue me-3">
                   <Mail />
@@ -67,7 +71,7 @@ const Footer = ({ footer }: any) => {
                 <span>@techstoremongolia</span>
               </Link>
             </div>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-md-3">
               <Link
                 className="flex items-start"
                 href={map || ''}
@@ -84,7 +88,7 @@ const Footer = ({ footer }: any) => {
           </div>
         </div>
       </div>
-      <div className="-author container c-xl row justify-between p-3">
+      <div className="-author container row justify-between p-2">
         Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}
         <span>Techstore - Технологийн дэлгүүр</span>
       </div>

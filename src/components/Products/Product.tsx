@@ -22,7 +22,7 @@ const Product = ({
 
   return (
     <Link
-      className="product"
+      className="product text-center"
       href={{ pathname: '/products/[id]', query: { id: _id } }}
       onClick={onClick}
     >
@@ -31,15 +31,14 @@ const Product = ({
           src={readFile((attachment || {}).url || '')}
           alt=""
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
+          contain
         />
       </div>
-      <p className="product-name mb-2 mt-3">{name}</p>
-      <div className="flex items-center justify-between">
-        <div className="product-price">{price}</div>
-        {diffInDays < 14 && (
-          <small className="product-badge badge sbt">New</small>
-        )}
-      </div>
+      <p className="product-name mb-1 mt-3">{name}</p>
+      <div className="product-price">{price}</div>
+      {diffInDays < 140 && (
+        <small className="product-badge badge sbt">New</small>
+      )}
     </Link>
   );
 };

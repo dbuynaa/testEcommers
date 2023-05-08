@@ -1,23 +1,29 @@
 .product {
   position: relative;
   display: block;
-  color: #000;
+  color: $bg-primary;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  background: $bg-gray;
+  border-radius: 1.25rem;
+  padding: 1rem 0rem 1.5rem;
+  filter: drop-shadow(1 px 1px 2px rgba(0, 0, 0, 0.25));
   * {
     transition: inherit;
   }
   .img-wrap {
-    aspect-ratio: 1.1;
-    background: rgb(250, 250, 250);
-    img {
-      object-fit: contain;
+    max-width: 300px;
+    margin: auto;
+    &::before {
+      padding-bottom: 100%;
     }
+    overflow: hidden;
+    border-radius: 1rem;
+    background: inherit;
   }
   &-name {
-    font-weight: 600;
-    color: $blue;
     font-size: 1rem;
+    font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -26,18 +32,18 @@
   }
 
   .product-badge {
-    position: static;
     padding: 4px 12px;
     height: auto;
     transform: none;
     border: 0;
     border-radius: 0.25rem;
     color: #fff;
-    z-index: 1;
+    top: 1.25rem;
+    right: 1.25rem; 
+    border-radius: 0.5rem;
     background-color: $dark-green;
   }
   &-price {
-    color: $blue;
-    font-weight: 600;
+    font-weight: 700;
   }
 }

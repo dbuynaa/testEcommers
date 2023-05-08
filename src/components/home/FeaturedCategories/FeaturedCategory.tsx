@@ -4,7 +4,7 @@ import { WpPost } from 'lib/wp/posts';
 
 const FeaturedCategory = ({ title, featuredImage, custom }: WpPost) => {
   return (
-    <Link className="col-6 col-md-2 text-center p-4" href={custom.link}>
+    <Link className="col-4 col-md-2 text-center p-md-3 -item" href={custom.link}>
       <div className="img-wrap ratio ratio1x1">
         <Image
           src={featuredImage?.sourceUrl || ''}
@@ -14,7 +14,7 @@ const FeaturedCategory = ({ title, featuredImage, custom }: WpPost) => {
           20vw"'
         />
       </div>
-      <big className="text-black">{title}</big>
+      <p className="-item-title">{title}</p>
     </Link>
   );
 };

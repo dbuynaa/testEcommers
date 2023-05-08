@@ -43,7 +43,7 @@ const Select = ({ placeholder, children, ...rest }: IProps & SelectProps) => {
         <Trigger className="select-trigger" aria-label="Food">
           <Value placeholder={placeholder} />
           <SelectIcon className="select-icon">
-            <ChevronUp degree={180} />
+            <ChevronUp degree={0} />
           </SelectIcon>
         </Trigger>
         <Portal>
@@ -55,7 +55,7 @@ const Select = ({ placeholder, children, ...rest }: IProps & SelectProps) => {
               <Group>{children}</Group>
             </Viewport>
             <ScrollDownButton className="select-btn">
-              <ChevronUp degree={180} />
+              <ChevronUp degree={0} />
             </ScrollDownButton>
           </Content>
         </Portal>

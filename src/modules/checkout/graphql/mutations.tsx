@@ -91,6 +91,14 @@ const ordersCancel = gql`
   }
 `;
 
+const afterFormSubmit = gql`
+  mutation AfterFormSubmit($id: String!, $conversationId: String!) {
+    afterFormSubmit(_id: $id, conversationId: $conversationId) {
+      _id
+    }
+  }
+`;
+
 const mutations = {
   ordersAdd,
   ordersEdit,
@@ -100,6 +108,7 @@ const mutations = {
   orderItemChangeStatus,
   generateInvoiceUrl,
   ordersCancel,
+  afterFormSubmit,
 };
 
 export default mutations;

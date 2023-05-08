@@ -2,7 +2,7 @@ import Phone from 'icons/phone';
 
 const HeaderTop = () => {
   return (
-    <div className="top py-2">
+    <div className="top pt-3 pe-4 container">
       <b className="flex justify-between sbt">
         <a>Биднийг сонгох 10 шалтгаан</a>
         <a className="text-primary">

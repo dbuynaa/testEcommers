@@ -19,7 +19,7 @@ const Page = () => {
   const { id } = router.query;
   const { currentUser } = useCurrentUser();
 
-  const { loading, data } = useQuery(queries.orderDetail, {
+  const { loading, data, refetch } = useQuery(queries.orderDetail, {
     variables: {
       id,
       customerId: (currentUser || {}).erxesCustomerId,
@@ -79,7 +79,7 @@ const Page = () => {
                 phone={phone}
               />
 
-              <OrderEnd />
+              <OrderEnd refetch={refetch}/>
             </>
           )}
         </div>
@@ -155,7 +155,7 @@ const Page = () => {
         <big>
           <b>Таны захиалсан бараанууд</b>
         </big>
-        {items.map(
+        {(items || []).map(
           (
             { productName, unitPrice, count, productId, productImgUrl }: any,
             idx: number

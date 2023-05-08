@@ -1,22 +1,32 @@
 .products {
-  margin: -0.625rem;
+  margin: 0 -0.625rem;
   padding-bottom: 2rem;
   .col-md-4 {
     padding: 0.625rem;
   }
-  .banner {
-    background: $blue;
-    &.ratio1x1 {
-      aspect-ratio: 1/1;
-    }
-    &.ratio1x3 {
-      aspect-ratio: 1 / 2.5;
-    }
-  }
+
   &-loadmore {
     background: $mid-gray;
     color: #fff;
     width: 100%;
+  }
+  &-header {
+    border-bottom: $hr;
+    justify-content: space-between;
+    
+    &-count {
+      font-weight: 500;
+      font-size: 15px;
+    }
+  }
+  &-cat {
+    border-right: $hr;
+    &-title {
+      border-bottom: $hr;
+      padding-bottom: 14px;
+      padding-top: 11px;
+      margin-bottom: 16px;
+    }
   }
 }
 .mobile-cats {

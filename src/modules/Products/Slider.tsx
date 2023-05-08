@@ -71,7 +71,7 @@ const ProductsSlider = ({
           <div
             className={clsx(
               'flex flex-col -item',
-              index === 0 ? 'pe-2' : 'px-2'
+              index === 0 ? 'pe-2' : 'px-1-5'
             )}
             key={index}
           >

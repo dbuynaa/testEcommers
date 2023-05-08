@@ -1,4 +1,3 @@
-
 import Input from 'ui/Input';
 import Magnify from 'icons/Magnify';
 import { useState, Suspense } from 'react';
@@ -6,9 +5,9 @@ import clsx from 'clsx';
 import useGetProducts from 'lib/useGetProducts';
 import Product from 'components/Products/Product';
 import Loading from 'ui/Loading';
-import Empty from 'ui/Empty';
 import dynamic from 'next/dynamic';
 import CheckDevice from 'modules/CheckDevice';
+import LottieView from 'ui/Lottie';
 
 const Popover = dynamic(() => import('ui/Popover'), {
   suspense: true,
@@ -25,7 +24,10 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
     if (!searchValue)
       return (
         <div className="my-5 py-5">
-          <Empty size="8rem" message="Хайх утгаа оруулана уу" />
+          <LottieView path="/images/no-result.json" className="search-no" />
+          <p className="text-mid-gray text-center search-no-desc block pt-3">
+            Хайх утгаа оруулана уу
+          </p>
         </div>
       );
 
@@ -66,7 +68,12 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
   return (
     <CheckDevice
       Desktop={
-        <div className={clsx('search ms-5 col-6', inHead && 'hidden-mobile')}>
+        <div
+          className={clsx(
+            'search -trigger-btn ms-5 col-6',
+            inHead && 'hidden-mobile'
+          )}
+        >
           <Suspense>
             <Popover
               open={show}
@@ -76,7 +83,6 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
             >
               <div className="p-3 flex flex-col">
                 <div className={clsx('search', { show })}>{renderInput()} </div>
-
                 {renderResult()}
               </div>
             </Popover>

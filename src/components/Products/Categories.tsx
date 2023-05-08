@@ -64,30 +64,34 @@ const ProductCategories = ({ categories, rootCatergories }: any) => {
   }, [activeCat]);
 
   return (
-    <div className="tree-animation">
-      <p className="p-2 sbt text-mid-gray">Бүтээгдэхүүний ангилал</p>
-      <Tree
-        expandedKeys={
-          router.pathname !== '/categories'
-            ? expandedKeys
-            : categories.map(({ order }: any) => order)
-        }
-        treeData={formatToTree(
-          mapToAddKey(rootCatergories),
-          mapToAddKey(categories)
-        )}
-        icon={<></>}
-        switcherIcon={<ChevronRight />}
-        motion={motion}
-        onSelect={(selectedKeys, info) => {
-          if (selectedKeys.length === 0) {
-            return;
+    <>
+      <b className="block text-blue products-cat-title text-mid-gray">
+        Бүтээгдэхүүний ангилал
+      </b>
+      <div className="tree-animation">
+        <Tree
+          expandedKeys={
+            router.pathname !== '/categories'
+              ? expandedKeys
+              : categories.map(({ order }: any) => order)
           }
-          const { _id }: any = (info || {}).node || {};
-          _id && router.push(`/products?category=${_id}`);
-        }}
-      />
-    </div>
+          treeData={formatToTree(
+            mapToAddKey(rootCatergories),
+            mapToAddKey(categories)
+          )}
+          icon={<></>}
+          switcherIcon={<ChevronRight />}
+          motion={motion}
+          onSelect={(selectedKeys, info) => {
+            if (selectedKeys.length === 0) {
+              return;
+            }
+            const { _id }: any = (info || {}).node || {};
+            _id && router.push(`/products?category=${_id}`);
+          }}
+        />
+      </div>
+    </>
   );
 };
 

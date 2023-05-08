@@ -109,7 +109,7 @@ const Cart = () => {
       <DialogTrigger asChild>
         <Button className="cart-btn mx-2" variant="ghost">
           <CartIcon />
-          <small className="block">Сагс</small>
+          
           <small className="badge">{count ? <b>{count}</b> : <Xmark />}</small>
         </Button>
       </DialogTrigger>

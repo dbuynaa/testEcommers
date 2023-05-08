@@ -27,21 +27,23 @@ const Header = () => {
   // categoryId, sortField, sortDirection
 
   return (
-    <div className="pb-4 flex items-center justify-between products-header">
-      <div className="flex items-center">
-        <b className="sbt pe-2 text-blue">
-          {activeCategoryName && activeCategoryName}
-        </b>
+    <div className="pb-2 mb-3 flex items-center products-header">
+      <b className="pe-2 text-blue">
+        {activeCategoryName && activeCategoryName}
+      </b>
+      <div className="flex items-center pb-1">
         {!!productsCount && (
-          <div className="sbt text-mid-gray">{productsCount} бүтээгдэхүүн</div>
+          <div className="text-mid-gray products-header-count px-md-3">
+            {productsCount} бүтээгдэхүүн
+          </div>
         )}
+        <Select value={value} onValueChange={handleValueChange}>
+          <SelectItem value="createdAt&-1">Шинэ нь эхэндээ</SelectItem>
+          <SelectItem value="createdAt&1">Хуучин нь эхэндээ</SelectItem>
+          <SelectItem value="unitPrice&1">Үнэ өсөхөөр</SelectItem>
+          <SelectItem value="unitPrice&-1">Үнэ буурахаар</SelectItem>
+        </Select>
       </div>
-      <Select value={value} onValueChange={handleValueChange}>
-        <SelectItem value="createdAt&-1">Шинэ нь эхэндээ</SelectItem>
-        <SelectItem value="createdAt&1">Хуучин нь эхэндээ</SelectItem>
-        <SelectItem value="unitPrice&1">Үнэ өсөхөөр</SelectItem>
-        <SelectItem value="unitPrice&-1">Үнэ буурахаар</SelectItem>
-      </Select>
     </div>
   );
 };

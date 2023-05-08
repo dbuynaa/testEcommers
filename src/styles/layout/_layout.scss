@@ -1,8 +1,10 @@
 footer {
+  font-weight: 500;
   .-content {
     background-color: $bg-primary;
     color: #fff;
-    min-height: 350px;
+    min-height: 320px;
+
     .container {
       position: relative;
       z-index: 1;
@@ -74,7 +76,7 @@ footer {
 }
 .layout {
   min-height: 100vh;
-  padding-top: 8.625rem;
+  padding-top: 8.5rem;
 }
 
 .erxes-embedded-iframe {

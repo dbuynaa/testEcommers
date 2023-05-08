@@ -3,19 +3,20 @@ header {
   color: #fff;
 
   box-shadow: 0 3px 12px rgb(0 0 0 / 20%);
-  .product-cats {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    a {
-      margin-right: 1.5rem;
-      font-size: 1rem;
-      padding: 0.5rem 0;
-      white-space: nowrap;
-      &-active {
-        a {
-          font-weight: 700;
-          color: $primary !important;
-        }
-      }
+  .product-cat {
+    line-height: 1.5rem;
+    margin-right: 1.75rem;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    white-space: nowrap;
+    &.-active {
+      font-size: 15px;
+      font-weight: 700;
+      color: $primary !important;
+    }
+    &s {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
     }
   }
 
@@ -28,7 +29,7 @@ header {
 
   .logo {
     width: auto;
-    height: 3.5rem;
+    height: 3.25rem;
   }
 
   nav {
@@ -111,7 +112,7 @@ header {
   }
   & > small {
     white-space: nowrap;
-    font-weight: 500;
+    font-weight: 600;
   }
   .bell {
     height: 2.5rem;
@@ -139,14 +140,16 @@ header {
 
   .badge {
     top: initial;
-    right: 0;
-    top: 0;
+    right: 0rem;
+    bottom: 0rem;
     background-color: $success;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.5rem;
-    min-height: 1.3rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    min-width: 1.35rem;
+    min-height: 1.35rem;
     svg {
       font-size: 0.5rem;
     }

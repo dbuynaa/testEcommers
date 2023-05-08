@@ -195,6 +195,17 @@
     &-actions {
       justify-content: space-between;
     }
+    &-leasing {
+      width: 900px;
+      max-width: 97vw;
+      overflow: hidden;
+      padding: 0;
+      .erxes-form {
+         div {
+          max-height: 90vh;
+        }
+      }
+    }
   }
   &-end {
     display: flex;

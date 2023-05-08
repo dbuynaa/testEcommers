@@ -1,11 +1,11 @@
 .form-item {
   position: relative;
-  padding-bottom: 1rem;
+  padding-bottom: 0.75rem;
   font-size: 14px;
+  font-weight: 500;
   label {
-    font-weight: 400;
-    font-size: inherit;
     margin-bottom: 0.25rem;
+    font-size: inherit;
     &.required {
       &::before {
         content: '* ';

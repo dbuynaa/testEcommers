@@ -1,6 +1,9 @@
 .search {
   flex: 1 1 auto;
   position: relative;
+  &.-trigger-btn {
+    max-width: 380px !important;
+  }
   input {
     padding-left: 2.75rem;
     border-color: $bg-primary;
@@ -15,5 +18,13 @@
     transform: translateY(-50%);
     color: $shade-gray;
     font-size: 1.25rem;
+  }
+  &-no {
+    width: 20rem;
+    margin: auto;
+    &-desc {
+      font-weight: 500;
+      font-size: 15px;
+    }
   }
 }

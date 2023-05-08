@@ -3,8 +3,8 @@ import { sortPosts } from 'lib/wp/posts';
 
 const FeaturedProducts = ({ ftItems }: any) => {
   return (
-    <div className="my-md-5 my-4">
-      <div className="row ft-product-row px-3">
+    <div className="container">
+      <div className="row ft-product-row my-4 ">
         <div className="col-md-6 col-12 p-1">
           <FeaturedProduct
             className="big"

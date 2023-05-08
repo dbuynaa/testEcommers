@@ -42,7 +42,7 @@ const ProductsContainer = () => {
   return (
     <>
       {products.map((el: any) => (
-        <div className="col-6 col-md-4 pb-5 px-2" key={el._id}>
+        <div className="col-6 col-md-4 col-xl-3 px-1-5 pb-4" key={el._id}>
           <Product {...el} />
         </div>
       ))}

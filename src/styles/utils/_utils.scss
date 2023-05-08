@@ -72,8 +72,8 @@
   width: 100%;
 
   margin: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   &.c-xl {
     max-width: 1216px;
   }
@@ -122,6 +122,12 @@
 .img-wrap {
   position: relative;
   display: block;
+  width: 100%;
+  &::before {
+    display: block;
+    width: 100%;
+    content: '';
+  }
   svg {
     width: 50%;
     height: 50%;

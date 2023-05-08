@@ -6,10 +6,10 @@ const CategorySlider = ({ bannerCats }: any) => {
     <>
       {(bannerCats || []).map(
         ({ slug, title, featuredImage, image, custom }: any) => (
-          <div className="cat-banner my-md-5 my-4 container" key={slug}>
-            <div className="-header p-3 mb-3 rounded">
-              <h5 className="text-blue">{title}</h5>
-            </div>
+          <div className="cat-banner my-3 my-md-4 container" key={slug}>
+            <h5 className="text-blue mb-2 mb-0">
+              {title}
+            </h5>
             <div className="row">
               <Banner
                 {...{
@@ -18,7 +18,7 @@ const CategorySlider = ({ bannerCats }: any) => {
                   custom,
                 }}
               />
-              <div className="col-12 col-md-9">
+              <div className="col-12 col-md-9 col-xl-9-5">
                 <ProductsSlider
                   category={(custom || {}).link}
                   slidesToShow={4}

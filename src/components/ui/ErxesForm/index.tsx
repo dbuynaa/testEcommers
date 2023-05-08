@@ -5,11 +5,13 @@ const ErxesForm = ({
   brandId,
   formId,
   className,
+  onCompleted,
   ...rest
 }: {
   brandId: string;
   formId: string;
   className?: string;
+  onCompleted?: (event: any) => void;
 }) => {
   useEffect(() => {
     const w = window as any;
@@ -23,8 +25,7 @@ const ErxesForm = ({
 
     const script = document.createElement('script');
     script.id = id;
-    script.src =
-      'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
+    script.src = 'http://localhost:3200/build/formWidget.bundle.js';
     script.async = true;
     const entry = document.getElementsByTagName('script')[0];
     // @ts-ignore
@@ -49,6 +50,17 @@ const ErxesForm = ({
 
       return;
     };
+  }, [brandId, formId]);
+
+  useEffect(() => {
+    window.addEventListener('message', (event) => {
+      const { message } = event.data;
+      if (message === 'formSuccess') {
+        console.log(event, 'eeeeeeeeeeeeeee');
+        onCompleted && onCompleted(event);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

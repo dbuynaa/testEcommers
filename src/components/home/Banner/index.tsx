@@ -6,8 +6,8 @@ const Banner = ({ imgBanners }: any) => {
     <>
       {(imgBanners || []).map(
         ({ featuredImage, imgbanner, title, custom }: any, idx: number) => (
-          <div className="my-md-5 my-4 container" key={idx}>
-            <Link href={custom.link} className="relative block">
+          <div className="my-3 my-md-4 container" key={idx}>
+            <Link href={custom.link} className="relative block img-banner">
               <div
                 className="-space"
                 style={{ paddingBottom: imgbanner?.ratio + '%' }}

@@ -1,11 +1,19 @@
 .ft-cats {
   overflow: hidden;
   .row {
-    margin: -1.5rem;
     overflow: hidden;
   }
   img {
     object-fit: contain;
+  }
+  .-item {
+    max-width: 200px;
+    &-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: $bg-primary;
+    }
   }
 }
 
@@ -27,12 +35,14 @@
     }
   }
   .-header {
-    border: $hr;
+    border: 1px solid $bg-gray;
   }
 }
 
 .banner-slider {
   .-slide {
+    overflow: hidden;
+    border-radius: 1rem;
     &::before {
       padding-bottom: 38%;
     }
@@ -72,5 +82,9 @@
 }
 
 .home {
-  margin: -2rem 0 -2rem;
+  margin-top: -1.25rem;
+  .img-banner {
+    overflow: hidden;
+    border-radius: 1rem;
+  }
 }
