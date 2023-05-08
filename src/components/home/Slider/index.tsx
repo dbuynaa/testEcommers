@@ -2,6 +2,7 @@ import { use } from 'react';
 import Slider from 'ui/Slider';
 import Image from 'ui/Image';
 import Link from 'next/link';
+import { isBlank } from 'utils';
 
 const changedSettings = {
   slidesToShow: 1,
@@ -21,8 +22,8 @@ const SliderBanner = ({ sliderBanners }: any) => {
             <Link
               className="-slide ratio relative"
               key={idx}
-              href={custom.link}
-              target={custom.link.includes('http') ? '_blank' : undefined}
+              href={(custom || {}).link}
+              target={isBlank(custom.link)}
             >
               <Image
                 alt={title || ''}

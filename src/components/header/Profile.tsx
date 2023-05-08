@@ -1,34 +1,28 @@
-
-
 import User from 'icons/User';
 import Button from 'ui/Button';
 import Dropdown, { DropdownItem } from 'ui/Dropdown';
 import { useCurrentUser } from 'modules/appContext';
 import ProfileContent from './ProfileContent';
 import Link from 'next/link';
+import Image from 'ui/Image';
 
 const Profile = () => {
-  const { currentUser } = useCurrentUser();
+  const { currentUser, loadingCurrentUser } = useCurrentUser();
+
+  if (loadingCurrentUser) return <div className="px-4"></div>;
 
   if (!currentUser)
     return (
-      <Button
-        href="/auth/login"
-        className="profile-btn"
-        variant="ghost"
-        Component={Link}
-      >
-        <User />
-        <small className="block">Нэвтрэх</small>
+      <Button href="/auth/login" variant="slim" className='profile-login  mx-2' Component={Link}>
+        Нэвтрэх
       </Button>
     );
 
   return (
     <Dropdown
       trigger={
-        <Button className="profile-btn" variant="ghost">
-          <User />
-          <small className="block">Профайл</small>
+        <Button className="profile-btn mx-2" variant="ghost">
+          <Image height={36} src="/images/user.png" width={36} alt="" />
         </Button>
       }
     >

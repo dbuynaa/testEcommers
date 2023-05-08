@@ -8,7 +8,7 @@ const MainCategories = ({ mainCategories }: any) => {
 
   return (
     <div className="product-cats hover-scroll">
-      <div className="container flex items-center px-3">
+      <div className="container flex items-center">
         {(mainCategories || []).map(({ _id, name }: any) => (
           <Link
             key={_id}

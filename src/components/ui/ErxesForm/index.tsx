@@ -19,6 +19,9 @@ const ErxesForm = ({
     w.erxesSettings.forms.push({
       brand_id: brandId,
       form_id: formId,
+      onAction: (data) => {
+        onCompleted && onCompleted(data)
+      },
     });
 
     const id = 'erxes-script-' + formId;
@@ -50,18 +53,8 @@ const ErxesForm = ({
 
       return;
     };
-  }, [brandId, formId]);
+  }, [brandId, formId, onCompleted]);
 
-  useEffect(() => {
-    window.addEventListener('message', (event) => {
-      const { message } = event.data;
-      if (message === 'formSuccess') {
-        console.log(event, 'eeeeeeeeeeeeeee');
-        onCompleted && onCompleted(event);
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className={clsx('erxes-form', className)} {...rest}>

@@ -29,18 +29,28 @@ const OrderEnd = ({ refetch }) => {
   const [afterFormSubmit, { loading: loadFormSubmit }] = useMutation(
     mutations.afterFormSubmit,
     {
-      
+      onCompleted() {
+        changeStatus();
+        setOpen(false);
+      },
+      onError(error) {
+        toast.error(error.message);
+      },
     }
   );
 
-  const handleLeasing = () => {
-    // changeStatus();
-    // router.push('/leasing');
-  };
-
-  const handleAfterPay = () => {
-    changeStatus();
-    setOpen(true);
+  const onCompleted = (data: any) => {
+    if ((data || {}).status === 'SUCCESS') {
+      const { conversationId } = (data || {}).response || {};
+      if (conversationId) {
+        afterFormSubmit({
+          variables: {
+            conversationId,
+            id,
+          },
+        });
+      }
+    }
   };
 
   return (
@@ -50,28 +60,26 @@ const OrderEnd = ({ refetch }) => {
           <Button
             className="-pay-btn mx-2"
             variant="slim"
-            loading={loading}
-            onClick={handleLeasing}
+            loading={loading || loadFormSubmit}
           >
             Зээлээр авах
           </Button>
         }
+        open={open}
+        onOpenChange={() => setOpen((prev) => !prev)}
         contentClassName="order-detail-leasing"
       >
-        <ErxesForm brandId="3fpXck" formId="2jfJy7" />
+        <ErxesForm brandId="3fpXck" formId="2jfJy7" onCompleted={onCompleted} />
       </Modal>
-      <Button
-        variant="slim"
-        className="-pay-btn"
-        loading={loading}
-        onClick={handleAfterPay}
+      <Modal
+        trigger={
+          <Button variant="slim" className="-pay-btn" loading={loading}>
+            Шууд захиалах
+          </Button>
+        }
+        contentClassName="order-detail-direct"
       >
-        Шууд захиалах
-      </Button>
-      <Modal open={open} onOpenChange={() => setOpen((prev) => !prev)}>
-        <div className="order-end-modal">
-          <ErxesForm brandId="NMoDpG" formId="ep5mM9" />
-        </div>
+        <p>Бид тань руу ажлын цагаар холбогдох болно.</p>
       </Modal>
     </>
   );

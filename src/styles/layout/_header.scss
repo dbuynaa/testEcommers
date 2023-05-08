@@ -77,7 +77,8 @@ header {
   top: 0;
   width: 100%;
   z-index: 2;
-  height: 8.625rem;
+  height: $header-height;
+  background-color: red;
   overflow: hidden;
   .product-cats {
     transform: translateY(0);
@@ -100,29 +101,32 @@ header {
 }
 
 .notification,
-.cart-btn,
-.profile-btn {
+.cart-btn {
   // position: relative;
   overflow: visible;
   transition: 0.3s background-color;
-  flex-direction: column;
   color: #fff;
   &.btn {
     padding: 0.5rem;
   }
-  & > small {
-    white-space: nowrap;
-    font-weight: 600;
-  }
-  .bell {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
+  // .bell {
+  //   height: 2.5rem;
+  //   width: 2.5rem;
+  // }
 }
-.notification.btn {
-  padding: 0.125rem;
-  &:hover {
-    background: rgba(256, 256, 256, 0.05);
+// .notification.btn {
+//   padding: 0.125rem;
+//   &:hover {
+//     background: rgba(256, 256, 256, 0.05);
+//   }
+// }
+.profile-btn.btn {
+  border: 2px solid #fff;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+  img {
+    border-radius: 50%;
   }
 }
 

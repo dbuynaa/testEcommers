@@ -201,10 +201,15 @@
       overflow: hidden;
       padding: 0;
       .erxes-form {
-         div {
+        div {
           max-height: 90vh;
         }
       }
+    }
+    &-direct {
+      width: 400px;
+      max-width: 97vw;
+      overflow: hidden;
     }
   }
   &-end {

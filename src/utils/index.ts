@@ -169,3 +169,5 @@ export const readFile = (url: string = '') => {
   }
   return url;
 };
+
+export const isBlank = (link) => link.includes('http') && '_blank'

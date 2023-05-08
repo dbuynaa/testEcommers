@@ -16,6 +16,12 @@
       }
     }
   }
+  &-login.btn {
+    border-radius: 0.75rem;
+    border: 1px solid $primary;
+    color: $primary;
+    padding: 0.5rem 0.75rem;
+  }
 
   &-item {
     outline: none;

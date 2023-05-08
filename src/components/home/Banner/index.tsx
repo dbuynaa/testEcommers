@@ -1,5 +1,6 @@
 import Image from 'ui/Image';
 import Link from 'next/link';
+import { isBlank } from 'utils';
 
 const Banner = ({ imgBanners }: any) => {
   return (
@@ -7,7 +8,11 @@ const Banner = ({ imgBanners }: any) => {
       {(imgBanners || []).map(
         ({ featuredImage, imgbanner, title, custom }: any, idx: number) => (
           <div className="my-3 my-md-4 container" key={idx}>
-            <Link href={custom.link} className="relative block img-banner">
+            <Link
+              href={(custom || {}).link}
+              target={isBlank((custom || {}).link)}
+              className="relative block img-banner"
+            >
               <div
                 className="-space"
                 style={{ paddingBottom: imgbanner?.ratio + '%' }}

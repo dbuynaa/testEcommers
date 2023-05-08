@@ -1,5 +1,5 @@
 .login {
-  min-height: calc(100vh - 8.5rem - 1px);
+  min-height: calc(100vh - $header-height);
   position: relative;
   & > img {
     right: 50% !important;

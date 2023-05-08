@@ -11,7 +11,7 @@ const Products = () => {
           <div className="col-12 col-md-3 col-xl-2-5 pe-md-4 products-cat">
             <Categories />
           </div>
-          <div className="col-12 col-xl-9-5 col-md-9 px-md-4">
+          <div className="col-12 col-xl-9-5 col-md-9 ps-md-4">
             <Header />
             <div className="row products">
               <ProductsContainer />

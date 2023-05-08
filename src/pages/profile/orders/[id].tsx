@@ -78,7 +78,6 @@ const Page = () => {
                 orderId={id + ''}
                 phone={phone}
               />
-
               <OrderEnd refetch={refetch}/>
             </>
           )}

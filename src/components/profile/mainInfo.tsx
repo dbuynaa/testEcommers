@@ -9,7 +9,7 @@ const MainInfo = () => {
   return (
     <div className="flex items-center profile-main p-2">
       <Image
-        src="/images/profile.png"
+        src="/images/user.png"
         alt="profile"
         width={44}
         height={44}
