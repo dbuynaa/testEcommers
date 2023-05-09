@@ -21,7 +21,6 @@ const AddressForm = () => {
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
 
   const onSubmit = (data) => {
-    console.log(data);
     // companyName : "DEMO - MSM групп"//
     // deliveryInfo: "add"//
     // others : "Altanorgooo"//
@@ -75,8 +74,6 @@ const AddressForm = () => {
     if (address) {
       sendData.deliveryInfo = address;
     }
-
-    console.log(sendData, 'sendData');
 
     return handleOrder(sendData);
   };

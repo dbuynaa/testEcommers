@@ -6,7 +6,6 @@ import useWindowSize from 'lib/useWindowSize';
 
 const Products = () => {
   const { width } = useWindowSize();
-  console.log(width);
   return (
     <div className=" pt-3 container">
       <div className="row">

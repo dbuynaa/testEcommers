@@ -17,7 +17,6 @@ const FbLogin = () => {
 
   const responseFacebook = (response) => {
     const { accessToken } = response;
-    console.log(accessToken, 'haha');
     if (accessToken) {
       login({
         variables: {
