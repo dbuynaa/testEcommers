@@ -20,7 +20,7 @@ const ErxesForm = ({
       brand_id: brandId,
       form_id: formId,
       onAction: (data) => {
-        onCompleted && onCompleted(data)
+        onCompleted && onCompleted(data);
       },
     });
 
@@ -28,7 +28,8 @@ const ErxesForm = ({
 
     const script = document.createElement('script');
     script.id = id;
-    script.src = 'http://localhost:3200/build/formWidget.bundle.js';
+    script.src =
+      'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
     script.async = true;
     const entry = document.getElementsByTagName('script')[0];
     // @ts-ignore
@@ -54,7 +55,6 @@ const ErxesForm = ({
       return;
     };
   }, [brandId, formId, onCompleted]);
-
 
   return (
     <div className={clsx('erxes-form', className)} {...rest}>
