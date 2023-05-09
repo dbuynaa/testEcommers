@@ -84,15 +84,15 @@ const Footer = ({ footer }: any) => {
 
   return (
     <footer>
-      <div className="-content py-md-4 relative">
-        {footer?.featuredImage?.sourceUrl && (
+      <div className="-content relative">
+        {/* {footer?.featuredImage?.sourceUrl && (
           <Image
             sizes="100vw"
             src={footer?.featuredImage?.sourceUrl || ''}
             alt="techstore footer"
           />
-        )}
-        <div className="container pt-4 pb-2 relative">
+        )} */}
+        <div className="container pt-5 pb-3 relative">
           <div className="row">
             <Col title="Бидний тухай">
               <FooterLink href="/about">Бидний тухай</FooterLink>

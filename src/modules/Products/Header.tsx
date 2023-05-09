@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <div className="pb-2 mb-3 flex items-center products-header">
       <b className="pe-2 text-blue">
-        {activeCategoryName && activeCategoryName}
+        {activeCategoryName}
       </b>
       <div className="flex items-center pb-1">
         {!!productsCount && (

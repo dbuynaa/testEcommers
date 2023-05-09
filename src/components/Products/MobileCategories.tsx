@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'ui/Button';
@@ -6,78 +5,31 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 type ICategory = { name: string; _id?: string; parentId: string };
-type IFindChildren = (parent?: string | string[]) => (ICategory | undefined)[];
 
-const MobileCategories = ({
-  categories,
-  rootCatergories,
-}: {
-  categories: ICategory[];
-  rootCatergories: any;
-}) => {
+const MobileCategories = ({ categories }: { categories: ICategory[] }) => {
   const router = useRouter();
-  const { category } = router.query;
-
-  const [renderCats, setRenderCats] =
-    useState<(ICategory | undefined)[]>(rootCatergories);
-
-  const findChildren: IFindChildren = (parent) => {
-    const children = categories.filter(({ parentId }) => parentId === parent);
-
-    const chosenCat = categories.find(({ _id }: any) => parent === _id);
-
-    if (chosenCat && children.length === 0)
-      return findChildren(chosenCat.parentId);
-
-    if (children.length > 0) return [chosenCat, ...children];
-
-    return [];
-  };
-
-  const mainCats = categories.filter(
-    ({ parentId }: any) => parentId === rootCatergories[0]?._id
-  );
-  const parent = categories.find(
-    ({ _id }) =>
-      _id === categories.find(({ _id }) => _id === category)?.parentId
-  );
-
-  useEffect(() => {
-    if (!rootCatergories.length) {
-      setRenderCats(categories);
-      return;
-    }
-
-    if (!category) {
-      setRenderCats([...rootCatergories, ...mainCats]);
-      return;
-    }
-    setRenderCats(findChildren(category));
-  }, [categories, category]);
+  const { category, sub } = router.query;
 
   return (
     <div className="mobile-cats flex items-center">
-      {parent && (
-        <Button
-          Component={Link}
-          variant="slim"
-          className={clsx(category === parent._id && '-active')}
-          href={`/products?category=${parent._id}`}
-        >
-          {parent.name}
-        </Button>
-      )}
-      {(renderCats || []).map(({ _id = '', name = '' }: any) => (
-        <Button
-          Component={Link}
-          key={_id}
-          variant="slim"
-          className={clsx(category === _id && '-active')}
-          href={`/products?category=${_id}`}
-        >
-          {name}
-        </Button>
-      ))}
+      {(categories || [])
+        .filter((cat) => !!cat)
+        .map((cat: any) => (
+          <Button
+            Component={Link}
+            key={cat?._id}
+            variant="slim"
+            className={clsx(
+              (sub || category)?.toString() === cat?._id && '-active'
+            )}
+            href={{
+              pathname: 'products',
+              query: { ...router.query, sub: cat?._id },
+            }}
+          >
+            {cat?.name}
+          </Button>
+        ))}
     </div>
   );
 };

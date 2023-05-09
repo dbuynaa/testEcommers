@@ -17,7 +17,7 @@ const CheckDevice = ({
 
   return (
     <Suspense fallback={fallBack}>
-      {!!width && width <= 768 && Mobile}
+      {!!width && width <= 768 && Mobile }
       {!!width && width >= 768 && Desktop}
       {/* {!!windowSize.width && (windowSize.width || 0) <= 768 ? Mobile : Desktop} */}
     </Suspense>

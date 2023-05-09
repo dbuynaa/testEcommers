@@ -1,98 +1,111 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
-import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Tree from 'rc-tree';
+import clsx from 'clsx';
 import ChevronRight from 'icons/ChevronRight';
 import { useSetActiveCategoryName } from 'modules/Products/context';
+import { useEffect } from 'react';
 
-const formatToTree = (root: any, all: any) => {
-  const result: any = [];
-  root.forEach((child: any) => {
-    const { _id } = child;
-    const children = all.filter(
-      ({ parentId }: { parentId: string }) => parentId === _id
-    );
-    if (children.length > 0) {
-      return result.push({ ...child, children: formatToTree(children, all) });
-    }
-    return result.push({ ...child, children: [] });
-  });
-
-  return result;
-};
-
-const motion = {
-  motionName: 'node-motion',
-  motionAppear: true,
-  onAppearStart: () => ({ height: 0 }),
-  onAppearActive: (node: any) => ({ height: node.scrollHeight }),
-  onLeaveStart: (node: any) => ({ height: node.offsetHeight }),
-  onLeaveActive: () => ({ height: 0 }),
-};
-
-const ProductCategories = ({ categories, rootCatergories }: any) => {
+const Categories = ({
+  categories,
+  showAll,
+}: {
+  categories: any;
+  showAll?: boolean;
+}) => {
   const router = useRouter();
-  const { category: activeCat } = router.query;
-  const [expandedKeys, setExpandedKeys] = useState<any>();
-  const setActiveCatName = useSetActiveCategoryName();
+  const { category, sub } = router.query;
+  const setName = useSetActiveCategoryName();
 
-  const mapToAddKey = (arr: any) =>
-    arr.map((cat: any) => ({
-      ...cat,
-      key: cat.order,
-      title: !cat.parentId ? <b className="sbt">{cat.name} </b> : cat.name,
-    }));
+  const activeCat = categories.find((cat) => cat._id === (sub || category));
 
   useEffect(() => {
-    if (activeCat) {
-      const newActiveCats = [] as string[];
-      const getExpandedKeys: any = (currentId: string) => {
-        const cat = categories.find(({ _id }: any) => _id === currentId);
+    setName(activeCat.name);
+  }, [activeCat.name, category, setName]);
 
-        if (cat) {
-          newActiveCats.push(cat.order);
-          cat._id === activeCat && setActiveCatName(cat.name);
-          if (!cat.isRoot) {
-            return getExpandedKeys(cat.parentId);
-          }
-        }
-      };
-      getExpandedKeys(activeCat);
-      setExpandedKeys(newActiveCats);
+  const cts = categories.map((ct) => {
+    const { order, parentId, name: nameStr, _id } = ct;
+
+    const m = order.match(/[/]/gi);
+
+    let marginLeft = 0;
+
+    if (m) {
+      marginLeft = (m.length - 1) * 28;
     }
-  }, [activeCat]);
+
+    const name =
+      m.length === 1 ? (
+        <span className="flex items-center">
+          <ChevronRight /> {nameStr}
+        </span>
+      ) : (
+        nameStr
+      );
+
+    const show =
+      showAll ||
+      parentId === category ||
+      activeCat.parentId === parentId ||
+      m.length < 2;
+
+    const margin = 6;
+
+    return (
+      <AnimatePresence key={_id}>
+        {show && (
+          <motion.div
+            initial={{
+              marginTop: 0,
+              marginBottom: 0,
+              opacity: 0,
+              height: 0,
+            }}
+            animate={{
+              marginTop: margin,
+              marginBottom: margin,
+              opacity: 1,
+              height: 'auto',
+            }}
+            exit={{
+              marginTop: 0,
+              marginBottom: 0,
+              opacity: 0,
+              height: 0,
+            }}
+          >
+            <Link
+              href={{
+                pathname: 'products',
+                query: {
+                  category: parentId || _id,
+                  sub: parentId ? _id : undefined,
+                },
+              }}
+              style={{ marginLeft }}
+              className={clsx('block tree-item', {
+                '-active':
+                  _id === category ||
+                  sub === _id ||
+                  activeCat?.parentId === _id,
+              })}
+            >
+              {name}
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  });
 
   return (
     <>
       <b className="block text-blue products-cat-title text-mid-gray">
         Бүтээгдэхүүний ангилал
       </b>
-      <div className="tree-animation">
-        <Tree
-          expandedKeys={
-            router.pathname !== '/categories'
-              ? expandedKeys
-              : categories.map(({ order }: any) => order)
-          }
-          treeData={formatToTree(
-            mapToAddKey(rootCatergories),
-            mapToAddKey(categories)
-          )}
-          icon={<></>}
-          switcherIcon={<ChevronRight />}
-          motion={motion}
-          onSelect={(selectedKeys, info) => {
-            if (selectedKeys.length === 0) {
-              return;
-            }
-            const { _id }: any = (info || {}).node || {};
-            _id && router.push(`/products?category=${_id}`);
-          }}
-        />
-      </div>
+      <div className="tree">{cts}</div>
     </>
   );
 };
 
-export default ProductCategories;
+export default Categories;

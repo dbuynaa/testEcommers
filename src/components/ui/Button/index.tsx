@@ -8,9 +8,10 @@ import { mergeRefs } from 'react-merge-refs';
 import clsx from 'clsx';
 import LoadingDots from 'ui/LoadingDots';
 import Ink from 'react-ink';
+import type { LinkProps } from 'next/link';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  href?: string;
+  href?: LinkProps['href'];
   className?: string;
   variant?: 'flat' | 'slim' | 'ghost' | 'naked';
   active?: boolean;

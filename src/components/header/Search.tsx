@@ -23,7 +23,7 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
   const renderResult = () => {
     if (!searchValue)
       return (
-        <div className="my-5 py-5">
+        <div className="my-5 py-md-5">
           <LottieView path="/images/no-result.json" className="search-no" />
           <p className="text-mid-gray text-center search-no-desc block pt-3">
             Хайх утгаа оруулана уу
@@ -35,15 +35,15 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
 
     return (
       <>
-        <div className="flex justify-between items-center hr pt-3 pb-2">
+        <div className="flex justify-between items-center hr pt-3 mb-3 pb-2">
           <b>Хайлтын илэрц</b>
           <small>
             <b>Бүгдийг үзэх ({productsCount.toLocaleString()})</b>
           </small>
         </div>
-        <div className="row">
+        <div className="row mx--2">
           {(products || []).map((el: any) => (
-            <div className="col-6 col-md-4 p-2 p-md-3 " key={el._id}>
+            <div className="col-6 col-md-4 px-1-5 pb-4" key={el._id}>
               <Product {...el} onClick={() => setShow(false)} />
             </div>
           ))}
@@ -96,10 +96,14 @@ const Search = ({ inHead }: { inHead?: boolean }) => {
         </div>
       }
       Mobile={
-        <div className={clsx('search-page pb-4', inHead && 'hidden-mobile')}>
-          <div className={clsx('search m-3')}>{renderInput()}</div>
-          <b className="block text-blue px-3 pb-3">Тохирох бүтээгдэхүүнүүд</b>
-          <div className="px-3">{renderResult()}</div>
+        <div
+          className={clsx(
+            'search-page container py-2',
+            inHead && 'hidden-mobile'
+          )}
+        >
+          <div className={clsx('search')}>{renderInput()}</div>
+          {renderResult()}
         </div>
       }
     />

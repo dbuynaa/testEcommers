@@ -3,7 +3,7 @@ import { ProductsContextProvider } from 'modules/Products/context';
 const Categories = () => {
   return (
     <ProductsContextProvider>
-      <div className="categories py-3">
+      <div className="categories container">
         <CategoriesContainer />
       </div>
     </ProductsContextProvider>

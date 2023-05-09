@@ -1,6 +1,4 @@
 .cart {
-  width: 100vw;
-  max-width: 28rem;
   small {
     font-size: 13px;
   }
@@ -57,5 +55,16 @@
       font-size: 13px;
       font-weight: 700;
     }
+  }
+  &-items {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+  }
+  &-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 200 !important;
   }
 }

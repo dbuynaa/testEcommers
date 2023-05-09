@@ -7,12 +7,13 @@ const commonFields = `
 `;
 
 const productCategories = gql`
-  query poscProductCategories($excludeEmpty: Boolean) {
-    poscProductCategories(excludeEmpty: $excludeEmpty) {
+  query poscProductCategories($parentId: String, $excludeEmpty: Boolean) {
+    poscProductCategories(parentId: $parentId, excludeEmpty: $excludeEmpty) {
       ${commonFields}
       order
       parentId
       isRoot
+      productCount
     }
   }
 `;

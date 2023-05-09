@@ -1,10 +1,9 @@
-
 import dynamic from 'next/dynamic';
 import { useQuery } from '@apollo/client';
 import { queries } from './graphql';
-import { usePathname } from 'next/navigation';
 import Loading from 'ui/Loading';
 import CheckDevice from 'modules/CheckDevice';
+import { useRouter } from 'next/router';
 
 const Categories = dynamic(() => import('components/Products/Categories'), {
   suspense: true,
@@ -18,34 +17,27 @@ const MobileCategories = dynamic(
 
 // test
 
-const CategoriesContainer = () => {
-  const { data, loading } = useQuery(queries.productCategories);
-  const pathname = usePathname();
+const CategoriesContainer = ({ isMobile }: { isMobile?: boolean }) => {
+  const router = useRouter();
+  const { category } = router.query;
 
-  if (loading) return <Loading />;
+  const { data, loading } = useQuery(queries.productCategories, {
+    variables: {
+      parentId: isMobile ? category : null,
+    },
+  });
+
+  if (loading) return <Loading className='p-3'/>;
 
   const categories = (data || {}).poscProductCategories || [];
 
-  const rootCatergories = categories.filter(
-    ({ parentId }: { parentId: string }) => !parentId
-  );
-
-  if (pathname === '/categories')
-    return (
-      <Categories categories={categories} rootCatergories={rootCatergories} />
-    );
+  if (router.pathname === '/categories')
+    return <Categories categories={categories} showAll />;
 
   return (
     <CheckDevice
-      Desktop={
-        <Categories categories={categories} rootCatergories={rootCatergories} />
-      }
-      Mobile={
-        <MobileCategories
-          categories={categories}
-          rootCatergories={rootCatergories}
-        />
-      }
+      Desktop={<Categories categories={categories} />}
+      Mobile={<MobileCategories categories={categories} />}
     />
   );
 };

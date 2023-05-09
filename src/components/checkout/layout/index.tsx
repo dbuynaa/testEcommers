@@ -1,5 +1,6 @@
 import OrderSteps from 'components/checkout/steps';
 import PrivateRoute from 'modules/auth/privateRoute';
+import Checkpage from './Checkpage';
 
 const Layout = ({
   children,
@@ -13,9 +14,11 @@ const Layout = ({
   return (
     <PrivateRoute>
       <div className="container  min-height-screen">
-        <OrderSteps />
-        {title && <h5 className="pb-3">{title}</h5>}
-        {children}
+        <Checkpage>
+          <OrderSteps />
+          {title && <h5 className="pb-3">{title}</h5>}
+          {children}
+        </Checkpage>
       </div>
     </PrivateRoute>
   );

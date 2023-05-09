@@ -11,12 +11,12 @@ import useGetProducts from 'lib/useGetProducts';
 const ProductsContainer = () => {
   const setCount = useSetProductsCount();
   const router = useRouter();
-  const { searchValue, category, sortField, sortDirection } = router.query;
+  const { searchValue, category, sub, sortField, sortDirection } = router.query;
 
   const { handleLoadMore, loading, products, productsCount, getProducts } =
     useGetProducts({
       searchValue: (searchValue || '').toString(),
-      category: (category || '').toString(),
+      category: (sub || category || '').toString(),
       sortField: (sortField || '').toString(),
       sortDirection: Number(sortDirection),
       onCountCompleted: (productsCount: number) => setCount(productsCount),

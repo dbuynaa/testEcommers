@@ -12,6 +12,8 @@ export const getErxesApolloClient = () => {
     return erxesApolloClient;
   }
 
+  console.log(process.env.NEXT_PUBLIC_ERXES_API_URL, 'rrr');
+
   const httpLink = new HttpLink({
     uri:
       `${process.env.NEXT_PUBLIC_ERXES_API_URL}/graphql` ||
