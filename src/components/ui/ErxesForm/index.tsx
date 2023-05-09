@@ -31,6 +31,7 @@ const ErxesForm = ({
     script.src =
       'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
     script.async = true;
+    
     const entry = document.getElementsByTagName('script')[0];
     // @ts-ignore
     entry.parentNode.insertBefore(script, entry);
