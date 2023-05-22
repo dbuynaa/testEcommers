@@ -11,6 +11,7 @@ interface IProps {
   path?: string;
   className?: string;
   fallBack?: ReactNode;
+  size?: string | number
 }
 
 const LottieView = ({
@@ -20,6 +21,7 @@ const LottieView = ({
   path,
   className,
   fallBack,
+  size
 }: IProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [lottie, setLottie] = useState<LottiePlayer | null>(null);
@@ -44,7 +46,7 @@ const LottieView = ({
 
   if (lottie === null) return <div className={className}>{fallBack}</div>;
 
-  return <div ref={ref} className={className}></div>;
+  return <div ref={ref} className={className} style={{height: size, width: size}}></div>;
 };
 
 export default LottieView;

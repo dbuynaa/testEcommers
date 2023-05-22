@@ -10,22 +10,38 @@ const ArrowBtn = (props: ButtonProps) => (
   />
 );
 
+const SlickArrowLeft = ({ currentSlide, slideCount, ...props }: any) => (
+  <ArrowBtn
+    className="slick-prev"
+    {...props}
+    aria-hidden="true"
+    disabled={currentSlide === 0 ? true : false}
+    aria-disabled={currentSlide === 0 ? true : false}
+    type="button"
+  >
+    <ChevronLeft />
+  </ArrowBtn>
+);
+const SlickArrowRight = ({ currentSlide, slideCount, ...props }: any) => (
+  <ArrowBtn
+    {...props}
+    className="slick-next"
+    aria-hidden="true"
+    disabled={currentSlide === slideCount - 1 ? true : false}
+    type="button"
+  >
+    <ChevronRight />
+  </ArrowBtn>
+);
+
 export const slickSettings: Settings = {
   speed: 500,
   infinite: false,
   arrows: true,
   lazyLoad: 'anticipated',
   customPaging: () => <Button />,
-  prevArrow: (
-    <ArrowBtn className="slick-prev">
-      <ChevronLeft />
-    </ArrowBtn>
-  ),
-  nextArrow: (
-    <ArrowBtn className="slick-next">
-      <ChevronRight />
-    </ArrowBtn>
-  ),
+  prevArrow: <SlickArrowLeft />,
+  nextArrow: <SlickArrowRight />,
 };
 
 const Slider = (props: Settings) => {

@@ -35,6 +35,7 @@
   &.ghost {
     box-shadow: none;
     background: transparent;
+    &.-loading, 
     &:hover {
       background-color: rgba(0, 0, 0, 0.05);
     }

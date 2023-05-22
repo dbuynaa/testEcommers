@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 
 const OrderEnd = ({ refetch }) => {
   const [open, setOpen] = useState(false);
+  const [openDirect, setOpenDirect] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -22,7 +23,8 @@ const OrderEnd = ({ refetch }) => {
       toast.error(error.message);
     },
     onCompleted() {
-      refetch();
+      refetch({ variables: { id } });
+      setOpenDirect(false);
     },
   });
 
@@ -77,9 +79,28 @@ const OrderEnd = ({ refetch }) => {
             Шууд захиалах
           </Button>
         }
-        contentClassName="order-detail-direct"
+        open={openDirect}
+        onOpenChange={() => setOpenDirect((prev) => !prev)}
+        contentClassName="order-detail-direct p-5"
       >
-        <p>Бид тань руу ажлын цагаар холбогдох болно.</p>
+        <p>
+          Бид тань руу ажлын цагаар холбогдох болно. Та шууд захиалахыг
+          сонгохдоо итгэлтэй байна уу ?
+        </p>
+        <div className="flex-center order-detail-direct pt-3">
+          <Button
+            className="-pay-btn me-3"
+            onClick={() => {
+              changeStatus();
+            }}
+            loading={loading}
+          >
+            Тийм
+          </Button>
+          <Button variant="slim" onClick={() => setOpenDirect(false)}>
+            Үгүй
+          </Button>
+        </div>
       </Modal>
     </>
   );

@@ -12,7 +12,7 @@ const changedSettings = {
 
 const SliderBanner = ({ sliderBanners }: any) => {
   return (
-    <div className="my-3 my-md-4 pb-3 container">
+    <div className="my-3 my-md-4 container" style={{ order: 20 }}>
       <Slider
         {...changedSettings}
         className="banner-slider slick-arrow-standart -slider"

@@ -5,6 +5,9 @@ const getCategories: () => Promise<any> = async () => {
   const apolloClient = getErxesApolloClient();
   const { data } = await apolloClient.query({
     query: queries.productCategories,
+    variables: {
+      perPage: 100,
+    },
   });
   const categories = (data || {}).poscProductCategories || [];
 

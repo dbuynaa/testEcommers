@@ -20,7 +20,7 @@ const OrderItem = ({
     return (
       <div className="row order-item rounded p-3 mb-2">
         <div className="col-2">
-          <div className="img-wrap ratio ratio1x1 flex justify-center items-center"></div>
+          <div className="img-wrap ratio ratio1x1 flex justify-center items-center  "></div>
         </div>
         <div className="col-10 row">
           <div className="col-12 col-md-6">
@@ -36,20 +36,20 @@ const OrderItem = ({
   const { remainder, category } = data?.poscProductDetail || {};
 
   return (
-    <div className="row order-item rounded p-3 mb-2">
-      <div className="col-2">
+    <div className="row order-item rounded p-2 p-md-3 mb-2">
+      <div className="col-3 col-md-2">
         <div className="img-wrap ratio ratio1x1 flex justify-center items-center">
           <Image src={readFile(productImgUrl)} alt="Product" sizes="20vw" />
         </div>
       </div>
-      <div className="col-10 row">
-        <div className="col-12 col-md-6">
-          <div className="mh-100 row justify-between px-3 items-center">
+      <div className="row col-9 col-md-10">
+        <div className="col-md-8">
+          <div className="mh-100 row justify-between px-md-3 items-center">
             <div className="text-mid-gray">
               <small>{category?.name}</small>
-              <big className="text-blue bold block">{name}</big>
+              <p className="text-blue bold block">{name}</p>
 
-              <h6 className=" text-black">{formatCurrency(unitPrice)}</h6>
+              <p className="bold">{formatCurrency(unitPrice)}</p>
               <small className="block">
                 Боломжит үлдэгдэл:
                 <span className="remainder px-2 mx-2">{remainder}ш</span>
@@ -58,21 +58,13 @@ const OrderItem = ({
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-6 flex items-stretch">
-          <div className="mh-100 flex flex-col justify-between w-full py-3">
-            <div className="flex justify-end w-full items-center">
-              <p className="bold text-black pe-3">
-                {formatCurrency(unitPrice)}
-              </p>
-              <Counter
-                productId={productId}
-                count={count}
-                remainder={remainder}
-              />
-              <p className="bold text-black ps-3">
-                {formatCurrency(unitPrice * count)}
-              </p>
-            </div>
+        <div className="col-12 col-md-4 flex items-stretch  order-item-control">
+          <div className="flex justify-center w-full items-center">
+            <Counter
+              productId={productId}
+              count={count}
+              remainder={remainder}
+            />
           </div>
         </div>
       </div>

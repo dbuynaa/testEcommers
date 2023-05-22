@@ -7,7 +7,11 @@ const Banner = ({ imgBanners }: any) => {
     <>
       {(imgBanners || []).map(
         ({ featuredImage, imgbanner, title, custom }: any, idx: number) => (
-          <div className="my-3 my-md-4 container" key={idx}>
+          <div
+            className="my-3 my-md-4 container"
+            key={idx}
+            style={{ order: custom?.order }}
+          >
             <Link
               href={(custom || {}).link}
               target={isBlank((custom || {}).link)}
@@ -20,7 +24,7 @@ const Banner = ({ imgBanners }: any) => {
               <Image
                 src={featuredImage?.sourceUrl || ''}
                 alt={title || ''}
-                sizes="100vw"
+                sizes="(max-width: 1400px) 100vw, 1400px"
               />
             </Link>
           </div>

@@ -19,7 +19,7 @@ const Breadcrumb = () => {
   const parentCats = parentCodes.map((code: string) => findCatByCode(code));
 
   return (
-    <div className="py-4">
+    <div className="py-md-4 py-3">
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
           <Link href="/">Нүүр</Link>

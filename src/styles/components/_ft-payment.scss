@@ -6,10 +6,12 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 600;
+    border-radius: 1rem;
     // background: #ebf0f7;
     small {
       font-weight: 400;
       color: rgba($color: #000, $alpha: 0.5);
+      white-space: initial;
     }
     .-content {
       text-align: left;

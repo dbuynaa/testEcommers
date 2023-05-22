@@ -34,7 +34,7 @@ const ImageGallery = () => {
         className="prDtl__slider"
       >
         {images.map((url: any, index: any) => (
-          <div key={index} className="img-wrap">
+          <div key={index} className="img-wrap big-image">
             <Image
               src={url}
               alt="product"
@@ -44,7 +44,7 @@ const ImageGallery = () => {
           </div>
         ))}
       </Slider>
-      <div className="px-md-5 my-4 img-nav-container">
+      <div className="px-md-5 my-2 my-md-3 img-nav-container">
         <Slider
           {...changedSettings}
           focusOnSelect={true}
@@ -71,11 +71,7 @@ const ImageGallery = () => {
               // onClick={() => nav1.current.slickGoTo(index)}
             >
               <div className="img-wrap">
-                <Image
-                  src={url}
-                  alt="product"
-                  sizes="(max-width: 768px) 20vw, 10vw"
-                />
+                <Image src={url} alt="product" />
               </div>
             </div>
           ))}

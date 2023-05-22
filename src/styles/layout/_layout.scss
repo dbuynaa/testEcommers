@@ -42,9 +42,10 @@ footer {
   }
   &-item {
     color: $mid-gray;
-    padding: 0.75rem;
+    padding: 0.325rem;
     overflow: visible;
     width: 5rem;
+    border-radius: 0.5rem;
     position: relative;
     flex-direction: column;
     svg {
@@ -52,7 +53,6 @@ footer {
     }
     small {
       font-size: 11px;
-      padding-top: 0.25rem;
       white-space: nowrap;
     }
     &.-active {

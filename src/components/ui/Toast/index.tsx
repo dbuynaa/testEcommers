@@ -2,7 +2,7 @@
 import { ToastContainer } from 'react-toastify';
 
 const Toast = () => {
-  return <ToastContainer />;
+  return <ToastContainer newestOnTop/>;
 };
 
 export default Toast;

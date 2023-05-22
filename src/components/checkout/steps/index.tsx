@@ -7,7 +7,6 @@ function OrderSteps() {
     cart: 'Taны сагс',
     address: 'Хүргэлтийн Хаяг',
     payment: 'Төлбөр төлөх',
-    end: 'Дуусгах',
   };
   const pathname = usePathname();
 

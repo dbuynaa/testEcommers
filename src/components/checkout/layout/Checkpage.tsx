@@ -1,11 +1,13 @@
+import { useCurrentOrder } from 'modules/appContext';
 import { useItems } from 'modules/contextHooks';
 import Link from 'next/link';
 import LottieView from 'ui/Lottie';
 
 const Checkpage = ({ children }: { children: React.ReactNode }) => {
   const cart = useItems();
+  const { loadingCurrentOrder } = useCurrentOrder();
 
-  if (!cart.length)
+  if (!cart.length && !loadingCurrentOrder)
     return (
       <div className="my-5 py-3 cart-empty">
         <LottieView

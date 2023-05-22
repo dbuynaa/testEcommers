@@ -27,7 +27,7 @@ const Actions = () => {
   };
 
   return (
-    <div className="row items-center -controls pt-5">
+    <div className="row items-center -controls pt-4 mt-2">
       <Counter count={count} setCount={setCount} />
       <Button variant="slim" onClick={handleAdd} loading={loading}>
         {!loading && 'Сагсанд нэмэх'}

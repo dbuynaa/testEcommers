@@ -30,8 +30,8 @@
     font-size: 14px;
 
     & > span {
-      color: $bg-primary;
-      background: rgba($color: $bg-primary, $alpha: 0.12);
+      color: $blue;
+      background: rgba($color: $blue, $alpha: 0.12);
       line-height: 1;
       font-size: 0;
       padding: 0.625rem;
@@ -39,12 +39,16 @@
       margin-right: 0.75rem;
       svg {
         line-height: 1;
-        font-size: 1.25rem;
+        font-size: 1.35rem;
       }
     }
+    &.-active {
+      background: rgba($color: $blue, $alpha: 0.06);
+      color: $blue;
+      font-weight: 500;
+    }
     &:hover {
-      background: rgba($color: #000000, $alpha: 0.06);
-      color: $bg-primary;
+      color: $blue;
     }
   }
   .-order-item {
@@ -61,9 +65,9 @@
 
   &-back.btn {
     color: rgba($color: #000, $alpha: 0.6);
-    padding: 0;
+    padding: 0.25rem;
+    font-size: 1rem;
     font-weight: 500;
-    font-size: 1.15rem;
     &:hover {
       background: transparent;
     }
@@ -102,15 +106,10 @@
   }
 }
 
-.wish-list-basket {
-  position: absolute;
-  right: 25%;
-  bottom: -8%;
-}
-
 .order-status {
   background: $warning;
   height: 1rem;
+  flex: 0 0 auto;
   width: 1rem;
   border-radius: 0.25rem;
   font-weight: 600;
@@ -120,6 +119,15 @@
   &-container {
     font-weight: 600;
   }
+}
+
+.wishlist-remove.btn.ghost {
+  position: absolute;
+  background: #fff;
+  top: 1.25rem;
+  left: 1.25rem;
+  padding: 1rem;
+  box-shadow: rgb(0 0 0 / 15%) 4px 4px 4px;
 }
 
 .order-detail {

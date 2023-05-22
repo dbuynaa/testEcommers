@@ -1,4 +1,3 @@
-
 import { useMutation } from '@apollo/client';
 import Button from 'ui/Button';
 import { mutations, queries } from './graphql';
@@ -9,8 +8,10 @@ const Logout = ({ Component }: any) => {
     refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
   });
 
+  const props = Component === 'div' ? {} : { asChild: true };
+
   return (
-    <Component asChild>
+    <Component {...props}>
       <Button
         variant="ghost"
         className="profile-item text-mid-gray flex w-100 items-center p-2 justify-start text-regular"

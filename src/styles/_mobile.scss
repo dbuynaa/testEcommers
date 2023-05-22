@@ -1,7 +1,11 @@
-@media (max-width: 768px) {
+@media (max-width: 999px) {
   h5 {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
   .container {
     padding-left: 0.5rem;
@@ -60,11 +64,21 @@
       &:not(:last-child) {
         margin-bottom: 1.5rem;
       }
+      .text-white {
+        display: none;
+      }
     }
   }
+
   .order-detail {
     .-main {
       border: 0;
+    }
+  }
+  .order-item {
+    &-control {
+      padding-top: 1rem;
+      justify-content: flex-start;
     }
   }
   .storepay {
@@ -117,14 +131,14 @@
     -webkit-line-clamp: 2;
     height: 3rem;
   }
-  .ratio-md-2x3 {
+  .ratio-md-1x1{
     &::before {
-      padding-bottom: calc(100% / 2 * 3);
+      padding-bottom: 100%;
     }
   }
   .order-summary {
     position: fixed;
-    bottom: 4.5rem;
+    bottom: 3.25rem;
     background: #fff;
     z-index: 20;
     left: 0;
@@ -140,6 +154,9 @@
     }
   }
   .prDtl {
+    &-properties {
+      margin: 0 -0.5rem;
+    }
     .-controls {
       gap: 0;
       & > .btn {
@@ -153,6 +170,15 @@
           flex: 1 1 100%;
           margin-top: 1rem;
         }
+      }
+    }
+    .wishlist-add {
+      svg {
+        margin-right: 0;
+        margin-left: 0;
+      }
+      & > span {
+        display: none;
       }
     }
   }
@@ -180,9 +206,7 @@
       display: none;
     }
   }
-  .order-status-container {
-    margin-bottom: 1rem;
-  }
+
   .-pay-btn {
     margin-bottom: 1rem;
     width: 100%;
@@ -223,7 +247,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 999px) {
   .navbar {
     display: none;
   }

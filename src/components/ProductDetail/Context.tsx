@@ -7,10 +7,10 @@ const DetailContext = createContext({} as any);
 
 export const useDetailContext = () => useContext(DetailContext);
 
-const Context = ({ detail, categories, wp, children }) => {
+const Context = ({ detail = {}, categories, children }: any) => {
   const router = useRouter();
   const { attachment, name, unitPrice, description, attachmentMore, _id } =
-    detail;
+    detail || {};
 
   const moreImage = (attachmentMore || []).map(({ url }: { url: string }) =>
     readFile(url)
@@ -18,17 +18,19 @@ const Context = ({ detail, categories, wp, children }) => {
 
   const [store, setStore] = useState({
     ...detail,
+    customFieldsDataByFieldCode: null,
+    properties: detail.customFieldsDataByFieldCode || {},
     categories,
     images: [readFile((attachment || {}).url), ...moreImage],
-    wp,
   });
 
   useEffect(() => {
     setStore({
       ...detail,
+      customFieldsDataByFieldCode: null,
+      properties: detail.customFieldsDataByFieldCode || {},
       categories,
       images: [readFile((attachment || {}).url), ...moreImage],
-      wp,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.id]);
@@ -41,14 +43,14 @@ const Context = ({ detail, categories, wp, children }) => {
     <>
       <NextSeo
         title={name}
-        description={description}
+        description={(detail.customFieldsDataByFieldCode || {}).intro?.value}
         openGraph={{
           url: `https://www.technews.mn/products/${_id}`,
           images: [
             {
               url: readFile((attachment || {}).url),
               width: 800,
-              height: 600,
+              height: 800,
               alt: name,
             },
           ],

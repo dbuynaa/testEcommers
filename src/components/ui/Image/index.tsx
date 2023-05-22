@@ -1,4 +1,3 @@
-
 import { useState, FC, memo } from 'react';
 import NextImage, { ImageProps } from 'next/image';
 import cls from 'classnames';

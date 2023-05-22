@@ -7,15 +7,22 @@ const PaymentBtn = ({
   totalAmount,
   orderId,
   phone,
+  number,
 }: {
   totalAmount: string;
   orderId: string;
   phone: string;
+  number: string;
 }) => {
   return (
     <Modal trigger={<Button className="-pay-btn bg-blue">Төлбөр төлөх</Button>}>
       <Config>
-        <PaymentContainer totalAmount={totalAmount} orderId={orderId} phone={phone}/>
+        <PaymentContainer
+          totalAmount={totalAmount}
+          orderId={orderId}
+          phone={phone}
+          number={number}
+        />
       </Config>
     </Modal>
   );

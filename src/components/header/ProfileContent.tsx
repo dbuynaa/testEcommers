@@ -6,6 +6,7 @@ import Stars from 'icons/Stars';
 import AddressCard from 'icons/AddressCard';
 import CircleHeart from 'icons/CircleHeart';
 import Logout from 'modules/auth/logout';
+import Heart from 'icons/Heart';
 
 const ProfileContent = ({ ItemComponent }: any) => {
   return (
@@ -29,6 +30,15 @@ const ProfileContent = ({ ItemComponent }: any) => {
       >
         Миний захиалгууд
       </ProfileItem>
+
+      <ProfileItem
+        href="/profile/wishlist"
+        icon={<Heart regular />}
+        Component={ItemComponent}
+      >
+        Хүслийн жагсаалт
+      </ProfileItem>
+
       {/* <ProfileItem href="/profile/wishlist" icon={<CircleHeart />}>
         Хүслийн жагсаалт
       </ProfileItem> */}

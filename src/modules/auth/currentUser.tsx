@@ -33,9 +33,6 @@ const CurrentUser = ({ children }: any) => {
     }
   }, [currentUser]);
 
-  if (currentUser && pathname?.includes('/auth')) {
-    return null;
-  }
 
   return <>{children}</>;
 };

@@ -1,4 +1,3 @@
-
 import { GoogleMap, MarkerF, LoadScriptNext } from '@react-google-maps/api';
 import LocationCross from 'icons/LocationCross';
 import { useState } from 'react';
@@ -12,7 +11,6 @@ const Map = ({ latLong, setLatLong }: any) => {
     lat: 47.904332991570065,
     lng: 106.92754438157759,
   });
-  const [zoom, setZoom] = useState(14);
   const getUserLocation = (event: any) => {
     const { lat, lng } = event.latLng;
     setLatLong({ lat: lat(), lng: lng() });
@@ -28,7 +26,6 @@ const Map = ({ latLong, setLatLong }: any) => {
     const lng = position.coords.longitude;
     setLatLong({ lng, lat });
     setCenter({ lng, lat });
-    setZoom(15);
     setLocationErrorMsg('');
     setIsFindingLocation(false);
   };
@@ -53,8 +50,9 @@ const Map = ({ latLong, setLatLong }: any) => {
         <GoogleMap
           onClick={getUserLocation}
           clickableIcons={false}
-          mapContainerClassName="google-map ratio ratio3x1 ratio-md-2x3"
-          options={{ center: center, zoom }}
+          mapContainerClassName="google-map ratio ratio3x1 ratio-md-1x1"
+          options={{ center: center }}
+          zoom={14}
         >
           {latLong && (
             <MarkerF position={latLong} draggable onDrag={getUserLocation} />

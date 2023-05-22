@@ -10,8 +10,9 @@ export default class MyDocument extends Document {
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link href="/images/logo.png" rel="shortcut icon" />
+          <link rel="preconnect" href="https://techstore.erxes.io" />
 
-          {/* <Partytown forward={['dataLayer.push']} />
+          <Partytown forward={['dataLayer.push']} />
           <script
             type="text/partytown"
             dangerouslySetInnerHTML={{
@@ -21,17 +22,17 @@ export default class MyDocument extends Document {
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-PKNHQBP')`,
             }}
-          /> */}
+          />
         </Head>
         <body>
           <Main />
           <NextScript />
-          {/* <noscript
+          <noscript
             dangerouslySetInnerHTML={{
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKNHQBP"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
             }}
-          /> */}
+          />
         </body>
       </Html>
     );

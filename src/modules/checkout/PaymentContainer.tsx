@@ -9,10 +9,12 @@ const PaymentContainer = ({
   totalAmount,
   orderId,
   phone,
+  number,
 }: {
   totalAmount: string;
   orderId: string;
   phone: string;
+  number: string;
 }) => {
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
@@ -79,7 +81,7 @@ const PaymentContainer = ({
               ? currentUser?.erxesCustomerId
               : 'empty',
             customerType: 'customer',
-            description: orderId + '-' + '',
+            description: orderId + '-' + number,
             paymentIds: config.paymentIds,
             phone: phone || currentUser?.phone || '',
           },

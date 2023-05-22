@@ -80,7 +80,8 @@ const Footer = ({ footer }: any) => {
   const { phone, mail, map, facebook, instagram } = footer?.contact || {};
   const router = useRouter();
 
-  if (router.asPath.includes('auth')) return null;
+  if (router.asPath.includes('auth') || router.asPath.includes('checkout'))
+    return null;
 
   return (
     <footer>

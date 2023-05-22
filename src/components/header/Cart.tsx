@@ -47,7 +47,7 @@ const Cart = () => {
   const renderContent = () => {
     if (!currentCart.length)
       return (
-        <div className="my-5 py-3 cart-empty">
+        <div className="my-5 py-3 cart-empty cart-items">
           <LottieView
             path="https://assets2.lottiefiles.com/packages/lf20_ry4iluja.json"
             className="-empty"
@@ -58,7 +58,6 @@ const Cart = () => {
 
     return (
       <>
-        {' '}
         <div className="cart-items">
           {currentCart.map(
             ({ productImgUrl, productId, name, count, unitPrice }) => (

@@ -16,34 +16,6 @@ const AddAddress = () => {
           exit={{ height: 0, opacity: 0 }}
           className="row mx--2 address-add"
         >
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн нэр"
-              placeholder="Бат-эрдэнэ"
-              name="firstName"
-            />
-          </div>
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн Овог"
-              placeholder="Хашбат"
-              name="lastName"
-            />
-          </div>
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн утасны дугаар"
-              placeholder="99999999"
-              name="phone"
-            />
-          </div>
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн и-мэйл хаяг"
-              placeholder="example@example.com"
-              name="email"
-            />
-          </div>
           <div className="col-md-4 col-12 px-2">
             <FormItem label="Хот/Aймаг" placeholder="Улаанбаатар" name="city" />
           </div>

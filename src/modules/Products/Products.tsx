@@ -3,10 +3,11 @@
 import Product from 'components/Products/Product';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import Loading from 'ui/Loading';
 import { useInView } from 'react-intersection-observer';
 import { useSetProductsCount } from './context';
 import useGetProducts from 'lib/useGetProducts';
+import ProductsSkeleton from 'components/Products/Skeleton';
+import Empty from 'ui/Empty';
 
 const ProductsContainer = () => {
   const setCount = useSetProductsCount();
@@ -35,25 +36,29 @@ const ProductsContainer = () => {
     inView && handleLoadMore();
   }, [products.length, inView]);
 
-  if (loading) return <Loading className="min-height-screen" />;
+  if (loading) return <ProductsSkeleton wrapped />;
 
-  if (!products.length || !productsCount) return <div>Хоосон байна</div>;
+  if (!products.length || !productsCount)
+    // cart-empty cart-items
+    return (
+      <Empty
+        className="cart-empty cart-items"
+        message="Бүтээгдэхүүн олдсонгүй"
+      />
+    );
 
   return (
-    <>
+    <div className="row products">
       {products.map((el: any) => (
-        <div className="col-6 col-md-4 col-xl-3 px-1-5 pb-4" key={el._id}>
-          <Product {...el} />
-        </div>
+        <Product {...el} key={el._id} wrapped />
       ))}
       {productsCount > products.length && (
-        <div className="products-loadmore my-5 p-3 text-center" ref={ref}>
-          <h6>
-            <b>Ачаалж байна</b>
-          </h6>
-        </div>
+        <>
+          <div className="row" ref={ref} />
+          <ProductsSkeleton max={8} />
+        </>
       )}
-    </>
+    </div>
   );
 };
 

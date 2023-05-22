@@ -81,7 +81,7 @@
   flex: 1 1 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 999px) {
   .col-md-12 {
     max-width: 100%;
     flex: 1 1 100%;
@@ -104,12 +104,17 @@
 
   .col-md-7 {
     max-width: calc(100% / 12 * 7);
-    flex: calc(100% / 12 * 7);
+    flex: 1 1 calc(100% / 12 * 7);
   }
 
   .col-md-6 {
     max-width: 50%;
     flex: 1 1 50%;
+  }
+
+  .col-md-5 {
+    max-width: calc(100% / 12 * 5);
+    flex: 1 1 calc(100% / 12 * 5);
   }
 
   .col-md-4 {
@@ -138,8 +143,8 @@
   }
 
   .col-xl-9-5 {
-    max-width: calc(100% /  12 *9.5);
-    flex: 1 1 calc(100% /  12 *9.5);
+    max-width: calc(100% / 12 * 9.5);
+    flex: 1 1 calc(100% / 12 * 9.5);
   }
 
   .col-xl-20 {

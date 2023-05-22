@@ -49,8 +49,15 @@ const Page = () => {
 
   const { orderDetail } = data;
 
-  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
-    orderDetail || {};
+  const {
+    paidDate,
+    status,
+    totalAmount,
+    deliveryInfo,
+    items,
+    putResponses,
+    number,
+  } = orderDetail || {};
 
   const {
     firstName,
@@ -67,25 +74,26 @@ const Page = () => {
 
   return (
     <>
-      <div className="row items-center order-detail-actions pt-4">
+      <div className="row items-center order-detail-actions mt-3 ">
         <OrderStatus status={status} paidDate={paidDate} />
-        <div className="row items-center">
+        <div className="row items-center py-3">
           {isSettled && <Ebarimt putResponses={putResponses} />}
-          {status !== 'pending' && !isSettled && (
+          {status === 'new' && !isSettled && (
             <>
               <PaymentBtn
                 totalAmount={totalAmount}
                 orderId={id + ''}
                 phone={phone}
+                number={number}
               />
-              <OrderEnd refetch={refetch}/>
+              <OrderEnd refetch={refetch} />
             </>
           )}
         </div>
       </div>
 
       {(province || district || street || details) && (
-        <b className="block my-5">
+        <b className="block my-4">
           <big className="">
             <b>Хүргэлтийн мэдээлэл</b>
           </big>
@@ -118,7 +126,7 @@ const Page = () => {
         </b>
       )}
       {(firstName || lastName || phone || email) && (
-        <b className="block my-5">
+        <b className="block my-4">
           <big className="">
             <b>Захиалагчийн мэдээлэл</b>
           </big>
@@ -150,7 +158,7 @@ const Page = () => {
           </div>
         </b>
       )}
-      <div className="block mt-5">
+      <div className="block mt-3">
         <big>
           <b>Таны захиалсан бараанууд</b>
         </big>

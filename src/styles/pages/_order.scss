@@ -53,16 +53,23 @@
         }
       }
 
-      &:not(:last-child) {
+      .circle {
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: $blue;
+          height: 1px;
+          top: 50%;
+          width: 999px;
+          left: 40px;
+        }
+      }
+      &:last-child {
         .circle {
           &::after {
-            content: '';
-            position: absolute;
-            background-color: $blue;
-            height: 1px;
-            top: 50%;
-            width: 999px;
-            left: 40px;
+            background-color: #fff;
+            height: 3px;
+            left: 32px;
           }
         }
       }
@@ -210,6 +217,9 @@
       width: 400px;
       max-width: 97vw;
       overflow: hidden;
+      .-pay-btn.btn {
+        background: $blue;
+      }
     }
   }
   &-end {

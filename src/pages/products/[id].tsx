@@ -9,13 +9,14 @@ import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
 import { GetServerSideProps } from 'next';
 import getCategories from 'lib/getCategories';
-import { getProductInfo } from 'lib/wp/posts';
 import Info from 'components/ProductDetail/Info';
 import Context from 'components/ProductDetail/Context';
+import Advice from 'modules/Products/Advice';
+import { getVideosByTag } from 'lib/wp/posts';
 
-const Product = ({ detail, categories, wp }: any) => {
+const Product = ({ detail, categories, videos }: any) => {
   return (
-    <Context detail={detail} categories={categories} wp={wp}>
+    <Context detail={detail} categories={categories}>
       <div className="container prDtl">
         <Breadcrumb />
         <div className="row pb-4">
@@ -26,31 +27,42 @@ const Product = ({ detail, categories, wp }: any) => {
         </div>
       </div>
       <Tabs defaultValue="intro">
-        <TabsList className="container">
+        <TabsList className="container border-bottom">
           <TabTrigger value="intro">
-            <div className="p-3">Дэлгэрэнгүй</div>
+            <div className="p-2 m-1">Дэлгэрэнгүй</div>
           </TabTrigger>
+          {(videos || []).length > 0 && (
+            <TabTrigger value="advice">
+              <div className="p-2 m-1">Заавар зөвлөгөө </div>
+            </TabTrigger>
+          )}
         </TabsList>
         <TabsContent value="intro">
           <Description />
         </TabsContent>
+        {(videos || []).length > 0 && (
+          <TabsContent value="advice">
+            <Advice videos={videos} />
+          </TabsContent>
+        )}
       </Tabs>
     </Context>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const id = (params || {}).id + '';
-  const detail = await getProductDetail(id);
-  const { categories } = await getCategories();
-  const { post } = await getProductInfo(id.toLowerCase());
-  return {
-    props: {
-      detail,
-      categories,
-      wp: post,
-    },
-  };
-};
+// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+//   const id = (params || {}).id + '';
+//   const detail = await getProductDetail(id);
+//   const { categories } = await getCategories();
+//   const { posts: videosById } = await getVideosByTag(id);
+//   const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
+//   return {
+//     props: {
+//       detail,
+//       categories,
+//       videos: [...(videosById || []), ...(videosByCat || [])],
+//     },
+//   };
+// };
 
 export default Product;

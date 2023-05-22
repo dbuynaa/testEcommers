@@ -11,25 +11,19 @@ import { queries } from './graphql';
 import Loading from 'ui/Loading';
 import useHandleOrder from 'lib/useHandleOrder';
 import { useRouter } from 'next/router';
-import UserInfo from 'components/checkout/address/UserInfo';
+import { useCurrentOrder, useCurrentUser } from 'modules/appContext';
+import FormItem from 'ui/FormItem';
 
 const AddressForm = () => {
   const router = useRouter();
   const { data, loading } = useQuery(queries.addresses);
-  const { addresses } = data?.customer || {};
+  const { addresses } = data?.clientPortalCurrentUser?.customer || {};
   const onCompleted = (id: string) => router.push(`/profile/orders/${id}`);
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
+  const { currentOrder } = useCurrentOrder();
+  const { currentUser } = useCurrentUser();
 
   const onSubmit = (data) => {
-    // companyName : "DEMO - MSM групп"//
-    // deliveryInfo: "add"//
-    // others : "Altanorgooo"//
-    // city_district : "Bayangol"//
-    // isCompany : true//
-    // marker : {lat: 47.91687694759132, lng: 106.9062304655307}//
-    // city : "Ulaanbaatar" //
-    // registerNumber : "0000018" //
-    // street : "6-horoo"//
     const {
       isCompany,
       registerNumber,
@@ -40,6 +34,10 @@ const AddressForm = () => {
       city_district,
       city,
       marker,
+      email,
+      phone,
+      firstName,
+      lastName,
     } = data;
 
     let sendData = {} as any;
@@ -59,7 +57,11 @@ const AddressForm = () => {
         },
         marker,
         description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}`,
-        isNewAddress: true,
+        saveInfo: true,
+        email,
+        phone,
+        firstName,
+        lastName,
       };
     }
 
@@ -67,12 +69,20 @@ const AddressForm = () => {
       sendData.type = 'take';
     }
 
-    const address = addresses?.find(
-      (address) => address?.short === deliveryInfo
-    );
+    const address = addresses?.find((address) => address?.id === deliveryInfo);
 
     if (address) {
-      sendData.deliveryInfo = address;
+      const { id, location, short } = address || {};
+      sendData.deliveryInfo = {
+        id,
+        address: address?.address,
+        marker: location?.coordinates,
+        description: short,
+        email,
+        phone,
+        firstName,
+        lastName,
+      };
     }
 
     return handleOrder(sendData);
@@ -80,13 +90,24 @@ const AddressForm = () => {
 
   if (loading) return <Loading />;
 
+  const { billType, registerNumber, deliveryInfo } = currentOrder || {};
+  const { email, phone, firstName, lastName } = currentUser || {};
+
   return (
     <Form
       handleSubmit={onSubmit}
       className="order-address"
       args={{
         defaultValues: {
-          deliveryInfo: 'add',
+          deliveryInfo:
+            addresses.find((address) => address.id === (deliveryInfo || {}).id)
+              ?.id || 'add',
+          isCompany: billType === '3',
+          registerNumber,
+          email: deliveryInfo?.email || email,
+          phone: deliveryInfo?.phone || phone,
+          firstName: deliveryInfo?.firstName || firstName,
+          lastName: deliveryInfo?.lastName || lastName,
         },
       }}
     >
@@ -94,12 +115,46 @@ const AddressForm = () => {
         side={
           <ScrollWrapper className="mx-md-3 order-summary scroll">
             <Summary />
-            <Button className="block w-full p-3 sum-buy" type="submit">
-              Төлбөр төлөх
+            <Button
+              className="block w-full p-3 sum-buy"
+              type="submit"
+              loading={loadingAction}
+            >
+              {!loadingAction && 'Төлбөр төлөх'}
             </Button>
           </ScrollWrapper>
         }
       >
+        <div className="row mx--2 pb-2">
+          <div className="col-md-6 col-12 px-2 ">
+            <FormItem
+              label="Захиалагчийн нэр"
+              placeholder="Бат-эрдэнэ"
+              name="firstName"
+            />
+          </div>
+          <div className="col-md-6 col-12 px-2">
+            <FormItem
+              label="Захиалагчийн Овог"
+              placeholder="Хашбат"
+              name="lastName"
+            />
+          </div>
+          <div className="col-md-6 col-12 px-2">
+            <FormItem
+              label="Захиалагчийн утасны дугаар"
+              placeholder="99999999"
+              name="phone"
+            />
+          </div>
+          <div className="col-md-6 col-12 px-2">
+            <FormItem
+              label="Захиалагчийн и-мэйл хаяг"
+              placeholder="example@example.com"
+              name="email"
+            />
+          </div>
+        </div>
         <Ebarimt />
         <AddressList addresses={addresses} />
         <AddAddress />

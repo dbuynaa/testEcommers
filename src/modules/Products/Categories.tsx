@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
 import { useQuery } from '@apollo/client';
 import { queries } from './graphql';
-import Loading from 'ui/Loading';
 import CheckDevice from 'modules/CheckDevice';
 import { useRouter } from 'next/router';
+import Skeleton from 'components/Products/Skeleton';
 
 const Categories = dynamic(() => import('components/Products/Categories'), {
   suspense: true,
@@ -24,10 +24,12 @@ const CategoriesContainer = ({ isMobile }: { isMobile?: boolean }) => {
   const { data, loading } = useQuery(queries.productCategories, {
     variables: {
       parentId: isMobile ? category : null,
+      perPage: 100,
     },
   });
 
-  if (loading) return <Loading className='p-3'/>;
+  if (loading)
+    return <Skeleton type={isMobile ? 'mobile-cats' : 'categories'} max={10} />;
 
   const categories = (data || {}).poscProductCategories || [];
 

@@ -7,8 +7,8 @@ const MainCategories = ({ mainCategories }: any) => {
   const { category } = router.query;
 
   return (
-    <div className="product-cats hover-scroll">
-      <div className="container flex items-center">
+    <div className="product-cats ">
+      <div className="container flex items-center hover-scroll -x">
         {(mainCategories || []).map(({ _id, name }: any) => (
           <Link
             key={_id}

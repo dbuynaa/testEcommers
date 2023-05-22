@@ -1,6 +1,4 @@
 import Layout from 'components/checkout/layout';
-import PrivateRoute from 'modules/auth/privateRoute';
-import Grid from 'components/checkout/layout/Grid';
 import AddressForm from 'modules/checkout/AddressForm';
 
 const Address = () => {
@@ -13,7 +11,5 @@ const Address = () => {
     </Layout>
   );
 };
-
-Address.getLayout = (page) => <PrivateRoute>{page}</PrivateRoute>;
 
 export default Address;

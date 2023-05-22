@@ -11,7 +11,7 @@ const MobileCategories = ({ categories }: { categories: ICategory[] }) => {
   const { category, sub } = router.query;
 
   return (
-    <div className="mobile-cats flex items-center">
+    <div className="mobile-cats flex items-center mb-3">
       {(categories || [])
         .filter((cat) => !!cat)
         .map((cat: any) => (

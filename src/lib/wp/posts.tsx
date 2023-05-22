@@ -6,10 +6,10 @@ import {
   NEWS,
   SLIDER_BANNER,
   NEWS_DETAIL,
-  PRODUCT_DETAIL,
   BRANCHES,
   VIDEOS,
   BRANDS,
+  VIDEOS_BY_TAG,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -39,6 +39,10 @@ export async function getVideos() {
   return await getPosts(VIDEOS);
 }
 
+export async function getVideosByTag(id) {
+  return await getPosts(VIDEOS_BY_TAG, { tag: id });
+}
+
 export const getNews = async () => await getPosts(NEWS);
 
 export const getBranches = async () => await getPosts(BRANCHES);
@@ -66,33 +70,18 @@ export async function getPostById(id: string) {
 }
 
 export const getPosts = async (
-  query: DocumentNode
+  query: DocumentNode,
+  variables?: any
 ): Promise<{ posts?: WpPost[] }> => {
   const apolloClient = getApolloClient();
   const data = await apolloClient.query({
     ...getGqlQuery(query),
+    variables,
   });
   const posts = data?.data.posts.nodes;
   return {
     posts: (posts || []).map(mapPostData),
   };
-};
-
-export const getProductInfo = async (slug: string) => {
-  const apolloClient = getApolloClient();
-  if (slug) {
-    const data = await apolloClient.query({
-      ...getGqlQuery(PRODUCT_DETAIL),
-      variables: {
-        slug,
-      },
-    });
-    const post = data?.data?.postBy;
-    return {
-      post,
-    };
-  }
-  return { post: {} };
 };
 
 export function mapPostData(

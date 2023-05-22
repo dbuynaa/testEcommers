@@ -21,7 +21,7 @@ const Home = ({
   sliderBanners,
 }: any) => {
   return (
-    <div className="flex flex-col home">
+    <div className="flex flex-col home pb-3">
       <FeaturedProducts ftItems={ftItems} />
       <FeaturedCategories ftCats={ftCats} />
       <CategorySlider bannerCats={bannerCats} />
@@ -46,7 +46,7 @@ export const getStaticProps = async () => {
       bannerCats,
       imgBanners,
     },
-    revalidate: 60,
+    revalidate: 300,
   };
 };
 

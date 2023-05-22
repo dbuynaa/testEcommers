@@ -37,6 +37,12 @@ export const lastOrder = gql`
       registerNumber
       totalAmount
       mobileAmount
+      paidAmounts {
+        _id
+        type
+        amount
+        info
+      }
       items {
         ${orderItemFields}
       }
@@ -64,6 +70,7 @@ export const fullOrders = gql`
       paidDate
       status
       totalAmount
+      number
     }
   }
 `;

@@ -1,10 +1,16 @@
 .prDtl {
-  max-width: 1360px;
   .img-wrap {
-    aspect-ratio: 1 / 1;
+    &::before {
+      padding-bottom: 100%;
+    }
     background-color: $bg-gray;
     img {
       object-fit: contain;
+    }
+    &.big-image {
+      &::before {
+        padding-bottom: 82%;
+      }
     }
   }
   .img-nav {
@@ -59,14 +65,70 @@
       }
     }
   }
+  &-property {
+    align-items: flex-start;
+  }
+  &-properties {
+    margin: 0 -1rem;
+    & > .col-md-6:first-child {
+      border-right: $hr;
+    }
+  }
+
+  &-code {
+    font-weight: 400;
+    font-size: 0.875rem;
+  }
+
+  &-remainder {
+    border-top: $hr;
+    border-bottom: $hr;
+    font-weight: 400;
+    font-size: 0.875rem;
+    b {
+      display: inline-block;
+      background: #187d59;
+      color: #fff;
+      padding: 0.25rem 0.875rem;
+
+      border-radius: 0.75rem;
+    }
+  }
+
+  .wishlist-add {
+    padding: 0.75rem 1rem;
+    flex: 0 0 auto;
+
+    svg {
+      min-width: 1.5rem;
+      font-size: 1.5rem;
+      margin-right: 0.35rem;
+      margin-left: -0.15rem;
+    }
+    .icon-secondary {
+      fill: #ff3f5c;
+    }
+    .icon-primary {
+      fill: $success;
+      background-image: linear-gradient(to right, #fff, #fff);
+    }
+    // &.-long {
+    //   transform: translateY(-0.35rem);
+    // }
+  }
 
   &-overview {
-    strong {
-      color: $blue;
+    &-intro {
+      border-bottom: $hr;
     }
 
-    & > p {
-      padding-bottom: 0.75rem;
+    &-desc {
+      img {
+        max-width: 100%;
+      }
+    }
+    strong {
+      color: $blue;
     }
 
     video {
@@ -92,7 +154,6 @@
       }
     }
     .promotion {
-      margin: 0 -1rem;
       img {
         width: 100%;
         height: auto !important;

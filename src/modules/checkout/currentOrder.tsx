@@ -10,8 +10,7 @@ const NEW = ['new'];
 const CurrentOrder = ({ children }) => {
   const { cart, setCart } = useCart();
   const { currentUser } = useCurrentUser();
-  const { currentOrder, setCurrentOrder, setLoadingCurrentOrder } =
-    useCurrentOrder();
+  const { setCurrentOrder, setLoadingCurrentOrder } = useCurrentOrder();
   const { handleOrder } = useHandleOrder();
 
   const { loading, data } = useQuery(queries.lastOrder, {
@@ -31,7 +30,16 @@ const CurrentOrder = ({ children }) => {
     if (loading) return;
 
     const order = ((data || {}).fullOrders || [])[0];
-    if ((order || {}).mobileAmount !== 0) {
+    const { paidAmounts, mobileAmount } = order || {};
+    const sumAmount = (amounts: { amount: number }[]) =>
+      (amounts || []).reduce(
+        (sum: number, i: any) => Number(sum) + Number(i.amount),
+        0
+      );
+
+    const totalPaid = sumAmount(paidAmounts) + (order || {}).mobileAmount;
+    
+    if (totalPaid !== 0) {
       setCurrentOrder(null);
     } else {
       setCurrentOrder(order);
@@ -42,7 +50,7 @@ const CurrentOrder = ({ children }) => {
       (cart || []).forEach((item) => {
         addToCart({
           cart: currentCart,
-          product: item,
+          product: { ...item, _id: item.productId },
           onCompleted: (newCart) => (currentCart = newCart),
         });
       });

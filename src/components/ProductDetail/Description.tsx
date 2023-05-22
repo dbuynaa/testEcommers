@@ -3,38 +3,83 @@ import Video from './Video';
 import ProductsSlider from 'modules/Products/Slider';
 import { useDetailContext } from './Context';
 
+const PropertyItem = ({ text, value }: any) => (
+  <p className="flex prDtl-property justify-between sbt pb-2 mb-1">
+    <b className="-text">{text}:</b>
+    <span className="-value text-right">{value}</span>
+  </p>
+);
+
 const Description = () => {
   const router = useRouter();
-  
-  const { wp, categoryId } = useDetailContext();
 
-  const { content, productInfo } = wp || {};
+  const { categoryId, description, properties } = useDetailContext();
 
-  const { youtubeUrl, description } = productInfo || {};
+  const values = Object.values(properties || {});
+  const keys = Object.keys(properties || {});
+  const filter = ['intro', 'video'];
+
+  const intro = properties?.intro?.value;
+  const video = properties?.video?.value;
+
+  const filteredValues = values.filter(
+    (item: any, idx) => !filter.includes(keys[idx])
+  );
+
+  const odd = filteredValues.filter(
+    (item: any, index: number) => index % 2 === 0
+  );
+  const even = filteredValues.filter(
+    (item: any, index: number) => index % 2 !== 0
+  );
+
+  const modifiedDescription = description.replace(
+    /<img/g,
+    '<img loading="lazy"'
+  );
+
+  const colClass = 'col-12 col-md-6 px-md-3 px-2';
 
   return (
-    <div className="prDtl-overview text-blue py-4 container">
-      <big className="pb-2 block">
-        <b>Бүтээгдэхүүний танилцуулга</b>
-      </big>
-      <big className="py-3 sbt d-block">{description}</big>
-      <div className="my-4">
-        <Video src={youtubeUrl} />
-      </div>
+    <div className="prDtl-overview py-3 py-md-4 container text-blue">
+      {intro && (
+        <div className="prDtl-overview-intro mb-4">
+          <p className="bold mb-2">Бүтээгдэхүүний танилцуулга</p>
+          <div className="pb-4 sbt">{intro}</div>
+        </div>
+      )}
+      {!!filteredValues.length && (
+        <>
+          <p className="bold mb-3">Гол үзүүлэлт</p>
+          <div className="row prDtl-properties">
+            <div className={colClass}>
+              {odd?.map((item: any) => (
+                <PropertyItem key={item?.text} {...item} />
+              ))}
+            </div>
+            <div className={colClass}>
+              {even?.map((item: any) => (
+                <PropertyItem key={item?.text} {...item} />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+      {video && (
+        <div className="my-4">
+          <Video src={video} />
+        </div>
+      )}
       <ProductsSlider
         category={categoryId}
         slidesToShow={4}
         except={[router.query.id?.toString() || '']}
-        head={
-          <div className="mb-3">
-            <b>Ижил төстэй бүтээгдэхүүн:</b>
-          </div>
-        }
+        head={<p className="my-3 bold">Танд санал болгох бүтээгдэхүүн</p>}
       />
-      {content && (
+      {description && (
         <div
-          dangerouslySetInnerHTML={{ __html: content }}
-          className="pt-5 promotion"
+          dangerouslySetInnerHTML={{ __html: modifiedDescription }}
+          className="pt-4 promotion"
         ></div>
       )}
     </div>

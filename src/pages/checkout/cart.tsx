@@ -3,7 +3,6 @@ import Button from 'ui/Button';
 import Link from 'next/link';
 import { useItems } from 'modules/contextHooks';
 import OrderItem from 'modules/checkout/OrderItem';
-import PrivateRoute from 'modules/auth/privateRoute';
 import Summary from 'components/checkout/summary';
 import Grid from 'components/checkout/layout/Grid';
 import ScrollWrapper from 'components/header/Wrapper';
@@ -34,7 +33,5 @@ const Cart = () => {
     </Layout>
   );
 };
-
-Cart.getLayout = (page) => <PrivateRoute>{page}</PrivateRoute>;
 
 export default Cart;

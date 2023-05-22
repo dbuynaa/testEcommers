@@ -21,7 +21,7 @@ type Props = {
 };
 
 // If loading a variable font, you don't need to specify the font weight
-const open_sans = Open_Sans({ subsets: ['latin', 'cyrillic', 'cyrillic-ext'] });
+const open_sans = Open_Sans({ subsets: ['latin', 'cyrillic', 'cyrillic-ext', ] });
 
 function MyApp({
   Component,

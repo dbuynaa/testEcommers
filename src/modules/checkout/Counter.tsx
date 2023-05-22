@@ -10,8 +10,12 @@ import { toast } from 'react-toastify';
 const Counter = ({ productId, count, remainder }: ItemBase) => {
   const { loading, handleUpdateCart: updateCart } = useHandleCart();
 
-  const handleUpdateCart = (count) => {
-    if (remainder || 0 >= count) return updateCart({ productId, count });
+  const handleUpdateCart = (val) => {
+    const num = parseInt(val || '0');
+
+    if ((remainder || 0) >= num) {
+      return updateCart({ productId, count: num });
+    }
     return toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
   };
 
@@ -29,7 +33,7 @@ const Counter = ({ productId, count, remainder }: ItemBase) => {
         <Input
           className="count-wrap text-center"
           value={count}
-          onChange={(e) => handleUpdateCart(+e.target.value)}
+          onChange={(value) => handleUpdateCart(value)}
         />
         <Button
           className="plus"

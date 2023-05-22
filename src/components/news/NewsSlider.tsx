@@ -46,7 +46,7 @@ const NewsSlider = ({
   };
   return (
     <div>
-      <h5 className="text-blue slider-news-title mb-4">{title}</h5>
+      <h6 className="bold text-blue slider-news-title mb-3">{title}</h6>
       <div className="news-slider">
         <Slider {...settings}>{children}</Slider>
       </div>

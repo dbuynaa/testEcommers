@@ -122,20 +122,6 @@ export const NEWS_DETAIL = gql`
   }
 `;
 
-export const PRODUCT_DETAIL = gql`
-  query ProductInfo($slug: String) {
-    postBy(slug: $slug) {
-      content
-      title
-      productInfo {
-        accessories
-        description
-        youtubeUrl
-      }
-    }
-  }
-`;
-
 export const BRANCHES = gql`
   query Branches {
     posts(where: { categoryName: "branches" }) {
@@ -153,17 +139,29 @@ export const BRANCHES = gql`
   }
 `;
 
+const videoFields = `
+nodes {
+  ${featuredImage()}
+  date
+  title
+  video {
+    videoId
+  }
+}
+`;
+
 export const VIDEOS = gql`
   query Videos {
     posts(where: { categoryName: "video" }) {
-      nodes {
-        ${featuredImage()}
-        date
-        title
-        video {
-          videoId
-        }
-      }
+      ${videoFields}
+    }
+  }
+`;
+
+export const VIDEOS_BY_TAG = gql`
+  query ProductInfo($tag: String) {
+    posts(where: { tag: $tag }) {
+      ${videoFields}
     }
   }
 `;

@@ -20,11 +20,13 @@ const Categories = ({
   const activeCat = categories.find((cat) => cat._id === (sub || category));
 
   useEffect(() => {
-    setName(activeCat.name);
-  }, [activeCat.name, category, setName]);
+    activeCat?.name && setName(activeCat.name);
+  }, [activeCat?.name, category, setName]);
 
   const cts = categories.map((ct) => {
-    const { order, parentId, name: nameStr, _id } = ct;
+    const { order, parentId, name: nameStr, _id, meta } = ct;
+
+    if (!!meta) return null;
 
     const m = order.match(/[/]/gi);
 
@@ -46,33 +48,30 @@ const Categories = ({
     const show =
       showAll ||
       parentId === category ||
-      activeCat.parentId === parentId ||
+      activeCat?.parentId === parentId ||
       m.length < 2;
 
     const margin = 6;
+
+    const initial = {
+      marginTop: 0,
+      marginBottom: 0,
+      opacity: 0,
+      height: 0,
+    };
 
     return (
       <AnimatePresence key={_id}>
         {show && (
           <motion.div
-            initial={{
-              marginTop: 0,
-              marginBottom: 0,
-              opacity: 0,
-              height: 0,
-            }}
+            initial={initial}
             animate={{
               marginTop: margin,
               marginBottom: margin,
               opacity: 1,
               height: 'auto',
             }}
-            exit={{
-              marginTop: 0,
-              marginBottom: 0,
-              opacity: 0,
-              height: 0,
-            }}
+            exit={initial}
           >
             <Link
               href={{

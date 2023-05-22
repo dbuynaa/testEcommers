@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import OrderStatus from './orderStatus';
 import { formatCurrency } from 'utils';
 
-const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id }: any) => {
+const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id, number }: any) => {
   return (
     <Link
       href={`/profile/orders/${_id}`}
@@ -17,7 +17,7 @@ const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id }: any) => {
       </div>
       <div className="col-12 col-md-3">
         <p className="text-mid-gray">Захиалгын дугаар</p>
-        <div className="pt-1">{_id}</div>
+        <div className="pt-1">{number}</div>
       </div>
       <div className="col-6 col-md-3">
         <p className="text-white">Захиалгын төлөв</p>

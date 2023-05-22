@@ -21,6 +21,13 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
+"@awes-io/resize@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@awes-io/resize/-/resize-2.1.0.tgz#13c7b5a3ef36a1b7dc4763442b8e7d3c24ea7593"
+  integrity sha512-ZGz8+sjFSWyZeWSJspVSYpNUb0SZ4K6RRLTRFz4In0tWzhb5t2/pSUJ2Jfl2ulNyCmEM2ht84VJ6+0MJt2PKow==
+  dependencies:
+    lodash "^4.17.15"
+
 "@babel/runtime-corejs3@^7.10.2":
   version "7.20.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.20.6.tgz#63dae945963539ab0ad578efbf3eff271e7067ae"
@@ -2087,6 +2094,11 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash@^4.17.15:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"

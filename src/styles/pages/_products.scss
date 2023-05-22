@@ -1,6 +1,5 @@
 .products {
   margin: 0 -0.625rem;
-  padding-bottom: 2rem;
   .col-md-4 {
     padding: 0.625rem;
   }
@@ -13,7 +12,7 @@
   &-header {
     border-bottom: $hr;
     justify-content: space-between;
-    
+
     &-count {
       font-weight: 500;
       font-size: 15px;
@@ -31,11 +30,11 @@
 }
 .mobile-cats {
   overflow-x: auto;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 100%;
-  margin-bottom: 1rem;
   .btn.slim {
     padding: 0.75rem;
+    border-radius: 1rem;
     white-space: nowrap;
     width: auto;
     overflow: initial;

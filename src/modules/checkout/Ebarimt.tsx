@@ -45,7 +45,7 @@ const Ebarimt = () => {
         render={({ field }) => (
           <label
             htmlFor="isCompany"
-            className="order-ebarimt-company row items-center"
+            className="order-ebarimt-company flex items-center"
           >
             <Checkbox
               checked={field.value}

@@ -32,6 +32,7 @@ export type ICartItem = IOrderItem & {
 };
 
 export type AddressFormData = {
+  id?: string;
   firstName: string;
   lastName: string;
   phone: string;

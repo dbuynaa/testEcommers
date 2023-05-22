@@ -3,7 +3,6 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 const AddressList = ({ addresses }: { addresses }) => {
   const { control } = useFormContext();
-
   return (
     <div className="py-3">
       <Controller
@@ -24,11 +23,11 @@ const AddressList = ({ addresses }: { addresses }) => {
               </label>
               {(addresses || []).map((address, idx) => (
                 <label
-                  htmlFor={address?.short}
-                  className="address-item row items-center"
+                  htmlFor={address?.id}
+                  className="address-item flex items-center"
                   key={idx}
                 >
-                  <Radio value={address?.short} id={address?.short} />
+                  <Radio value={address?.id} id={address?.id} />
                   <span className="ms-2">{address?.short}</span>
                 </label>
               ))}

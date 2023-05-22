@@ -7,9 +7,10 @@ const commonFields = `
 `;
 
 const productCategories = gql`
-  query poscProductCategories($parentId: String, $excludeEmpty: Boolean) {
-    poscProductCategories(parentId: $parentId, excludeEmpty: $excludeEmpty) {
+query PoscProductCategories($perPage: Int, $excludeEmpty: Boolean, $parentId: String) {
+  poscProductCategories(perPage: $perPage, excludeEmpty: $excludeEmpty, parentId: $parentId) {
       ${commonFields}
+      meta
       order
       parentId
       isRoot
@@ -60,11 +61,12 @@ const productDetail = gql`
         order
         name
         isRoot
+        meta
       }
       categoryId
       code
       createdAt
-      customFieldsData
+      customFieldsDataByFieldCode
       description
       name
       remainder
@@ -77,6 +79,49 @@ const productDetail = gql`
   }
 `;
 
-const queries = { productCategories, products, productsCount, productDetail };
+const wish = gql`
+  query Wish($productId: String, $customerId: String) {
+    wish(productId: $productId, customerId: $customerId) {
+      _id
+    }
+  }
+`;
+
+const wishlist = gql`
+  query Wishlist($customerId: String) {
+    wishlist(customerId: $customerId) {
+      _id
+      productId
+      customerId
+      product {
+        _id
+        name
+        unitPrice
+        attachment {
+          url
+        }
+      }
+    }
+  }
+`;
+
+const productDetailWithCustomFields = gql`
+  query PoscProducts($categoryId: String) {
+    poscProducts(categoryId: $categoryId) {
+      customFieldsDataByFieldCode
+      _id
+    }
+  }
+`;
+
+const queries = {
+  productCategories,
+  products,
+  productsCount,
+  productDetail,
+  wish,
+  wishlist,
+  productDetailWithCustomFields,
+};
 
 export default queries;
