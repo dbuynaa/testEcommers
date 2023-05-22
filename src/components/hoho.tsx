@@ -1,11 +1,13 @@
 import Image from 'next/image';
 
 const normalizeSrc = (src) => {
+  console.log(src, 'rr');
   return src.startsWith('/') ? src.slice(1) : src;
 };
 
 export const cloudflareLoader = ({ src, width, quality }) => {
-  const params = [`width=${width}`];
+  console.log(src, 'src', width, 'width', quality, 'quality');
+  const params = [`width=${width}`, `format=avif`];
   if (quality) {
     params.push(`quality=${quality}`);
   }

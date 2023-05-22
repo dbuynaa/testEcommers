@@ -3,7 +3,6 @@ const nextConfig = {
   swcMinify: true,
   output: 'export',
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

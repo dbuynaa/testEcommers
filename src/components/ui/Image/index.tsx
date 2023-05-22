@@ -46,6 +46,7 @@ const Image: FC<
   return (
     <NextImage
       {...updatedProps}
+      loader={cloudflareLoader}
       onLoadingComplete={handleComplete}
       className={cls(
         'next-image',
@@ -63,6 +64,21 @@ const Image: FC<
       }
     />
   );
+};
+
+export const cloudflareLoader = ({ src, width, quality }) => {
+  console.log(src, 'src', width, 'width', quality, 'quality');
+  const params = [`width=${width}`, `format=avif`];
+  if (quality) {
+    params.push(`quality=${quality}`);
+  }
+  const paramsString = params.join(',');
+  return `https://erxes.io/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
+};
+
+const normalizeSrc = (src) => {
+  console.log(src, 'rr');
+  return src.startsWith('/') ? src.slice(1) : src;
 };
 
 export default memo(Image);
