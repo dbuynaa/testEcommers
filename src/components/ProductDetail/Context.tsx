@@ -1,6 +1,5 @@
-import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { readFile } from 'utils';
 import { useQuery } from '@apollo/client';
 import { queries } from 'modules/Products/graphql';
