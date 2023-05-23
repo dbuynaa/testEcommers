@@ -46,7 +46,9 @@ const Image: FC<
   return (
     <NextImage
       {...updatedProps}
-      loader={cloudflareLoader}
+      loader={
+        process.env.NEXT_PUBLIC_MODE === 'dev' ? undefined : cloudflareLoader
+      }
       onLoadingComplete={handleComplete}
       className={cls(
         'next-image',
@@ -77,8 +79,7 @@ export const cloudflareLoader = ({ src, width, quality }) => {
 };
 
 const normalizeSrc = (src) => {
-  console.log(src, 'rr');
-  return src.startsWith('/') ? src.slice(1) : src;
+  return src.startsWith('/') ? process.env.NEXT_PUBLIC_DOMAIN + src : src;
 };
 
 export default memo(Image);

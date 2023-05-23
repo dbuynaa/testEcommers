@@ -50,7 +50,7 @@ const Product = ({ detail, categories, videos }: any) => {
   );
 };
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = (params || {}).id + '';
