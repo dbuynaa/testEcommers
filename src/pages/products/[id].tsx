@@ -50,19 +50,19 @@ const Product = ({ detail, categories, videos }: any) => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-//   const id = (params || {}).id + '';
-//   const detail = await getProductDetail(id);
-//   const { categories } = await getCategories();
-//   const { posts: videosById } = await getVideosByTag(id);
-//   const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
-//   return {
-//     props: {
-//       detail,
-//       categories,
-//       videos: [...(videosById || []), ...(videosByCat || [])],
-//     },
-//   };
-// };
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const id = (params || {}).id + '';
+  const detail = await getProductDetail(id);
+  const { categories } = await getCategories();
+  const { posts: videosById } = await getVideosByTag(id);
+  const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
+  return {
+    props: {
+      detail,
+      categories,
+      videos: [...(videosById || []), ...(videosByCat || [])],
+    },
+  };
+};
 
 export default Product;
