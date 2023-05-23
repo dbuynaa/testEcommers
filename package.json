@@ -49,6 +49,7 @@
     "use-context-selector": "^1.4.1"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^0.10.1",
     "@types/node": "18.11.7",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.27",
