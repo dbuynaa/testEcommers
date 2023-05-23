@@ -1,11 +1,12 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { getPostById } from 'lib/wp/posts';
+import { getNewsIds, getPostById } from 'lib/wp/posts';
 import dayjs from 'dayjs';
 import Image from 'ui/Image';
 import { NextSeo } from 'next-seo';
 import { FacebookShareButton } from 'next-share';
 import Facebook from 'icons/Facebook';
 import Button from 'ui/Button';
+import { WpPost } from '../../lib/wp/posts';
 const PostDetail = ({ post }) => {
   const { title, featuredImage, excerpt, id, content, date } = post || {};
   const removeTag = (html: any) => {
@@ -71,9 +72,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { posts } = await getNewsIds();
+  const paths = (posts || []).map((item: any) => {
+    // const id = Buffer.from(item.id, 'base64').toString('ascii');
+    return { params: { id: item?.id } };
+  });
+
   return {
-    paths: [],
-    fallback: 'blocking',
+    paths,
+    fallback: false,
   };
 };
 

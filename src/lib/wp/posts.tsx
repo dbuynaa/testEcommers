@@ -10,6 +10,7 @@ import {
   VIDEOS,
   BRANDS,
   VIDEOS_BY_TAG,
+  NEWS_IDS,
 } from './queries/posts';
 import { getApolloClient } from './client';
 import { getGqlQuery } from './utils';
@@ -44,6 +45,8 @@ export async function getVideosByTag(id) {
 }
 
 export const getNews = async () => await getPosts(NEWS);
+
+export const getNewsIds = async () => await getPosts(NEWS_IDS);
 
 export const getBranches = async () => await getPosts(BRANCHES);
 

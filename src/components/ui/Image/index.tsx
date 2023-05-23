@@ -1,4 +1,4 @@
-import { useState, FC, memo } from 'react';
+import { useState, FC } from 'react';
 import NextImage, { ImageProps } from 'next/image';
 import cls from 'classnames';
 import { readFile } from 'utils';
@@ -69,11 +69,15 @@ const Image: FC<
 };
 
 export const cloudflareLoader = ({ src, width, quality }) => {
-  console.log(src, 'src', width, 'width', quality, 'quality');
-  const params = [`width=${width}`, `format=avif`];
+  const params = [`format=avif`];
+
+  if (width) {
+    params.push(`width=${width}`);
+  }
   if (quality) {
     params.push(`quality=${quality}`);
   }
+
   const paramsString = params.join(',');
   return `https://erxes.io/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
 };
@@ -82,4 +86,4 @@ const normalizeSrc = (src) => {
   return src.startsWith('/') ? process.env.NEXT_PUBLIC_DOMAIN + src : src;
 };
 
-export default memo(Image);
+export default Image;

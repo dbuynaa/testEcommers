@@ -89,7 +89,7 @@ export const SLIDER_BANNER = gql`
 `;
 
 export const NEWS = gql`
-  query NewQuery {
+  query NewsQuery {
     posts(
       where: { categoryName: "news", orderby: { field: DATE, order: DESC } }
       last: 10
@@ -99,6 +99,19 @@ export const NEWS = gql`
         date
         ${featuredImage()}
         title
+      }
+    }
+  }
+`;
+
+export const NEWS_IDS = gql`
+  query NewsIdsQuery {
+    posts(
+      where: { categoryName: "news" }
+      last: 1000
+    ) {
+      nodes {
+        id
       }
     }
   }
