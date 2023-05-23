@@ -1,14 +1,11 @@
-import { getErxesApolloClient } from 'modules/ssClient';
 import { queries } from 'modules/Products/graphql';
+import { getErxesApolloClient } from 'modules/ssClient';
 
-const getProducts: (categoryId: string) => Promise<any> = async (
-  categoryId
-) => {
+const getProductIds: any = async () => {
   const apolloClient = getErxesApolloClient();
   try {
     const { data } = await apolloClient.query({
-      query: queries.products,
-      variables: { categoryId, perPage: 16 },
+      query: queries.productIds,
     });
     const products = (data || {}).poscProducts || [];
     return products;
@@ -17,4 +14,4 @@ const getProducts: (categoryId: string) => Promise<any> = async (
   }
 };
 
-export default getProducts;
+export default getProductIds;

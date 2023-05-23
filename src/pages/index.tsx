@@ -46,7 +46,6 @@ export const getStaticProps = async () => {
       bannerCats,
       imgBanners,
     },
-    revalidate: 300,
   };
 };
 

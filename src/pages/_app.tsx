@@ -18,10 +18,11 @@ type Props = {
   menu: any;
   mainCategories: any;
   footer: any;
+  categories: any;
 };
 
 // If loading a variable font, you don't need to specify the font weight
-const open_sans = Open_Sans({ subsets: ['latin', 'cyrillic', 'cyrillic-ext', ] });
+const open_sans = Open_Sans({ subsets: ['latin', 'cyrillic', 'cyrillic-ext'] });
 
 function MyApp({
   Component,
@@ -29,6 +30,7 @@ function MyApp({
   router,
   mainCategories,
   footer,
+  categories,
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
 
@@ -57,7 +59,11 @@ function MyApp({
           font-family: ${open_sans.style.fontFamily};
         }
       `}</style>
-      <Layout mainCategories={mainCategories} footer={footer}>
+      <Layout
+        mainCategories={mainCategories}
+        categories={categories}
+        footer={footer}
+      >
         {getLayout(<Component {...pageProps} router={router} />)}
       </Layout>
     </>
@@ -67,13 +73,14 @@ function MyApp({
 MyApp.getInitialProps = async function (appContext: any) {
   const appProps = await NextApp.getInitialProps(appContext);
 
-  const { rootCatergories } = await getCategories();
+  const { rootCatergories, categories } = await getCategories();
   const { page: footer } = await getFooter();
 
   return {
     ...appProps,
     footer,
     mainCategories: rootCatergories,
+    categories,
   };
 };
 

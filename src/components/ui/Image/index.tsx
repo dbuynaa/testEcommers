@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { useState, FC, memo } from 'react';
 import NextImage, { ImageProps } from 'next/image';
 import cls from 'classnames';
 import { readFile } from 'utils';
@@ -86,4 +86,4 @@ const normalizeSrc = (src) => {
   return src.startsWith('/') ? process.env.NEXT_PUBLIC_DOMAIN + src : src;
 };
 
-export default Image;
+export default memo(Image);

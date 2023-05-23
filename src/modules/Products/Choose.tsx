@@ -21,8 +21,6 @@ const Choose = () => {
 
   const properties = convertDataToProperties(fields);
 
-  console.log(properties, 'pros');
-
   return (
     <div>
       {Object.keys(properties).map((property: string) => (

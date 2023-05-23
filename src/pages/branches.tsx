@@ -16,8 +16,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { posts } = await getBranches();
 
   return {
-    props: { posts },
-    revalidate: 600,
+    props: { posts }
   };
 };
 

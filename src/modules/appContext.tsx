@@ -69,12 +69,22 @@ const useStore = () => {
   };
 };
 
-export const StoreContext = createContext<State>({} as State);
+export const StoreContext = createContext<State & { categories: any }>(
+  {} as State & { categories: any }
+);
 
-export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
+export const StoreProvider = ({
+  categories,
+  children,
+}: {
+  categories: any;
+  children: React.ReactNode;
+}) => {
   const store = useStore();
   return (
-    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
+    <StoreContext.Provider value={{ ...store, categories }}>
+      {children}
+    </StoreContext.Provider>
   );
 };
 
@@ -141,4 +151,12 @@ export const useConfig = () => {
     (store) => store.setConfig
   );
   return { config, setConfig };
+};
+
+export const useCategories = () => {
+  const categories = useContextSelector(
+    StoreContext,
+    (store) => store.categories
+  );
+  return { categories };
 };

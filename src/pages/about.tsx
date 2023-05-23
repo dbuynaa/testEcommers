@@ -80,8 +80,7 @@ export const getStaticProps = async () => {
   const { page } = await getAbout();
   const { posts } = await getBrands();
   return {
-    props: { page, posts },
-    revalidate: 60,
+    props: { page, posts }
   };
 };
 

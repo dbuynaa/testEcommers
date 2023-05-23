@@ -26,9 +26,7 @@ const Categories = ({
   const cts = categories.map((ct) => {
     const { order, parentId, name: nameStr, _id, meta } = ct;
 
-    if (!!meta) return null;
-
-    const m = order.match(/[/]/gi);
+      const m = order.match(/[/]/gi);
 
     let marginLeft = 0;
 
@@ -96,6 +94,7 @@ const Categories = ({
       </AnimatePresence>
     );
   });
+
 
   return (
     <>

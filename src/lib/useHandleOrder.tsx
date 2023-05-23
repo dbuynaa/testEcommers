@@ -30,6 +30,7 @@ const useHandleOrder = (onCompleted?: (_id: string) => void) => {
     totalAmount: getTotalValue(items || []),
     billType,
     deliveryInfo,
+    branchId: process.env.NEXT_PUBLIC_BRANCH_ID,
   };
 
   const handleOrder = (orderData: any) => {

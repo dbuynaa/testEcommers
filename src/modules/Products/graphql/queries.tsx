@@ -47,8 +47,8 @@ const productsCount = gql`
 `;
 
 const productDetail = gql`
-  query PoscProductDetail($id: String) {
-    poscProductDetail(_id: $id) {
+  query PoscProductDetail($id: String, $branchId: String) {
+    poscProductDetail(_id: $id, branchId: $branchId) {
       _id
       attachment {
         url
@@ -114,6 +114,28 @@ const productDetailWithCustomFields = gql`
   }
 `;
 
+const productDetailMeta = gql`
+  query PoscProductDetailMeta($id: String) {
+    poscProductDetail(_id: $id) {
+      name
+      customFieldsDataByFieldCode
+      categoryId
+      attachment {
+        url
+      }
+      _id
+    }
+  }
+`;
+
+const productIds = gql`
+  query PoscProductIds {
+    poscProducts(perPage: 10000) {
+      _id
+    }
+  }
+`;
+
 const queries = {
   productCategories,
   products,
@@ -122,6 +144,8 @@ const queries = {
   wish,
   wishlist,
   productDetailWithCustomFields,
+  productIds,
+  productDetailMeta,
 };
 
 export default queries;

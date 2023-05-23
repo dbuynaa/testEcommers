@@ -14,7 +14,6 @@ export default TermsOfService;
 export const getStaticProps = async () => {
   const { page } = await getTermsOfUse();
   return {
-    props: { page },
-    revalidate: 60,
+    props: { page }
   };
 };

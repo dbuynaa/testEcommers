@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import { useDetailContext } from 'components/ProductDetail/Context';
+import { useCategories } from 'modules/appContext';
 
 const Breadcrumb = () => {
-  const { categoryId, categories, name } = useDetailContext();
+  const { categories } = useCategories();
+
+  const { categoryId, name } = useDetailContext();
 
   const category =
     (categories || []).find(({ _id }: any) => _id === categoryId) || {};

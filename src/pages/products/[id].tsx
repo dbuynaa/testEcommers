@@ -7,62 +7,96 @@ import Tabs, {
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
-import { GetServerSideProps } from 'next';
-import getCategories from 'lib/getCategories';
 import Info from 'components/ProductDetail/Info';
 import Context from 'components/ProductDetail/Context';
 import Advice from 'modules/Products/Advice';
 import { getVideosByTag } from 'lib/wp/posts';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import getProductIds from 'lib/getProductIds';
+import { NextSeo } from 'next-seo';
+import { readFile } from 'utils';
 
-const Product = ({ detail, categories, videos }: any) => {
+const Product = ({ detail, videos }: any) => {
+  const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
+
   return (
-    <Context detail={detail} categories={categories}>
-      <div className="container prDtl">
-        <Breadcrumb />
-        <div className="row pb-4">
-          <div className="col-12 col-md-6">
-            <ImageGallery />
+    <>
+      <NextSeo
+        title={name}
+        description={(customFieldsDataByFieldCode || {}).intro?.value}
+        openGraph={{
+          url: `https://www.technews.mn/products/${_id}`,
+          images: [
+            {
+              url: readFile((attachment || {}).url),
+              width: 800,
+              height: 800,
+              alt: name,
+            },
+          ],
+        }}
+      />
+      <Context>
+        <div className="container prDtl">
+          <Breadcrumb />
+          <div className="row pb-4">
+            <div className="col-12 col-md-6">
+              <ImageGallery />
+            </div>
+            <Info />
           </div>
-          <Info />
         </div>
-      </div>
-      <Tabs defaultValue="intro">
-        <TabsList className="container border-bottom">
-          <TabTrigger value="intro">
-            <div className="p-2 m-1">Дэлгэрэнгүй</div>
-          </TabTrigger>
-          {(videos || []).length > 0 && (
-            <TabTrigger value="advice">
-              <div className="p-2 m-1">Заавар зөвлөгөө </div>
+        <Tabs defaultValue="intro">
+          <TabsList className="container border-bottom">
+            <TabTrigger value="intro">
+              <div className="p-2 m-1">Дэлгэрэнгүй</div>
             </TabTrigger>
-          )}
-        </TabsList>
-        <TabsContent value="intro">
-          <Description />
-        </TabsContent>
-        {(videos || []).length > 0 && (
-          <TabsContent value="advice">
-            <Advice videos={videos} />
+            {(videos || []).length > 0 && (
+              <TabTrigger value="advice">
+                <div className="p-2 m-1">Заавар зөвлөгөө </div>
+              </TabTrigger>
+            )}
+          </TabsList>
+          <TabsContent value="intro">
+            <Description />
           </TabsContent>
-        )}
-      </Tabs>
-    </Context>
+          {(videos || []).length > 0 && (
+            <TabsContent value="advice">
+              <Advice videos={videos} />
+            </TabsContent>
+          )}
+        </Tabs>
+      </Context>
+    </>
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-//   const id = (params || {}).id + '';
-//   const detail = await getProductDetail(id);
-//   const { categories } = await getCategories();
-//   const { posts: videosById } = await getVideosByTag(id);
-//   const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
-//   return {
-//     props: {
-//       detail,
-//       categories,
-//       videos: [...(videosById || []), ...(videosByCat || [])],
-//     },
-//   };
-// };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params || !params.id) {
+    return { notFound: true };
+  }
+
+  const id = (params || {}).id + '';
+  const { posts: videosById } = await getVideosByTag(id);
+  const detail = await getProductDetail(id);
+  const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
+
+  return {
+    props: { detail, videos: [...(videosById || []), ...(videosByCat || [])] },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const products = await getProductIds();
+
+  const paths = (products || []).map((item: any) => {
+    return { params: { id: item?._id } };
+  });
+
+  return {
+    paths,
+    fallback: true,
+  };
+};
 
 export default Product;

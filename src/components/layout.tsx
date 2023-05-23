@@ -14,9 +14,11 @@ const Layout = ({
   children,
   mainCategories,
   footer,
+  categories,
 }: {
   children: ReactNode;
   mainCategories: any;
+  categories: any;
   footer: any;
 }) => {
   return (
@@ -59,7 +61,7 @@ const Layout = ({
         }}
       />
       <ApolloProvider>
-        <StoreProvider>
+        <StoreProvider categories={categories}>
           <CurrentUser>
             <CurrentOrder>
               <Header mainCategories={mainCategories} />

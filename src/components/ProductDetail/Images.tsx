@@ -4,6 +4,7 @@ import Image from 'ui/Image';
 import ChevronRight from 'icons/ChevronRight';
 import ChevronLeft from 'icons/ChevronLeft';
 import { useDetailContext } from './Context';
+import { readFile } from 'utils';
 
 const ImageGallery = () => {
   const { images } = useDetailContext();
@@ -23,7 +24,7 @@ const ImageGallery = () => {
       },
     ],
   };
-
+  
   return (
     <>
       <Slider
@@ -36,7 +37,7 @@ const ImageGallery = () => {
         {images.map((url: any, index: any) => (
           <div key={index} className="img-wrap big-image">
             <Image
-              src={url}
+              src={readFile(url)}
               alt="product"
               quality={100}
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -71,7 +72,7 @@ const ImageGallery = () => {
               // onClick={() => nav1.current.slickGoTo(index)}
             >
               <div className="img-wrap">
-                <Image src={url} alt="product" />
+                <Image src={readFile(url)} alt="product" />
               </div>
             </div>
           ))}
