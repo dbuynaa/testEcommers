@@ -19,8 +19,7 @@ const GoogleLogin = () => {
     const rootUrl = `https://accounts.google.com/o/oauth2/v2/auth`;
     const options = {
       redirect_uri: `https://${domain}/auth/verifyGoogle`,
-      client_id:
-        '72981302453-gk1aq46nlhaen1b4q14f2hbe6tsugq0s.apps.googleusercontent.com',
+      client_id: process.env.NEXT_PUBLIC_GOOGLE_ID || '',
       access_type: 'offline',
       response_type: 'code',
       prompt: 'consent',

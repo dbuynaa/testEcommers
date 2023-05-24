@@ -30,16 +30,16 @@ const CurrentOrder = ({ children }) => {
     if (loading) return;
 
     const order = ((data || {}).fullOrders || [])[0];
-    const { paidAmounts, mobileAmount } = order || {};
+    const { paidAmounts, mobileAmount, paidDate } = order || {};
     const sumAmount = (amounts: { amount: number }[]) =>
       (amounts || []).reduce(
         (sum: number, i: any) => Number(sum) + Number(i.amount),
         0
       );
 
-    const totalPaid = sumAmount(paidAmounts) + (order || {}).mobileAmount;
-    
-    if (totalPaid !== 0) {
+    const totalPaid = sumAmount(paidAmounts) + mobileAmount;
+
+    if (paidDate || totalPaid !== 0) {
       setCurrentOrder(null);
     } else {
       setCurrentOrder(order);
