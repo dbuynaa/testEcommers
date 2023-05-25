@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import LoadingDots from 'ui/LoadingDots';
 import Ink from 'react-ink';
 import type { LinkProps } from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: LinkProps['href'];
@@ -62,11 +63,18 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
       {...rest}
     >
       {children}
-      {loading && (
-        <i className="ps-2 m-0 flex">
-          <LoadingDots />
-        </i>
-      )}
+      <AnimatePresence>
+        {loading && (
+          <motion.i
+            className="ps-2 m-0 flex"
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: 'auto', opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+          >
+            <LoadingDots />
+          </motion.i>
+        )}
+      </AnimatePresence>
       {riffle && !disabled && <Ink duration={700} />}
     </Component>
   );

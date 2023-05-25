@@ -10,7 +10,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'techstore.nmma.co',
+        hostname: 'admin.techstore.mn',
+      },
+      {
+        protocol: 'http',
+        hostname: '192.168.8.3'
       },
       {
         protocol: 'http',

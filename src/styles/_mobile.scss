@@ -131,10 +131,13 @@
     -webkit-line-clamp: 2;
     height: 3rem;
   }
-  .ratio-md-1x1{
+  .ratio-md-1x1 {
     &::before {
       padding-bottom: 100%;
     }
+  }
+  .order-address {
+    padding-bottom: 250px;
   }
   .order-summary {
     position: fixed;

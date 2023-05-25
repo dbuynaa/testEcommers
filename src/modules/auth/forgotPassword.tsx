@@ -48,7 +48,7 @@ const ForgotPassword = () => {
           }}
           name="email"
         />
-        <Button className="p-3 mt-3" type="submit" loading={loading}>
+        <Button className="p-3 mt-3 login-btn" type="submit" loading={loading}>
           Нууц үг сэргээх
         </Button>
 

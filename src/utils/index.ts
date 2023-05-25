@@ -168,7 +168,7 @@ export const readFile = (url: string = '') => {
     const apiUrl = url.split(READ_FILE)[0];
     return url.replace(apiUrl, process.env.NEXT_PUBLIC_ERXES_API_URL || '');
   }
-  if (!(url || '').includes('http') && !url.startsWith('/'))
+  if (!(url || '').includes('http') && !(url || '').startsWith('/'))
     return process.env.NEXT_PUBLIC_ERXES_API_URL + READ_FILE + url;
   return url;
 };

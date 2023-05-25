@@ -116,11 +116,11 @@ const AddressForm = () => {
           <ScrollWrapper className="mx-md-3 order-summary scroll">
             <Summary />
             <Button
-              className="block w-full p-3 sum-buy"
+              className="w-full p-3 sum-buy"
               type="submit"
               loading={loadingAction}
             >
-              {!loadingAction && 'Төлбөр төлөх'}
+              Төлбөр төлөх
             </Button>
           </ScrollWrapper>
         }
