@@ -14,7 +14,8 @@ const AddressContainer = () => {
   const router = useRouter();
   const { currentUser } = useCurrentUser();
   const { currentOrder, loadingCurrentOrder } = useCurrentOrder();
-  const onCompleted = (id: string) => router.push(`/profile/orders/${id}`);
+  const onCompleted = (data: any) =>
+    router.push(`/profile/orders/${data?._id}`);
   const { handleOrder, loading } = useHandleOrder(onCompleted);
   const [latLong, setLatLong] = useState<any>();
 

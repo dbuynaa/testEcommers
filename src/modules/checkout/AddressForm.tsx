@@ -18,7 +18,7 @@ const AddressForm = () => {
   const router = useRouter();
   const { data, loading } = useQuery(queries.addresses);
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
-  const onCompleted = (id: string) => router.push(`/profile/orders/${id}`);
+  const onCompleted = (data: any) => router.push(`/profile/orders/${data._id}`);
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
   const { currentOrder } = useCurrentOrder();
   const { currentUser } = useCurrentUser();

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Cart from './Cart';
 import ScrollWrapper from './Wrapper';
 import Nav from './Nav';
-import Search from './Search';
+import Search from './searchNew';
 import MainCategories from 'modules/Products/MainCategories';
 import Profile from './Profile';
 import Top from './top';
@@ -20,11 +20,12 @@ const Header = ({ mainCategories }: any) => {
                 <Link href="/">
                   <Logo className="logo" />
                 </Link>
-                <Search inHead />
+                <Search desktop />
                 <Nav />
               </div>
             </div>
             <div className="flex items-center">
+              <Search />
               <Cart />
               <Profile />
             </div>

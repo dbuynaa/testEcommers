@@ -8,7 +8,7 @@ import Check from 'icons/Check';
 import Link from 'next/link';
 import { useState } from 'react';
 
-const Storepay = () => {
+const Storepay = ({ children }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -31,7 +31,7 @@ const Storepay = () => {
           className="-logo"
         />
 
-        <h6 className="py-md-5 py-4">
+        <h6 className="py-md-4 py-4">
           Tа хүссэн бүтээгдэхүүнээ ямар ч хүү, шимтгэлгүй 4 хуваан төлөх
           нөхцөлөөр авах боломжтой
         </h6>
@@ -47,26 +47,27 @@ const Storepay = () => {
           </div>
         </div>
 
-        <p className="py-md-5 py-4">
+        <p className="py-md-4 py-3 mb-2">
           Tа Storepay эрхтэй бол 100,000₮-аас дээш бараа, бүтээгдэхүүнээ <br />{' '}
           сагслан “Төлбөр төлөх” товч дарж төлбөрийн нөхцөлүүдээс <br />{' '}
           “Storepay”-ийг сонгон худалдан авалтаа хийгээрэй.
         </p>
-        <div className="row">
+        {children}
+        <div className="row pt-md-3 pt-4">
           <div className="flex justify-end items-center col-12 col-md-4 download">
-            <Link
-              href={'https://apps.apple.com/us/app/storepay/id1470947761'}
-              target="_blank"
-              className="me-2"
-            >
-              <Image src={'/images/gplay.png'} alt="" height={40} width={36} />
-            </Link>
             <Link
               href={
                 'https://play.google.com/store/apps/details?id=com.storepay&hl=en_US'
               }
               target="_blank"
-              className="ms-2"
+              className="me-3"
+            >
+              <Image src={'/images/gplay.png'} alt="" height={40} width={36} />
+            </Link>
+            <Link
+              href={'https://apps.apple.com/us/app/storepay/id1470947761'}
+              target="_blank"
+              className="mx-2"
             >
               <Image
                 src={'/images/app-store.png'}

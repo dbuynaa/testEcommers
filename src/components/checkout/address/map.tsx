@@ -1,16 +1,22 @@
 import { GoogleMap, MarkerF, LoadScriptNext } from '@react-google-maps/api';
 import LocationCross from 'icons/LocationCross';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'ui/Button';
 import Tooltip from 'ui/Tooltip';
 
 const Map = ({ latLong, setLatLong }: any) => {
   const [locationErrorMsg, setLocationErrorMsg] = useState('');
   const [isFindingLocation, setIsFindingLocation] = useState(false);
+  const [map, setMap] = useState<any>(null);
   const [center, setCenter] = useState({
     lat: 47.904332991570065,
     lng: 106.92754438157759,
   });
+
+  useEffect(() => {
+    setCenter(latLong);
+  }, []);
+
   const getUserLocation = (event: any) => {
     const { lat, lng } = event.latLng;
     setLatLong({ lat: lat(), lng: lng() });
@@ -25,7 +31,7 @@ const Map = ({ latLong, setLatLong }: any) => {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     setLatLong({ lng, lat });
-    setCenter({ lng, lat });
+    centerMap({ lng, lat });
     setLocationErrorMsg('');
     setIsFindingLocation(false);
   };
@@ -37,8 +43,14 @@ const Map = ({ latLong, setLatLong }: any) => {
       setLocationErrorMsg('Geolocation is not supported by your browser');
       setIsFindingLocation(false);
     } else {
-      // status.textContent = "Locating…";
       navigator.geolocation.getCurrentPosition(success, error);
+    }
+  };
+
+  const centerMap = (position) => {
+    if (map) {
+      console.log(map);
+      map.panTo(position);
     }
   };
 
@@ -51,11 +63,12 @@ const Map = ({ latLong, setLatLong }: any) => {
           onClick={getUserLocation}
           clickableIcons={false}
           mapContainerClassName="google-map ratio ratio3x1 ratio-md-1x1"
-          options={{ center: center }}
+          center={center}
           zoom={14}
+          onLoad={(map) => setMap(map)}
         >
           {latLong && (
-            <MarkerF position={latLong} draggable onDrag={getUserLocation} />
+            <MarkerF position={latLong} draggable onDragEnd={getUserLocation} />
           )}
         </GoogleMap>
       </LoadScriptNext>

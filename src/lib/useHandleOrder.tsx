@@ -4,7 +4,7 @@ import { useCurrentUser, useCurrentOrder } from 'modules/appContext';
 import { getTotalValue, filterItems } from 'utils';
 import { toast } from 'react-toastify';
 
-const useHandleOrder = (onCompleted?: (_id: string) => void) => {
+const useHandleOrder = (onCompleted?: (data: any) => void) => {
   const { currentUser } = useCurrentUser();
   const { currentOrder } = useCurrentOrder();
   const { registerNumber, items, billType, deliveryInfo } = currentOrder || {};
@@ -54,8 +54,7 @@ const useHandleOrder = (onCompleted?: (_id: string) => void) => {
         variables: { _id: currentOrder._id, ...data },
         refetchQueries,
         onCompleted(data) {
-          const { _id } = (data || {}).ordersEdit || {};
-          return onCompleted && onCompleted(_id);
+          onCompleted && onCompleted((data || {}).ordersEdit || {});
         },
         onError,
       });
@@ -65,8 +64,7 @@ const useHandleOrder = (onCompleted?: (_id: string) => void) => {
       variables: { ...common, ...orderData },
       refetchQueries,
       onCompleted(data) {
-        const { _id } = (data || {}).ordersAdd || {};
-        onCompleted && onCompleted(_id);
+        onCompleted && onCompleted((data || {}).ordersAdd || {});
       },
       onError,
     });

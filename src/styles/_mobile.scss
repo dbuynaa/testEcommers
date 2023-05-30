@@ -83,6 +83,12 @@
   }
   .storepay {
     &-modal {
+      top: initial;
+      left: 0;
+      bottom: 0;
+      max-height: calc(100vh - 100px);
+      border-radius: 1.5rem 1.5rem 0 0 ;
+      transform: initial;
       padding: 1rem;
       .-logo {
         height: 35px;

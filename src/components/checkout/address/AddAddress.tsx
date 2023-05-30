@@ -41,14 +41,13 @@ const AddAddress = () => {
             <Controller
               name="marker"
               control={control}
-              rules={{ required: true }}
               defaultValue={{
                 lat: 47.92123,
                 lng: 106.918556,
               }}
               render={({ field }) => (
                 <>
-                  <label className="block px-2 required" htmlFor="marker">
+                  <label className="block px-2" htmlFor="marker">
                     Газрын зураг
                   </label>
                   <Map

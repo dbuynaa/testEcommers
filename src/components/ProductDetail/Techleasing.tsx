@@ -5,10 +5,9 @@ import Button from 'ui/Button';
 import StorepayIcon from 'icons/Storepay';
 import { useDetailContext } from 'components/ProductDetail/Context';
 import Check from 'icons/Check';
-import Link from 'next/link';
 import { useState } from 'react';
 
-const TechLeasing = () => {
+const TechLeasing = ({ children }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -36,9 +35,12 @@ const TechLeasing = () => {
           шуурхай авах боломжтой.
         </h6>
 
-        <p className="text-center">
+        <p className="text-center pb-md-5 pb-4">
           Захиалгын мэдээлэл дээрээс зээлээр авах сонгоно
         </p>
+        {
+          children
+        }
       </Modal>
     </>
   );

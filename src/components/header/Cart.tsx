@@ -111,7 +111,7 @@ const Cart = () => {
   return (
     <Dialog open={show} onOpenChange={() => setShow((prev) => !prev)}>
       <DialogTrigger asChild>
-        <Button className="cart-btn mx-2" variant="ghost">
+        <Button className="cart-btn mx-1" variant="ghost">
           <CartIcon />
 
           <small className="badge">{count ? <b>{count}</b> : <Xmark />}</small>

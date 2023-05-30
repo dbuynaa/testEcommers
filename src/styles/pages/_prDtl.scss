@@ -244,6 +244,14 @@
     }
   }
 }
+
+.buy-btn {
+  &.flat {
+    background: $blue;
+    padding: 1rem 2rem;
+  }
+}
+
 .review-write-modal {
   .rc-rate {
     font-size: 32px;
@@ -256,15 +264,22 @@
 .storepay {
   &-modal {
     width: 768px;
-    max-width: 97vw;
+    max-width: 100vw;
     padding: 3rem;
     text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.15px;
+    font-weight: 400;
     h6 {
-      font-weight: 300;
+      font-weight: 400;
+      color: #000;
     }
     .app-store {
       border-radius: 10px;
       overflow: hidden;
+    }
+    .buy-btn {
+      min-width: 40%;
     }
   }
   &-plan {

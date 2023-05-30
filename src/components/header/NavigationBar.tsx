@@ -11,7 +11,7 @@ const NavigationBar = () => {
     <ScrollWrapper className="navbar px-2 flex justify-between items-center fixed scroll">
       <NavItem text="Нүүр" icon={<HomeIcon />} href="/" />
       <NavItem text="Ангилал" icon={<Bars />} href="/categories" />
-      <NavItem text="Хайх" icon={<Magnify />} href="/search" />
+      {/* <NavItem text="Хайх" icon={<Magnify />} href="/search" /> */}
       <NavItem text="Technews" icon={<Book />} href="/news" />
       <div style={{ width: '5rem' }}></div>
     </ScrollWrapper>

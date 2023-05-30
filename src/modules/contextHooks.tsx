@@ -29,12 +29,12 @@ export const useItemsTotal = () => {
   return items.reduce((acc, item) => acc + item.count * item.unitPrice, 0);
 };
 
-export const useHandleCart = () => {
+export const useHandleCart = (onCompleted?: any) => {
   const { currentUser } = useCurrentUser();
   const { setCart } = useCart();
   const cart = useItems();
 
-  const { handleOrder, loading } = useHandleOrder();
+  const { handleOrder, loading } = useHandleOrder(onCompleted);
 
   const handleAddToCart = useCallback(
     (product) => {

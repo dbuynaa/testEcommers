@@ -1,10 +1,9 @@
 import { formatCurrency } from 'utils';
 import Actions from './Actions';
 import { useDetailContext } from './Context';
-import FeaturedPayments from './FeaturedPayments';
 import AddToWishlist from 'modules/Products/AddToWishlist';
 import clsx from 'clsx';
-import Choose from 'modules/Products/Choose';
+// import Choose from 'modules/Products/Choose';
 
 const Info = () => {
   const { name, code, unitPrice, remainder } = useDetailContext();
@@ -29,7 +28,6 @@ const Info = () => {
         байна.
       </div>
 
-      <FeaturedPayments />
       <Actions />
     </div>
   );
