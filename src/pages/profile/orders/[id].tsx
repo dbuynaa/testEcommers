@@ -75,8 +75,6 @@ const Page = () => {
     dayjs().subtract(5, 'minute')
   );
 
-  console.log(status);
-
   return (
     <>
       <div className="row items-center order-detail-actions mt-3 ">
