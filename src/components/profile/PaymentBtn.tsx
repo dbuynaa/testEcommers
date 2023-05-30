@@ -8,15 +8,17 @@ const PaymentBtn = ({
   orderId,
   phone,
   number,
+  paidDate,
 }: {
   totalAmount: string;
   orderId: string;
   phone: string;
   number: string;
+  paidDate?: string;
 }) => {
   return (
     <Modal
-      trigger={<Button className="-pay-btn bg-blue">Төлбөр төлөх</Button>}
+      trigger={<Button className="-pay-btn bg-blue mx-2">Төлбөр төлөх</Button>}
       contentClassName="payment-modal"
     >
       <Config>
@@ -25,6 +27,7 @@ const PaymentBtn = ({
           orderId={orderId}
           phone={phone}
           number={number}
+          paidDate={paidDate}
         />
       </Config>
     </Modal>

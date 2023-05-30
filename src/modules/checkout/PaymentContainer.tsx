@@ -4,17 +4,20 @@ import { useConfig, useCurrentUser } from 'modules/appContext';
 import { toast } from 'react-toastify';
 import Loading from 'ui/Loading';
 import { useEffect } from 'react';
+import LottieView from 'ui/Lottie';
 
 const PaymentContainer = ({
   totalAmount,
   orderId,
   phone,
   number,
+  paidDate,
 }: {
   totalAmount: string;
   orderId: string;
   phone: string;
   number: string;
+  paidDate?: string;
 }) => {
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
@@ -107,6 +110,19 @@ const PaymentContainer = ({
 
   if (loading || loadingInvoices || loadingMakePayment)
     return <Loading className="payments" />;
+
+  if (paidDate)
+    return (
+      <div className="flex justify-center items-center text-center flex-col">
+        <h5 className="pb-4">
+          Төлбөр амжилттай <br /> хийгдлээ
+        </h5>
+        <LottieView
+          size={128}
+          path={'https://assets9.lottiefiles.com/packages/lf20_lk80fpsm.json'}
+        />
+      </div>
+    );
 
   return <iframe className="payments" src={invoiceUrl}></iframe>;
 };

@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import OrderDetailLayout from 'components/profile/OrderDetailLayout';
 import { readFile } from 'utils';
 import OrderEnd from 'modules/checkout/OrderEnd';
+import dayjs from 'dayjs';
 
 const Page = () => {
   const router = useRouter();
@@ -70,25 +71,28 @@ const Page = () => {
     details,
   } = deliveryInfo || {};
 
-  const isSettled = (putResponses || []).length > 0;
+  const isAfterLastFiveMinutes = dayjs(paidDate).isAfter(
+    dayjs().subtract(5, 'minute')
+  );
+
+  console.log(status);
 
   return (
     <>
       <div className="row items-center order-detail-actions mt-3 ">
         <OrderStatus status={status} paidDate={paidDate} />
         <div className="row items-center py-3">
-          {isSettled && <Ebarimt putResponses={putResponses} />}
-          {status === 'new' && !isSettled && (
-            <>
-              <PaymentBtn
-                totalAmount={totalAmount}
-                orderId={id + ''}
-                phone={phone}
-                number={number}
-              />
-              <OrderEnd refetch={refetch} />
-            </>
+          {paidDate && <Ebarimt putResponses={putResponses} />}
+          {((status !== 'pending' && !paidDate) || isAfterLastFiveMinutes) && (
+            <PaymentBtn
+              totalAmount={totalAmount}
+              orderId={id + ''}
+              phone={phone}
+              number={number}
+              paidDate={paidDate}
+            />
           )}
+          {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
         </div>
       </div>
 

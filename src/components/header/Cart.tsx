@@ -7,15 +7,15 @@ import {
   useItemsTotal,
   useItemsCount,
 } from 'modules/contextHooks';
-import Image from 'ui/Image';
 import Link from 'next/link';
 import { ICartItem } from '../../modules/types';
-import { formatCurrency, readFile } from 'utils';
+import { formatCurrency } from 'utils';
 import { Dialog, DialogContent, DialogTrigger } from 'components/ui/Dialog';
 import Xmark from 'icons/Xmark';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import LottieView from 'ui/Lottie';
+import CartItem from './CartItem';
 
 const Cart = () => {
   const router = useRouter();
@@ -58,42 +58,9 @@ const Cart = () => {
     return (
       <>
         <div className="cart-items">
-          {currentCart.map(
-            ({ productImgUrl, productId, name, count, unitPrice }) => (
-              <div className="row cart-item py-2" key={productId}>
-                <div className="col-3">
-                  <div className="img-wrap ratio ratio1x1">
-                    <Image
-                      src={readFile(productImgUrl || '')}
-                      alt=""
-                      sizes="(max-width: 768px) 33vw, 10vw"
-                    />
-                  </div>
-                </div>
-                <div className="col-9 ps-3">
-                  <div className="flex items-stretch justify-between">
-                    <div>
-                      <Link
-                        href={`/product/${productId}`}
-                        className="cart-item-title"
-                      >
-                        {name}
-                      </Link>
-                      <small className="block mt-2">
-                        <span className="text-mid-gray">
-                          {formatCurrency(unitPrice)}
-                        </span>
-                        <span className="text-blue block">
-                          <b className="pe-1 ">{count}</b>
-                          <span>ширхэг</span>
-                        </span>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          )}
+          {currentCart.map((item) => (
+            <CartItem {...item} key={item.productId} />
+          ))}
         </div>
         <div className="cart-footer pt-3">
           <p className="cart-total block text-mid-gray sbt">

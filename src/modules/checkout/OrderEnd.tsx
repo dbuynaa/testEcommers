@@ -84,8 +84,8 @@ const OrderEnd = ({ refetch }) => {
         contentClassName="order-detail-direct p-5"
       >
         <p>
-          Бид тань руу ажлын цагаар холбогдох болно. Та шууд захиалахыг
-          сонгохдоо итгэлтэй байна уу ?
+          Та шууд захиалга хийхдээ итгэлтэй байна уу? Онлайн ажилтан тантай тун
+          удахгүй холбогдох болно.
         </p>
         <div className="flex-center order-detail-direct pt-3">
           <Button
