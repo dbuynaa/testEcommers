@@ -1,5 +1,4 @@
 import Slider from 'react-slick';
-import NewsItem from './item';
 import type { ReactNode } from 'react';
 
 const NewsSlider = ({

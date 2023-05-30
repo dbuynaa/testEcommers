@@ -26,6 +26,17 @@ export const GRID_BANNERS = gql`
   }
 `;
 
+export const GRID_SLIDERS = gql`
+  query GRID_BANNER {
+    posts(where: { categoryName: "slideringrid" }, last: 4) {
+      nodes {
+        ${custom}
+        ${featuredImage('LARGE')}     
+      }
+    }
+  }
+`;
+
 export const FT_CATEGORIES = gql`
   query FT_CATEGORIES {
     posts(where: { categoryName: "ft-cats" }, last: 12) {

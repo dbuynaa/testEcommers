@@ -18,7 +18,7 @@ const FeaturedProduct = ({
   const { link } = custom || {};
   return (
     <Link
-      href={link}
+      href={link || ''}
       className={clsx('ft-product flex img-wrap items-center', className)}
       target={isBlank(link)}
     >

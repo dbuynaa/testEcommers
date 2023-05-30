@@ -1,8 +1,4 @@
-import { useMutation } from '@apollo/client';
-import Facebook from 'icons/Facebook';
 import Button from 'ui/Button';
-import { mutations, queries } from './graphql';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Google from 'icons/Google';

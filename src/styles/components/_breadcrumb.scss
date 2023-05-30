@@ -30,4 +30,9 @@
       text-decoration: none;
     }
   }
+  &-item {
+    &.text-wrap {
+      white-space:normal;
+    }
+  }
 }

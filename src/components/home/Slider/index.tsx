@@ -1,4 +1,4 @@
-import { use } from 'react';
+
 import Slider from 'ui/Slider';
 import Image from 'ui/Image';
 import Link from 'next/link';

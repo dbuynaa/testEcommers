@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useDetailContext } from 'components/ProductDetail/Context';
 import { useCategories } from 'modules/appContext';
+import clsx from 'clsx';
 
 const Breadcrumb = () => {
   const { categories } = useCategories();
@@ -37,7 +38,7 @@ const Breadcrumb = () => {
             {category.name}
           </Link>
         </li>
-        <li className="breadcrumb-item">{name}</li>
+        <li className={clsx('breadcrumb-item', name.length > 30 && 'text-wrap')}>{name}</li>
       </ol>
     </div>
   );

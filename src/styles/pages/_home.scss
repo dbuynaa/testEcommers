@@ -43,6 +43,7 @@
   .-slide {
     overflow: hidden;
     border-radius: 1rem;
+    min-height: 100%;
     &::before {
       padding-bottom: 38%;
     }
@@ -56,25 +57,26 @@
     position: absolute;
     display: inline-flex !important;
     bottom: 1rem;
+    line-height: 1;
     left: 50%;
     transform: translateX(-50%);
     li {
       padding: 0 0.25rem;
       .btn.flat {
         padding: 0;
-        width: 2rem;
-        height: 2px;
-        transition: height 0.3s ease;
+        width: 1rem;
+        height: 1rem;
         background: #fff;
-        border-radius: 0;
+        border-radius: 50%;
+        transition: all 0.3s ease;
         &:hover {
-          height: 0.5rem;
+          transform: scale(1.1);
         }
       }
       &.slick-active {
         .btn.flat {
-          height: 0.5rem;
-          background: #fff;
+          background: $primary;
+          transform: scale(1.1);
         }
       }
     }

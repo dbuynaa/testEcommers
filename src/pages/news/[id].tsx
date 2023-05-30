@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo';
 import { FacebookShareButton } from 'next-share';
 import Facebook from 'icons/Facebook';
 import Button from 'ui/Button';
-import { WpPost } from '../../lib/wp/posts';
+
 const PostDetail = ({ post }) => {
   const { title, featuredImage, excerpt, id, content, date } = post || {};
   const removeTag = (html: any) => {

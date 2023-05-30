@@ -49,7 +49,6 @@ const Map = ({ latLong, setLatLong }: any) => {
 
   const centerMap = (position) => {
     if (map) {
-      console.log(map);
       map.panTo(position);
     }
   };

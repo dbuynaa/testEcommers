@@ -100,25 +100,16 @@ header {
 }
 
 .notification,
-.cart-btn {
-  // position: relative;
+.cart-btn,
+.search-btn {
   overflow: visible;
   transition: 0.3s background-color;
   color: #fff;
   &.btn {
     padding: 0.5rem;
   }
-  // .bell {
-  //   height: 2.5rem;
-  //   width: 2.5rem;
-  // }
 }
-// .notification.btn {
-//   padding: 0.125rem;
-//   &:hover {
-//     background: rgba(256, 256, 256, 0.05);
-//   }
-// }
+
 .profile-btn.btn {
   border: 2px solid #fff;
   padding: 0;
@@ -129,9 +120,9 @@ header {
   }
 }
 
+.search-btn.btn,
 .cart-btn.btn {
   & > svg {
-    font-size: 1.75rem;
     .-secondary {
       fill: $primary;
     }
@@ -140,7 +131,18 @@ header {
       transition: all 0.2s ease;
     }
   }
+}
+.search-btn.btn {
+  & > svg {
+    margin: 0.125rem;
+    font-size: 1.5rem;
+  }
+}
 
+.cart-btn.btn {
+  & > svg {
+    font-size: 1.75rem;
+  }
   .badge {
     top: initial;
     right: 0rem;

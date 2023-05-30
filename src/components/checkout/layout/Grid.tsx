@@ -1,5 +1,3 @@
-import ScrollWrapper from 'components/header/Wrapper';
-import Summary from '../summary';
 
 const Grid = ({
   children,

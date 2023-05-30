@@ -1,5 +1,4 @@
-import { usePathname } from 'next/navigation';
-import Button from 'ui/Button';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import clsx from 'clsx';
@@ -13,12 +12,15 @@ const NavItem = ({
   href: string;
   icon: ReactNode;
 }) => {
-  const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <Link
       href={href}
-      className={clsx('navbar-item btn ghost', pathname === href && '-active')}
+      className={clsx(
+        'navbar-item btn ghost',
+        router.asPath.includes(href) && '-active'
+      )}
     >
       {icon}
       <small className="block">{text}</small>

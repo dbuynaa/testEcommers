@@ -39,7 +39,7 @@ const ProductsSlider = ({
           arrows: false,
           swipeToSlide: true,
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
         },
       },
     ],
@@ -71,22 +71,25 @@ const ProductsSlider = ({
           <div
             className={clsx(
               'flex flex-col -item',
-              index === 0 ? 'pe-2' : 'px-1-5'
+              index === 0 ? 'pe-1' : 'px-1'
             )}
             key={index}
           >
             <Product {...el} />
           </div>
         ))}
-        {(products || length) === 16 && (
-          <Button
-            className="-more text-black me-2"
-            Component={Link}
-            href={'/products?category=' + category}
-          >
-            <h5>Бүгдийг үзэх</h5>
-            <ArrowRight className="ms-2" />
-          </Button>
+        {products.length > 15 && (
+          <>
+            <Button
+              className="-more text-black me-2"
+              Component={Link}
+              href={'/products?category=' + category}
+            >
+              <h5>Бүгдийг үзэх</h5>
+              <ArrowRight className="ms-2" />
+            </Button>
+            <div  className='-item'/>
+          </>
         )}
       </Slider>
     </>

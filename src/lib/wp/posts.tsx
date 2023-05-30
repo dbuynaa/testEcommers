@@ -1,5 +1,6 @@
 import {
   GRID_BANNERS,
+  GRID_SLIDERS,
   FT_CATEGORIES,
   BANNER_CATS,
   IMG_BANNER,
@@ -18,6 +19,10 @@ import type { DocumentNode } from 'graphql';
 
 export async function getGridBanners() {
   return await getPosts(GRID_BANNERS);
+}
+
+export async function getGridSliders() {
+  return await getPosts(GRID_SLIDERS);
 }
 
 export async function getFtCats() {

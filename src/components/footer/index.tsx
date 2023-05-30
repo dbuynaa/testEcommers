@@ -1,6 +1,5 @@
 import Mail from 'icons/Mail';
 import Link from 'next/link';
-import Image from 'ui/Image';
 import Button from 'ui/Button';
 import Phone from 'icons/ThinPhone';
 import Marker from 'icons/Marker';

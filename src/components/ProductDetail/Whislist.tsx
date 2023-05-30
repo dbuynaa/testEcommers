@@ -1,5 +1,4 @@
 import Button from 'ui/Button';
-import Lottie from 'ui/Lottie';
 
 const Whislist = () => {
   return (

@@ -173,6 +173,6 @@ export const readFile = (url: string = '') => {
   return url;
 };
 
-export const isBlank = (link) => (link.includes('http') ? '_blank' : undefined);
+export const isBlank = (link) => ((link || '').includes('http') ? '_blank' : undefined);
 
 export const getCookie = (name: string) => {};

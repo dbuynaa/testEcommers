@@ -1,4 +1,3 @@
-import User from 'icons/User';
 import Button from 'ui/Button';
 import Dropdown, { DropdownItem } from 'ui/Dropdown';
 import { useCurrentUser } from 'modules/appContext';

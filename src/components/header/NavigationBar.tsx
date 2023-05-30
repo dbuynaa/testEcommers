@@ -1,8 +1,6 @@
 import HomeIcon from 'icons/Home';
 import Bars from 'icons/Bars';
-import Magnify from 'icons/Magnify';
 import Book from 'icons/Book';
-import UserV from 'icons/UserV';
 import NavItem from './NavItem';
 import ScrollWrapper from './Wrapper';
 

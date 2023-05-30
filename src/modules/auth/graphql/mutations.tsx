@@ -96,6 +96,14 @@ const userEdit = gql`
   }
 `;
 
+const changePhone = gql`
+  mutation changePhone($id: String!, $phone: String) {
+    clientPortalUsersEdit(_id: $id, phone: $phone) {
+      _id
+    }
+  }
+`;
+
 const userChangePassword = gql`
   mutation clientPortalUserChangePassword(
     $currentPassword: String!
@@ -158,6 +166,7 @@ const mutations = {
   posChooseConfig,
   fbLogin,
   googleLogin,
+  changePhone,
 };
 
 export default mutations;

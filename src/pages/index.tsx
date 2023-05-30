@@ -6,6 +6,7 @@ import {
   getBannerCats,
   getImgBanner,
   getSliderBanner,
+  getGridSliders,
 } from 'lib/wp/posts';
 import FeaturedCategories from 'components/home/FeaturedCategories';
 import CategorySlider from 'components/home/CategorySlider';
@@ -19,10 +20,11 @@ const Home = ({
   bannerCats,
   imgBanners,
   sliderBanners,
+  gridSliders,
 }: any) => {
   return (
     <div className="flex flex-col home pb-3">
-      <FeaturedProducts ftItems={ftItems} />
+      <FeaturedProducts ftItems={ftItems} gridSliders={gridSliders} />
       <FeaturedCategories ftCats={ftCats} />
       <CategorySlider bannerCats={bannerCats} />
       <Banner imgBanners={imgBanners} />
@@ -34,6 +36,7 @@ const Home = ({
 
 export const getStaticProps = async () => {
   const { posts: ftItems } = await getGridBanners();
+  const { posts: gridSliders } = await getGridSliders();
   const { posts: ftCats } = await getFtCats();
   const { posts: bannerCats } = await getBannerCats();
   const { posts: imgBanners } = await getImgBanner();
@@ -45,6 +48,7 @@ export const getStaticProps = async () => {
       sliderBanners: sortPosts(sliderBanners || []),
       bannerCats,
       imgBanners,
+      gridSliders: sortPosts(gridSliders || []),
     },
   };
 };

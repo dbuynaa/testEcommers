@@ -37,12 +37,14 @@ export type AddressFormData = {
   lastName: string;
   phone: string;
   email: string;
-  province: string;
-  district: string;
-  street: string;
-  details: string;
   registerNumber: string;
   companyName: string;
+  address: {
+    city: string;
+    city_district: string;
+    street: string;
+    others: string;
+  };
   marker: {
     lat: number;
     lng: number;

@@ -66,7 +66,7 @@ const PaymentContainer = ({
             variables: {
               id: orderId,
               doc: {
-                cashAmount: parseFloat(totalAmount),
+                mobileAmount: parseFloat(totalAmount),
               },
             },
           });
@@ -108,9 +108,7 @@ const PaymentContainer = ({
   if (loading || loadingInvoices || loadingMakePayment)
     return <Loading className="payments" />;
 
-  return (
-    <iframe className="payments" src={invoiceUrl}></iframe>
-  );
+  return <iframe className="payments" src={invoiceUrl}></iframe>;
 };
 
 export default PaymentContainer;

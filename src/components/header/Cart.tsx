@@ -8,7 +8,6 @@ import {
   useItemsCount,
 } from 'modules/contextHooks';
 import Image from 'ui/Image';
-import Empty from 'ui/Empty';
 import Link from 'next/link';
 import { ICartItem } from '../../modules/types';
 import { formatCurrency, readFile } from 'utils';

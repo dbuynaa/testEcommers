@@ -1,10 +1,7 @@
 import MainInfo from 'components/profile/mainInfo';
 import ProfileItem from 'components/profile/ProfileItem';
-import { DropdownItem } from 'ui/Dropdown';
 import Bags from 'icons/Bags';
-import Stars from 'icons/Stars';
 import AddressCard from 'icons/AddressCard';
-import CircleHeart from 'icons/CircleHeart';
 import Logout from 'modules/auth/logout';
 import Heart from 'icons/Heart';
 

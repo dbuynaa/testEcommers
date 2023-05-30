@@ -1,7 +1,7 @@
 import Heart from 'icons/Heart';
 import Button from 'ui/Button';
 import { mutations, queries } from './graphql';
-import { useMutation, useQuery, gql } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useCurrentUser } from 'modules/appContext';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';

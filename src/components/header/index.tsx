@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Cart from './Cart';
 import ScrollWrapper from './Wrapper';
 import Nav from './Nav';
-import Search from './searchNew';
+import Search from './Search';
 import MainCategories from 'modules/Products/MainCategories';
 import Profile from './Profile';
-import Top from './top';
+// import Top from './top';
 
 const Header = ({ mainCategories }: any) => {
   return (

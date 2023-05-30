@@ -6,17 +6,30 @@ import AddressList from './AddressList';
 import Grid from 'components/checkout/layout/Grid';
 import ScrollWrapper from 'components/header/Wrapper';
 import Summary from 'components/checkout/summary';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { queries } from './graphql';
 import Loading from 'ui/Loading';
 import useHandleOrder from 'lib/useHandleOrder';
 import { useRouter } from 'next/router';
 import { useCurrentOrder, useCurrentUser } from 'modules/appContext';
 import FormItem from 'ui/FormItem';
+import { mutations, queries as authQueries } from 'modules/auth/graphql';
+import { toast } from 'react-toastify';
 
 const AddressForm = () => {
   const router = useRouter();
   const { data, loading } = useQuery(queries.addresses);
+
+  const [changePhone] = useMutation(mutations.changePhone, {
+    refetchQueries: [
+      { query: authQueries.currentUser },
+      'clientPortalCurrentUser',
+    ],
+    onError(error) {
+      toast.error(error.message);
+    },
+  });
+
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
   const onCompleted = (data: any) => router.push(`/profile/orders/${data._id}`);
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
@@ -85,6 +98,15 @@ const AddressForm = () => {
       };
     }
 
+    if (phone && !currentUser?.phone) {
+      changePhone({
+        variables: {
+          _id: currentUser?._id,
+          phone: phone,
+        },
+      });
+    }
+
     return handleOrder(sendData);
   };
 
@@ -108,6 +130,8 @@ const AddressForm = () => {
           phone: deliveryInfo?.phone || phone,
           firstName: deliveryInfo?.firstName || firstName,
           lastName: deliveryInfo?.lastName || lastName,
+          ...(deliveryInfo?.address || {}),
+          marker: deliveryInfo?.marker,
         },
       }}
     >
@@ -145,6 +169,7 @@ const AddressForm = () => {
               label="Захиалагчийн утасны дугаар"
               placeholder="99999999"
               name="phone"
+              type="number"
             />
           </div>
           <div className="col-md-6 col-12 px-2">
