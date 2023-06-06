@@ -1,4 +1,3 @@
-
 import Slider from 'ui/Slider';
 import Image from 'ui/Image';
 import Link from 'next/link';
@@ -8,6 +7,8 @@ const changedSettings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   dots: true,
+  fade: true,
+  autoplay: false
 };
 
 const SliderBanner = ({ sliderBanners }: any) => {

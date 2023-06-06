@@ -11,43 +11,50 @@ import clsx from 'clsx';
 const ProductsSlider = ({
   category,
   slidesToShow,
+  slidesToScroll,
   className,
   head,
-  except,
+  except
 }: {
   category: string;
   slidesToShow: number;
+  slidesToScroll: number;
   className?: string;
   head?: React.ReactNode;
   except?: string[];
 }) => {
   const changedSettings = {
-    slidesToShow,
-    slidesToScroll: slidesToShow - 1,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll - 1,
     dots: false,
+    infinity: true,
+    autoplay: true,
+    // speed: 3000,
+    // autoplaySpeed: 4000,
+
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: slidesToShow - 1,
-          slidesToScroll: slidesToShow - 2,
-        },
+          slidesToScroll: slidesToShow - 1
+        }
       },
       {
         breakpoint: 480,
         settings: {
           arrows: false,
           swipeToSlide: true,
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-    ],
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   const { products, loading, getProducts } = useGetProducts({
     category,
-    perPage: 16,
+    perPage: 16
   });
 
   useEffect(() => {
@@ -88,7 +95,7 @@ const ProductsSlider = ({
               <h5>Бүгдийг үзэх</h5>
               <ArrowRight className="ms-2" />
             </Button>
-            <div  className='-item'/>
+            <div className="-item" />
           </>
         )}
       </Slider>

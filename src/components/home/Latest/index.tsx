@@ -8,6 +8,7 @@ const Latest = () => {
         <ProductsSlider
           category=""
           slidesToShow={5}
+          slidesToScroll={3 - 1}
           className="slick-arrow-standart "
         />
       </div>

@@ -21,7 +21,7 @@ const CategorySlider = ({ bannerCats }: any) => {
                   {...{
                     featuredImage,
                     hoverImage: (image || {}).hoverImage,
-                    custom,
+                    custom
                   }}
                 />
               )}
@@ -34,6 +34,7 @@ const CategorySlider = ({ bannerCats }: any) => {
                 <ProductsSlider
                   category={(custom || {}).link}
                   slidesToShow={check(image, featuredImage) ? 4 : 5}
+                  slidesToScroll={check(image, featuredImage) ? 4 : 1}
                 />
               </div>
             </div>
