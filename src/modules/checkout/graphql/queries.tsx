@@ -66,7 +66,7 @@ export const fullOrders = gql`
       sortDirection: $sortDirection
     ) {
       _id
-      createdAt
+      modifiedAt
       paidDate
       status
       totalAmount

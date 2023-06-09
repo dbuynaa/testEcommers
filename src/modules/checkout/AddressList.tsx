@@ -19,7 +19,8 @@ const AddressList = ({ addresses }: { addresses }) => {
             >
               <label htmlFor="skip" className="address-item row items-center">
                 <Radio value="skip" id="skip" />
-                <span className="ms-2">Алгасах</span>
+                <span className="ms-2">Алгасах
+                 <span className='ms-2 text-[10px]'>Та сонгосон бүтээгдэхүүнээ өөрийн биеэр очиж авахаар бол </span></span>
               </label>
               {(addresses || []).map((address, idx) => (
                 <label

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+
 import Layout from 'components/layout';
 import 'nprogress/nprogress.css';
-import 'styles/styles.min.css';
+import 'styles/styles.scss';
+import 'styles/global.css';
 import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';
@@ -30,7 +32,7 @@ function MyApp({
   router,
   mainCategories,
   footer,
-  categories,
+  categories
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
 
@@ -80,7 +82,7 @@ MyApp.getInitialProps = async function (appContext: any) {
     ...appProps,
     footer,
     mainCategories: rootCatergories,
-    categories,
+    categories
   };
 };
 

@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import FormItem from 'ui/FormItem';
 import { mutations, queries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
-import { validatePassword } from 'utils/constants';
+import { validatePassword,validatePhone } from 'utils/constants';
 
 type FormData = {
   password: string;
@@ -76,7 +76,7 @@ const Signup = () => {
             pattern: 'Зөв утасны дугаар оруулана уу',
           }}
           name="phone"
-          validate={{ pattern: /\d{8}/ }}
+          validate={{ pattern:validatePhone}}
         />
         <FormItem
           label="Нууц үг"

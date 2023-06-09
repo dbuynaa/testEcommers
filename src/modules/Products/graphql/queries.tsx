@@ -145,7 +145,7 @@ const queries = {
   wishlist,
   productDetailWithCustomFields,
   productIds,
-  productDetailMeta,
+  productDetailMeta
 };
 
 export default queries;

@@ -23,7 +23,7 @@ header {
   .top {
     svg {
       color: $primary;
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
 
@@ -77,7 +77,7 @@ header {
   top: 0;
   width: 100%;
   z-index: 2;
-  height: $header-height;
+  height: 12rem;
   overflow: hidden;
   .product-cats {
     transform: translateY(0);

@@ -16,6 +16,7 @@ import FormItem from 'ui/FormItem';
 import { mutations, queries as authQueries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
 
+
 const AddressForm = () => {
   const router = useRouter();
   const { data, loading } = useQuery(queries.addresses);
@@ -112,6 +113,7 @@ const AddressForm = () => {
 
   if (loading) return <Loading />;
 
+
   const { billType, registerNumber, deliveryInfo } = currentOrder || {};
   const { email, phone, firstName, lastName } = currentUser || {};
 
@@ -155,6 +157,7 @@ const AddressForm = () => {
               label="Захиалагчийн нэр"
               placeholder="Бат-эрдэнэ"
               name="firstName"
+              required min="8"
             />
           </div>
           <div className="col-md-6 col-12 px-2">
@@ -170,6 +173,7 @@ const AddressForm = () => {
               placeholder="99999999"
               name="phone"
               type="number"
+
             />
           </div>
           <div className="col-md-6 col-12 px-2">

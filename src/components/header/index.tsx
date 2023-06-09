@@ -6,14 +6,14 @@ import Nav from './Nav';
 import Search from './Search';
 import MainCategories from 'modules/Products/MainCategories';
 import Profile from './Profile';
-// import Top from './top';
+import Top from './top';
 
 const Header = ({ mainCategories }: any) => {
   return (
     <>
       <ScrollWrapper className="header scroll">
         <header>
-          {/* <Top /> */}
+          <Top />
           <div className="flex py-2 py-md-3 justify-between items-center container">
             <div className="col-md-9">
               <div className="flex items-center">
