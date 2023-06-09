@@ -21,6 +21,7 @@ const Layout = ({
   categories: any;
   footer: any;
 }) => {
+  console.log(mainCategories, categories);
   return (
     <>
       <Head>

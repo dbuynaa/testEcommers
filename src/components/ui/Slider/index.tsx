@@ -35,7 +35,6 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }: any) => (
 );
 
 export const slickSettings: Settings = {
-  speed: 4000,
   infinite: true,
   dots: true,
   autoplay: true,

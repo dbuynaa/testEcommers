@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link href="/images/logo.png" rel="shortcut icon" />
-          <link rel="preconnect" href="https://techstore.erxes.io" />
+          <link rel="preconnect" href="https://xos.techstore.mn" />
 
           <Partytown forward={['dataLayer.push']} />
           <script

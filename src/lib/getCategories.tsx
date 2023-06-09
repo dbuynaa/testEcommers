@@ -9,11 +9,13 @@ const getCategories: () => Promise<any> = async () => {
       perPage: 100,
     },
   });
+  console.log(data, '-----------––——');
   const categories = (data || {}).poscProductCategories || [];
 
   const rootCatergories = categories.filter(
     ({ parentId }: { parentId: string }) => !parentId
   );
+  console.log(categories, 'dd');
   return { categories, rootCatergories };
 };
 

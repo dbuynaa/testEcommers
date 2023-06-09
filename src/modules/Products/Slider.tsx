@@ -10,15 +10,15 @@ import clsx from 'clsx';
 
 const ProductsSlider = ({
   category,
-  slidesToShow,
-  slidesToScroll,
+  slidesToShow = 4,
+  slidesToScroll = 4,
   className,
   head,
-  except
+  except,
 }: {
   category: string;
-  slidesToShow: number;
-  slidesToScroll: number;
+  slidesToShow?: number;
+  slidesToScroll?: number;
   className?: string;
   head?: React.ReactNode;
   except?: string[];
@@ -37,8 +37,8 @@ const ProductsSlider = ({
         breakpoint: 1024,
         settings: {
           slidesToShow: slidesToShow - 1,
-          slidesToScroll: slidesToShow - 1
-        }
+          slidesToScroll: slidesToShow - 1,
+        },
       },
       {
         breakpoint: 480,
@@ -46,15 +46,15 @@ const ProductsSlider = ({
           arrows: false,
           swipeToSlide: true,
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const { products, loading, getProducts } = useGetProducts({
     category,
-    perPage: 16
+    perPage: 16,
   });
 
   useEffect(() => {

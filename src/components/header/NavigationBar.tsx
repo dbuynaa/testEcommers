@@ -6,7 +6,7 @@ import ScrollWrapper from './Wrapper';
 
 const NavigationBar = () => {
   return (
-    <ScrollWrapper className="navbar px-2 flex justify-between items-center fixed scroll">
+    <ScrollWrapper className="navbar px-2 flex justify-between items-center fixed scroll md:hidden ">
       <NavItem text="Нүүр" icon={<HomeIcon />} href="/" />
       <NavItem text="Ангилал" icon={<Bars />} href="/categories" />
       {/* <NavItem text="Хайх" icon={<Magnify />} href="/search" /> */}
