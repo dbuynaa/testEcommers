@@ -1,5 +1,6 @@
 // import Xmark from 'icons/Xmark';
 // import Counter from 'modules/checkout/Counter';
+import Countbtn from 'components/checkout/countbtn';
 import { useHandleCart } from 'modules/contextHooks';
 import Link from 'next/link';
 import Button from 'ui/Button';
@@ -11,7 +12,7 @@ const CartItem = ({
   productId,
   name,
   count,
-  unitPrice
+  unitPrice,
 }: any) => {
   const { loading, handleUpdateCart } = useHandleCart();
   const removeItem = (productId) => handleUpdateCart({ productId, count: 0 });
@@ -40,14 +41,15 @@ const CartItem = ({
               </span>
             </small>
           </div>
-          <Button
+          {/* <Button
             variant="ghost"
             className="-close cart-clean"
             onClick={() => removeItem(productId)}
             disabled={loading}
           >
        
-          </Button>
+          </Button> */}
+          <Countbtn productId={productId} count={count} remainder={10} />
         </div>
       </div>
     </div>

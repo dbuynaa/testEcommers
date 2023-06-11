@@ -38,7 +38,7 @@ const Countbtn = ({productId,count,remainder}:ItemBase) => {
                 onClick={()=>handleUpdateCart(count+1)}>
                 <Plus/>
                 </Button>
-        <Button className='trashX'></Button>        
+        {/* <Button className='trashX'></Button>         */}
        </div>
        {loading && (
         <div className="order-item-loader flex items-center justify-center rounded">
