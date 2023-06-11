@@ -1,4 +1,5 @@
-import Xmark from 'icons/Xmark';
+// import Xmark from 'icons/Xmark';
+// import Counter from 'modules/checkout/Counter';
 import { useHandleCart } from 'modules/contextHooks';
 import Link from 'next/link';
 import Button from 'ui/Button';
@@ -10,7 +11,7 @@ const CartItem = ({
   productId,
   name,
   count,
-  unitPrice,
+  unitPrice
 }: any) => {
   const { loading, handleUpdateCart } = useHandleCart();
   const removeItem = (productId) => handleUpdateCart({ productId, count: 0 });
@@ -45,7 +46,7 @@ const CartItem = ({
             onClick={() => removeItem(productId)}
             disabled={loading}
           >
-            <Xmark />
+       
           </Button>
         </div>
       </div>

@@ -5,7 +5,7 @@ import {
   useItems,
   useHandleCart,
   useItemsTotal,
-  useItemsCount,
+  useItemsCount
 } from 'modules/contextHooks';
 import Link from 'next/link';
 import { ICartItem } from '../../modules/types';
@@ -31,7 +31,7 @@ const Cart = () => {
     ? ((currentOrder || {}).items || []).map(
         ({ productName, ...rest }: any) => ({
           name: productName,
-          ...rest,
+          ...rest
         })
       )
     : cart || [];
