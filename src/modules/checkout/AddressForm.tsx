@@ -101,7 +101,7 @@ const AddressForm = () => {
     if (phone && !currentUser?.phone) {
       changePhone({
         variables: {
-          _id: currentUser?._id,
+          id: currentUser?._id,
           phone: phone,
         },
       });
