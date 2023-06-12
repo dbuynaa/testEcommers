@@ -9,12 +9,16 @@ const PaymentBtn = ({
   phone,
   number,
   paidDate,
+  registerNumber,
+  billType,
 }: {
   totalAmount: string;
   orderId: string;
   phone: string;
   number: string;
   paidDate?: string;
+  registerNumber: string;
+  billType: string;
 }) => {
   return (
     <Modal
@@ -28,6 +32,8 @@ const PaymentBtn = ({
           phone={phone}
           number={number}
           paidDate={paidDate}
+          registerNumber={registerNumber}
+          billType={billType}
         />
       </Config>
     </Modal>

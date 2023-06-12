@@ -12,12 +12,16 @@ const PaymentContainer = ({
   phone,
   number,
   paidDate,
+  registerNumber,
+  billType,
 }: {
   totalAmount: string;
   orderId: string;
   phone: string;
   number: string;
   paidDate?: string;
+  registerNumber: string;
+  billType: string;
 }) => {
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
@@ -33,15 +37,33 @@ const PaymentContainer = ({
 
   const invoiceUrl = (data || {}).generateInvoiceUrl || '';
 
-  const [makePayment, { loading: loadingMakePayment }] = useMutation(
-    mutations.ordersMakePayment,
+  const [settlePayment, { loading: loadingSettlement }] = useMutation(
+    mutations.ordersSettlePayment,
     {
       refetchQueries: [
         {
           query: queries.orderDetail,
         },
-        'OrderDetail',
+        'orderDetail',
       ],
+      onError(error) {
+        toast.error(error.message);
+      },
+    }
+  );
+
+  const [addPayment, { loading: loadingAddPayment }] = useMutation(
+    mutations.ordersAddPayment,
+    {
+      onCompleted() {
+        settlePayment({
+          variables: {
+            billType: billType,
+            registerNumber,
+            _id: orderId,
+          },
+        });
+      },
       onError(error) {
         toast.error(error.message);
       },
@@ -65,12 +87,10 @@ const PaymentContainer = ({
           .reduce((total: number, { amount }: any) => total + amount, 0);
 
         if (paidAmount >= totalAmount) {
-          makePayment({
+          addPayment({
             variables: {
               id: orderId,
-              doc: {
-                mobileAmount: parseFloat(totalAmount),
-              },
+              mobileAmount: parseFloat(totalAmount),
             },
           });
           return;
@@ -108,7 +128,7 @@ const PaymentContainer = ({
     return removeEventListener('message', () => {});
   }, []);
 
-  if (loading || loadingInvoices || loadingMakePayment)
+  if (loading || loadingInvoices || loadingAddPayment || loadingSettlement)
     return <Loading className="payments" />;
 
   if (paidDate)

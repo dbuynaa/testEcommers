@@ -58,6 +58,8 @@ const Page = () => {
     items,
     putResponses,
     number,
+    registerNumber,
+    billType,
   } = orderDetail || {};
 
   const {
@@ -88,6 +90,8 @@ const Page = () => {
               phone={phone}
               number={number}
               paidDate={paidDate}
+              registerNumber={registerNumber}
+              billType={billType}
             />
           )}
           {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}

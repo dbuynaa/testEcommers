@@ -99,6 +99,18 @@ const afterFormSubmit = gql`
   }
 `;
 
+const ordersSettlePayment = gql`
+  mutation ordersSettlePayment($_id: String!, $billType: String!, $registerNumber: String) {
+    ordersSettlePayment(_id: $_id, billType: $billType, registerNumber: $registerNumber) {
+      success
+      lotteryWarningMsg
+      errorCode
+      message
+      getInformation
+    }
+  }
+`;
+
 const mutations = {
   ordersAdd,
   ordersEdit,
@@ -109,6 +121,7 @@ const mutations = {
   generateInvoiceUrl,
   ordersCancel,
   afterFormSubmit,
+  ordersSettlePayment,
 };
 
 export default mutations;
