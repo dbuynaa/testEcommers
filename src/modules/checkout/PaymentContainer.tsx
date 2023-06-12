@@ -6,23 +6,17 @@ import Loading from 'ui/Loading';
 import { useEffect } from 'react';
 import LottieView from 'ui/Lottie';
 
-const PaymentContainer = ({
-  totalAmount,
-  orderId,
-  phone,
-  number,
-  paidDate,
-  registerNumber,
-  billType,
-}: {
-  totalAmount: string;
-  orderId: string;
-  phone: string;
-  number: string;
-  paidDate?: string;
-  registerNumber: string;
-  billType: string;
-}) => {
+const PaymentContainer = ({ orderDetail }: { orderDetail: any }) => {
+  const {
+    billType,
+    registerNumber,
+    _id: orderId,
+    totalAmount,
+    number,
+    deliveryInfo,
+    paidDate,
+  } = orderDetail || {};
+  const { phone } = deliveryInfo || {};
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
 
@@ -44,7 +38,7 @@ const PaymentContainer = ({
         {
           query: queries.orderDetail,
         },
-        'orderDetail',
+        'OrderDetail',
       ],
       onError(error) {
         toast.error(error.message);
@@ -87,12 +81,13 @@ const PaymentContainer = ({
           .reduce((total: number, { amount }: any) => total + amount, 0);
 
         if (paidAmount >= totalAmount) {
-          addPayment({
-            variables: {
-              _id: orderId,
-              mobileAmount: parseFloat(totalAmount),
-            },
-          });
+          !paidDate &&
+            addPayment({
+              variables: {
+                _id: orderId,
+                mobileAmount: parseFloat(totalAmount),
+              },
+            });
           return;
         }
         generateInvoiceUrl({
