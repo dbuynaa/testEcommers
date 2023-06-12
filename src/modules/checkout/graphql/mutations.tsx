@@ -22,12 +22,7 @@ const ordersEdit = gql`
 
 const ordersAddPayment = gql`
   mutation ordersAddPayment($_id: String!, $mobileAmount: Float) {
-    ordersAddPayment(
-      _id: $_id
-      cardInfo: $cardInfo
-      receivableAmount: $receivableAmount
-      mobileAmount: $mobileAmount
-    ) {
+    ordersAddPayment(_id: $_id, mobileAmount: $mobileAmount) {
       _id
     }
   }
@@ -100,8 +95,16 @@ const afterFormSubmit = gql`
 `;
 
 const ordersSettlePayment = gql`
-  mutation ordersSettlePayment($_id: String!, $billType: String!, $registerNumber: String) {
-    ordersSettlePayment(_id: $_id, billType: $billType, registerNumber: $registerNumber) {
+  mutation ordersSettlePayment(
+    $_id: String!
+    $billType: String!
+    $registerNumber: String
+  ) {
+    ordersSettlePayment(
+      _id: $_id
+      billType: $billType
+      registerNumber: $registerNumber
+    ) {
       success
       lotteryWarningMsg
       errorCode
