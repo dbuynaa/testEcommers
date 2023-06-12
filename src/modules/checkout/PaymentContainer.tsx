@@ -89,7 +89,7 @@ const PaymentContainer = ({
         if (paidAmount >= totalAmount) {
           addPayment({
             variables: {
-              id: orderId,
+              _id: orderId,
               mobileAmount: parseFloat(totalAmount),
             },
           });
