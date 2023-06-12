@@ -3,10 +3,17 @@ import dayjs from 'dayjs';
 import OrderStatus from './orderStatus';
 import { formatCurrency } from 'utils';
 
-const OrderItem = ({ createdAt, paidDate, status, totalAmount, _id, number }: any) => {
+const OrderItem = ({
+  createdAt,
+  paidDate,
+  status,
+  totalAmount,
+  _id,
+  number,
+}: any) => {
   return (
     <Link
-      href={`/profile/orders/${_id}`}
+      href={{ pathname: `/profile/orders/detail`, query: { id: _id } }}
       className="-order-item row p-4 rounded text-black"
     >
       <div className="col-12 col-md-3">
