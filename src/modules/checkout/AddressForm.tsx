@@ -32,7 +32,7 @@ const AddressForm = () => {
   });
 
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
-  const onCompleted = (data: any) => router.push(`/profile/orders/${data._id}`);
+  const onCompleted = (data: any) => router.push({pathname:`/profile/orders/detail`, query: {id: data._id}});
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
   const { currentOrder } = useCurrentOrder();
   const { currentUser } = useCurrentUser();
@@ -102,7 +102,7 @@ const AddressForm = () => {
     if (phone && !currentUser?.phone) {
       changePhone({
         variables: {
-          _id: currentUser?._id,
+          id: currentUser?._id,
           phone: phone,
         },
       });

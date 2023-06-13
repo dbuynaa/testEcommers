@@ -11,7 +11,10 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link href="/images/logo.png" rel="shortcut icon" />
           <link rel="preconnect" href="https://xos.techstore.mn" />
-
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          />
           <Partytown forward={['dataLayer.push']} />
           <script
             type="text/partytown"

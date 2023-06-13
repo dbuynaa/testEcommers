@@ -6,19 +6,17 @@ import Loading from 'ui/Loading';
 import { useEffect } from 'react';
 import LottieView from 'ui/Lottie';
 
-const PaymentContainer = ({
-  totalAmount,
-  orderId,
-  phone,
-  number,
-  paidDate,
-}: {
-  totalAmount: string;
-  orderId: string;
-  phone: string;
-  number: string;
-  paidDate?: string;
-}) => {
+const PaymentContainer = ({ orderDetail }: { orderDetail: any }) => {
+  const {
+    billType,
+    registerNumber,
+    _id: orderId,
+    totalAmount,
+    number,
+    deliveryInfo,
+    paidDate,
+  } = orderDetail || {};
+  const { phone } = deliveryInfo || {};
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
 
@@ -33,8 +31,8 @@ const PaymentContainer = ({
 
   const invoiceUrl = (data || {}).generateInvoiceUrl || '';
 
-  const [makePayment, { loading: loadingMakePayment }] = useMutation(
-    mutations.ordersMakePayment,
+  const [settlePayment, { loading: loadingSettlement }] = useMutation(
+    mutations.ordersSettlePayment,
     {
       refetchQueries: [
         {
@@ -42,6 +40,24 @@ const PaymentContainer = ({
         },
         'OrderDetail',
       ],
+      onError(error) {
+        toast.error(error.message);
+      },
+    }
+  );
+
+  const [addPayment, { loading: loadingAddPayment }] = useMutation(
+    mutations.ordersAddPayment,
+    {
+      onCompleted() {
+        settlePayment({
+          variables: {
+            billType: billType,
+            registerNumber,
+            _id: orderId,
+          },
+        });
+      },
       onError(error) {
         toast.error(error.message);
       },
@@ -65,14 +81,13 @@ const PaymentContainer = ({
           .reduce((total: number, { amount }: any) => total + amount, 0);
 
         if (paidAmount >= totalAmount) {
-          makePayment({
-            variables: {
-              id: orderId,
-              doc: {
+          !paidDate &&
+            addPayment({
+              variables: {
+                _id: orderId,
                 mobileAmount: parseFloat(totalAmount),
               },
-            },
-          });
+            });
           return;
         }
         generateInvoiceUrl({
@@ -108,7 +123,7 @@ const PaymentContainer = ({
     return removeEventListener('message', () => {});
   }, []);
 
-  if (loading || loadingInvoices || loadingMakePayment)
+  if (loading || loadingInvoices || loadingAddPayment || loadingSettlement)
     return <Loading className="payments" />;
 
   if (paidDate)

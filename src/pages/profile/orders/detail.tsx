@@ -58,6 +58,8 @@ const Page = () => {
     items,
     putResponses,
     number,
+    registerNumber,
+    billType,
   } = orderDetail || {};
 
   const {
@@ -82,13 +84,7 @@ const Page = () => {
         <div className="row items-center py-3">
           {paidDate && <Ebarimt putResponses={putResponses} />}
           {((status !== 'pending' && !paidDate) || isAfterLastFiveMinutes) && (
-            <PaymentBtn
-              totalAmount={totalAmount}
-              orderId={id + ''}
-              phone={phone}
-              number={number}
-              paidDate={paidDate}
-            />
+            <PaymentBtn orderDetail={orderDetail} />
           )}
           {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
         </div>

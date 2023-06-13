@@ -13,7 +13,7 @@ const OrderItem = ({
 }: any) => {
   return (
     <Link
-      href={`/profile/orders/${_id}`}
+      href={{ pathname: `/profile/orders/detail`, query: { id: _id } }}
       className="-order-item row p-4 rounded text-black"
     >
       <div className="col-12 col-md-3">
