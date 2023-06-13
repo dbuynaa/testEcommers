@@ -4,7 +4,7 @@ const Nav = () => {
   return (
     <nav className="flex items-center  mx-4 hidden-mobile">
       <NavLink href="/" className="me-2">
-        Home
+        Нүүр
       </NavLink>
       {/* <NavLink href="/trade-in" className="mx-2">
         Trade in
@@ -13,7 +13,7 @@ const Nav = () => {
         Бөөндий
       </NavLink> */}
       <NavLink href="/news" className="ms-2">
-        Technews
+        Мэдээлэл
       </NavLink>
     </nav>
   );

@@ -14,7 +14,7 @@ const ProductsSlider = ({
   slidesToScroll = 4,
   className,
   head,
-  except,
+  except
 }: {
   category: string;
   slidesToShow?: number;
@@ -37,8 +37,8 @@ const ProductsSlider = ({
         breakpoint: 1024,
         settings: {
           slidesToShow: slidesToShow - 1,
-          slidesToScroll: slidesToShow - 1,
-        },
+          slidesToScroll: slidesToShow - 1
+        }
       },
       {
         breakpoint: 480,
@@ -46,15 +46,15 @@ const ProductsSlider = ({
           arrows: false,
           swipeToSlide: true,
           slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   const { products, loading, getProducts } = useGetProducts({
     category,
-    perPage: 16,
+    perPage: 16
   });
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const ProductsSlider = ({
         {(filteredProducts || []).map((el: any, index: number) => (
           <div
             className={clsx(
-              'flex flex-col -item',
+              'flex flex-col -item ',
               index === 0 ? 'pe-1' : 'px-1'
             )}
             key={index}

@@ -16,7 +16,6 @@ import FormItem from 'ui/FormItem';
 import { mutations, queries as authQueries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
 
-
 const AddressForm = () => {
   const router = useRouter();
   const { data, loading } = useQuery(queries.addresses);
@@ -24,11 +23,11 @@ const AddressForm = () => {
   const [changePhone] = useMutation(mutations.changePhone, {
     refetchQueries: [
       { query: authQueries.currentUser },
-      'clientPortalCurrentUser',
+      'clientPortalCurrentUser'
     ],
     onError(error) {
       toast.error(error.message);
-    },
+    }
   });
 
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
@@ -51,7 +50,7 @@ const AddressForm = () => {
       email,
       phone,
       firstName,
-      lastName,
+      lastName
     } = data;
 
     let sendData = {} as any;
@@ -67,7 +66,7 @@ const AddressForm = () => {
           others,
           street,
           city_district,
-          city,
+          city
         },
         marker,
         description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}`,
@@ -75,7 +74,7 @@ const AddressForm = () => {
         email,
         phone,
         firstName,
-        lastName,
+        lastName
       };
     }
 
@@ -95,7 +94,7 @@ const AddressForm = () => {
         email,
         phone,
         firstName,
-        lastName,
+        lastName
       };
     }
 
@@ -103,8 +102,8 @@ const AddressForm = () => {
       changePhone({
         variables: {
           _id: currentUser?._id,
-          phone: phone,
-        },
+          phone: phone
+        }
       });
     }
 
@@ -113,14 +112,13 @@ const AddressForm = () => {
 
   if (loading) return <Loading />;
 
-
   const { billType, registerNumber, deliveryInfo } = currentOrder || {};
   const { email, phone, firstName, lastName } = currentUser || {};
 
   return (
     <Form
       handleSubmit={onSubmit}
-      className="order-address"
+      className="order-address "
       args={{
         defaultValues: {
           deliveryInfo:
@@ -133,8 +131,8 @@ const AddressForm = () => {
           firstName: deliveryInfo?.firstName || firstName,
           lastName: deliveryInfo?.lastName || lastName,
           ...(deliveryInfo?.address || {}),
-          marker: deliveryInfo?.marker,
-        },
+          marker: deliveryInfo?.marker
+        }
       }}
     >
       <Grid
@@ -157,7 +155,8 @@ const AddressForm = () => {
               label="Захиалагчийн нэр"
               placeholder="Бат-эрдэнэ"
               name="firstName"
-              required min="8"
+              required
+              min="8"
             />
           </div>
           <div className="col-md-6 col-12 px-2">
@@ -173,7 +172,6 @@ const AddressForm = () => {
               placeholder="99999999"
               name="phone"
               type="number"
-
             />
           </div>
           <div className="col-md-6 col-12 px-2">

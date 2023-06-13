@@ -1,11 +1,11 @@
-.counter {
+.counter1 {
   background: rgba($color: $blue, $alpha: 0.18);
-  border-radius: 1.5rem;
+  border-radius: 1rem;
 
   .btn.ghost {
     color: $blue;
-    padding: 0.5rem 0.875rem;
-    font-size: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
     height: 2.5rem;
     &:disabled {
       background: transparent;
@@ -13,16 +13,15 @@
     }
   }
   input {
-    max-width: 3rem;
+    max-width: 2rem;
     margin: 0.25rem;
     height: 100%;
     font-weight: 700;
     color: $blue;
-    font-size: 15px;
+    font-size: 13px;
     border-color: transparent;
     &:focus {
       border-color: $blue;
     }
   }
 }
-
