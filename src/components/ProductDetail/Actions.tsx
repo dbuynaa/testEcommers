@@ -10,12 +10,12 @@ import Storepay from './Storepay';
 import TechLeasing from './Techleasing';
 
 const Actions = () => {
-  const { name, unitPrice, attachment, _id } = useDetailContext();
+  const { name, unitPrice, attachment, _id, remainder } = useDetailContext();
   const [count, setCount] = useState<number>(1);
   const [buy, setBuy] = useState(false);
   const cart = useItems();
   const { handleBuy } = useHandleBuy();
-  const remainder = 10;
+
   const { handleAddToCart, loading } = useHandleCart();
 
   const quantityInCart =
@@ -26,7 +26,7 @@ const Actions = () => {
       toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
       return;
     }
-    handleAddToCart({ name, unitPrice, attachment, _id, count });
+    handleAddToCart({ name, unitPrice, attachment, _id, count, remainder });
     if (go) return handleBuy();
     return;
   };

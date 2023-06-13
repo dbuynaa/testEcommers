@@ -20,12 +20,12 @@ const Login = () => {
     refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
     onError(error) {
       return toast.error(error.message);
-    },
+    }
   });
 
   const onSubmit = methods.handleSubmit((data) =>
     login({
-      variables: { ...data, clientPortalId: process.env.NEXT_PUBLIC_CP_ID },
+      variables: { ...data, clientPortalId: process.env.NEXT_PUBLIC_CP_ID }
     })
   );
 
@@ -37,10 +37,10 @@ const Login = () => {
           label="Hэвтрэх нэр"
           placeholder="Утасны дугаар эсвэл имэйл"
           errorMsgs={{
-            pattern: ' Зөв утасны дугаар эсвэл имэйл оруулана уу',
+            pattern: ' Зөв утасны дугаар эсвэл имэйл оруулана уу'
           }}
           validate={{
-            pattern: /^(.+@.+|\d{8})$/,
+            pattern: /^(.+@.+|\d{8})$/
           }}
           name="login"
         />
@@ -60,9 +60,9 @@ const Login = () => {
         <Button className="mt-2 login-btn" type="submit" loading={loading}>
           Нэвтрэх
         </Button>
-        <p className="text-center p-2 register-link">
+        <p className="text-center p-2 register-link ">
           Шинэ хэрэглэгч болох
-          <Link href={'/auth/register'} className="text-blue px-2">
+          <Link href={'/auth/register'} className="text-blue px-2 ">
             Бүртгүүлэх
           </Link>
         </p>

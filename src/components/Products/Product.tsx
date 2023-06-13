@@ -12,7 +12,7 @@ const Product = ({
   attachment,
   createdAt,
   wrapped,
-  children,
+  children
 }: IProduct & {
   onClick?: () => void;
   attachment: { url: string };
@@ -26,7 +26,7 @@ const Product = ({
 
   const render = () => (
     <Link
-      className="product text-center"
+      className="product text-center "
       href={{ pathname: '/products/[id]', query: { id: _id } }}
       onClick={onClick}
     >
@@ -37,6 +37,7 @@ const Product = ({
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
           contain
           withLoader
+          className=" hover:scale-105 transition duration-500 cursor-pointer"
         />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>

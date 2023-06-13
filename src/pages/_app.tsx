@@ -1,9 +1,9 @@
+import 'styles/global.css';
+import 'nprogress/nprogress.css';
+import 'styles/styles.scss';
 import React, { useEffect } from 'react';
 
 import Layout from 'components/layout';
-import 'nprogress/nprogress.css';
-import 'styles/styles.scss';
-import 'styles/global.css';
 import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';

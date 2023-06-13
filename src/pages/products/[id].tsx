@@ -37,7 +37,7 @@ const Product = ({ detail, videos }: any) => {
         }}
       />
       <Context>
-        <div className="container prDtl">
+        <div className="container prDtl ">
           <Breadcrumb />
           <div className="row pb-4">
             <div className="col-12 col-md-6">

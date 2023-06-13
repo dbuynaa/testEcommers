@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import FormItem from 'ui/FormItem';
 import { mutations, queries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
-import { validatePassword,validatePhone } from 'utils/constants';
+import { validatePassword, validatePhone } from 'utils/constants';
 
 type FormData = {
   password: string;
@@ -30,12 +30,12 @@ const Signup = () => {
     },
     onError(error) {
       return toast.error(error.message);
-    },
+    }
   });
 
   const onSubmit = methods.handleSubmit((data) =>
     createUser({
-      variables: { ...data, clientPortalId: process.env.NEXT_PUBLIC_CP_ID },
+      variables: { ...data, clientPortalId: process.env.NEXT_PUBLIC_CP_ID }
     })
   );
 
@@ -47,7 +47,7 @@ const Signup = () => {
           label="Нэр"
           placeholder="Нэр"
           errorMsgs={{
-            required: 'Заавал оруулана уу',
+            required: 'Заавал оруулана уу'
           }}
           name="firstName"
         />
@@ -55,7 +55,7 @@ const Signup = () => {
           label="Овог"
           placeholder="Овог"
           errorMsgs={{
-            required: 'Заавал оруулана уу',
+            required: 'Заавал оруулана уу'
           }}
           name="lastName"
         />
@@ -64,7 +64,7 @@ const Signup = () => {
           placeholder="example@example.com"
           errorMsgs={{
             required: 'Заавал оруулана уу',
-            pattern: 'Зөв имэйл оруулана уу',
+            pattern: 'Зөв имэйл оруулана уу'
           }}
           name="email"
           validate={{ pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
@@ -73,10 +73,10 @@ const Signup = () => {
           label="Утас"
           placeholder="Утасны дугаар"
           errorMsgs={{
-            pattern: 'Зөв утасны дугаар оруулана уу',
+            pattern: 'Зөв утасны дугаар оруулана уу'
           }}
           name="phone"
-          validate={{ pattern:validatePhone}}
+          validate={{ pattern: validatePhone }}
         />
         <FormItem
           label="Нууц үг"
@@ -85,10 +85,10 @@ const Signup = () => {
           labelClassName="mt-2"
           errorMsgs={{
             pattern:
-              'Дор хаяж нэг тоо, нэг том жижиг үсэг, дор хаяж 8 ба түүнээс дээш тэмдэгт агуулсан байх ёстой',
+              'Дор хаяж нэг тоо, нэг том жижиг үсэг, дор хаяж 8 ба түүнээс дээш тэмдэгт агуулсан байх ёстой'
           }}
           validate={{
-            pattern: validatePassword,
+            pattern: validatePassword
           }}
           name="password"
         />
@@ -103,7 +103,7 @@ const Signup = () => {
           name="privacy"
         />
 
-        <Button className="p-3 mt-3" type="submit" loading={loading}>
+        <Button className="btn flat p-3 mt-3 " type="submit" loading={loading}>
           Бүртгүүлэх
         </Button>
 
