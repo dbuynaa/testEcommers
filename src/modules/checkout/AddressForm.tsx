@@ -31,7 +31,11 @@ const AddressForm = () => {
   });
 
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
-  const onCompleted = (data: any) => router.push({pathname:`/profile/orders/detail`, query: {id: data._id}});
+  const onCompleted = (data: any) =>
+    router.push({
+      pathname: `/profile/orders/detail`,
+      query: { id: data._id },
+    });
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
   const { currentOrder } = useCurrentOrder();
   const { currentUser } = useCurrentUser();
@@ -170,6 +174,7 @@ const AddressForm = () => {
               placeholder="99999999"
               name="phone"
               type="number"
+              validate={{ pattern: /\d{8}/ }}
             />
           </div>
           <div className="col-md-6 col-12 px-2">
@@ -177,6 +182,7 @@ const AddressForm = () => {
               label="Захиалагчийн и-мэйл хаяг"
               placeholder="example@example.com"
               name="email"
+              validate={{ pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
             />
           </div>
         </div>
