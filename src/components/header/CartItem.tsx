@@ -1,5 +1,4 @@
 import Countbtn from 'components/checkout/countbtn';
-import { useHandleCart } from 'modules/contextHooks';
 import Link from 'next/link';
 import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
@@ -9,11 +8,10 @@ const CartItem = ({
   productId,
   name,
   count,
-  unitPrice
+  unitPrice,
+  remainder
 }: any) => {
-  const { loading, handleUpdateCart } = useHandleCart();
-  const removeItem = (productId) => handleUpdateCart({ productId, count: 0 });
-
+ 
   return (
     <div className="row cart-item py-2">
       <div className="col-3">
@@ -40,7 +38,7 @@ const CartItem = ({
             </small>
           </div>
 
-          <Countbtn productId={productId} count={count} />
+          <Countbtn productId={productId} count={count} remainder={remainder} />
         </div>
       </div>
     </div>

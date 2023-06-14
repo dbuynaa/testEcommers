@@ -183,7 +183,7 @@ const queries = {
   fullOrders,
   orderDetail,
   invoices,
-  addresses,
+  addresses
 };
 
 export default queries;

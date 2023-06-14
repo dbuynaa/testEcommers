@@ -26,7 +26,7 @@ const Actions = () => {
       toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
       return;
     }
-    handleAddToCart({ name, unitPrice, attachment, _id, count, remainder });
+    handleAddToCart({ name, unitPrice, attachment, _id, count });
     if (go) return handleBuy();
     return;
   };

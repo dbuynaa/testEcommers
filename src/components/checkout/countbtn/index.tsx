@@ -8,17 +8,23 @@ import Input from 'ui/Input';
 import LoadingDots from 'ui/LoadingDots';
 import { toast } from 'react-toastify';
 import Button from 'ui/Button';
+import { useQuery } from '@apollo/client';
+import { queries } from 'modules/Products/graphql';
 
-const Countbtn = ({ productId, count, remainder }: ItemBase) => {
+const Countbtn = ({ productId, count }: ItemBase) => {
   const { loading, handleUpdateCart: updateCart } = useHandleCart();
 
-  const handleUpdateCart = (value) => {
-    console.log('value', value);
-    console.log('========', productId);
+  const remainder = useQuery(queries.remainderCount, {
+    variables: {
+      id: productId,
+      branchId: process.env.NEXT_PUBLIC_BRANCH_ID
+    }
+  });
 
-    console.log('fdsfdf', remainder);
-    const number = parseInt(value || '0');
-    if (remainder || 0 >= number) {
+  const handleUpdateCart = (value) => {
+    const number = count + value;
+
+    if ((remainder?.data?.poscProductDetail?.remainder || 0) >= number) {
       return updateCart({ productId, count: number });
     }
     return toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
@@ -30,7 +36,7 @@ const Countbtn = ({ productId, count, remainder }: ItemBase) => {
           className="minus"
           variant="ghost"
           disabled={loading}
-          onClick={() => handleUpdateCart(count - 1)}
+          onClick={() => handleUpdateCart(-1)}
         >
           <Minus />
         </Button>
@@ -43,7 +49,7 @@ const Countbtn = ({ productId, count, remainder }: ItemBase) => {
           className="plus"
           variant="ghost"
           disabled={loading}
-          onClick={() => handleUpdateCart(count + 1)}
+          onClick={() => handleUpdateCart(1)}
         >
           <Plus />
         </Button>

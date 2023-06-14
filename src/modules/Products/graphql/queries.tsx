@@ -136,7 +136,16 @@ const productIds = gql`
   }
 `;
 
+const remainderCount = gql`
+  query poscProductRemainder($id: String, $branchId: String) {
+    poscProductDetail(_id: $id, branchId: $branchId) {
+      remainder
+    }
+  }
+`;
+
 const queries = {
+  remainderCount,
   productCategories,
   products,
   productsCount,

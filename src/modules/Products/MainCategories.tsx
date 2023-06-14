@@ -48,7 +48,7 @@ const MainCategories = ({ mainCategories }) => {
                   key={_id}
                   href={{ pathname: '/products', query: { category: _id } }}
                   className={clsx('product-cat', {
-                    '-active': category === _id,
+                    '-active': category === _id
                   })}
                 >
                   <div
@@ -70,7 +70,7 @@ const MainCategories = ({ mainCategories }) => {
                           key={sub._id}
                           href={{
                             pathname: '/products',
-                            query: { category: _id, sub: sub._id },
+                            query: { category: _id, sub: sub._id }
                           }}
                         >
                           <div

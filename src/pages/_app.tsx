@@ -10,7 +10,6 @@ import { getFooter } from 'lib/wp/page';
 import 'react-toastify/dist/ReactToastify.css';
 import { Open_Sans } from 'next/font/google';
 import NProgress from 'nprogress';
-
 import { Router } from 'next/router';
 
 type Props = {
