@@ -13,6 +13,7 @@ export interface State {
     lastName: string;
     phone: string;
     type: string;
+    avatar:string;
     companyRegistrationNumber: string;
     _id: string;
   } | null;

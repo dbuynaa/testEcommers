@@ -3,7 +3,7 @@ import ImageGallery from 'components/ProductDetail/Images';
 import Tabs, {
   TabsList,
   TabTrigger,
-  TabsContent,
+  TabsContent
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
@@ -15,6 +15,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import getProductIds from 'lib/getProductIds';
 import { NextSeo } from 'next-seo';
 import { readFile } from 'utils';
+import Rating from 'components/home/Rating';
 
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
@@ -31,9 +32,9 @@ const Product = ({ detail, videos }: any) => {
               url: readFile((attachment || {}).url),
               width: 800,
               height: 800,
-              alt: name,
-            },
-          ],
+              alt: name
+            }
+          ]
         }}
       />
       <Context>
@@ -42,6 +43,7 @@ const Product = ({ detail, videos }: any) => {
           <div className="row pb-4">
             <div className="col-12 col-md-6">
               <ImageGallery />
+              <Rating />
             </div>
             <Info />
           </div>
@@ -82,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
 
   return {
-    props: { detail, videos: [...(videosById || []), ...(videosByCat || [])] },
+    props: { detail, videos: [...(videosById || []), ...(videosByCat || [])] }
   };
 };
 
@@ -95,7 +97,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: true
   };
 };
 

@@ -1,4 +1,3 @@
-
 import Tabs, { TabsList, TabTrigger } from 'components/ProductDetail/Tabs';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';

@@ -3,7 +3,6 @@ import { ItemBase } from 'modules/types';
 import React from 'react';
 import Minus from 'icons/Minus';
 import Plus from 'icons/Plus';
-
 import Input from 'ui/Input';
 import LoadingDots from 'ui/LoadingDots';
 import { toast } from 'react-toastify';

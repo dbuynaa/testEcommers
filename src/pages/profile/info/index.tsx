@@ -7,6 +7,8 @@ import Button from 'ui/Button';
 import { useMutation } from '@apollo/client';
 import { mutations, queries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import AvatarUploadImage from 'modules/auth/Avatar/AvatarUploadImage';
 
 const Info = () => {
   const { currentUser } = useCurrentUser();
@@ -18,28 +20,53 @@ const Info = () => {
     },
     onError(error) {
       toast.error(error.message);
-    },
+    }
   });
+  
+  const [changeAvatar,setChangeAvatar] = useState('');
+
 
   const args = {
     defaultValues: {
       firstName: currentUser?.firstName,
       lastName: currentUser?.lastName,
-    },
+      email: currentUser?.email,
+      phone: currentUser?.phone,
+      avatar: currentUser?.avatar
+    }
   };
 
-  const onSubmit = (value: { firstName: string; lastName: string }) =>
-    editUser({ variables: { ...value, _id: currentUser?._id } });
-
+  const onSubmit = (value: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    avatar: string;
+  }) => editUser({ variables: { ...value, _id: currentUser?._id } });
+   
+ const onAvatarUpload = (url:string)=>{
+    setChangeAvatar(url)
+ }
   return (
     <Form handleSubmit={onSubmit} args={args}>
       <div className="row py-3 px-md-2">
+        {/* <AvatarUpload /> */}
         <div className="col-12 col-md-6 px-md-2">
           <FormItem name="firstName" label="Нэр" />
         </div>
         <div className="col-12 col-md-6 px-md-2">
           <FormItem name="lastName" label="Oвог" />
         </div>
+        <div className="col-12 col-md-6 px-md-2">
+          <FormItem name="email" label="И-мэйл хаяг" />
+        </div>
+        <div className="col-12 col-md-6 px-md-2">
+          <FormItem name="phone" label="Утасны дугаар" />
+        </div>
+
+        {/* <div className="col-12 col-md-6 px-md-2">
+          <FormItem name="avatar" label="Зураг засах" />
+        </div> */}
         <div className="col-6 col-md-9"></div>
         <div className="col-6 col-md-3">
           <Button
@@ -50,6 +77,12 @@ const Info = () => {
             Өөрчлөх
           </Button>
         </div>
+      </div>
+      <div>
+        <AvatarUploadImage />
+        {/* <Uploader onChange={function (avatars: any): void {
+          throw new Error('Function not implemented.');
+        } } defaultFileList={undefined} /> */}
       </div>
     </Form>
   );

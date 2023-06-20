@@ -24,7 +24,7 @@ const ImageGallery = () => {
       }
     ]
   };
-
+  console.log(images, 'images');
   return (
     <>
       <Slider
@@ -35,10 +35,7 @@ const ImageGallery = () => {
         className="prDtl__slider "
       >
         {images.map((url: any, index: any) => (
-          <div
-            key={index}
-            className="img-wrap big-image "
-          >
+          <div key={index} className="img-wrap big-image ">
             <Image
               src={readFile(url)}
               alt="product"

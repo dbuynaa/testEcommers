@@ -1,15 +1,14 @@
-
 import Image from 'ui/Image';
 import { useCurrentUser } from 'modules/appContext';
 
 const MainInfo = () => {
   const { currentUser } = useCurrentUser();
-  const { firstName, email, lastName } = currentUser || {};
+  const { firstName, email, lastName, avatar } = currentUser || {};
 
   return (
     <div className="flex items-center profile-main p-2">
       <Image
-        src="/images/user.png"
+        src={currentUser?.avatar || '/images/user.png'}
         alt="profile"
         width={44}
         height={44}

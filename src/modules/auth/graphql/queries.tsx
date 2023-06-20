@@ -10,6 +10,7 @@ const currentUser = gql`
       type
       erxesCompanyId
       phone
+      avatar
       erxesCustomerId
       companyRegistrationNumber
     }

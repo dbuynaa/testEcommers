@@ -144,6 +144,43 @@ const remainderCount = gql`
   }
 `;
 
+const getLastProductView = gql`
+  query LastViewedItems($customerId: String!, $limit: Int) {
+    lastViewedItems(customerId: $customerId, limit: $limit) {
+      _id
+      productId
+      product {
+        _id
+        attachment {
+          url
+        }
+        name
+      }
+    }
+  }
+`;
+
+const getProductReviews = gql`
+  query Productreviews($productIds: [String], $customerId: String) {
+    productreviews(productIds: $productId, customerId: $customerId) {
+      _id
+      customerId
+      productId
+      review
+    }
+  }
+`;
+
+const getProductAveregeReview = gql`
+  query Productreview($productId: String!) {
+    productreview(productId: $productId) {
+      average
+      length
+      productId
+    }
+  }
+`;
+
 const queries = {
   remainderCount,
   productCategories,
@@ -154,7 +191,10 @@ const queries = {
   wishlist,
   productDetailWithCustomFields,
   productIds,
-  productDetailMeta
+  productDetailMeta,
+  getLastProductView,
+  getProductAveregeReview,
+  getProductReviews
 };
 
 export default queries;

@@ -25,11 +25,11 @@ const MainCategories = ({ mainCategories }) => {
   const handleMouseLeave = () => {
     setIsOpen(false);
   };
-  console.log('category', mainCategories);
+
 
   return (
-    <div className=" product-cats hidden sm:hidden  md:hidden md:max-w-text-[6px] min-lg:hidden lg:flex xl:flex">
-      <div className="   lg:flex min-w-max container  justify-between md:text-[8px] ">
+    <div className="product-cats hidden lg:flex">
+      <div className="container flex justify-between">
         {mainCategories
           .filter((a) => !a.parentId)
           .map(({ _id, name }): any => {
@@ -52,7 +52,7 @@ const MainCategories = ({ mainCategories }) => {
                   })}
                 >
                   <div
-                    className=" md:flex group-hover:flex bg-bgprimary "
+                    className=" md:flex group-hover:flex bg-bgprimary text-[12px] laptop:text-[15px]"
                     onClick={toggleDropdown}
                   >
                     {name}
@@ -74,7 +74,7 @@ const MainCategories = ({ mainCategories }) => {
                           }}
                         >
                           <div
-                            className="px-2 py-2 text-white hover:bg-slate-400 min-w-full"
+                            className="px-2 py-2 text-white hover:underline  w-full"
                             onClick={toggleDropdown}
                           >
                             {sub.name}
@@ -92,24 +92,7 @@ const MainCategories = ({ mainCategories }) => {
   );
 };
 
-/* <div className="container flex items-center hover-scroll -x">
-        {(mainCategories || []).map(({ _id, name }: any) => (
-          <Link
-            key={_id}
-            href={{ pathname: '/products', query: { category: _id } }}
-            className={clsx('product-cat', {
-              '-active': category === _id,
-            })}
-          >
-            {name}
-            {/* <button
-              className="hover:opacity-50 cursor-default"
-              onClick={toggleDropdown}
-            >
-              {product}
-            </button> */
-// </Link>
-// ))}
-// </div> */
+
+
 
 export default MainCategories;

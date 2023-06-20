@@ -4,6 +4,7 @@ import { useCurrentUser } from 'modules/appContext';
 import ProfileContent from './ProfileContent';
 import Link from 'next/link';
 import Image from 'ui/Image';
+// import AvatarEdit from 'modules/auth/Avatar';
 
 const Profile = () => {
   const { currentUser, loadingCurrentUser } = useCurrentUser();
@@ -12,7 +13,12 @@ const Profile = () => {
 
   if (!currentUser)
     return (
-      <Button href="/auth/login" variant="slim" className='profile-login  mx-2' Component={Link}>
+      <Button
+        href="/auth/login"
+        variant="slim"
+        className="profile-login  mx-2"
+        Component={Link}
+      >
         Нэвтрэх
       </Button>
     );

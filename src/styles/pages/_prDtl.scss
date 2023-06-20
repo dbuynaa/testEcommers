@@ -6,7 +6,6 @@
     background-color: $bg-gray;
     img {
       object-fit: contain;
-      
     }
     &.big-image {
       &::before {
@@ -156,7 +155,7 @@
     }
     .promotion {
       img {
-        width: 100%;
+        width: 100% !important;
         height: auto !important;
       }
       & > * {
