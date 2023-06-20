@@ -16,7 +16,7 @@ const Orders = () => {
       statuses: ORDER_STATUSES,
       customerId: (currentUser || {}).erxesCustomerId,
       perPage: 24,
-      sortField: 'createdAt',
+      sortField: 'modifiedAt',
       sortDirection: -1,
     },
   });

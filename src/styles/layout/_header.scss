@@ -5,7 +5,7 @@ header {
   box-shadow: 0 3px 12px rgb(0 0 0 / 20%);
   .product-cat {
     line-height: 1.5rem;
-    margin-right: 1.75rem;
+    margin-right: 0.5rem;
     font-size: 15px;
     font-weight: 500;
     padding: 0.5rem 0;
@@ -23,7 +23,7 @@ header {
   .top {
     svg {
       color: $primary;
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
 
@@ -78,12 +78,13 @@ header {
   width: 100%;
   z-index: 2;
   height: $header-height;
-  overflow: hidden;
+
   .product-cats {
     transform: translateY(0);
   }
   &.down {
     height: 5.25rem;
+    overflow: hidden;
     .product-cats {
       transform: translateY(-100%);
       z-index: -1;

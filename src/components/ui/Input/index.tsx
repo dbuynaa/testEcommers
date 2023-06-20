@@ -1,5 +1,3 @@
-
-
 import { FC, InputHTMLAttributes, useRef, forwardRef } from 'react';
 import { mergeRefs } from 'react-merge-refs';
 

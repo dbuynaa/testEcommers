@@ -66,7 +66,7 @@ export const fullOrders = gql`
       sortDirection: $sortDirection
     ) {
       _id
-      createdAt
+      modifiedAt
       paidDate
       status
       totalAmount
@@ -183,7 +183,7 @@ const queries = {
   fullOrders,
   orderDetail,
   invoices,
-  addresses,
+  addresses
 };
 
 export default queries;

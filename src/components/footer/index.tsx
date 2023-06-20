@@ -75,8 +75,8 @@ const FooterLink = ({
   );
 };
 
-const Footer = ({ footer }: any) => {
-  const { phone, mail, map, facebook, instagram } = footer?.contact || {};
+const Footer = ({ metaData }: any) => {
+  const { phone, mail, map, facebook, instagram } = metaData?.contact || {};
   const router = useRouter();
 
   if (router.asPath.includes('auth') || router.asPath.includes('checkout'))
@@ -126,7 +126,7 @@ const Footer = ({ footer }: any) => {
             <Col title="ХАЯГ" titleClass="pb-3">
               <FooterLink href={map || ''} icon={<Marker />}>
                 <div
-                  dangerouslySetInnerHTML={{ __html: footer?.content || '' }}
+                  dangerouslySetInnerHTML={{ __html: metaData?.content || '' }}
                 />
               </FooterLink>
               <div className="pt-1"></div>

@@ -6,14 +6,19 @@ import Nav from './Nav';
 import Search from './Search';
 import MainCategories from 'modules/Products/MainCategories';
 import Profile from './Profile';
-// import Top from './top';
+import Top from './top';
+import useScrollDirection from 'lib/useScrollDirection';
+import { AnimatePresence } from 'framer-motion';
 
-const Header = ({ mainCategories }: any) => {
+const Header = ({ mainCategories, contact }: any) => {
+  const direction = useScrollDirection();
   return (
     <>
       <ScrollWrapper className="header scroll">
         <header>
-          {/* <Top /> */}
+          <AnimatePresence>
+            {direction !== 'down' && <Top contact={contact} />}
+          </AnimatePresence>
           <div className="flex py-2 py-md-3 justify-between items-center container">
             <div className="col-md-9">
               <div className="flex items-center">

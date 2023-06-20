@@ -19,12 +19,11 @@ const ImageGallery = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-        },
-      },
-    ],
+          slidesToShow: 3
+        }
+      }
+    ]
   };
-  
   return (
     <>
       <Slider
@@ -32,10 +31,10 @@ const ImageGallery = () => {
         arrows={false}
         asNavFor={nav2}
         ref={(slider1) => setNav1(slider1)}
-        className="prDtl__slider"
+        className="prDtl__slider "
       >
         {images.map((url: any, index: any) => (
-          <div key={index} className="img-wrap big-image">
+          <div key={index} className="img-wrap big-image ">
             <Image
               src={readFile(url)}
               alt="product"

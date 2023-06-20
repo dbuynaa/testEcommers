@@ -8,11 +8,16 @@ import Image from 'ui/Image';
 const Profile = () => {
   const { currentUser, loadingCurrentUser } = useCurrentUser();
 
-  if (loadingCurrentUser) return <div className="px-4"></div>;
+  if (loadingCurrentUser) return <div className="w-10"></div>;
 
   if (!currentUser)
     return (
-      <Button href="/auth/login" variant="slim" className='profile-login  mx-2' Component={Link}>
+      <Button
+        href="/auth/login"
+        variant="slim"
+        className="profile-login  mx-2"
+        Component={Link}
+      >
         Нэвтрэх
       </Button>
     );

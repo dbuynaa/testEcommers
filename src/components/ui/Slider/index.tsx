@@ -35,19 +35,22 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }: any) => (
 );
 
 export const slickSettings: Settings = {
-  speed: 500,
-  infinite: false,
+  infinite: true,
+  dots: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
   arrows: true,
-  lazyLoad: 'anticipated',
   customPaging: () => <Button />,
   prevArrow: <SlickArrowLeft />,
-  nextArrow: <SlickArrowRight />,
+  nextArrow: <SlickArrowRight />
 };
 
 const Slider = (props: Settings) => {
   const updatedProps = {
     ...slickSettings,
-    ...props,
+    ...props
   };
   return <ReactSlider {...updatedProps} />;
 };

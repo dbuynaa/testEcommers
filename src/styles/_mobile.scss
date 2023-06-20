@@ -24,8 +24,8 @@
     bottom: 0;
   }
   .popo-content {
-   height: calc(100vh - 3.5rem);
-   border-radius: 0; 
+    height: calc(100vh - 3.5rem);
+    border-radius: 0;
   }
   .tabs {
     &-trigger.btn.ghost {
@@ -160,6 +160,7 @@
     height: 2rem;
     font-size: 14px;
     line-height: 1rem;
+  
   }
   .ratio-md-1x1 {
     &::before {
@@ -223,7 +224,7 @@
   }
   .news {
     &-banner {
-      margin-bottom: 1rem;
+      // margin-bottom: 1rem;
       .yt-video::before {
         padding-bottom: 100%;
       }

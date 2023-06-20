@@ -10,27 +10,33 @@ import clsx from 'clsx';
 
 const ProductsSlider = ({
   category,
-  slidesToShow,
+  slidesToShow = 4,
+  slidesToScroll = 4,
   className,
   head,
+  infinite = true,
   except,
 }: {
   category: string;
-  slidesToShow: number;
+  slidesToShow?: number;
+  slidesToScroll?: number;
   className?: string;
   head?: React.ReactNode;
   except?: string[];
+  infinite?: boolean;
 }) => {
   const changedSettings = {
-    slidesToShow,
-    slidesToScroll: slidesToShow - 1,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll - 1,
     dots: false,
+    infinite,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: slidesToShow - 1,
-          slidesToScroll: slidesToShow - 2,
+          slidesToScroll: slidesToShow - 1,
         },
       },
       {
@@ -38,8 +44,8 @@ const ProductsSlider = ({
         settings: {
           arrows: false,
           swipeToSlide: true,
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -70,7 +76,7 @@ const ProductsSlider = ({
         {(filteredProducts || []).map((el: any, index: number) => (
           <div
             className={clsx(
-              'flex flex-col -item',
+              'flex flex-col -item ',
               index === 0 ? 'pe-1' : 'px-1'
             )}
             key={index}
@@ -88,7 +94,7 @@ const ProductsSlider = ({
               <h5>Бүгдийг үзэх</h5>
               <ArrowRight className="ms-2" />
             </Button>
-            <div  className='-item'/>
+            <div className="-item" />
           </>
         )}
       </Slider>

@@ -105,7 +105,7 @@ const AddressForm = () => {
     if (phone && !currentUser?.phone) {
       changePhone({
         variables: {
-          id: currentUser?._id,
+          _id: currentUser?._id,
           phone: phone,
         },
       });
@@ -122,7 +122,7 @@ const AddressForm = () => {
   return (
     <Form
       handleSubmit={onSubmit}
-      className="order-address"
+      className="order-address "
       args={{
         defaultValues: {
           deliveryInfo:
@@ -159,6 +159,8 @@ const AddressForm = () => {
               label="Захиалагчийн нэр"
               placeholder="Бат-эрдэнэ"
               name="firstName"
+              required
+              min="8"
             />
           </div>
           <div className="col-md-6 col-12 px-2">
@@ -175,6 +177,9 @@ const AddressForm = () => {
               name="phone"
               type="number"
               validate={{ pattern: /\d{8}/ }}
+              errorMsgs={{
+                pattern: 'Зөв утасны дугаар оруулана уу',
+              }}
             />
           </div>
           <div className="col-md-6 col-12 px-2">

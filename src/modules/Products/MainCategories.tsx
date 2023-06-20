@@ -1,23 +1,27 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import clsx from 'clsx';
-
-const MainCategories = ({ mainCategories }: any) => {
-  const router = useRouter();
-  const { category } = router.query;
+// import Link from 'next/link';
+import MainCategory from 'components/Products/MainCategory';
+type Category = {
+  _id: string;
+  name: string;
+  parentId: string;
+};
+const MainCategories = ({ mainCategories }) => {
+  const getSubCategories = (id) =>
+    mainCategories.filter((a) => a.parentId === id);
 
   return (
-    <div className="product-cats ">
-      <div className="container flex items-center hover-scroll -x">
-        {(mainCategories || []).map(({ _id, name }: any) => (
-          <Link
-            key={_id}
-            href={{ pathname: '/products', query: { category: _id } }}
-            className={clsx('product-cat', { '-active': category === _id })}
-          >
-            {name}
-          </Link>
-        ))}
+    <div className="product-cats hidden lg:flex">
+      <div className="container flex justify-between">
+        {mainCategories
+          .filter((a) => !a.parentId)
+          .map(({ _id, name }): any => (
+            <MainCategory
+              _id={_id}
+              name={name}
+              subCategories={getSubCategories(_id)}
+              key={_id}
+            />
+          ))}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export interface State {
     lastName: string;
     phone: string;
     type: string;
+    avatar:string;
     companyRegistrationNumber: string;
     _id: string;
   } | null;
@@ -65,7 +66,7 @@ const useStore = () => {
     setLoadingCurrentOrder: useCallback(
       (loading: boolean) => setLoadingCurrentOrder(loading),
       []
-    ),
+    )
   };
 };
 
@@ -75,7 +76,7 @@ export const StoreContext = createContext<State & { categories: any }>(
 
 export const StoreProvider = ({
   categories,
-  children,
+  children
 }: {
   categories: any;
   children: React.ReactNode;
@@ -115,7 +116,7 @@ export const useCurrentUser = () => {
     currentUser,
     setCurrentUser,
     loadingCurrentUser,
-    setLoadingCurrentUser,
+    setLoadingCurrentUser
   };
 };
 
@@ -140,7 +141,7 @@ export const useCurrentOrder = () => {
     currentOrder,
     setCurrentOrder,
     loadingCurrentOrder,
-    setLoadingCurrentOrder,
+    setLoadingCurrentOrder
   };
 };
 
@@ -158,5 +159,6 @@ export const useCategories = () => {
     StoreContext,
     (store) => store.categories
   );
+ 
   return { categories };
 };

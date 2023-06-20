@@ -1,20 +1,46 @@
-import Phone from 'icons/phone';
+import { motion } from 'framer-motion';
+import Facebook from 'icons/Facebook';
+import Instagram from 'icons/Instagram';
+// import Phone from 'icons/phone';
+import Link from 'next/link';
 
-const HeaderTop = () => {
+const Top = ({ contact }) => {
+  const { phone, facebook, instagram } = contact || {};
   return (
-    <div className="top pt-3 pe-4 container">
-      <b className="flex justify-between sbt">
-        <a>Биднийг сонгох 10 шалтгаан</a>
-        <a className="text-primary">
-          Монгол улсын аль ч хэсэгт 2 хоногын дотор хүргэнэ.
-        </a>
-        <a className="flex items-center" href="tel:7510-3000">
-          <Phone />
-          <span className="ps-3">7510-3000</span>
-        </a>
-      </b>
-    </div>
+    <motion.div
+      initial={{ height: 0 }}
+      animate={{ height: 'auto' }}
+      exit={{ height: 0 }}
+      className="overflow-hidden"
+    >
+      <div className="max-sm:hidden sm:hidden md:flex pt-3  container  justify-between font-medium">
+        {/*
+         */}
+        <Link href="/" className="text-xs">
+          Tech Store-д тавтай морилно уу
+        </Link>
+        <span className="text-xs text-[#febe0b]">
+          Монгол улсын аль ч хэсэгт хүргэнэ.
+        </span>
+        <b className="flex justify-end gap-2 divide-x-2 divide-white">
+          <div className="flex gap-2 px-2">
+            <Link href={facebook} target="_blank">
+              <Facebook />
+            </Link>
+            <Link href={instagram} target="_blank">
+              <Instagram />
+            </Link>
+          </div>
+          <Link className="flex items-center px-2" href={`tel:${phone}`}>
+            <span className="text-xs">{phone}</span>
+          </Link>
+          <Link href="/branches" className="text-xs px-2">
+            Салбарууд
+          </Link>
+        </b>
+      </div>
+    </motion.div>
   );
 };
 
-export default HeaderTop;
+export default Top;

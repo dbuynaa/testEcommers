@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
-import Layout from 'components/layout';
+import 'styles/global.css';
 import 'nprogress/nprogress.css';
-import 'styles/styles.min.css';
+import 'styles/styles.scss';
+import React, { useEffect } from 'react';
+
+import Layout from 'components/layout';
 import NextApp from 'next/app';
 import getCategories from 'lib/getCategories';
 import { getFooter } from 'lib/wp/page';
 import 'react-toastify/dist/ReactToastify.css';
 import { Open_Sans } from 'next/font/google';
 import NProgress from 'nprogress';
-
 import { Router } from 'next/router';
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
   router: any;
   menu: any;
   mainCategories: any;
-  footer: any;
+  metaData: any;
   categories: any;
 };
 
@@ -29,7 +30,7 @@ function MyApp({
   pageProps,
   router,
   mainCategories,
-  footer,
+  metaData,
   categories,
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
@@ -62,7 +63,7 @@ function MyApp({
       <Layout
         mainCategories={mainCategories}
         categories={categories}
-        footer={footer}
+        metaData={metaData}
       >
         {getLayout(<Component {...pageProps} router={router} />)}
       </Layout>
@@ -74,11 +75,11 @@ MyApp.getInitialProps = async function (appContext: any) {
   const appProps = await NextApp.getInitialProps(appContext);
 
   const { rootCatergories, categories } = await getCategories();
-  const { page: footer } = await getFooter();
+  const { page: metaData } = await getFooter();
 
   return {
     ...appProps,
-    footer,
+    metaData,
     mainCategories: rootCatergories,
     categories,
   };

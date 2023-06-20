@@ -8,7 +8,7 @@ const changedSettings = {
   slidesToScroll: 1,
   dots: true,
   arrows: false,
-  fade: true,
+  fade: true
 };
 
 const FeaturedSlider = ({ sliders }) => {

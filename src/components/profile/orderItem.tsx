@@ -4,12 +4,12 @@ import OrderStatus from './orderStatus';
 import { formatCurrency } from 'utils';
 
 const OrderItem = ({
-  createdAt,
+  modifiedAt,
   paidDate,
   status,
   totalAmount,
   _id,
-  number,
+  number
 }: any) => {
   return (
     <Link
@@ -19,7 +19,7 @@ const OrderItem = ({
       <div className="col-12 col-md-3">
         <p className="text-mid-gray">Огноо</p>
         <div className="pt-1">
-          {dayjs(createdAt).format('YYYY-MM-DD HH:mm')}
+          {dayjs(modifiedAt).format('YYYY-MM-DD HH:mm')}
         </div>
       </div>
       <div className="col-12 col-md-3">

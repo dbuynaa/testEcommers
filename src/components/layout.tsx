@@ -12,14 +12,13 @@ import Toast from 'ui/Toast';
 
 const Layout = ({
   children,
-  mainCategories,
-  footer,
+  metaData,
   categories,
 }: {
   children: ReactNode;
   mainCategories: any;
   categories: any;
-  footer: any;
+  metaData: any;
 }) => {
   return (
     <>
@@ -64,9 +63,9 @@ const Layout = ({
         <StoreProvider categories={categories}>
           <CurrentUser>
             <CurrentOrder>
-              <Header mainCategories={mainCategories} />
+              <Header mainCategories={categories} contact={metaData?.contact} />
               <div className="layout">{children}</div>
-              <Footer footer={footer} />
+              <Footer metaData={metaData} />
               <NavigationBar />
             </CurrentOrder>
           </CurrentUser>

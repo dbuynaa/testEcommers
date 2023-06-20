@@ -13,6 +13,7 @@ import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
 import Latest from 'components/home/Latest';
+// import LastViewedItems from 'modules/Products/LastViewedItems';
 
 const Home = ({
   ftItems,
@@ -30,6 +31,7 @@ const Home = ({
       <Banner imgBanners={imgBanners} />
       <Latest />
       <SliderBanner sliderBanners={sliderBanners} />
+      {/* <LastViewedItems /> */}
     </div>
   );
 };

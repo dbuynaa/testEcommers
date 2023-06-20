@@ -15,6 +15,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import getProductIds from 'lib/getProductIds';
 import { NextSeo } from 'next-seo';
 import { readFile } from 'utils';
+// import Rating from 'components/home/Rating';
+import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
 
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
@@ -36,12 +38,14 @@ const Product = ({ detail, videos }: any) => {
           ],
         }}
       />
+      <LastViewedItemsAdd productId={_id} />
       <Context>
-        <div className="container prDtl">
+        <div className="container prDtl ">
           <Breadcrumb />
           <div className="row pb-4">
             <div className="col-12 col-md-6">
               <ImageGallery />
+              {/* <Rating /> */}
             </div>
             <Info />
           </div>

@@ -10,15 +10,16 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+// import Counter from 'modules/checkout/Counter';
 
 const WishlistContainer = () => {
   const { currentUser } = useCurrentUser();
   const { erxesCustomerId: customerId } = currentUser || {};
   const [getWishlist, { data, loading }] = useLazyQuery(queries.wishlist, {
     variables: {
-      customerId,
+      customerId
     },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'network-only'
   });
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const WishlistContainer = () => {
         if (_id) {
           toast.success('Амжилттай хаслаа');
         }
-      },
+      }
     }
   );
 
@@ -69,6 +70,7 @@ const WishlistContainer = () => {
               onClick={() => remove({ variables: { id: el._id } })}
             >
               <Xmark />
+              {/* <Counter count={0} productId={''} /> */}
             </Button>
           </motion.div>
         </AnimatePresence>
