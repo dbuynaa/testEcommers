@@ -41,6 +41,7 @@ const Image: FC<
     height,
     onError,
   };
+
   if (srcI === '/product.png') return <Logo />;
 
   return (
@@ -68,7 +69,15 @@ const Image: FC<
   );
 };
 
-export const cloudflareLoader = ({ src, width, quality }) => {
+export const cloudflareLoader = ({
+  src,
+  width,
+  quality,
+}: {
+  src?: string | null;
+  width?: number;
+  quality?: number;
+}) => {
   const params = [`format=avif`];
 
   if (width) {

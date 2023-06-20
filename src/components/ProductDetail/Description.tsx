@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Video from './Video';
 import ProductsSlider from 'modules/Products/Slider';
 import { useDetailContext } from './Context';
+import { cloudflareLoader } from 'ui/Image';
 
 const PropertyItem = ({ text, value }: any) => (
   <p className="flex prDtl-property justify-between sbt pb-2 mb-1">
@@ -22,7 +23,11 @@ const Description = () => {
   const intro = properties?.intro?.value;
   const video = properties?.video?.value;
 
-  const filteredValues = values.filter(
+  const test = {};
+
+  values.map((item: any, index: number) => (test[item.text] = item));
+
+  const filteredValues = Object.values(test).filter(
     (item: any, idx) => !filter.includes(keys[idx])
   );
 
@@ -84,6 +89,25 @@ const Description = () => {
       )}
     </div>
   );
+};
+
+const replaceImageSources = (htmlString) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlString, 'text/html');
+
+  const imgTags = doc.getElementsByTagName('img');
+  for (let i = 0; i < imgTags.length; i++) {
+    imgTags[i].setAttribute(
+      'src',
+      cloudflareLoader({
+        src: imgTags[i].getAttribute('src'),
+        width: 1400,
+      })
+    );
+  }
+
+  const updatedHtml = doc.documentElement.innerHTML;
+  return updatedHtml;
 };
 
 export default Description;
