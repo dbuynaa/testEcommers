@@ -1,4 +1,4 @@
-import Countbtn from 'components/checkout/countBtn';
+import CountBtn from 'components/checkout/countBtn';
 import Link from 'next/link';
 import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
@@ -39,7 +39,7 @@ const CartItem = ({
             </small>
           </div>
 
-          <Countbtn productId={productId} count={count} />
+          <CountBtn productId={productId} count={count} />
         </div>
       </div>
     </div>
