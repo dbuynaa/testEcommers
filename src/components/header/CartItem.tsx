@@ -1,4 +1,4 @@
-import CountBtn from '../checkout/countBtn';
+import CountBtn from '../checkout/countBtn/index';
 import Link from 'next/link';
 import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
