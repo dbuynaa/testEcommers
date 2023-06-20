@@ -6,7 +6,7 @@ const InfoLayout = ({ children }: any) => {
   const pathname = usePathname();
   return (
     <Tabs value={pathname || ''}>
-      <TabsList>
+      <TabsList className='border-b'>
         <TabTrigger value="/profile/info">
           <Link href="/profile/info">Хувийн мэдээлэл</Link>
         </TabTrigger>

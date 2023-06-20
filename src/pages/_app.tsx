@@ -18,7 +18,7 @@ type Props = {
   router: any;
   menu: any;
   mainCategories: any;
-  footer: any;
+  metaData: any;
   categories: any;
 };
 
@@ -30,8 +30,8 @@ function MyApp({
   pageProps,
   router,
   mainCategories,
-  footer,
-  categories
+  metaData,
+  categories,
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
 
@@ -63,7 +63,7 @@ function MyApp({
       <Layout
         mainCategories={mainCategories}
         categories={categories}
-        footer={footer}
+        metaData={metaData}
       >
         {getLayout(<Component {...pageProps} router={router} />)}
       </Layout>
@@ -75,13 +75,13 @@ MyApp.getInitialProps = async function (appContext: any) {
   const appProps = await NextApp.getInitialProps(appContext);
 
   const { rootCatergories, categories } = await getCategories();
-  const { page: footer } = await getFooter();
+  const { page: metaData } = await getFooter();
 
   return {
     ...appProps,
-    footer,
+    metaData,
     mainCategories: rootCatergories,
-    categories
+    categories,
   };
 };
 

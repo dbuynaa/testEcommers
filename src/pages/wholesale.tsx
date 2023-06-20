@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Latest from 'components/home/Latest';
-import LastViewProduct from 'modules/Products/LastViewProduct';
+// import LastViewProduct from 'modules/Products/LastViewProduct';
 
 const Wholesale = () => {
   return (
@@ -26,7 +26,7 @@ const Wholesale = () => {
       </div>
       <img src="/images/techstorebanner.png" alt="" className="py-24" />
 
-      <LastViewProduct />
+      {/* <LastViewProduct /> */}
     </div>
   );
 };

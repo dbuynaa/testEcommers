@@ -7,8 +7,7 @@ import Button from 'ui/Button';
 import { useMutation } from '@apollo/client';
 import { mutations, queries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
-import AvatarUploadImage from 'modules/auth/Avatar/AvatarUploadImage';
+// import Avatar from 'modules/auth/Avatar';
 
 const Info = () => {
   const { currentUser } = useCurrentUser();
@@ -20,11 +19,8 @@ const Info = () => {
     },
     onError(error) {
       toast.error(error.message);
-    }
+    },
   });
-  
-  const [changeAvatar,setChangeAvatar] = useState('');
-
 
   const args = {
     defaultValues: {
@@ -32,8 +28,8 @@ const Info = () => {
       lastName: currentUser?.lastName,
       email: currentUser?.email,
       phone: currentUser?.phone,
-      avatar: currentUser?.avatar
-    }
+      avatar: currentUser?.avatar,
+    },
   };
 
   const onSubmit = (value: {
@@ -43,11 +39,12 @@ const Info = () => {
     phone: string;
     avatar: string;
   }) => editUser({ variables: { ...value, _id: currentUser?._id } });
-   
- const onAvatarUpload = (url:string)=>{
-    setChangeAvatar(url)
- }
+
   return (
+    // <div className="flex">
+    //   <div className="w-3/12 flex justify-center py-5">
+    //     <Avatar />
+    //   </div>
     <Form handleSubmit={onSubmit} args={args}>
       <div className="row py-3 px-md-2">
         {/* <AvatarUpload /> */}
@@ -79,12 +76,12 @@ const Info = () => {
         </div>
       </div>
       <div>
-        <AvatarUploadImage />
         {/* <Uploader onChange={function (avatars: any): void {
           throw new Error('Function not implemented.');
         } } defaultFileList={undefined} /> */}
       </div>
     </Form>
+    // </div>
   );
 };
 

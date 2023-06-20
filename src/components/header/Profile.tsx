@@ -4,12 +4,11 @@ import { useCurrentUser } from 'modules/appContext';
 import ProfileContent from './ProfileContent';
 import Link from 'next/link';
 import Image from 'ui/Image';
-// import AvatarEdit from 'modules/auth/Avatar';
 
 const Profile = () => {
   const { currentUser, loadingCurrentUser } = useCurrentUser();
 
-  if (loadingCurrentUser) return <div className="px-4"></div>;
+  if (loadingCurrentUser) return <div className="w-10"></div>;
 
   if (!currentUser)
     return (

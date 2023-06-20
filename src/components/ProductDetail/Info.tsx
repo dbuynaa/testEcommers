@@ -7,10 +7,9 @@ import clsx from 'clsx';
 // import Choose from 'modules/Products/Choose';
 
 const Info = () => {
-  const { name, code, unitPrice, remainder, _id } = useDetailContext();
+  const { name, code, unitPrice, remainder } = useDetailContext();
 
   const isNameLong = name.length > 25;
-  const detail = useDetailContext();
 
   return (
     <div className="col-12 col-md-6 px-md-4 prDtl-actions mt-3 mt-md-0">

@@ -10,29 +10,29 @@ import Button from 'ui/Button';
 import { useQuery } from '@apollo/client';
 import { queries } from 'modules/Products/graphql';
 
-const Countbtn = ({ productId, count }: ItemBase) => {
+const CountBtn = ({ productId, count }: ItemBase) => {
   const { loading, handleUpdateCart: updateCart } = useHandleCart();
 
-  const remainder = useQuery(queries.remainderCount, {
+  const { data } = useQuery(queries.remainderCount, {
     variables: {
       id: productId,
-      branchId: process.env.NEXT_PUBLIC_BRANCH_ID
-    }
+      branchId: process.env.NEXT_PUBLIC_BRANCH_ID,
+    },
   });
 
   const handleUpdateCart = (value) => {
     const number = count + value;
 
-    if ((remainder?.data?.poscProductDetail?.remainder || 0) >= number) {
+    if ((data?.poscProductDetail?.remainder || 0) >= number) {
       return updateCart({ productId, count: number });
     }
     return toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');
   };
   return (
     <div>
-      <div className="counter1 flex items-center px-1">
+      <div className="counter-cart flex items-center px-1">
         <Button
-          className="minus"
+          className={'minus'}
           variant="ghost"
           disabled={loading}
           onClick={() => handleUpdateCart(-1)}
@@ -43,9 +43,10 @@ const Countbtn = ({ productId, count }: ItemBase) => {
           className="count-wrap text-center"
           value={count}
           onChange={(value) => handleUpdateCart(value)}
+          disabled={loading}
         />
         <Button
-          className="plus"
+          className={'plus'}
           variant="ghost"
           disabled={loading}
           onClick={() => handleUpdateCart(1)}
@@ -63,4 +64,4 @@ const Countbtn = ({ productId, count }: ItemBase) => {
   );
 };
 
-export default Countbtn;
+export default CountBtn;

@@ -1,4 +1,4 @@
-import Countbtn from 'components/checkout/countbtn';
+import Countbtn from 'components/checkout/countBtn';
 import Link from 'next/link';
 import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
@@ -9,9 +9,7 @@ const CartItem = ({
   name,
   count,
   unitPrice,
-  remainder
 }: any) => {
- 
   return (
     <div className="row cart-item py-2">
       <div className="col-3">
@@ -24,12 +22,15 @@ const CartItem = ({
         </div>
       </div>
       <div className="col-9 ps-3">
-        <Link href={`/product/${productId}`} className="cart-item-title">
+        <Link
+          href={`/product/${productId}`}
+          className="cart-item-title mb-2 block"
+        >
           {name}
         </Link>
         <div className="flex items-stretch justify-between">
           <div>
-            <small className="block mt-2">
+            <small className="block">
               <span className="text-mid-gray">{formatCurrency(unitPrice)}</span>
               <span className="text-blue block">
                 <b className="pe-1 ">{count} </b>
@@ -38,7 +39,7 @@ const CartItem = ({
             </small>
           </div>
 
-          <Countbtn productId={productId} count={count} remainder={remainder} />
+          <Countbtn productId={productId} count={count} />
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ footer {
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 50;
   background: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 0px 8px;
   transition: all 200ms ease-in-out 0s;
@@ -50,7 +50,7 @@ footer {
     flex-direction: column;
     svg {
       font-size: 1.5rem;
-  }
+    }
     small {
       font-size: 11px;
       white-space: nowrap;

@@ -23,15 +23,19 @@ const AddressForm = () => {
   const [changePhone] = useMutation(mutations.changePhone, {
     refetchQueries: [
       { query: authQueries.currentUser },
-      'clientPortalCurrentUser'
+      'clientPortalCurrentUser',
     ],
     onError(error) {
       toast.error(error.message);
-    }
+    },
   });
 
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
-  const onCompleted = (data: any) => router.push({pathname:`/profile/orders/detail`, query: {id: data._id}});
+  const onCompleted = (data: any) =>
+    router.push({
+      pathname: `/profile/orders/detail`,
+      query: { id: data._id },
+    });
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
   const { currentOrder } = useCurrentOrder();
   const { currentUser } = useCurrentUser();
@@ -50,7 +54,7 @@ const AddressForm = () => {
       email,
       phone,
       firstName,
-      lastName
+      lastName,
     } = data;
 
     let sendData = {} as any;
@@ -66,7 +70,7 @@ const AddressForm = () => {
           others,
           street,
           city_district,
-          city
+          city,
         },
         marker,
         description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}`,
@@ -74,7 +78,7 @@ const AddressForm = () => {
         email,
         phone,
         firstName,
-        lastName
+        lastName,
       };
     }
 
@@ -94,7 +98,7 @@ const AddressForm = () => {
         email,
         phone,
         firstName,
-        lastName
+        lastName,
       };
     }
 
@@ -102,8 +106,8 @@ const AddressForm = () => {
       changePhone({
         variables: {
           _id: currentUser?._id,
-          phone: phone
-        }
+          phone: phone,
+        },
       });
     }
 
@@ -131,8 +135,8 @@ const AddressForm = () => {
           firstName: deliveryInfo?.firstName || firstName,
           lastName: deliveryInfo?.lastName || lastName,
           ...(deliveryInfo?.address || {}),
-          marker: deliveryInfo?.marker
-        }
+          marker: deliveryInfo?.marker,
+        },
       }}
     >
       <Grid
@@ -172,6 +176,10 @@ const AddressForm = () => {
               placeholder="99999999"
               name="phone"
               type="number"
+              validate={{ pattern: /\d{8}/ }}
+              errorMsgs={{
+                pattern: 'Зөв утасны дугаар оруулана уу',
+              }}
             />
           </div>
           <div className="col-md-6 col-12 px-2">

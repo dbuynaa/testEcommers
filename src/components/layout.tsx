@@ -12,16 +12,14 @@ import Toast from 'ui/Toast';
 
 const Layout = ({
   children,
-  mainCategories,
-  footer,
-  categories
+  metaData,
+  categories,
 }: {
   children: ReactNode;
   mainCategories: any;
   categories: any;
-  footer: any;
+  metaData: any;
 }) => {
-  console.log(mainCategories, categories, 'cccc');
   return (
     <>
       <Head>
@@ -39,7 +37,7 @@ const Layout = ({
         title="Techstore | Технологийн дэлгүүр"
         description="Технологийн дэвшлийг Тechstore -оос..."
         facebook={{
-          appId: '235931783264550'
+          appId: '235931783264550',
         }}
         openGraph={{
           type: 'website',
@@ -51,23 +49,23 @@ const Layout = ({
               url: '/images/og.jpg',
               width: 1200,
               height: 630,
-              alt: 'Techstore'
-            }
-          ]
+              alt: 'Techstore',
+            },
+          ],
         }}
         twitter={{
           handle: '@techstore',
           site: '@techstore',
-          cardType: 'summary_large_image'
+          cardType: 'summary_large_image',
         }}
       />
       <ApolloProvider>
         <StoreProvider categories={categories}>
           <CurrentUser>
             <CurrentOrder>
-              <Header mainCategories={categories} />
+              <Header mainCategories={categories} contact={metaData?.contact} />
               <div className="layout">{children}</div>
-              <Footer footer={footer} />
+              <Footer metaData={metaData} />
               <NavigationBar />
             </CurrentOrder>
           </CurrentUser>

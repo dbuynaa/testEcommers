@@ -19,13 +19,9 @@ const wishlistRemove = gql`
 `;
 
 const addToLastView = gql`
-  mutation LastViewedItemAdd($productId: String!, $customerId: String) {
+  mutation LastViewedItemAdd($productId: String!, $customerId: String!) {
     lastViewedItemAdd(productId: $productId, customerId: $customerId) {
       _id
-      product {
-        _id
-        name
-      }
     }
   }
 `;
@@ -36,20 +32,27 @@ const removeLastView = gql`
       _id
       productId
       customerId
-     
     }
   }
 `;
 export const ReviewAdd = gql`
-  mutation ProductreviewAdd($productId: String, $customerId: String, $review: Float) {
-    productreviewAdd(productId: $productId, customerId: $customerId, review: $review) {
+  mutation ProductreviewAdd(
+    $productId: String
+    $customerId: String
+    $review: Float
+  ) {
+    productreviewAdd(
+      productId: $productId
+      customerId: $customerId
+      review: $review
+    ) {
       _id
       customerId
       productId
       review
     }
   }
-`
+`;
 export const ReviewRemove = gql`
   mutation ProductreviewRemove($id: String!) {
     productreviewRemove(_id: $id) {
@@ -57,15 +60,25 @@ export const ReviewRemove = gql`
       review
     }
   }
-`
+`;
 export const ReviewUpdate = gql`
-  mutation ProductreviewUpdate($id: String!, $productId: String, $customerId: String, $review: Float) {
-    productreviewUpdate(_id: $id, productId: $productId, customerId: $customerId, review: $review) {
+  mutation ProductreviewUpdate(
+    $id: String!
+    $productId: String
+    $customerId: String
+    $review: Float
+  ) {
+    productreviewUpdate(
+      _id: $id
+      productId: $productId
+      customerId: $customerId
+      review: $review
+    ) {
       _id
       review
     }
   }
-`
+`;
 
 const mutations = {
   wishlistAdd,
@@ -74,7 +87,7 @@ const mutations = {
   addToLastView,
   ReviewAdd,
   ReviewRemove,
-  ReviewUpdate
+  ReviewUpdate,
 };
 
 export default mutations;

@@ -42,7 +42,6 @@ export const slickSettings: Settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: true,
-  lazyLoad: 'anticipated',
   customPaging: () => <Button />,
   prevArrow: <SlickArrowLeft />,
   nextArrow: <SlickArrowRight />

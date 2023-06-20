@@ -14,14 +14,14 @@ const CategorySlider = ({ bannerCats }: any) => {
             key={slug}
             style={{ order: custom?.order }}
           >
-            <h5 className="text-blue mb-2 mb-0">{title}</h5>
+            <h5 className="text-blue mb-2">{title}</h5>
             <div className="row">
               {check(image, featuredImage) && (
                 <Banner
                   {...{
                     featuredImage,
                     hoverImage: (image || {}).hoverImage,
-                    custom
+                    custom,
                   }}
                 />
               )}
@@ -34,7 +34,7 @@ const CategorySlider = ({ bannerCats }: any) => {
                 <ProductsSlider
                   category={(custom || {}).link}
                   slidesToShow={check(image, featuredImage) ? 4 : 5}
-                  slidesToScroll={check(image, featuredImage) ? 4 : 1}
+                  slidesToScroll={1}
                 />
               </div>
             </div>

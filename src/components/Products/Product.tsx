@@ -37,7 +37,7 @@ const Product = ({
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
           contain
           withLoader
-          className=" hover:scale-105 transition duration-500 cursor-pointer"
+          className=" hover:scale-105 transition duration-100 cursor-pointer ease-in"
         />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>

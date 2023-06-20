@@ -14,7 +14,8 @@ const ProductsSlider = ({
   slidesToScroll = 4,
   className,
   head,
-  except
+  infinite = true,
+  except,
 }: {
   category: string;
   slidesToShow?: number;
@@ -22,23 +23,21 @@ const ProductsSlider = ({
   className?: string;
   head?: React.ReactNode;
   except?: string[];
+  infinite?: boolean;
 }) => {
   const changedSettings = {
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll - 1,
     dots: false,
-    infinity: true,
+    infinite,
     autoplay: true,
-    // speed: 3000,
-    // autoplaySpeed: 4000,
-
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: slidesToShow - 1,
-          slidesToScroll: slidesToShow - 1
-        }
+          slidesToScroll: slidesToShow - 1,
+        },
       },
       {
         breakpoint: 480,
@@ -46,15 +45,15 @@ const ProductsSlider = ({
           arrows: false,
           swipeToSlide: true,
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const { products, loading, getProducts } = useGetProducts({
     category,
-    perPage: 16
+    perPage: 16,
   });
 
   useEffect(() => {

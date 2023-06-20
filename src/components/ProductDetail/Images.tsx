@@ -24,7 +24,6 @@ const ImageGallery = () => {
       }
     ]
   };
-  console.log(images, 'images');
   return (
     <>
       <Slider

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import Facebook from 'icons/Facebook';
 import Instagram from 'icons/Instagram';
-import Twitter from 'icons/Twitter';
 // import Phone from 'icons/phone';
 import Link from 'next/link';
 
-const Top = () => {
+const Top = ({ contact }) => {
+  const { phone, facebook, instagram } = contact || {};
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -24,33 +24,18 @@ const Top = () => {
         </span>
         <b className="flex justify-end gap-2 divide-x-2 divide-white">
           <div className="flex gap-2 px-2">
-            <Link
-              href="https://www.facebook.com/TechstoreMongolia"
-              target="_blank"
-            >
+            <Link href={facebook} target="_blank">
               <Facebook />
             </Link>
-            <Link
-              href="https://www.instagram.com/TechstoreMongolia"
-              target="_blank"
-              
-            >
+            <Link href={instagram} target="_blank">
               <Instagram />
             </Link>
-            <Link
-              href="https://www.twitter.com/TechstoreMongolia"
-              target="_blank"
-            >
-              <Twitter />
-            </Link>
           </div>
-          <Link className="flex items-center px-2" href="tel:7510-3000">
-            {/* <Phone /> */}
-            <span className="text-xs">7510-3000</span>
+          <Link className="flex items-center px-2" href={`tel:${phone}`}>
+            <span className="text-xs">{phone}</span>
           </Link>
           <Link href="/branches" className="text-xs px-2">
-            {' '}
-            Салбарууд{' '}
+            Салбарууд
           </Link>
         </b>
       </div>
