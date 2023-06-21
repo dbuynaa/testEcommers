@@ -11,6 +11,14 @@ const PropertyItem = ({ text, value }: any) => (
   </p>
 );
 
+const getFlattenValue = (values: any) => {
+  const result = {};
+  for (let i = 0; i < values.length; i++) {
+    result[values[i].text] = values[i];
+  }
+  return Object.values(result);
+};
+
 const Description = () => {
   const router = useRouter();
 
@@ -23,12 +31,9 @@ const Description = () => {
   const intro = properties?.intro?.value;
   const video = properties?.video?.value;
 
-  const test = {};
-
-  values.map((item: any, index: number) => (test[item.text] = item));
-
-  const filteredValues = Object.values(test).filter(
-    (item: any, idx) => !filter.includes(keys[idx])
+  const filteredValues = getFlattenValue(values).filter(
+    (item: any, idx) =>
+      !filter.includes(keys[idx]) && !!(item?.value || '').trim()
   );
 
   const odd = filteredValues.filter(
