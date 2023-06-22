@@ -100,11 +100,9 @@ const userEdit = gql`
   }
 `;
 
-
-
 const changePhone = gql`
   mutation changePhone($_id: String!, $phone: String) {
-    clientPortalUsersEdit(_id: $id, phone: $phone) {
+    clientPortalUsersEdit(_id: $_id, phone: $phone) {
       _id
     }
   }
@@ -172,8 +170,7 @@ const mutations = {
   posChooseConfig,
   fbLogin,
   googleLogin,
-  changePhone
-
+  changePhone,
 };
 
 export default mutations;
