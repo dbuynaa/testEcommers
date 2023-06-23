@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 
 import Latest from 'components/home/Latest';
-import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
+import LastViewedItems from 'modules/Products/LastViewedItems';
+
 
 const Wholesale = ({ productId }) => {
   return (
@@ -25,7 +27,10 @@ const Wholesale = ({ productId }) => {
         <Latest />
       </div>
       <img src="/images/techstorebanner.png" alt="" className="py-24" />
-      <LastViewedItemsAdd productId={productId} />
+     
+      <div className="latest-slider">
+        <LastViewedItems />
+      </div>
     </div>
   );
 };

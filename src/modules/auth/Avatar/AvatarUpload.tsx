@@ -3,17 +3,14 @@ import ImageIcon from 'icons/ImageIcon';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import Button from 'ui/Button';
-
-import { uploadHandler } from 'utils';
+import uploadHandler from './UploadHandler';
 
 const AvatarUpload = () => {
- 
-  const [attachments, setAttachments] = useState([]);
+  const [attachments, setAttachments] = useState<any>([]);
 
- const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-
-  const handleFileInput = (e:any) => {
+  const handleFileInput = (e: any) => {
     uploadHandler({
       files: e.target.files,
 
@@ -27,25 +24,23 @@ const AvatarUpload = () => {
           setLoading(false);
         } else {
           toast.info('Success');
-         
+
           const attachment = { url: response, ...fileInfo };
           const updatedAttachments = [attachment, ...(attachments || [])];
-         
+
           setLoading(false);
-          setAttachments(updatedAttachments)
+          setAttachments(updatedAttachments);
         }
       }
     });
-     e.target.value =''
+    e.target.value = '';
   };
-   
- const removeAvatar =(index:number)=>{
-   const attachment=[...attachments]
-    attachments.splice(index,1)
-     setAttachments(attachments)
-   
- }
 
+  const removeAvatar = (index: number) => {
+    const attachment = [...attachments];
+    attachments.splice(index, 1);
+    setAttachments(attachments);
+  };
 
   return (
     <div className="flex justify-center mt-8">
@@ -59,29 +54,25 @@ const AvatarUpload = () => {
             <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
               Зураг сонгох
             </p>
-            <img
-              src={attachments[0]||'/images/users.png'}
-              alt=""
-            
-            />
+            <img src={attachments[0]?.url || '/images/users.png'} alt="" />
 
             <input
               type="file"
               className="opacity-0 absolute inset-0"
-              onChange={()=>handleFileInput}
+              onChange={() => handleFileInput}
             />
           </div>
 
           <div className="flex p-2 space-x-4">
             <Button
               className="px-4 py-2 text-white bg-red-500 rounded "
-              onClick={()=>removeAvatar(0)}
+              onClick={() => removeAvatar(0)}
             >
               Устгах
             </Button>
             <Button
               className="px-4 py-2 text-white bg-green-500 rounded "
-              onClick={()=>setAttachments([])}
+              onClick={() => setAttachments([])}
             >
               Хадгалах
             </Button>

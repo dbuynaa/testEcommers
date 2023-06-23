@@ -338,3 +338,4 @@ const getVideoDuration = (file) =>
   });
 
   export const imgSrc= 'https://xos.techstore.mn/gateway/read-file?key='
+  export const REACT_APP_API_URL = 'https://xos.techstore.mn/gateway';

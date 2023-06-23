@@ -19,7 +19,7 @@ const Info = () => {
     },
     onError(error) {
       toast.error(error.message);
-    },
+    }
   });
 
   const args = {
@@ -28,8 +28,8 @@ const Info = () => {
       lastName: currentUser?.lastName,
       email: currentUser?.email,
       phone: currentUser?.phone,
-      avatar: currentUser?.avatar,
-    },
+      avatar: currentUser?.avatar
+    }
   };
 
   const onSubmit = (value: {
@@ -47,7 +47,6 @@ const Info = () => {
       </div>
       <Form handleSubmit={onSubmit} args={args}>
         <div className="row py-3 px-md-2">
-         
           <div className="col-12 col-md-6 px-md-2">
             <FormItem name="firstName" label="Нэр" />
           </div>
@@ -72,9 +71,7 @@ const Info = () => {
             </Button>
           </div>
         </div>
-        <div>
-      
-        </div>
+        <div></div>
       </Form>
     </div>
   );

@@ -18,6 +18,7 @@ const Products = () => {
             <ProductsContainer />
           </div>
         </ProductsContextProvider>
+        
       </div>
     </div>
   );

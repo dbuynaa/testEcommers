@@ -1,3 +1,4 @@
+import {REACT_APP_API_URL} from 'utils'
 type FileInfo = {
   name: string;
   size: number;
@@ -26,13 +27,13 @@ type Params = {
   responseType?: string;
   extraFormData?: { key: string; value: string }[];
 };
-const REACT_APP_MAIN_API_DOMAIN = 'https://erxes.techstore.mn/gateway';
+
 
 export const deleteHandler = (params: { 
    fileName: string; 
    url?: string; 
    afterUpload: ({ status }: { status: string }) => any }) => {
-  const { url = `${REACT_APP_MAIN_API_DOMAIN}/delete-file`, 
+  const { url = `${REACT_APP_API_URL}/delete-file`, 
      fileName,
      afterUpload 
     } = params;
@@ -68,7 +69,7 @@ const uploadHandler = (params: Params) => {
     beforeUpload,
     afterUpload,
     afterRead,
-    url = `${REACT_APP_MAIN_API_DOMAIN}/upload-file`,
+    url = `${REACT_APP_API_URL}/upload-file`,
     kind = 'main',
     responseType = 'text',
     userId,

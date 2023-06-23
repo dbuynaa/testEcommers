@@ -4,57 +4,10 @@
 import uploadHandler from './UploadHandler';
 import React from 'react';
 import Loader from './Loader';
+import ImageIcon from 'icons/ImageIcon';
+import { toast } from 'react-toastify';
+import Button from 'ui/Button';
 
-import { readFile } from '../../../utils/index';
-const Avatar = `
-  width: 100px;
-  height: 100px;
-  position: relative;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 50%;
-
-  label {
-    color: white;
-    transition: background 0.3s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-
-    i {
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.4);
-
-      i {
-        visibility: visible;
-        opacity: 1;
-      }
-    }
-  }
-
-  input[type='file'] {
-    display: none;
-  }
-
-  img {
-    display: block;
-    width: 100%;
-  }
-`;
 type Props = {
   avatar?: string;
   defaultAvatar?: string;
@@ -70,7 +23,7 @@ class AvatarUploadImage extends React.Component<Props, State> {
   constructor(props, context) {
     super(props, context);
 
-    const defaultAvatar = props.defaultAvatar ||  '/images/user.png' ;
+    const defaultAvatar = props.defaultAvatar || '/images/user.png';
 
     this.state = {
       avatarPreviewUrl: this.props.avatar || defaultAvatar,
@@ -78,7 +31,7 @@ class AvatarUploadImage extends React.Component<Props, State> {
       uploadPreview: null
     };
   }
-  setUploadPreview = (uploadPreview) => {
+  setUploadPreview = (uploadPreview: any) => {
     this.setState({ uploadPreview });
   };
   handleImageChange = (e) => {
@@ -99,9 +52,9 @@ class AvatarUploadImage extends React.Component<Props, State> {
           this.setUploadPreview(null);
         }
         if (status === 'ok') {
-          alert('looking good!');
+          toast.success('looking good!');
         } else {
-          alert(response);
+          toast.error(response);
         }
       },
 
@@ -115,6 +68,13 @@ class AvatarUploadImage extends React.Component<Props, State> {
       }
     });
   };
+
+  removeAvatar = () => {
+    this.setState({
+      avatarPreviewUrl: this.props.defaultAvatar || 'image/user.png'
+    });
+  };
+
   renderUploadLoader() {
     if (!this.state.uploadPreview) {
       return null;
@@ -123,18 +83,48 @@ class AvatarUploadImage extends React.Component<Props, State> {
   }
   render() {
     const { avatarPreviewStyle, avatarPreviewUrl } = this.state;
+
     return (
-      <>
-        <img
-          alt="avatar"
-          style={avatarPreviewStyle}
-          src={readFile(avatarPreviewUrl)}
-        />
-        <label>
-          <input type="file" onChange={this.handleImageChange} />
-        </label>
-        {this.renderUploadLoader()}
-      </>
+      <div className="flex justify-center mt-8">
+        <div className="rounded-lg  lg:w-1/2">
+          <div className="m-4">
+            <label className="inline-block text-md mb-2 text-gray-500">
+              Зураг оруулах (jpg, png, svg, jpeg)
+            </label>
+            <div className="flex flex-col border-dashed border rounded items-center justify-center w-full  py-7 relative">
+              <ImageIcon className="text-6xl text-gray-400" />
+              <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                Зураг сонгох
+              </p>
+              <img
+                src={avatarPreviewUrl || '/images/users.png'}
+                alt="avatar"
+                height={50}
+                width={50}
+              />
+             
+              <input
+                type="file"
+                className="opacity-0 absolute inset-0"
+                onChange={this.handleImageChange }
+                />
+            </div>
+                
+            <div className="flex p-2 space-x-4">
+              <Button
+                className="px-4 py-2 text-white bg-red-500 rounded "
+                onClick={this.removeAvatar}
+              >
+                Устгах
+              </Button>
+              <Button className="px-4 py-2 text-white bg-green-500 rounded ">
+                {this.renderUploadLoader()}
+                Хадгалах
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
