@@ -6,6 +6,7 @@ import { useCurrentUser } from 'modules/appContext';
 const LastViewedItemsAdd = ({ productId }: { productId: string }) => {
   const { currentUser } = useCurrentUser();
   const [add, { loading }] = useMutation(mutations.addToLastView);
+
   useEffect(() => {
     if (!loading && currentUser?.erxesCustomerId) {
       add({

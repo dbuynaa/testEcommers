@@ -336,3 +336,5 @@ const getVideoDuration = (file) =>
     reader.readAsDataURL(file);
     reader.onerror = (error) => reject(error);
   });
+
+  export const imgSrc= 'https://xos.techstore.mn/gateway/read-file?key='

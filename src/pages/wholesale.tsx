@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Latest from 'components/home/Latest';
-// import LastViewProduct from 'modules/Products/LastViewProduct';
+import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
 
-const Wholesale = () => {
+const Wholesale = ({ productId }) => {
   return (
     <div className="flex flex-col wholesale py-10 px-12">
       <img src="/images/wholePhone.png" alt="pic" />
@@ -25,6 +25,7 @@ const Wholesale = () => {
         <Latest />
       </div>
       <img src="/images/techstorebanner.png" alt="" className="py-24" />
+      <LastViewedItemsAdd productId={productId} />
     </div>
   );
 };

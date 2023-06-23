@@ -2,30 +2,18 @@
 import ImageIcon from 'icons/ImageIcon';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-// import Button from 'ui/Button';
+import Button from 'ui/Button';
+
 import { uploadHandler } from 'utils';
 
 const AvatarUpload = () => {
-  // const imageUrl= `${REACT_APP_API_URL}/upload-file`
+ 
   const [attachments, setAttachments] = useState([]);
-  const imageSrc = 'https://erxes.techstore.mn/gateway/upload-file?key=';
-  const [changeImg, setChangeImg] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  const onClose = () => {};
+ const [loading, setLoading] = useState(false);
 
-  // const handleFileChange = (e: any) => {
-  //   const selectedFile = e.target.files[0];
-  //   if (selectedFile) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setChangeImg('');
-  //     };
-  //     reader.readAsDataURL(selectedFile);
-  //   }
-  // };
 
-  const handleFileInput = (e) => {
+  const handleFileInput = (e:any) => {
     uploadHandler({
       files: e.target.files,
 
@@ -39,18 +27,25 @@ const AvatarUpload = () => {
           setLoading(false);
         } else {
           toast.info('Success');
-          // TODO:
+         
           const attachment = { url: response, ...fileInfo };
           const updatedAttachments = [attachment, ...(attachments || [])];
-          console.log(updatedAttachments);
+         
           setLoading(false);
-          // 
+          setAttachments(updatedAttachments)
         }
-      },
+      }
     });
+     e.target.value =''
   };
+   
+ const removeAvatar =(index:number)=>{
+   const attachment=[...attachments]
+    attachments.splice(index,1)
+     setAttachments(attachments)
+   
+ }
 
-  const handleSave = () => {};
 
   return (
     <div className="flex justify-center mt-8">
@@ -65,33 +60,32 @@ const AvatarUpload = () => {
               Зураг сонгох
             </p>
             <img
-              src={changeImg || '/images/users.png'}
+              src={attachments[0]||'/images/users.png'}
               alt=""
-              id="imageprev"
-              className={changeImg ? '' : 'hidden'}
+            
             />
 
             <input
               type="file"
               className="opacity-0 absolute inset-0"
-              onChange={handleFileInput}
+              onChange={()=>handleFileInput}
             />
           </div>
 
-          {/* <div className="flex p-2 space-x-4">
+          <div className="flex p-2 space-x-4">
             <Button
               className="px-4 py-2 text-white bg-red-500 rounded "
-              onClick={onClose}
+              onClick={()=>removeAvatar(0)}
             >
-              Гарах
+              Устгах
             </Button>
             <Button
               className="px-4 py-2 text-white bg-green-500 rounded "
-              onClick={handleSave}
+              onClick={()=>setAttachments([])}
             >
               Хадгалах
             </Button>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

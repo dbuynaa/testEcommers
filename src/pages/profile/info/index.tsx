@@ -61,9 +61,6 @@ const Info = () => {
             <FormItem name="phone" label="Утасны дугаар" />
           </div>
 
-          {/* <div className="col-12 col-md-6 px-md-2">
-          <FormItem name="avatar" label="Зураг засах" />
-        </div> */}
           <div className="col-6 col-md-9"></div>
           <div className="col-6 col-md-3">
             <Button
@@ -76,9 +73,7 @@ const Info = () => {
           </div>
         </div>
         <div>
-          {/* <Uploader onChange={function (avatars: any): void {
-          throw new Error('Function not implemented.');
-        } } defaultFileList={undefined} /> */}
+      
         </div>
       </Form>
     </div>
