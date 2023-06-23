@@ -2,8 +2,7 @@ import { useCurrentUser } from 'modules/appContext';
 import { useState } from 'react';
 import Image from 'ui/Image';
 import Modal from 'ui/Modal';
-
-
+import AvatarUpload from './AvatarUpload';
 
 const Avatar = () => {
   const { currentUser } = useCurrentUser();
@@ -27,7 +26,7 @@ const Avatar = () => {
         open={open}
         onOpenChange={() => setOpen((prev) => !prev)}
       >
-     
+        <AvatarUpload />
       </Modal>
     </>
   );
