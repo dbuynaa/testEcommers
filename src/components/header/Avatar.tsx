@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'ui/Image';
 import { useCurrentUser } from 'modules/appContext';
 
+
 const Avatar = () => {
   const { currentUser } = useCurrentUser();
   const { firstName, email, lastName, avatar } = currentUser || {};
@@ -16,7 +17,7 @@ const Avatar = () => {
         className="circle"
         quality={100}
       />
-
+  
       <div className="-content ps-3 ">
         <b className="sbt block">
           {firstName} {(lastName || '').split('')[0]}.

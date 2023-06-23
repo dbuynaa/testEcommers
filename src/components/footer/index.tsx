@@ -11,7 +11,7 @@ import clsx from 'clsx';
 
 const FooterTitle = ({
   children,
-  className,
+  className
 }: {
   children: React.ReactNode;
   className?: string;
@@ -20,7 +20,7 @@ const FooterTitle = ({
 const Col = ({
   children,
   title,
-  titleClass = 'pb-4',
+  titleClass = 'pb-4'
 }: {
   children: React.ReactNode;
   title: string;
@@ -35,7 +35,7 @@ const Col = ({
 const FooterLink = ({
   href,
   children,
-  icon,
+  icon
 }: {
   href: string;
   children?: React.ReactNode;

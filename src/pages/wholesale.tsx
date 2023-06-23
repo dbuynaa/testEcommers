@@ -25,8 +25,6 @@ const Wholesale = () => {
         <Latest />
       </div>
       <img src="/images/techstorebanner.png" alt="" className="py-24" />
-
-      {/* <LastViewProduct /> */}
     </div>
   );
 };

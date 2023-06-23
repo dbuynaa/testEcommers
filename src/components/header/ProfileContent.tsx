@@ -11,10 +11,10 @@ const ProfileContent = ({ ItemComponent }: any) => {
   return (
     <>
       <div>
-        <Avatar />
+        <Avatar/>
       </div>
       <div>
-        {/* <AvatarEdit avatar={AvatarEdit} /> */}
+   
         <div className="hr my-2" />
         <ProfileItem
           href="/profile/info"
