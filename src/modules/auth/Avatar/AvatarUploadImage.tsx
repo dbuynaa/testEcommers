@@ -28,7 +28,7 @@ class AvatarUploadImage extends React.Component<Props, State> {
     this.state = {
       avatarPreviewUrl: this.props.avatar || defaultAvatar,
       avatarPreviewStyle: {},
-      uploadPreview: null
+      uploadPreview: null,
     };
   }
   setUploadPreview = (uploadPreview: any) => {
@@ -63,15 +63,15 @@ class AvatarUploadImage extends React.Component<Props, State> {
           this.setUploadPreview(Object.assign({ data: result }, fileInfo));
         }
         this.setState({
-          avatarPreviewUrl: result
+          avatarPreviewUrl: result,
         });
-      }
+      },
     });
   };
 
   removeAvatar = () => {
     this.setState({
-      avatarPreviewUrl: this.props.defaultAvatar || 'image/user.png'
+      avatarPreviewUrl: this.props.defaultAvatar || 'image/user.png',
     });
   };
 
@@ -102,14 +102,14 @@ class AvatarUploadImage extends React.Component<Props, State> {
                 height={50}
                 width={50}
               />
-             
+
               <input
                 type="file"
                 className="opacity-0 absolute inset-0"
-                onChange={this.handleImageChange }
-                />
+                onChange={this.handleImageChange}
+              />
             </div>
-                
+
             <div className="flex p-2 space-x-4">
               <Button
                 className="px-4 py-2 text-white bg-red-500 rounded "
@@ -118,7 +118,6 @@ class AvatarUploadImage extends React.Component<Props, State> {
                 Устгах
               </Button>
               <Button className="px-4 py-2 text-white bg-green-500 rounded ">
-                {this.renderUploadLoader()}
                 Хадгалах
               </Button>
             </div>

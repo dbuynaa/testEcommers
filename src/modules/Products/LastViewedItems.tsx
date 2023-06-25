@@ -10,12 +10,15 @@ const LastViewedItems = () => {
   const { data, loading } = useQuery(queries.getLastProductView, {
     variables: {
       limit: 10,
-      customerId: currentUser?.erxesCustomerId
-    }
+      customerId: currentUser?.erxesCustomerId,
+    },
+    skip: !currentUser?.erxesCustomerId,
   });
 
   if (loading) return <div>Loading...</div>;
   const lastSeen = data?.lastViewedItems || [];
+
+  if (!lastSeen.length) return null;
   return (
     <div className=" container my-3 my-md-4  ">
       <div className="text-blue mb-2 font-bold">
@@ -24,10 +27,7 @@ const LastViewedItems = () => {
       <Link href={{ pathname: 'Wholesale' }}>
         <div className="order-[100] flex gap-10 item-center ">
           {lastSeen?.map((item) => (
-            <div
-              key={item.id}
-              className="product text-center  "
-            >
+            <div key={item.id} className="product text-center  ">
               <Image
                 src={
                   item?.product?.attachment?.url

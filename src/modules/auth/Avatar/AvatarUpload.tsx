@@ -4,13 +4,16 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import Button from 'ui/Button';
 import uploadHandler from './UploadHandler';
+import Image from 'ui/Image';
+import { readFile } from 'utils';
 
-const AvatarUpload = () => {
-  const [attachments, setAttachments] = useState<any>([]);
+const AvatarUpload = ({ onSave }: { onSave }) => {
+  const [attachment, setAttachment] = useState<any>('');
 
   const [loading, setLoading] = useState(false);
 
   const handleFileInput = (e: any) => {
+    console.log(e.target.files);
     uploadHandler({
       files: e.target.files,
 
@@ -24,23 +27,24 @@ const AvatarUpload = () => {
           setLoading(false);
         } else {
           toast.info('Success');
-
-          const attachment = { url: response, ...fileInfo };
-          const updatedAttachments = [attachment, ...(attachments || [])];
-
           setLoading(false);
-          setAttachments(updatedAttachments);
+          setAttachment(response);
         }
-      }
+      },
+      afterRead: ({ result, fileInfo }) => {
+        if (attachment) {
+          setAttachment(Object.assign({ data: result }, fileInfo));
+        }
+        setAttachment(result);
+      },
     });
-    e.target.value = '';
   };
 
-  const removeAvatar = (index: number) => {
-    const attachment = [...attachments];
-    attachments.splice(index, 1);
-    setAttachments(attachments);
-  };
+  // const removeAvatar = (index: number) => {
+  //   const attachment = [...attachments];
+  //   attachments.splice(index, 1);
+  //   setAttachments(attachments);
+  // };
 
   return (
     <div className="flex justify-center mt-8">
@@ -52,27 +56,28 @@ const AvatarUpload = () => {
           <div className="flex flex-col border-dashed border rounded items-center justify-center w-full  py-7 relative">
             <ImageIcon className="text-6xl text-gray-400" />
             <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-              Зураг сонгох
+              {loading ? 'Uploading' : 'Зураг сонгох'}
             </p>
-            <img src={attachments[0]?.url || '/images/users.png'} alt="" />
+            <Image src={readFile(attachment) || '/images/users.png'} alt="" />
 
             <input
               type="file"
               className="opacity-0 absolute inset-0"
-              onChange={() => handleFileInput}
+              onChange={handleFileInput}
+              disabled={loading}
             />
           </div>
 
           <div className="flex p-2 space-x-4">
             <Button
               className="px-4 py-2 text-white bg-red-500 rounded "
-              onClick={() => removeAvatar(0)}
+              // onClick={() => removeAvatar(0)}
             >
               Устгах
             </Button>
             <Button
               className="px-4 py-2 text-white bg-green-500 rounded "
-              onClick={() => setAttachments([])}
+              onClick={() => onSave(attachment)}
             >
               Хадгалах
             </Button>

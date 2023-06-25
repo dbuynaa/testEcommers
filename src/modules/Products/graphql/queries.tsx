@@ -154,6 +154,7 @@ const getLastProductView = gql`
         attachment {
           url
         }
+        unitPrice
         name
       }
     }
@@ -194,7 +195,7 @@ const queries = {
   productDetailMeta,
   getLastProductView,
   getProductAveregeReview,
-  getProductReviews
+  getProductReviews,
 };
 
 export default queries;
