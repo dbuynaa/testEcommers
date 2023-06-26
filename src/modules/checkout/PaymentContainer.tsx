@@ -13,10 +13,8 @@ const PaymentContainer = ({ orderDetail }: { orderDetail: any }) => {
     _id: orderId,
     totalAmount,
     number,
-    deliveryInfo,
     paidDate,
   } = orderDetail || {};
-  const { phone } = deliveryInfo || {};
   const { config } = useConfig();
   const { currentUser } = useCurrentUser();
 
@@ -101,7 +99,6 @@ const PaymentContainer = ({ orderDetail }: { orderDetail: any }) => {
             customerType: 'customer',
             description: orderId + '-' + number,
             paymentIds: config.paymentIds,
-            phone: phone || currentUser?.phone || '',
           },
         });
       },
