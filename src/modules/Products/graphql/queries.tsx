@@ -151,6 +151,7 @@ const getLastProductView = gql`
       productId
       product {
         _id
+        createdAt
         attachment {
           url
         }
@@ -162,8 +163,8 @@ const getLastProductView = gql`
 `;
 
 const getProductReviews = gql`
-  query Productreviews($productIds: [String], $customerId: String) {
-    productreviews(productIds: $productId, customerId: $customerId) {
+  query Productreviews($productId: [String], $customerId: String) {
+    productreviews(productId: $productId, customerId: $customerId) {
       _id
       customerId
       productId

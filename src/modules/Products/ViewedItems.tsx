@@ -15,9 +15,9 @@ const ViewedItemsContainer = () => {
   const { data, loading } = useQuery(queries.getLastProductView, {
     variables: {
       limit: 10,
-      customerId: currentUser?.erxesCustomerId,
+      customerId: currentUser?.erxesCustomerId
     },
-    skip: !currentUser?.erxesCustomerId,
+    skip: !currentUser?.erxesCustomerId
   });
 
   const [remove, { loading: loadingRemove }] = useMutation(
@@ -25,14 +25,14 @@ const ViewedItemsContainer = () => {
     {
       refetchQueries: [
         { query: queries.getLastProductView },
-        'LastViewedItems',
+        'LastViewedItems'
       ],
       onCompleted(data) {
-        const { _id } = data?.wishlistRemove;
+        const { _id } = data?.lastViewedItemRemove;
         if (_id) {
           toast.success('Амжилттай хаслаа');
         }
-      },
+      }
     }
   );
 
@@ -65,7 +65,6 @@ const ViewedItemsContainer = () => {
               onClick={() => remove({ variables: { id: el._id } })}
             >
               <Xmark />
-              {/* <Counter count={0} productId={''} /> */}
             </Button>
           </motion.div>
         </AnimatePresence>

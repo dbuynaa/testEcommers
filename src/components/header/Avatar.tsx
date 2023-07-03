@@ -7,14 +7,15 @@ import { readFile } from 'utils';
 const Avatar = () => {
   const { currentUser } = useCurrentUser();
   const { firstName, email, lastName, avatar } = currentUser || {};
+
   return (
     <div className="flex items-center profile-main p-2">
       <Image
         src={!!avatar ? readFile(avatar) : '/images/user.png'}
         alt="profile"
-        width={44}
-        height={44}
-        className="circle"
+        width={40}
+        height={40}
+        className="circle h-10 w-10"
         quality={100}
       />
 

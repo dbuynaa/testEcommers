@@ -25,8 +25,14 @@ const Profile = () => {
   return (
     <Dropdown
       trigger={
-        <Button className="profile-btn mx-2" variant="ghost">
-          <Image height={36} src="/images/user.png" width={36} alt="" />
+        <Button className="profile-btn mx-2 h-10 w-10" variant="ghost">
+          <Image
+            height={36}
+            src={currentUser?.avatar || '/images/user.png'}
+            width={36}
+            alt=""
+            className="h-full w-full"
+          />
         </Button>
       }
     >

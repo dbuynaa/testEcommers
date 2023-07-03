@@ -1,9 +1,12 @@
 import { useQuery } from '@apollo/client';
 import { queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
-import Image from 'ui/Image';
+
 import Link from 'next/link';
-import { imgSrc } from 'utils';
+import clsx from 'clsx';
+import ProductsSkeleton from 'components/Products/Skeleton';
+import { AnimatePresence, motion } from 'framer-motion';
+import Product, { PRODUCT_WRAPPER_CLASS } from 'components/Products/Product';
 
 const LastViewedItems = () => {
   const { currentUser } = useCurrentUser();
@@ -11,11 +14,12 @@ const LastViewedItems = () => {
     variables: {
       limit: 10,
       customerId: currentUser?.erxesCustomerId,
+      createdAd:'createdAt '
     },
-    skip: !currentUser?.erxesCustomerId,
+    skip: !currentUser?.erxesCustomerId
   });
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <ProductsSkeleton wrapped />;
   const lastSeen = data?.lastViewedItems || [];
 
   if (!lastSeen.length) return null;
@@ -26,26 +30,18 @@ const LastViewedItems = () => {
       </div>
       <Link href={{ pathname: 'Wholesale' }}>
         <div className="order-[100] flex gap-10 item-center ">
-          {lastSeen?.map((item) => (
-            <div key={item.id} className="product text-center  ">
-              <Image
-                src={
-                  item?.product?.attachment?.url
-                    ? imgSrc + item.product.attachment.url
-                    : ''
-                }
-                alt={item?.product?.name}
-                className="img-wrap"
-                height={50}
-                width={50}
-              />
-              <div className="flex ">
-                <h3 className="product-name mb-1 mt-3">
-                  {item?.product?.name}
-                </h3>
-                <p className="product-price">{item?.product?.price}</p>
-              </div>
-            </div>
+          {lastSeen?.map((el: any) => (
+            <AnimatePresence key={el._id}>
+              <motion.div
+                className={clsx(PRODUCT_WRAPPER_CLASS, 'relative')}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10, width: 0 }}
+              >
+                <Product {...el?.product} />
+              </motion.div>
+            </AnimatePresence>
+        
           )) || <div>No items</div>}
         </div>
       </Link>
