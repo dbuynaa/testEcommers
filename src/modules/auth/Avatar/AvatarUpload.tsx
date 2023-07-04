@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Button from 'ui/Button';
 import uploadHandler from './UploadHandler';
 import Image from 'ui/Image';
-import { readFile } from 'utils';
+// import { readFile } from 'utils';
 
 const AvatarUpload = ({ onSave }: { onSave }) => {
   const [attachment, setAttachment] = useState<any>('');
@@ -13,12 +13,14 @@ const AvatarUpload = ({ onSave }: { onSave }) => {
   const [loading, setLoading] = useState(false);
 
   const handleFileInput = (e: any) => {
-    console.log(e.target.files);
+    console.log('e.target.value...........', e.target.files);
     uploadHandler({
       files: e.target.files,
 
       beforeUpload: () => {
         setLoading(true);
+        setAttachment(attachment);
+        console.log('result......');
       },
 
       afterUpload: ({ status, response, fileInfo }) => {
@@ -30,13 +32,11 @@ const AvatarUpload = ({ onSave }: { onSave }) => {
           setLoading(false);
           setAttachment(response);
         }
+        console.log('afterupload...........', response);
       },
       afterRead: ({ result, fileInfo }) => {
-        if (attachment) {
-          setAttachment(Object.assign({ data: result }, fileInfo));
-        }
         setAttachment(result);
-      },
+      }
     });
   };
 
@@ -58,7 +58,7 @@ const AvatarUpload = ({ onSave }: { onSave }) => {
             <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
               {loading ? 'Uploading' : 'Зураг сонгох'}
             </p>
-            <Image src={readFile(attachment) || '/images/users.png'} alt="" />
+            <Image src={attachment || '/images/users.png'} alt="" />
 
             <input
               type="file"

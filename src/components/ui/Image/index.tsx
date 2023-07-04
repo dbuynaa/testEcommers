@@ -1,4 +1,4 @@
-import { useState, FC, memo } from 'react';
+import { useState, FC, memo, useEffect } from 'react';
 import NextImage, { ImageProps } from 'next/image';
 import cls from 'classnames';
 import { readFile } from 'utils';
@@ -32,6 +32,11 @@ const Image: FC<
   const [srcI, setSrcI] = useState(fixedSrc || fallBack || '/product.png');
   const handleComplete = () => setIsImageLoading(false);
 
+  useEffect(() => {
+    const fixedSrc = readFile(src || '');
+    setSrcI(fixedSrc);
+  }, [src]);
+
   const updatedProps = {
     ...rest,
     src: srcI,
@@ -39,7 +44,7 @@ const Image: FC<
     fill: !width && !height ? true : undefined,
     width,
     height,
-    onError,
+    onError
   };
 
   if (srcI === '/product.png') return <Logo />;
@@ -57,7 +62,7 @@ const Image: FC<
         isImageLoading
           ? 'skelton-wave next-image-loading'
           : 'next-image-completed',
-        contain ? 'object-contain' : 'object-cover'
+        contain ? 'object-contain' : 'object-contain'
       )}
       sizes={
         sizes ||
@@ -72,7 +77,7 @@ const Image: FC<
 export const cloudflareLoader = ({
   src,
   width,
-  quality,
+  quality
 }: {
   src?: string | null;
   width?: number;

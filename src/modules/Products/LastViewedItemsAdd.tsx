@@ -14,6 +14,7 @@ const LastViewedItemsAdd = ({ productId }: { productId: string }) => {
           customerId: currentUser?.erxesCustomerId,
           productId,
         },
+        
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

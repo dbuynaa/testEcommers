@@ -4,6 +4,7 @@ import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
 import dayjs from 'dayjs';
 
+
 const Product = ({
   _id,
   name,
@@ -41,6 +42,7 @@ const Product = ({
         />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
+  
       <div className="product-price">{price}</div>
       {diffInDays < 60 && (
         <small className="product-badge badge sbt">New</small>

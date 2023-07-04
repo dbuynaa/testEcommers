@@ -14,7 +14,8 @@ const Info = () => {
 
   const [editUser, { loading }] = useMutation(mutations.userEdit, {
     refetchQueries: [{ query: queries.currentUser }, 'clientPortalCurrentUser'],
-    onCompleted() {
+    onCompleted(data) {
+      console.log('fdsa', data);
       toast.success('Амжилттай солигдлоо');
     },
     onError(error) {
@@ -40,10 +41,12 @@ const Info = () => {
     avatar: string;
   }) => editUser({ variables: { ...value, _id: currentUser?._id } });
 
+
   return (
     <div className="flex">
-      <div className="w-3/12 flex justify-center py-5">
+      <div className="w-3/12 flex justify-center py-5  flex-col">
         <Avatar />
+        <span className="text-blue mt-3">Зураг Өөрчлөх</span>
       </div>
       <Form handleSubmit={onSubmit} args={args}>
         <div className="row py-3 px-md-2">
@@ -55,6 +58,9 @@ const Info = () => {
           </div>
           <div className="col-12 col-md-6 px-md-2">
             <FormItem name="email" label="И-мэйл хаяг" />
+          </div>
+          <div className="col-12 col-md-6 px-md-2">
+            <FormItem name="phone" label="Утасны дугаар" />
           </div>
           <div className="col-12 col-md-6 px-md-2">
             <FormItem name="phone" label="Утасны дугаар" />

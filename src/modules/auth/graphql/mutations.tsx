@@ -27,6 +27,7 @@ const createUser = gql`
     $type: String
     $username: String
     $avatar: String
+ 
   ) {
     clientPortalRegister(
       clientPortalId: $clientPortalId
@@ -40,6 +41,7 @@ const createUser = gql`
       type: $type
       username: $username
       avatar: $avatar
+   
     )
   }
 `;
@@ -82,6 +84,7 @@ const userEdit = gql`
     $companyRegistrationNumber: String
     $password: String
     $avatar: String
+  
   ) {
     clientPortalUsersEdit(
       _id: $_id
@@ -93,14 +96,13 @@ const userEdit = gql`
       companyName: $companyName
       companyRegistrationNumber: $companyRegistrationNumber
       password: $password
+   
       avatar: $avatar
     ) {
       _id
     }
   }
 `;
-
-
 
 const changePhone = gql`
   mutation changePhone($id: String!, $phone: String) {
@@ -173,7 +175,6 @@ const mutations = {
   fbLogin,
   googleLogin,
   changePhone
-
 };
 
 export default mutations;
