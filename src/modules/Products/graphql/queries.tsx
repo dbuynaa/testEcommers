@@ -173,7 +173,7 @@ const getProductReviews = gql`
   }
 `;
 
-const getProductAveregeReview = gql`
+const getProductAverageReview = gql`
   query Productreview($productId: String!) {
     productreview(productId: $productId) {
       average
@@ -195,7 +195,7 @@ const queries = {
   productIds,
   productDetailMeta,
   getLastProductView,
-  getProductAveregeReview,
+  getProductAverageReview,
   getProductReviews,
 };
 
