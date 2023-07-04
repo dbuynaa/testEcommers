@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   FacebookShareButton,
-  TwitterShareButton,
+  TwitterShareButton
   // FacebookMessengerShareButton,
 } from 'next-share';
 import Facebook from 'icons/Facebook';
@@ -20,10 +20,7 @@ const Share = () => {
         <Messenger />
       </FacebookMessengerShareButton> */}
 
-      <TwitterShareButton
-        url={url}
-        title={'next-share is a social share buttons for your next React apps.'}
-      >
+      <TwitterShareButton url={url}>
         <Twitter />
       </TwitterShareButton>
     </div>
