@@ -8,7 +8,7 @@ const Time = () => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const target = new Date('2023-06-30T23:59:59');
+    const target = new Date('2023-07-06T23:59:59');
     const interval = setInterval(() => {
       const now = new Date();
       const difference = target.getTime() - now.getTime();

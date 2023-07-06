@@ -15,12 +15,12 @@ const AddToWishlist = ({ className }: HTMLAttributes<HTMLDivElement>) => {
 
   const variables = {
     customerId,
-    productId: router.query.id,
+    productId: router.query.id
   };
 
   const { data } = useQuery(queries.wish, {
     variables,
-    skip: !customerId,
+    skip: !customerId
   });
 
   const id = data?.wish?._id;
@@ -33,7 +33,7 @@ const AddToWishlist = ({ className }: HTMLAttributes<HTMLDivElement>) => {
       if (_id) {
         toast.success('Амжилттай нэмлээ');
       }
-    },
+    }
   });
 
   const [remove, { loading: loadingRemove }] = useMutation(
@@ -46,7 +46,7 @@ const AddToWishlist = ({ className }: HTMLAttributes<HTMLDivElement>) => {
         if (_id) {
           toast.success('Амжилттай хаслаа');
         }
-      },
+      }
     }
   );
 

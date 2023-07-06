@@ -8,7 +8,6 @@ import Product, { PRODUCT_WRAPPER_CLASS } from 'components/Products/Product';
 import clsx from 'clsx';
 import Button from 'ui/Button';
 import Xmark from 'icons/Xmark';
-import { toast } from 'react-toastify';
 
 const ViewedItemsContainer = () => {
   const { currentUser } = useCurrentUser();
@@ -30,7 +29,6 @@ const ViewedItemsContainer = () => {
       onCompleted(data) {
         const { _id } = data?.lastViewedItemRemove;
         if (_id) {
-          toast.success('Амжилттай хаслаа');
         }
       }
     }
@@ -49,7 +47,7 @@ const ViewedItemsContainer = () => {
 
   return (
     <div className="row products">
-      {lastSeen.map((el: any) => (
+      {lastSeen?.map((el: any) => (
         <AnimatePresence key={el._id}>
           <motion.div
             className={clsx(PRODUCT_WRAPPER_CLASS, 'relative')}
