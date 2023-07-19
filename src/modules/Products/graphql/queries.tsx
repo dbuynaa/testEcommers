@@ -162,11 +162,10 @@ const getLastProductView = gql`
 `;
 
 const getProductReviews = gql`
-  query Productreviews($productId: [String], $customerId: String) {
-    productreviews(productId: $productId, customerId: $customerId) {
+  query Productreviews($productIds: [String], $customerId: String) {
+    productreviews(productIds: $productIds, customerId: $customerId) {
       _id
       customerId
-      productId
       review
     }
   }
@@ -195,7 +194,7 @@ const queries = {
   productDetailMeta,
   getLastProductView,
   getProductAverageReview,
-  getProductReviews,
+  getProductReviews
 };
 
 export default queries;

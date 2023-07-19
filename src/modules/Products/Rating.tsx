@@ -6,22 +6,27 @@ import { useCurrentUser } from 'modules/appContext';
 import Rate from 'components/Rate';
 
 const Rating = ({ productId }: { productId: string }) => {
-  const half = (n: any) => Number((Math.round(n * 2) / 2).toFixed(1));
+  const { currentUser } = useCurrentUser();
+
+  // const half = (n: any) => Number((Math.round(n * 2) / 2).toFixed(1));
   const [rating, setRating] = useState(0);
-  const { data } = useQuery(queries.getProductAverageReview, {
+  const { data } = useQuery(queries.getProductReviews, {
     variables: {
-      productId
+      productIds: [productId],
+      customerId: currentUser?.erxesCustomerId
     }
   });
 
-  const [add, { loading }] = useMutation(mutations.ReviewAdd);
-  const { currentUser } = useCurrentUser();
+  const [add] = useMutation(mutations.ReviewAdd);
 
   useEffect(() => {
     console.log('dataaaa', data);
-    if (data && data.productreview) {
-      const averageRating = half(data.productreview?.average);
+    if (data && data.getProductReviews) {
+      // const averageRating = half(data.productreview?.average);
+      // const averageRating = data.productreview?.average;
+      const averageRating = data.getProductReviews.review;
       setRating(averageRating);
+      console.log('averageRateing....', averageRating);
     }
   }, [data]);
 
@@ -34,13 +39,23 @@ const Rating = ({ productId }: { productId: string }) => {
         review: rate
       },
       refetchQueries: [
-        { query: queries.getProductAverageReview, variables: { productId } },
-        'Productreview'
+        {
+          query: queries.getProductReviews
+        },
+        'getPoductReviews'
       ]
     });
   };
 
-  return <Rate value={rating} onChange={handleRate} />;
+  return (
+    <div className="flex gap-3">
+      <Rate value={rating} onChange={handleRate} />
+      <span className="text-xs text-gray-400">
+        {' '}
+        Таны өгсөн үнэлгээ:{rating}{' '}
+      </span>
+    </div>
+  );
 };
 
 export default Rating;

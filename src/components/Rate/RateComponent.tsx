@@ -42,7 +42,6 @@ const RateComponent = ({
         height={size}
         viewBox={`0 0 ${width} ${size}`}
         fill="none"
-        className="z-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g clip-path="url(#clip0_1049_12981)">

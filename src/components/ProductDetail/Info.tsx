@@ -29,6 +29,7 @@ const Info = ({ productId }) => {
       <p className="prDtl-code">Бүтээгдэхүүний код: {code}</p>
       <h4 className="my-3">{formatCurrency(unitPrice)}</h4>
       <Rating productId={productId} />
+
       <div className="prDtl-remainder py-3 mb-2 sbt">
         Таны сонгосон бараа агуулахад: <b className="mx-2">{remainder || 0}ш</b>{' '}
         байна.

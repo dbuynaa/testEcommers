@@ -5,22 +5,20 @@ import { toast } from 'react-toastify';
 import Button from 'ui/Button';
 import uploadHandler from './UploadHandler';
 import Image from 'ui/Image';
+
 // import { readFile } from 'utils';
 
-const AvatarUpload = ({ onSave }: { onSave }) => {
+const AvatarUpload = ({ onSave, onCancel }: { onSave; onCancel }) => {
   const [attachment, setAttachment] = useState<any>('');
 
   const [loading, setLoading] = useState(false);
-
   const handleFileInput = (e: any) => {
-    console.log('e.target.value...........', e.target.files);
     uploadHandler({
       files: e.target.files,
 
       beforeUpload: () => {
         setLoading(true);
         setAttachment(attachment);
-        console.log('result......');
       },
 
       afterUpload: ({ status, response, fileInfo }) => {
@@ -32,19 +30,12 @@ const AvatarUpload = ({ onSave }: { onSave }) => {
           setLoading(false);
           setAttachment(response);
         }
-        console.log('afterupload...........', response);
       },
       afterRead: ({ result, fileInfo }) => {
         setAttachment(result);
       }
     });
   };
-
-  // const removeAvatar = (index: number) => {
-  //   const attachment = [...attachments];
-  //   attachments.splice(index, 1);
-  //   setAttachments(attachments);
-  // };
 
   return (
     <div className="flex justify-center mt-8">
@@ -71,9 +62,9 @@ const AvatarUpload = ({ onSave }: { onSave }) => {
           <div className="flex p-2 space-x-4">
             <Button
               className="px-4 py-2 text-white bg-red-500 rounded "
-              // onClick={() => removeAvatar(0)}
+              onClick={onCancel}
             >
-              Устгах
+              Гарах
             </Button>
             <Button
               className="px-4 py-2 text-white bg-green-500 rounded "
