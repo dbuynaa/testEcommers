@@ -9,7 +9,7 @@ const Nav = () => {
       {/* <NavLink href="/wholesale" className="test-text mx-2">
         Бөөндий
       </NavLink>
-    
+
       <NavLink href="/trade-in" className="mx-2">
         Бренд
       </NavLink> */}

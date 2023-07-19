@@ -4,6 +4,7 @@ import AddressCard from 'icons/AddressCard';
 import Logout from 'modules/auth/logout';
 import Heart from 'icons/Heart';
 import Avatar from './Avatar';
+import Eye from 'icons/Eye';
 
 // import AvatarEdit from 'modules/auth/Avatar';
 
@@ -14,7 +15,6 @@ const ProfileContent = ({ ItemComponent }: any) => {
         <Avatar />
       </div>
       <div>
-        {/* <AvatarEdit avatar={AvatarEdit} /> */}
         <div className="hr my-2" />
         <ProfileItem
           href="/profile/info"
@@ -40,6 +40,14 @@ const ProfileContent = ({ ItemComponent }: any) => {
           Component={ItemComponent}
         >
           Хүслийн жагсаалт
+        </ProfileItem>
+
+        <ProfileItem
+          href="/profile/viewed"
+          icon={<Eye regular />}
+          Component={ItemComponent}
+        >
+          Сүүлд үзсэн
         </ProfileItem>
 
         {/* <ProfileItem href="/profile/wishlist" icon={<CircleHeart />}>

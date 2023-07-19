@@ -3,7 +3,7 @@ import ImageGallery from 'components/ProductDetail/Images';
 import Tabs, {
   TabsList,
   TabTrigger,
-  TabsContent,
+  TabsContent
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
@@ -17,6 +17,9 @@ import { NextSeo } from 'next-seo';
 import { readFile } from 'utils';
 // import Rating from 'components/home/Rating';
 import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
+import LastViewedItems from 'modules/Products/LastViewedItems';
+
+// import RatingItems from 'modules/Products/RatingItems';
 
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
@@ -33,9 +36,9 @@ const Product = ({ detail, videos }: any) => {
               url: readFile((attachment || {}).url),
               width: 800,
               height: 800,
-              alt: name,
-            },
-          ],
+              alt: name
+            }
+          ]
         }}
       />
       <LastViewedItemsAdd productId={_id} />
@@ -45,9 +48,8 @@ const Product = ({ detail, videos }: any) => {
           <div className="row pb-4">
             <div className="col-12 col-md-6">
               <ImageGallery />
-              {/* <Rating /> */}
             </div>
-            <Info />
+            <Info productId={_id} />
           </div>
         </div>
         <Tabs defaultValue="intro">
@@ -63,6 +65,9 @@ const Product = ({ detail, videos }: any) => {
           </TabsList>
           <TabsContent value="intro">
             <Description />
+          </TabsContent>
+          <TabsContent value="intro">
+            <LastViewedItems category="" />
           </TabsContent>
           {(videos || []).length > 0 && (
             <TabsContent value="advice">
@@ -102,7 +107,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: true
   };
 };
 

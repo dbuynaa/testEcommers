@@ -57,9 +57,6 @@ const Page = () => {
     deliveryInfo,
     items,
     putResponses,
-    number,
-    registerNumber,
-    billType,
   } = orderDetail || {};
 
   const {

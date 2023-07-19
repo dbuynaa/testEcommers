@@ -70,7 +70,6 @@ const productDetail = gql`
       description
       name
       remainder
-      sku
       tagIds
       type
       unitPrice
@@ -151,9 +150,11 @@ const getLastProductView = gql`
       productId
       product {
         _id
+        createdAt
         attachment {
           url
         }
+        unitPrice
         name
       }
     }
@@ -162,16 +163,15 @@ const getLastProductView = gql`
 
 const getProductReviews = gql`
   query Productreviews($productIds: [String], $customerId: String) {
-    productreviews(productIds: $productId, customerId: $customerId) {
+    productreviews(productIds: $productIds, customerId: $customerId) {
       _id
       customerId
-      productId
       review
     }
   }
 `;
 
-const getProductAveregeReview = gql`
+const getProductAverageReview = gql`
   query Productreview($productId: String!) {
     productreview(productId: $productId) {
       average
@@ -193,7 +193,7 @@ const queries = {
   productIds,
   productDetailMeta,
   getLastProductView,
-  getProductAveregeReview,
+  getProductAverageReview,
   getProductReviews
 };
 

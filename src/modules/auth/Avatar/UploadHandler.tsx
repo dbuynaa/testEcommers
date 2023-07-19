@@ -1,3 +1,4 @@
+import { REACT_APP_API_URL } from 'utils';
 type FileInfo = {
   name: string;
   size: number;
@@ -26,31 +27,32 @@ type Params = {
   responseType?: string;
   extraFormData?: { key: string; value: string }[];
 };
-const REACT_APP_MAIN_API_DOMAIN = 'https://erxes.techstore.mn/gateway';
 
-export const deleteHandler = (params: { 
-   fileName: string; 
-   url?: string; 
-   afterUpload: ({ status }: { status: string }) => any }) => {
-  const { url = `${REACT_APP_MAIN_API_DOMAIN}/delete-file`, 
-     fileName,
-     afterUpload 
-    } = params;
+export const deleteHandler = (params: {
+  fileName: string;
+  url?: string;
+  afterUpload: ({ status }: { status: string }) => any;
+}) => {
+  const {
+    url = `${REACT_APP_API_URL}/delete-file`,
+    fileName,
+    afterUpload
+  } = params;
 
   fetch(`${url}`, {
     method: 'post',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     },
     body: `fileName=${fileName}`,
-    credentials: 'include',
+    credentials: 'include'
   }).then((response) => {
     response
       .text()
       .then((text) => {
         if (!response.ok) {
           return afterUpload({
-            status: text,
+            status: text
           });
         }
 
@@ -68,11 +70,11 @@ const uploadHandler = (params: Params) => {
     beforeUpload,
     afterUpload,
     afterRead,
-    url = `${REACT_APP_MAIN_API_DOMAIN}/upload-file`,
+    url = `${REACT_APP_API_URL}/upload-file`,
     kind = 'main',
     responseType = 'text',
     userId,
-    extraFormData = [],
+    extraFormData = []
   } = params;
 
   if (!files) {
@@ -90,11 +92,17 @@ const uploadHandler = (params: Params) => {
     // initiate upload file reader
     const uploadReader = new FileReader();
 
-    const fileInfo = { name: file.name, size: file.size, type: file.type } as any;
+    const fileInfo = {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    } as any;
 
     // skip file that size is more than 15mb
     if (fileInfo.size > 20 * 1024 * 1024) {
-      alert(`Your file ${fileInfo.name} size is too large. Upload files less than 15MB of size.`);
+      alert(
+        `Your file ${fileInfo.name} size is too large. Upload files less than 15MB of size.`
+      );
 
       continue;
     }
@@ -104,6 +112,7 @@ const uploadHandler = (params: Params) => {
       // before upload
       if (beforeUpload) {
         beforeUpload();
+        console.log('before...........', beforeUpload);
       }
 
       const formData = new FormData();
@@ -117,7 +126,7 @@ const uploadHandler = (params: Params) => {
         method: 'post',
         body: formData,
         credentials: 'include',
-        ...(userId ? { headers: { userId } } : {}),
+        ...(userId ? { headers: { userId } } : {})
       })
         .then((response) => {
           response[responseType]()
@@ -126,7 +135,7 @@ const uploadHandler = (params: Params) => {
                 return afterUpload({
                   status: 'error',
                   response,
-                  fileInfo,
+                  fileInfo
                 });
               }
 

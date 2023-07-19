@@ -1,27 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
 import ImageIcon from 'icons/ImageIcon';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import Button from 'ui/Button';
+import uploadHandler from './UploadHandler';
+import Image from 'ui/Image';
 
-const AvatarUpload = () => {
-  // const imageUrl= `${REACT_APP_API_URL}/upload-file`
-  const imageSrc = 'https://erxes.techstore.mn/gateway/upload-file?key=';
-  const [changeImg, setChangeImg] = useState('');
+// import { readFile } from 'utils';
 
-  const onClose = () => {};
+const AvatarUpload = ({ onSave, onCancel }: { onSave; onCancel }) => {
+  const [attachment, setAttachment] = useState<any>('');
 
-  const handleFileChange = (e: any) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setChangeImg('');
-      };
-      reader.readAsDataURL(selectedFile);
-    }
+  const [loading, setLoading] = useState(false);
+  const handleFileInput = (e: any) => {
+    uploadHandler({
+      files: e.target.files,
+
+      beforeUpload: () => {
+        setLoading(true);
+        setAttachment(attachment);
+      },
+
+      afterUpload: ({ status, response, fileInfo }) => {
+        if (status !== 'ok') {
+          toast.error(response.statusText);
+          setLoading(false);
+        } else {
+          toast.info('Success');
+          setLoading(false);
+          setAttachment(response);
+        }
+      },
+      afterRead: ({ result, fileInfo }) => {
+        setAttachment(result);
+      }
+    });
   };
-
-  const handleSave = () => {};
 
   return (
     <div className="flex justify-center mt-8">
@@ -33,32 +47,28 @@ const AvatarUpload = () => {
           <div className="flex flex-col border-dashed border rounded items-center justify-center w-full  py-7 relative">
             <ImageIcon className="text-6xl text-gray-400" />
             <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-              Зураг сонгох
+              {loading ? 'Uploading' : 'Зураг сонгох'}
             </p>
-            <img
-              src={changeImg || '/images/users.png'}
-              alt=""
-              id="imageprev"
-              className={changeImg ? '' : 'hidden'}
-            />
+            <Image src={attachment || '/images/users.png'} alt="" />
 
             <input
               type="file"
               className="opacity-0 absolute inset-0"
-              onChange={handleFileChange}
+              onChange={handleFileInput}
+              disabled={loading}
             />
           </div>
 
           <div className="flex p-2 space-x-4">
             <Button
               className="px-4 py-2 text-white bg-red-500 rounded "
-              onClick={onClose}
+              onClick={onCancel}
             >
               Гарах
             </Button>
             <Button
               className="px-4 py-2 text-white bg-green-500 rounded "
-              onClick={handleSave}
+              onClick={() => onSave(attachment)}
             >
               Хадгалах
             </Button>

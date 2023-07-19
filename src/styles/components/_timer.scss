@@ -1,0 +1,32 @@
+.timer-wrapper {
+  position: absolute;
+  background: blue;
+  text-align: center;
+  top: 1055px;
+  width: 1006px;
+  height: 246px;
+  border-radius: 96px 96px 24px 24px;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+}
+.timer-inner {
+  color: #333;
+  display: inline-flex;
+  width: 379px;
+  height: 129px;
+ color: white;
+}
+.timer-segment {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.divider,
+.time {
+  font-size: 5rem;
+}
+
+.label {
+  font-size: 2rem;
+}
