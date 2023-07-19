@@ -86,10 +86,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = (params || {}).id + '';
   const { posts: videosById } = await getVideosByTag(id);
   const detail = await getProductDetail(id);
-  const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
+  const { posts: videosByCat } = await getVideosByTag(detail?.categoryId || '');
 
   return {
-    props: { detail, videos: [...(videosById || []), ...(videosByCat || [])] }
+    props: { detail: detail || {}, videos: [...(videosById || []), ...(videosByCat || [])] }
   };
 };
 

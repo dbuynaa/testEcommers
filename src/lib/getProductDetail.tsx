@@ -15,7 +15,7 @@ const getProductDetail: (id: string) => Promise<any> = async (id) => {
 
     return productDetail;
   } catch (error: any) {
-    console.log('error', error.message);
+    console.log('error', error);
   }
 };
 

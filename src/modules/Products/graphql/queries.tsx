@@ -70,7 +70,6 @@ const productDetail = gql`
       description
       name
       remainder
-      sku
       tagIds
       type
       unitPrice
