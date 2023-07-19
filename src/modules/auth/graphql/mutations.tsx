@@ -175,7 +175,6 @@ const mutations = {
   fbLogin,
   googleLogin,
   changePhone
-
 };
 
 export default mutations;
