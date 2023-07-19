@@ -27,3 +27,12 @@
 // };
 
 // export default WholeSaleCat;
+const WholeSaleCat = () => {
+    return (
+        <div>
+            Enter
+        </div>
+    );
+}
+
+export default WholeSaleCat;
