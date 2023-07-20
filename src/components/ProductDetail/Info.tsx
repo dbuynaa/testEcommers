@@ -6,8 +6,7 @@ import Share from 'modules/Products/Share';
 import clsx from 'clsx';
 import Rating from 'modules/Products/Rating';
 
-// import RatingItems from 'modules/Products/RatingItems';
-// import Choose from 'modules/Products/Choose';
+
 
 const Info = ({ productId }) => {
   const { name, code, unitPrice, remainder } = useDetailContext();
