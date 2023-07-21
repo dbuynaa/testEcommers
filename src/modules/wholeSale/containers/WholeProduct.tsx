@@ -1,22 +1,23 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import WholeProduct from "../components/WholeProduct";
+import { getProducts } from "../graphql/queries";
 
-import WholeProduct from '../components/WholeProduct';
-import { getProducts } from '../graphql/queries';
-const WholeProductContainer = ({ productIds,wholeSales}) => {
-
-  const { loading, error, data } = useQuery(getProducts, {
+const WholeProductContainer = ({ productIds, wholeSales }) => {
+  const { loading, error, data, refetch } = useQuery(getProducts, {
     variables: {
-      status: 'active',
-  
-      ids: productIds
-    }
+      status: "active",
+      ids: productIds,
+    },
   });
+
   if (loading) return <div>Loading...</div>;
+
   if (error) return <div>Error</div>;
+
   const wholeProducts = data.poscProducts || [];
-  const updateProps = { wholeProducts ,wholeSales};
-  return <WholeProduct {...updateProps} />;
+
+  return <WholeProduct wholeProducts={wholeProducts} wholeSales={wholeSales} refetch={refetch} />;
 };
 
 export default WholeProductContainer;

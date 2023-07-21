@@ -1,24 +1,23 @@
-import React from 'react';
-
-import { useQuery } from '@apollo/client';
-
-import { getPricingPlans } from '../graphql/queries';
-import Loading from 'ui/Loading';
-import WholeSale from '../components/WholeSale';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { getPricingPlans } from "../graphql/queries";
+import Loading from "ui/Loading";
+import WholeSale from "../components/WholeSale";
 
 const WholeSaleContainer = () => {
-  const { data, loading} = useQuery(getPricingPlans, {
+  const { data, loading, refetch } = useQuery(getPricingPlans, {
     variables: {
-      status: 'active'
-    }
+      status: "active",
+    },
   });
+
   if (loading) return <Loading />;
-  console.log('data', data);
 
+  console.log("data", data);
 
-  const wholeSales = data.pricingPlans || [];
-  const updateProps = { wholeSales };
-  return <WholeSale {...updateProps} />;
+  const wholeSales = data.pricingPlans || []; //=> [{},{}]
+
+  return <WholeSale wholeSales={wholeSales} refetch={refetch} />;
 };
 
 export default WholeSaleContainer;

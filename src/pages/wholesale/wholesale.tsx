@@ -36,33 +36,3 @@ export const getStaticProps = async () => {
     }
   };
 };
-// "data": {
-//   "pricingPlanDetail": {
-//     "_id": "b2d6p5tLCviMJdr6A",
-//     "products": [
-//       "Yo7rJkpYfj5Xo2mvA",
-//       "WWGiLYGQBFw3MXENk"
-//     ],
-//     "categories": [],
-//     "startDate": "2023-07-27T16:00:00.000Z",
-//     "endDate": "2023-08-06T16:00:00.000Z",
-//     "branchIds": [],
-//     "status": "active",
-//     "name": "tsagnii buundii",
-//     "priceRules": [
-//       {
-//         "discountValue": 10,
-//         "discountType": "fixed",
-//         "value": 10,
-//         "type": "minimum"
-//       }
-//     ],
-//     "quantityRules": [
-//       {
-//         "type": "minimum",
-//         "value": 10
-//       }
-//     ]
-//   }
-// }
-// }
