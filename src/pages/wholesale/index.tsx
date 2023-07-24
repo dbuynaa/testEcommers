@@ -7,7 +7,7 @@ import LastViewedItems from "modules/Products/LastViewedItems";
 import WholeBanner from "modules/wholeSale/components/WholeBanner";
 import WholeSaleContainer from "modules/wholeSale/containers/WholeSale";
 
-const Wholesale = ({ categories, imgBanners }) => {
+const Wholesale = ({ imgBanners }) => {
   return (
     <div className="flex flex-col wholesale container">
       <div className="flex ">
@@ -31,7 +31,7 @@ export default Wholesale;
 
 export const getStaticProps = async () => {
   const { posts: imgBanners } = await getImgBanner();
-  //   console.log("PROPS");
+  
 
   return {
     props: {

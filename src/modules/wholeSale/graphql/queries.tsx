@@ -26,6 +26,11 @@ export const getPricingPlans = gql`
           fullName
         }
       }
+      quantityRules {
+        discountValue
+        discountType
+        value
+      }
       products
       productsBundle
       categories
