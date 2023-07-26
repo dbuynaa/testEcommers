@@ -2,7 +2,7 @@ import NavLink from './NavLink';
 
 const Nav = () => {
   return (
-    <nav className="flex items-center  mx-4 hidden-mobile">
+    <nav className="flex items-center  mx-4 hidden-mobile ">
       <NavLink href="/" className="me-2">
         Нүүр
       </NavLink>
@@ -15,6 +15,9 @@ const Nav = () => {
       </NavLink> */}
       <NavLink href="/news" className="ms-2">
         Мэдээлэл
+      </NavLink>
+      <NavLink href='/leasingForm' className="mx-2">
+        Зээлээр авах
       </NavLink>
     </nav>
   );

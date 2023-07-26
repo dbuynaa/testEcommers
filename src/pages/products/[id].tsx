@@ -15,11 +15,9 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import getProductIds from 'lib/getProductIds';
 import { NextSeo } from 'next-seo';
 import { readFile } from 'utils';
-// import Rating from 'components/home/Rating';
 import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
 import LastViewedItems from 'modules/Products/LastViewedItems';
 
-// import RatingItems from 'modules/Products/RatingItems';
 
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};

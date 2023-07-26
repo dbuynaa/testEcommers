@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
-        <h5 className="text-blue pb-3 text-center">Нэвтрэнэ үү</h5>
+        <h5 className="text-blue pb-3 text-center">Нэвтэрнэ үү</h5>
         <FormItem
           label="Hэвтрэх нэр"
           placeholder="Утасны дугаар эсвэл имэйл"

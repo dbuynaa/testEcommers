@@ -1,16 +1,25 @@
-import { formatCurrency } from 'utils';
-import Actions from './Actions';
-import { useDetailContext } from './Context';
+import React from 'react';
+
 import AddToWishlist from 'modules/Products/AddToWishlist';
 import Share from 'modules/Products/Share';
 import clsx from 'clsx';
 import Rating from 'modules/Products/Rating';
 
+import WholeAction from './WholeAction';
+import { useDetailContext } from 'components/ProductDetail/Context';
 
-const Info = ({ productId }) => {
+const WholeInfo = ({ productId }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { name, code, unitPrice, remainder } = useDetailContext();
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const isNameLong = name.length > 25;
+  // const hi = wholeProduct?.productDetail?.quantityRules[0]?.discountValue;
+
+  // const disPrice = wholeProduct?.unitPrice;
+  // const salePrice = disPrice - (disPrice * hi) / 100;
+  // console.log('salePrice', salePrice);
 
   return (
     <div className="col-12 col-md-6 px-md-4 prDtl-actions mt-3 mt-md-0">
@@ -25,16 +34,13 @@ const Info = ({ productId }) => {
       </div>
       <Share />
       <p className="prDtl-code">Бүтээгдэхүүний код: {code}</p>
-      <h4 className="my-3">{formatCurrency(unitPrice)}</h4>
+      <h4 className="my-3">{unitPrice}</h4>
+      {/* <h3 className="text-red-500">{salePrice}</h3> */}
       <Rating productId={productId} />
 
-      <div className="prDtl-remainder py-3 mb-2 sbt">
-        Таны сонгосон бараа агуулахад: <b className="mx-2">{remainder || 0}ш</b>{' '}
-        байна.
-      </div>
-      <Actions />
+      <WholeAction />
     </div>
   );
 };
 
-export default Info;
+export default WholeInfo;
