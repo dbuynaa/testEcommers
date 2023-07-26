@@ -3,14 +3,20 @@ import Modal from 'ui/Modal';
 import PaymentContainer from 'modules/checkout/PaymentContainer';
 import Config from 'modules/auth/Config';
 
-const PaymentBtn = ({ orderDetail }: { orderDetail: string }) => {
+const PaymentBtn = ({
+  orderDetail,
+  refetch,
+}: {
+  orderDetail: string;
+  refetch: any;
+}) => {
   return (
     <Modal
       trigger={<Button className="-pay-btn bg-blue mx-2">Төлбөр төлөх</Button>}
       contentClassName="payment-modal"
     >
       <Config>
-        <PaymentContainer orderDetail={orderDetail} />
+        <PaymentContainer orderDetail={orderDetail} refetch={refetch}/>
       </Config>
     </Modal>
   );
