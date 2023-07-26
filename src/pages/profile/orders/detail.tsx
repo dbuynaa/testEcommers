@@ -53,16 +53,12 @@ const Page = () => {
   const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
     orderDetail || {};
 
-  const {
-    firstName,
-    lastName,
-    phone,
-    email,
-    province,
-    district,
-    street,
-    details,
-  } = deliveryInfo || {};
+  const { firstName, lastName, phone, email, address, marker, description } =
+    deliveryInfo || {};
+
+  const { city, city_district, street } = address || {};
+
+  const {lng, lat} = marker;
 
   const isAfterLastFiveMinutes = dayjs(paidDate).isAfter(
     dayjs().subtract(0.5, 'minute')
@@ -81,34 +77,38 @@ const Page = () => {
         </div>
       </div>
 
-      {(province || district || street || details) && (
+      {(!!address || !!marker || !!description) && (
         <b className="block my-4">
           <big className="">
             <b>Хүргэлтийн мэдээлэл</b>
           </big>
           <div className="row pt-3">
-            {province && (
-              <div className="col-12 col-md-4">
-                <small className="text-mid-gray">Хот/аймаг</small>
-                <big className="block">{province}</big>
+            {!!address && (
+              <>
+                <div className="col-12 col-md-4">
+                  <small className="text-mid-gray">Хот/аймаг</small>
+                  <big className="block">{city}</big>
+                </div>
+                <div className="col-4">
+                  <small className="text-mid-gray">Дүүрэг</small>
+                  <big className="block">{city_district}</big>
+                </div>
+                <div className="col-4">
+                  <small className="text-mid-gray">Хороо/баг</small>
+                  <big className="block">{street}</big>
+                </div>
+              </>
+            )}
+            {marker && (
+              <div className="col-12 pt-3">
+                <small className="text-mid-gray">GPS координат</small>
+                <big className="block">{lng}, {lat}</big>
               </div>
             )}
-            {district && (
-              <div className="col-4">
-                <small className="text-mid-gray">Дүүрэг</small>
-                <big className="block">{district}</big>
-              </div>
-            )}
-            {street && (
-              <div className="col-4">
-                <small className="text-mid-gray">Хороо/баг</small>
-                <big className="block">{street}</big>
-              </div>
-            )}
-            {details && (
+            {description && (
               <div className="col-12 pt-3">
                 <small className="text-mid-gray">Дэлгэрэнгүй</small>
-                <big className="block">{details}</big>
+                <big className="block">{description}</big>
               </div>
             )}
           </div>

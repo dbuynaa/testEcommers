@@ -13,8 +13,8 @@ const Rating = ({ productId }: { productId: string }) => {
   const { data } = useQuery(queries.getProductReviews, {
     variables: {
       productIds: [productId],
-      customerId: currentUser?.erxesCustomerId
-    }
+      customerId: currentUser?.erxesCustomerId,
+    },
   });
 
   const [add] = useMutation(mutations.ReviewAdd);
@@ -36,23 +36,22 @@ const Rating = ({ productId }: { productId: string }) => {
       variables: {
         productId: productId,
         customerId: currentUser?.erxesCustomerId,
-        review: rate
+        review: rate,
       },
       refetchQueries: [
         {
-          query: queries.getProductReviews
+          query: queries.getProductReviews,
         },
-        'getPoductReviews'
-      ]
+        'getPoductReviews',
+      ],
     });
   };
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 items-center mb-3">
       <Rate value={rating} onChange={handleRate} />
-      <span className="text-xs text-gray-400">
-        {' '}
-        Таны өгсөн үнэлгээ:{rating}{' '}
+      <span className="text-sm text-gray-400">
+        Таны өгсөн үнэлгээ: {rating}
       </span>
     </div>
   );

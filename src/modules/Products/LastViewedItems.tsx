@@ -20,6 +20,7 @@ const LastViewedItems = ({
     slidesToShow,
     slidesToScroll,
     dots: false,
+    infinite: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -44,9 +45,9 @@ const LastViewedItems = ({
   const { data, loading } = useQuery(queries.getLastProductView, {
     variables: {
       limit: 10,
-      customerId: currentUser?.erxesCustomerId
+      customerId: currentUser?.erxesCustomerId,
     },
-    skip: !currentUser?.erxesCustomerId
+    skip: !currentUser?.erxesCustomerId,
   });
 
   if (loading) return <ProductsSkeleton wrapped />;

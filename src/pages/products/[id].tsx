@@ -18,7 +18,6 @@ import { readFile } from 'utils';
 import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
 import LastViewedItems from 'modules/Products/LastViewedItems';
 
-
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
 
@@ -34,9 +33,9 @@ const Product = ({ detail, videos }: any) => {
               url: readFile((attachment || {}).url),
               width: 800,
               height: 800,
-              alt: name
-            }
-          ]
+              alt: name,
+            },
+          ],
         }}
       />
       <LastViewedItemsAdd productId={_id} />
@@ -62,11 +61,12 @@ const Product = ({ detail, videos }: any) => {
             )}
           </TabsList>
           <TabsContent value="intro">
-            <Description />
+            <div className="w-full">
+              <Description />
+              <LastViewedItems />
+            </div>
           </TabsContent>
-          <TabsContent value="intro">
-            <LastViewedItems />
-          </TabsContent>
+
           {(videos || []).length > 0 && (
             <TabsContent value="advice">
               <Advice videos={videos} />
@@ -105,7 +105,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true
+    fallback: true,
   };
 };
 
