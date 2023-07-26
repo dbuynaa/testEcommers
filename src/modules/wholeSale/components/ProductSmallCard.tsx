@@ -47,11 +47,11 @@ const ProductSmallCard = ({ wholeProduct, isFirst, onComplete }) => {
     };
   }, [onComplete, wholeProduct.endDate]);
 
-  const hi = wholeProduct?.productDetail.quantityRules[0]?.discountValue;
+  const hi = wholeProduct?.productDetail?.quantityRules[0]?.discountValue;
 
   const disPrice = wholeProduct.unitPrice;
   const salePrice = disPrice - (disPrice * hi) / 100;
-  console.log('salePrice', salePrice);
+  // console.log('salePrice', salePrice);
   return (
     <div key={wholeProduct._id} className="relative flex h-80 w-80 gap-5 ">
       <Link

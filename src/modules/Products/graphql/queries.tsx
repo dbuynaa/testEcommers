@@ -32,6 +32,36 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
   }
 }
 `;
+
+const productPricingPlans = gql`
+  query PricingPlans($status: String) {
+    pricingPlans(status: $status) {
+      _id
+      name
+      status
+      type
+      value
+      products
+      categories
+      productsBundle
+      startDate
+      endDate
+      quantityRules {
+        type
+        value
+        discountValue
+        discountType
+      }
+      priceRules {
+        type
+        value
+        discountType
+        discountValue
+      }
+      createdAt
+    }
+  }
+`;
 const productsCount = gql`
   query productsCount(
     $categoryId: String
@@ -192,6 +222,7 @@ const queries = {
   wishlist,
   productDetailWithCustomFields,
   productIds,
+  productPricingPlans,
   productDetailMeta,
   getLastProductView,
   getProductAverageReview,

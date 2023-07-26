@@ -46,11 +46,34 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
   poscProducts(categoryId: $categoryId, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField,ids: $ids) {
       ${commonFields}
       unitPrice
-      remainder
       createdAt
       attachment {
         url
       }
   }
 }
+`;
+export const getPricingPlanDetail = gql`
+  query PricingPlanDetail($pricingPlanDetailId: String) {
+    pricingPlanDetail(id: $pricingPlanDetailId) {
+      _id
+      name
+      status
+      products
+      startDate
+      endDate
+      branchIds
+      categories
+      quantityRules {
+        type
+        discountValue
+        value
+      }
+      priceRules {
+        discountValue
+        value
+        type
+      }
+    }
+  }
 `;

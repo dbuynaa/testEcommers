@@ -28,8 +28,8 @@ const ErxesForm = ({
 
     const script = document.createElement('script');
     script.id = id;
-    script.src =
-      'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
+    script.src = 'http://localhost:3200/build/formWidget.bundle.js';
+    // 'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
     script.async = true;
 
     const entry = document.getElementsByTagName('script')[0];
@@ -59,7 +59,7 @@ const ErxesForm = ({
 
   return (
     <div className={clsx('erxes-form', className)} {...rest}>
-      <div data-erxes-embed={formId}>{formId}</div>
+      <div data-erxes-embed={formId}></div>
     </div>
   );
 };

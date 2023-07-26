@@ -4,7 +4,6 @@ import WholeProduct from '../components/WholeProduct';
 import { getProducts } from '../graphql/queries';
 
 const WholeProductContainer = ({ productIds, wholeSales }) => {
-
   const { loading, error, data, refetch } = useQuery(getProducts, {
     variables: {
       status: 'active',
@@ -17,7 +16,9 @@ const WholeProductContainer = ({ productIds, wholeSales }) => {
   if (error) return <div>Error</div>;
 
   const wholeProducts = data.poscProducts || [];
-return (
+
+
+  return (
     <WholeProduct
       wholeProducts={wholeProducts}
       wholeSales={wholeSales}

@@ -33,7 +33,6 @@ const WholeProduct = ({
 
   console.log('WS', wholeData);
 
-
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5 ">
       <div className="grid sm:grid-cols-1 md:grid-cols-2 grid-rows-3 gap-5">
@@ -54,3 +53,5 @@ const WholeProduct = ({
 };
 
 export default WholeProduct;
+
+

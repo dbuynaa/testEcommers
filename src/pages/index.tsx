@@ -13,6 +13,7 @@ import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
 import Latest from 'components/home/Latest';
+
 // import LastViewedItems from 'modules/Products/LastViewedItems';
 
 const Home = ({
@@ -30,6 +31,7 @@ const Home = ({
       <CategorySlider bannerCats={bannerCats} />
       <Banner imgBanners={imgBanners} />
       <Latest />
+      {/* <SaleProduct /> */}
       <SliderBanner sliderBanners={sliderBanners} />
       {/* <LastViewedItems /> */}
     </div>

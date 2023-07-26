@@ -12,6 +12,7 @@ import { Open_Sans } from 'next/font/google';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
 
+
 type Props = {
   pageProps: any;
   Component: any;
@@ -20,6 +21,7 @@ type Props = {
   mainCategories: any;
   metaData: any;
   categories: any;
+  
 };
 
 // If loading a variable font, you don't need to specify the font weight
@@ -32,6 +34,7 @@ function MyApp({
   mainCategories,
   metaData,
   categories,
+
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
 
@@ -64,8 +67,10 @@ function MyApp({
         mainCategories={mainCategories}
         categories={categories}
         metaData={metaData}
-      >
+        >
+
         {getLayout(<Component {...pageProps} router={router} />)}
+     
       </Layout>
     </>
   );

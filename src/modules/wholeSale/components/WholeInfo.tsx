@@ -8,7 +8,7 @@ import Rating from 'modules/Products/Rating';
 import WholeAction from './WholeAction';
 import { useDetailContext } from 'components/ProductDetail/Context';
 
-const wholeInfo = ({ productId }) => {
+const WholeInfo = ({ productId }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { name, code, unitPrice, remainder } = useDetailContext();
 
@@ -43,4 +43,4 @@ const wholeInfo = ({ productId }) => {
   );
 };
 
-export default wholeInfo;
+export default WholeInfo;
