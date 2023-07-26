@@ -33,7 +33,7 @@ const Wholesale = ({ wholeCategories }) => {
       <img src="/images/techstorebanner.png" alt="" className="py-24" />
 
       <div className="latest-slider">
-        <LastViewedItems category={''} />
+        <LastViewedItems />
       </div>
     </div>
   );
