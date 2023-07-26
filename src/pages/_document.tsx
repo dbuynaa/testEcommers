@@ -11,7 +11,6 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link href="/images/logo.png" rel="shortcut icon" />
           <link rel="preconnect" href="https://xos.techstore.mn" />
-          
           <Partytown forward={['dataLayer.push']} />
           <script
             type="text/partytown"

@@ -3,7 +3,7 @@ import ImageGallery from 'components/ProductDetail/Images';
 import Tabs, {
   TabsList,
   TabTrigger,
-  TabsContent
+  TabsContent,
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
@@ -67,7 +67,7 @@ const Product = ({ detail, videos }: any) => {
             <Description />
           </TabsContent>
           <TabsContent value="intro">
-            <LastViewedItems category="" />
+            <LastViewedItems />
           </TabsContent>
           {(videos || []).length > 0 && (
             <TabsContent value="advice">

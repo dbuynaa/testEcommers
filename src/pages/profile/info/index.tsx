@@ -29,7 +29,7 @@ const Info = () => {
       lastName: currentUser?.lastName,
       email: currentUser?.email,
       phone: currentUser?.phone,
-      avatar: currentUser?.avatar
+      avatar: currentUser?.avatar,
     }
   };
 
@@ -41,10 +41,9 @@ const Info = () => {
     avatar: string;
   }) => editUser({ variables: { ...value, _id: currentUser?._id } });
 
-
   return (
-    <div className="flex">
-      <div className="w-3/12 flex justify-center py-5  flex-col">
+    <div className="flex flex-wrap md:flex-nowrap">
+      <div className="w-full flex  flex-col items-center md:w-3/12 pt-5">
         <Avatar />
         <span className="text-blue mt-3">Зураг Өөрчлөх</span>
       </div>
@@ -58,9 +57,6 @@ const Info = () => {
           </div>
           <div className="col-12 col-md-6 px-md-2">
             <FormItem name="email" label="И-мэйл хаяг" />
-          </div>
-          <div className="col-12 col-md-6 px-md-2">
-            <FormItem name="phone" label="Утасны дугаар" />
           </div>
           <div className="col-12 col-md-6 px-md-2">
             <FormItem name="phone" label="Утасны дугаар" />

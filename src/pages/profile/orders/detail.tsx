@@ -50,14 +50,8 @@ const Page = () => {
 
   const { orderDetail } = data;
 
-  const {
-    paidDate,
-    status,
-    totalAmount,
-    deliveryInfo,
-    items,
-    putResponses,
-  } = orderDetail || {};
+  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
+    orderDetail || {};
 
   const {
     firstName,
@@ -71,7 +65,7 @@ const Page = () => {
   } = deliveryInfo || {};
 
   const isAfterLastFiveMinutes = dayjs(paidDate).isAfter(
-    dayjs().subtract(5, 'minute')
+    dayjs().subtract(0.5, 'minute')
   );
 
   return (

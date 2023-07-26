@@ -12,7 +12,7 @@ const MainCategories = ({ mainCategories }) => {
   return (
     <div className="product-cats hidden lg:flex">
       <div className="container flex justify-between">
-        {mainCategories
+        {(mainCategories || [])
           .filter((a) => !a.parentId)
           .map(({ _id, name }): any => (
             <MainCategory
