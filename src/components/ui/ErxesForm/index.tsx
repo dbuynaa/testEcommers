@@ -29,7 +29,7 @@ const ErxesForm = ({
     const script = document.createElement('script');
     script.id = id;
     script.src =
-      'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
+      'https://xos.techstore.mn/widgets/build/formWidget.bundle.js';
     script.async = true;
     
     const entry = document.getElementsByTagName('script')[0];
