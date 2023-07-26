@@ -10,9 +10,7 @@ import { useRouter } from 'next/router';
 // import { useRouter } from 'next/router';
 
 const Detail = ({ wholeData }: { wholeData: any }) => {
-  console.log('props WholeData', wholeData);
   const { query } = useRouter();
-  console.log(query.id);
   // const url = useRouter();
 
   // console.log(url);
@@ -26,7 +24,7 @@ const Detail = ({ wholeData }: { wholeData: any }) => {
         <div className="container prDtl ">
           <Breadcrumb />
           <h2>{wholeData?.productDetail?.name}</h2>
-          <WholeProductDetailContainer  />
+          <WholeProductDetailContainer />
           <div className="row pb-4">
             <div className="col-12 col-md-6">
               <ImageGallery />
@@ -35,7 +33,7 @@ const Detail = ({ wholeData }: { wholeData: any }) => {
           </div>
         </div>
 
-        <LastViewedItems category="" />
+        <LastViewedItems />
       </Context>
     </div>
   );
