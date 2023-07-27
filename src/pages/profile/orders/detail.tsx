@@ -58,7 +58,7 @@ const Page = () => {
 
   const { city, city_district, street } = address || {};
 
-  const {lng, lat} = marker;
+  const { lng, lat } = marker || {};
 
   const isAfterLastFiveMinutes = dayjs(paidDate).isAfter(
     dayjs().subtract(0.5, 'minute')
@@ -102,7 +102,9 @@ const Page = () => {
             {marker && (
               <div className="col-12 pt-3">
                 <small className="text-mid-gray">GPS координат</small>
-                <big className="block">{lng}, {lat}</big>
+                <big className="block">
+                  {lng}, {lat}
+                </big>
               </div>
             )}
             {description && (
