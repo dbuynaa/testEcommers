@@ -10,8 +10,7 @@ import Storepay from './Storepay';
 import TechLeasing from './Techleasing';
 
 const Actions = () => {
-  const { name, unitPrice, attachment, _id } = useDetailContext();
-  const remainder = 10;
+  const { name, unitPrice, attachment, _id, remainder } = useDetailContext();
   const [count, setCount] = useState<number>(1);
   const [buy, setBuy] = useState(false);
   const cart = useItems();
