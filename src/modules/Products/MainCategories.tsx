@@ -3,6 +3,7 @@ import MainCategory from 'components/Products/MainCategory';
 type Category = {
   _id: string;
   name: string;
+  attachment: any;
   parentId: string;
 };
 const MainCategories = ({ mainCategories }) => {
@@ -18,6 +19,7 @@ const MainCategories = ({ mainCategories }) => {
             <MainCategory
               _id={_id}
               name={name}
+              attachment={''}
               subCategories={getSubCategories(_id)}
               key={_id}
             />

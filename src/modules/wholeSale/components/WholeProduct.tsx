@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import ProductSmallCard from './ProductSmallCard';
 import ProductBigCard from './ProductBigCard';
+import { useWholeSaleProductDetail } from 'modules/appContext';
 
 const WholeProduct = ({
   wholeProducts,
@@ -11,6 +12,7 @@ const WholeProduct = ({
   wholeSales: [];
   refetch: Function;
 }) => {
+  const { setWholeSaleProductDetail } = useWholeSaleProductDetail();
   const wholeData = useMemo(() => {
     let list = wholeProducts.map((wholeProduct: any) => {
       const wholeSale: any = wholeSales.find(
@@ -32,6 +34,7 @@ const WholeProduct = ({
   }, [wholeSales, wholeProducts]);
 
   console.log('WS', wholeData);
+  setWholeSaleProductDetail(null);
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -53,5 +56,3 @@ const WholeProduct = ({
 };
 
 export default WholeProduct;
-
-

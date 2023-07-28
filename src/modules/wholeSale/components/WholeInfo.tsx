@@ -7,10 +7,14 @@ import Rating from 'modules/Products/Rating';
 
 import WholeAction from './WholeAction';
 import { useDetailContext } from 'components/ProductDetail/Context';
+import { useWholeSaleProductDetail } from 'modules/appContext';
 
 const WholeInfo = ({ productId }) => {
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { name, code, unitPrice, remainder } = useDetailContext();
+  const { name, code, unitPrice} = useDetailContext();
+   const {...store }= useWholeSaleProductDetail() 
+
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
 

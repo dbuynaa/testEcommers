@@ -3,35 +3,30 @@ import Context from 'components/ProductDetail/Context';
 import ImageGallery from 'components/ProductDetail/Images';
 
 import LastViewedItems from 'modules/Products/LastViewedItems';
+import { useWholeSaleProductDetail } from 'modules/appContext';
+// import WholeInfo from 'modules/wholeSale/components/WholeInfo';
 import WholeInfoContainer from 'modules/wholeSale/containers/WholeInfo';
 import WholeProductDetailContainer from 'modules/wholeSale/containers/WholeProductDetail';
-import { useRouter } from 'next/router';
 
 // import { useRouter } from 'next/router';
 
-const Detail = ({ wholeData }: { wholeData: any }) => {
-  console.log('props WholeData', wholeData);
-  const { query } = useRouter();
-  console.log(query.id);
-  // const url = useRouter();
-
-  // console.log(url);
-
-  // const data = JSON.parse(url.query.data as string);
-  // const productId = data?.productDetail?.endDate?._id; // Adding a check for null/undefined
-
+const Detail = () => {
+  const { wholeSaleProductDetail } = useWholeSaleProductDetail();
+  console.log('wholeSaleProductDetail', wholeSaleProductDetail);
   return (
     <div className="mt-7">
       <Context>
         <div className="container prDtl ">
           <Breadcrumb />
-          <h2>{wholeData?.productDetail?.name}</h2>
-          <WholeProductDetailContainer  />
+          {/* <WholeInfo productId={productId} /> */}
+          <WholeProductDetailContainer />
           <div className="row pb-4">
             <div className="col-12 col-md-6">
               <ImageGallery />
             </div>
-            <WholeInfoContainer id={query && query.id} />
+            {/* wholeSaleProductDetail dotor pricing detail iin medeelel bga teriigee WholeInfoContainer ruu damjuulna */}
+
+            <WholeInfoContainer/>
           </div>
         </div>
 

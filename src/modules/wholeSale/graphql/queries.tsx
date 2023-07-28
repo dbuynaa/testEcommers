@@ -7,8 +7,8 @@ const commonFields = `
 
 `;
 export const getPricingPlans = gql`
-  query PricingPlans($status: String) {
-    pricingPlans(status: $status) {
+  query PricingPlans($status: String, $productId: String) {
+    pricingPlans(status: $status, productId: $productId) {
       status
       name
       _id

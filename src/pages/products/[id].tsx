@@ -19,8 +19,6 @@ import { readFile } from 'utils';
 import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
 import LastViewedItems from 'modules/Products/LastViewedItems';
 
-
-
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
 
