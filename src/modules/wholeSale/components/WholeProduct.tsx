@@ -29,12 +29,13 @@ const WholeProduct = ({
 
     return {
       first,
-      list: [...list, ...list, ...list]
+      list: [...list]
     };
   }, [wholeSales, wholeProducts]);
 
   console.log('WS', wholeData);
-  setWholeSaleProductDetail(null);
+  setWholeSaleProductDetail(wholeData);
+  console.log('setWholeSaleProduct======', setWholeSaleProductDetail);
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5 ">

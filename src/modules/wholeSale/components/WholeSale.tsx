@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
-import WholeProductContainer from "../containers/WholeProduct";
+import React, { useMemo } from 'react';
+import WholeProductContainer from '../containers/WholeProduct';
 
-const WholeSale = ({ wholeSales }: any) => {
+const WholeSale = ({ wholeSales, productId }: any) => {
+  console.log('whooooooo===========', wholeSales);
   const products = useMemo(() => {
     let returnVal: any = [];
     wholeSales?.map((el: any) => {
@@ -11,7 +12,7 @@ const WholeSale = ({ wholeSales }: any) => {
   }, [wholeSales]);
 
   return (
-    <div className="container flex ">
+    <div className="container flex">
       <WholeProductContainer productIds={products} wholeSales={wholeSales} />
     </div>
   );

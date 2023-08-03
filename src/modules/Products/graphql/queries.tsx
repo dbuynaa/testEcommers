@@ -34,31 +34,32 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
 `;
 
 const productPricingPlans = gql`
-  query PricingPlans($status: String) {
-    pricingPlans(status: $status) {
+  query PricingPlans($status: String, $productId: String, $findOne: Boolean) {
+    pricingPlans(status: $status, productId: $productId, findOne: $findOne) {
       _id
       name
       status
       type
       value
       products
-      categories
       productsBundle
+      categories
       startDate
       endDate
       quantityRules {
         type
         value
-        discountValue
         discountType
+        discountValue
+        discountBonusProduct
       }
       priceRules {
         type
         value
         discountType
         discountValue
+        discountBonusProduct
       }
-      createdAt
     }
   }
 `;
@@ -100,7 +101,6 @@ const productDetail = gql`
       description
       name
       remainder
-      sku
       tagIds
       type
       unitPrice

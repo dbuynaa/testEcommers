@@ -4,18 +4,20 @@ import { getPricingPlans } from '../graphql/queries';
 import Loading from 'ui/Loading';
 import WholeSale from '../components/WholeSale';
 
-const WholeSaleContainer = () => {
+const WholeSaleContainer = ({ productId }) => {
   const { data, loading, refetch } = useQuery(getPricingPlans, {
     variables: {
-      status: 'active'
+      status: 'active',
+      productId: productId,
+      findOne: false
     }
   });
 
   if (loading) return <Loading />;
 
-  console.log('data', data);
+  console.log('dataaa', data);
 
-  const wholeSales = data.pricingPlans || []; //=> [{},{}]
+  const wholeSales = data?.pricingPlans || []; 
 
   return <WholeSale wholeSales={wholeSales} refetch={refetch} />;
 };

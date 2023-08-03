@@ -9,13 +9,11 @@ import WholeAction from './WholeAction';
 import { useDetailContext } from 'components/ProductDetail/Context';
 import { useWholeSaleProductDetail } from 'modules/appContext';
 
-const WholeInfo = ({ productId }) => {
-
+const WholeInfo = ({productId }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { name, code, unitPrice} = useDetailContext();
-   const {...store }= useWholeSaleProductDetail() 
-
-
+  const { name, code, unitPrice } = useDetailContext();
+  const {wholeSaleProductDetail} = useWholeSaleProductDetail();
+  console.log('useWholeSaleProductDetail', wholeSaleProductDetail);
   // eslint-disable-next-line react-hooks/rules-of-hooks
 
   const isNameLong = name.length > 25;

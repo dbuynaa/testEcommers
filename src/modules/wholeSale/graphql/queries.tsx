@@ -7,8 +7,8 @@ const commonFields = `
 
 `;
 export const getPricingPlans = gql`
-  query PricingPlans($status: String, $productId: String) {
-    pricingPlans(status: $status, productId: $productId) {
+  query PricingPlans($status: String, $productId: String, $findOne: Boolean) {
+    pricingPlans(status: $status, productId: $productId, findOne: $findOne) {
       status
       name
       _id

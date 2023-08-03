@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
-import { createContext, useContextSelector } from "use-context-selector";
-import { getLocal, setLocal } from "utils";
-import type { ICartItem, IOrder } from "./types";
+import { useCallback, useState } from 'react';
+import { createContext, useContextSelector } from 'use-context-selector';
+import { getLocal, setLocal } from 'utils';
+import type { ICartItem, IOrder } from './types';
 
 export interface State {
   cart: ICartItem[];
@@ -24,22 +24,22 @@ export interface State {
   wholeSaleProductDetail: any;
   setWholeSaleProductDetail: (wholeSaleProductDetail: any) => void;
   setCart: (cart: ICartItem[]) => void;
-  setCurrentUser: (user: State["currentUser"]) => void;
+  setCurrentUser: (user: State['currentUser']) => void;
   setLoadingCurrentUser: (loading: boolean) => void;
-  setCurrentOrder: (order: State["currentOrder"]) => void;
-  setConfig: (config: State["config"]) => void;
+  setCurrentOrder: (order: State['currentOrder']) => void;
+  setConfig: (config: State['config']) => void;
   setLoadingCurrentOrder: (loading: boolean) => void;
 }
 
 const useStore = () => {
-  const [cart, setCart] = useState<ICartItem[]>(getLocal("cart") || []);
-  const [currentUser, setCurrentUser] = useState<State["currentUser"]>(null);
+  const [cart, setCart] = useState<ICartItem[]>(getLocal('cart') || []);
+  const [currentUser, setCurrentUser] = useState<State['currentUser']>(null);
   const [loadingCurrentUser, setLoadingCurrentUser] =
-    useState<State["loadingCurrentUser"]>(true);
-  const [currentOrder, setCurrentOrder] = useState<State["currentOrder"]>(null);
+    useState<State['loadingCurrentUser']>(true);
+  const [currentOrder, setCurrentOrder] = useState<State['currentOrder']>(null);
   const [loadingCurrentOrder, setLoadingCurrentOrder] =
-    useState<State["loadingCurrentOrder"]>(true);
-  const [config, setConfig] = useState<State["config"]>(null);
+    useState<State['loadingCurrentOrder']>(true);
+  const [config, setConfig] = useState<State['config']>(null);
   const [wholeSaleProductDetail, setWholeSaleProductDetail] =
     useState<any>(null);
 
@@ -56,10 +56,10 @@ const useStore = () => {
     }, []),
     setCart: useCallback((cart: ICartItem[]) => {
       setCart(cart);
-      setLocal("cart", cart);
+      setLocal('cart', cart);
     }, []),
     setCurrentUser: useCallback(
-      (user: State["currentUser"]) => setCurrentUser(user),
+      (user: State['currentUser']) => setCurrentUser(user),
       []
     ),
     setLoadingCurrentUser: useCallback(
@@ -67,14 +67,14 @@ const useStore = () => {
       []
     ),
     setCurrentOrder: useCallback(
-      (order: State["currentOrder"]) => setCurrentOrder(order),
+      (order: State['currentOrder']) => setCurrentOrder(order),
       []
     ),
-    setConfig: useCallback((config: State["config"]) => setConfig(config), []),
+    setConfig: useCallback((config: State['config']) => setConfig(config), []),
     setLoadingCurrentOrder: useCallback(
       (loading: boolean) => setLoadingCurrentOrder(loading),
       []
-    ),
+    )
   };
 };
 
@@ -84,7 +84,7 @@ export const StoreContext = createContext<State & { categories: any }>(
 
 export const StoreProvider = ({
   categories,
-  children,
+  children
 }: {
   categories: any;
   children: React.ReactNode;
@@ -124,7 +124,7 @@ export const useCurrentUser = () => {
     currentUser,
     setCurrentUser,
     loadingCurrentUser,
-    setLoadingCurrentUser,
+    setLoadingCurrentUser
   };
 };
 
@@ -149,7 +149,7 @@ export const useCurrentOrder = () => {
     currentOrder,
     setCurrentOrder,
     loadingCurrentOrder,
-    setLoadingCurrentOrder,
+    setLoadingCurrentOrder
   };
 };
 
@@ -176,6 +176,7 @@ export const useWholeSaleProductDetail = () => {
     StoreContext,
     (store) => store.wholeSaleProductDetail
   );
+  console.log('wholeSaleProductDetail', wholeSaleProductDetail);
 
   const setWholeSaleProductDetail = useContextSelector(
     StoreContext,

@@ -13,6 +13,8 @@ import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
 import Latest from 'components/home/Latest';
+import SaleProduct from 'modules/Products/SaleProduct';
+// import Sale from 'components/SaleProduct';
 
 // import LastViewedItems from 'modules/Products/LastViewedItems';
 
@@ -31,7 +33,7 @@ const Home = ({
       <CategorySlider bannerCats={bannerCats} />
       <Banner imgBanners={imgBanners} />
       <Latest />
-      {/* <SaleProduct /> */}
+      <SaleProduct productId={''} />
       <SliderBanner sliderBanners={sliderBanners} />
       {/* <LastViewedItems /> */}
     </div>

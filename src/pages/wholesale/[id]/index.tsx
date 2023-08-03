@@ -4,13 +4,11 @@ import ImageGallery from 'components/ProductDetail/Images';
 
 import LastViewedItems from 'modules/Products/LastViewedItems';
 import { useWholeSaleProductDetail } from 'modules/appContext';
-// import WholeInfo from 'modules/wholeSale/components/WholeInfo';
 import WholeInfoContainer from 'modules/wholeSale/containers/WholeInfo';
-import WholeProductDetailContainer from 'modules/wholeSale/containers/WholeProductDetail';
 
 // import { useRouter } from 'next/router';
 
-const Detail = () => {
+const Detail = ({ productId }) => {
   const { wholeSaleProductDetail } = useWholeSaleProductDetail();
   console.log('wholeSaleProductDetail', wholeSaleProductDetail);
   return (
@@ -19,14 +17,14 @@ const Detail = () => {
         <div className="container prDtl ">
           <Breadcrumb />
           {/* <WholeInfo productId={productId} /> */}
-          <WholeProductDetailContainer />
+
           <div className="row pb-4">
             <div className="col-12 col-md-6">
               <ImageGallery />
             </div>
             {/* wholeSaleProductDetail dotor pricing detail iin medeelel bga teriigee WholeInfoContainer ruu damjuulna */}
 
-            <WholeInfoContainer/>
+            <WholeInfoContainer />
           </div>
         </div>
 

@@ -1,12 +1,12 @@
 // import Link from 'next/link';
 import MainCategory from 'components/Products/MainCategory';
+
 type Category = {
   _id: string;
   name: string;
-  attachment: any;
   parentId: string;
 };
-const MainCategories = ({ mainCategories }) => {
+const MainCategories = ({ mainCategories, productId }) => {
   const getSubCategories = (id) =>
     mainCategories.filter((a) => a.parentId === id);
 
@@ -19,12 +19,14 @@ const MainCategories = ({ mainCategories }) => {
             <MainCategory
               _id={_id}
               name={name}
-              attachment={''}
               subCategories={getSubCategories(_id)}
               key={_id}
+              attachment={''}
+              category={''}
             />
           ))}
       </div>
+
     </div>
   );
 };

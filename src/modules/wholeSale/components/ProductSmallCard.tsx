@@ -18,14 +18,14 @@ const ProductSmallCard = ({ wholeProduct, isFirst, onComplete }) => {
   const disPrice = wholeProduct.unitPrice;
   const salePrice = disPrice - (disPrice * hi) / 100;
 
-  const goto = () => {
+  const goTo = () => {
     setWholeSaleProductDetail(wholeProduct);
-    router.push(`/wholesale/${wholeProduct._id}`);
+    router.push(`/products/${wholeProduct._id}?wholesale=true`);
   };
 
   return (
     <div key={wholeProduct._id} className="relative flex h-[400px] w-[350px] ">
-      <Button href={`/wholesale/${wholeProduct._id}`} onClick={goto}>
+      <Button onClick={goTo}>
         <Image
           src={readFile((wholeProduct.attachment || {}).url)}
           className={`${
