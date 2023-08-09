@@ -20,8 +20,8 @@ query PoscProductCategories($perPage: Int, $excludeEmpty: Boolean, $parentId: St
 `;
 
 const products = gql`
-query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue: String, $sortDirection: Int, $sortField: String){ 
-  poscProducts(categoryId: $categoryId, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField) {
+query poscProducts($categoryId: String, $tag: String, $page: Int, $perPage: Int, $searchValue: String, $sortDirection: Int, $sortField: String){ 
+  poscProducts(categoryId: $categoryId, tag: $tag, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField) {
       ${commonFields}
       unitPrice
       remainder
@@ -64,16 +64,8 @@ const productPricingPlans = gql`
   }
 `;
 const productsCount = gql`
-  query productsCount(
-    $categoryId: String
-    $type: String
-    $searchValue: String
-  ) {
-    poscProductsTotalCount(
-      categoryId: $categoryId
-      type: $type
-      searchValue: $searchValue
-    )
+  query productsCount($categoryId: String, $type: String, $searchValue: String) {
+    poscProductsTotalCount(categoryId: $categoryId, type: $type, searchValue: $searchValue)
   }
 `;
 
@@ -226,7 +218,7 @@ const queries = {
   productDetailMeta,
   getLastProductView,
   getProductAverageReview,
-  getProductReviews
+  getProductReviews,
 };
 
 export default queries;

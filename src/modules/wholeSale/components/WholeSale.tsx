@@ -11,6 +11,7 @@ const WholeSale = ({ wholeSales }: any) => {
     return returnVal;
   }, [wholeSales]);
 
+  console.log(wholeSales, 'wholsesales');
   return (
     <div className="container flex">
       <WholeProductContainer productIds={products} wholeSales={wholeSales} />

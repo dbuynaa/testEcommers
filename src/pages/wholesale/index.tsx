@@ -8,13 +8,14 @@ import WholeBanner from 'modules/wholeSale/components/WholeBanner';
 import WholeSaleContainer from 'modules/wholeSale/containers/WholeSale';
 
 const Wholesale = ({ imgBanners, productId }) => {
+  console.log(productId, 'pppp');
   return (
     <div className="flex flex-col wholesale container">
       <div className="flex ">
         <WholeBanner imgBanners={imgBanners} />
       </div>
-      <div className="container my-3 my-md-4 ">
-        <h5 className="text-blue mb-2">Ширхэг барааг ч бөөний үнээр</h5>
+      <div className="my-3 my-md-4 ">
+        <h5 className="text-blue mb-2 text-center">Ширхэг барааг ч бөөний үнээр</h5>
       </div>
       <WholeSaleContainer productId={productId} />
       <div className="pt-5 pb-5">
@@ -32,7 +33,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      imgBanners
-    }
+      imgBanners,
+    },
   };
 };

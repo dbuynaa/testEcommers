@@ -22,37 +22,27 @@ const useGetProducts = ({
     searchValue,
   };
 
-  const [getProducts, { data, loading, fetchMore }] = useLazyQuery(
-    queries.products,
-    {
-      variables: {
-        ...commonVariables,
-        sortField,
-        sortDirection,
-        perPage,
-        page: 1,
-      },
-    }
-  );
+  const [getProducts, { data, loading, fetchMore }] = useLazyQuery(queries.products, {
+    variables: {
+      ...commonVariables,
+      sortField,
+      sortDirection,
+      perPage,
+      page: 1,
+      tag: 'DqqxcTxkf6FQzgiTE',
+    },
+  });
 
-  const [getProductsCount, productsCountQuery] = useLazyQuery(
-    queries.productsCount,
-    {
-      variables: commonVariables,
-      onCompleted(data) {
-        const productsCount = (data || {}).poscProductsTotalCount || 0;
-        onCountCompleted && onCountCompleted(productsCount);
-      },
-    }
-  );
-  
+  const [getProductsCount, productsCountQuery] = useLazyQuery(queries.productsCount, {
+    variables: commonVariables,
+    onCompleted(data) {
+      const productsCount = (data || {}).poscProductsTotalCount || 0;
+      onCountCompleted && onCountCompleted(productsCount);
+    },
+  });
 
-
-
-  
   const products = (data || {}).poscProducts || [];
-  const productsCount =
-    (productsCountQuery.data || {}).poscProductsTotalCount || 0;
+  const productsCount = (productsCountQuery.data || {}).poscProductsTotalCount || 0;
 
   const handleLoadMore = () => {
     if (productsCount > products.length) {
@@ -64,10 +54,7 @@ const useGetProducts = ({
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
           return Object.assign({}, prev, {
-            poscProducts: [
-              ...(prev.poscProducts || []),
-              ...fetchMoreResult.poscProducts,
-            ],
+            poscProducts: [...(prev.poscProducts || []), ...fetchMoreResult.poscProducts],
           });
         },
       });

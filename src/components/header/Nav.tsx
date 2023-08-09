@@ -10,13 +10,13 @@ const Nav = () => {
         Бөөндий
       </NavLink>
 
-      <NavLink href="/trade-in" className="mx-2">
+      {/* <NavLink href="/trade-in" className="mx-2">
         Бренд
-      </NavLink>
+      </NavLink> */}
       <NavLink href="/news" className="ms-2">
         Мэдээлэл
       </NavLink>
-      <NavLink href='/leasingForm' className="ms-2">
+      <NavLink href="/leasing-form" className="ms-2">
         Зээлээр авах
       </NavLink>
     </nav>
