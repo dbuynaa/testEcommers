@@ -13,10 +13,8 @@ import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
 import Latest from 'components/home/Latest';
-import SaleProduct from 'modules/Products/SaleProduct';
-// import Sale from 'components/SaleProduct';
+import Sale from 'components/home/Sale';
 
-// import LastViewedItems from 'modules/Products/LastViewedItems';
 
 const Home = ({
   ftItems,
@@ -32,8 +30,8 @@ const Home = ({
       <FeaturedCategories ftCats={ftCats} />
       <CategorySlider bannerCats={bannerCats} />
       <Banner imgBanners={imgBanners} />
+      <Sale />
       <Latest />
-      <SaleProduct productId={''} />
       <SliderBanner sliderBanners={sliderBanners} />
       {/* <LastViewedItems /> */}
     </div>

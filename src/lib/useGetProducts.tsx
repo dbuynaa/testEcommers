@@ -45,7 +45,11 @@ const useGetProducts = ({
       },
     }
   );
+  
 
+
+
+  
   const products = (data || {}).poscProducts || [];
   const productsCount =
     (productsCountQuery.data || {}).poscProductsTotalCount || 0;

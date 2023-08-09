@@ -33,13 +33,11 @@ const WholeProduct = ({
     };
   }, [wholeSales, wholeProducts]);
 
-  console.log('WS', wholeData);
   setWholeSaleProductDetail(wholeData);
-  console.log('setWholeSaleProduct======', setWholeSaleProductDetail);
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5 ">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 grid-rows-3 gap-5">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 grid-rows-3">
         {wholeData?.list?.map((wholeProduct: any, index: number) => (
           <ProductSmallCard
             key={index}
@@ -49,7 +47,7 @@ const WholeProduct = ({
           />
         ))}
       </div>
-      <div className=" sm:w-auto h-auto md:h-full w-full flex gap-10">
+      <div className=" sm:w-auto h-auto md: flex gap-10 ">
         <ProductBigCard wholeProduct={wholeData.first} onComplete={refetch} />
       </div>
     </div>

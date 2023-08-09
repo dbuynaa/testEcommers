@@ -10,35 +10,37 @@ const ProductBigCard = ({ wholeProduct, onComplete }) => {
   );
 
   return (
-    <div
-      key={wholeProduct._id}
-      className="relative flex sm:w-auto h-auto md:w-full"
-    >
+    <div key={wholeProduct._id}>
       <Link
         href={{
-          pathname: `/products/[id]`,
+          pathname: `/products/${wholeProduct._id}?wholesale=true`,
           query: {
             data: JSON.stringify(wholeProduct)
           }
         }}
-        as={`/product/${encodeURIComponent(wholeProduct._id)}`}
+        as={`/products/${encodeURIComponent(wholeProduct._id)}?wholesale=true`}
       >
         <Image
           src={readFile((wholeProduct.attachment || {}).url)}
-          className={`${!isFinished ? 'w-96 h-96 object-cover' : ''}  `}
+          className={`${
+            !isFinished
+              ? 'w-full h-96 origin-top-left rotate-90 rounded-3xl object-fit  px-80 py-9'
+              : ''
+          } `}
           fill={false}
           alt="name"
         />
 
-        <div className="timer-wrapper text-white ">
-          <p className="text-[40px] flex justify-center">Дуусах хугацаа</p>
-          <p className="flex text-4xl text-center pl-16 pt-1">
-            {' '}
-            Өдөр : Цаг : Минут : Секунд
-          </p>
-          <p className="flex   absolute pt-[10px] text-[90px] justify-center items-center z-10 pl-24">
-            {isFinished ? 'Timer Finished' : countDown}
-          </p>
+        <div className=" w-60 h-60 px-80 py-9 bg-gradient-to-r from-blue-900 to-indigo-800 rounded-tl-full rounded-tr-full rounded-bl-3xl rounded-br-3xl justify-center items-center inline-flex">
+          <div className="self-stretch flex-col justify-start items-center inline-flex ">
+            <div className="text-white text-3xl font-bold leading-10 tracking-tight  ">
+              Дуусах хугацаа
+            </div>
+
+            <div className=" text-white text-opacity-95 text-8xl font-extrabold">
+              {isFinished ? 'Timer Finished' : countDown}
+            </div>
+          </div>
         </div>
       </Link>
     </div>
@@ -46,3 +48,6 @@ const ProductBigCard = ({ wholeProduct, onComplete }) => {
 };
 
 export default ProductBigCard;
+function setWholeSaleProductDetail(wholeProduct: any) {
+  throw new Error('Function not implemented.');
+}

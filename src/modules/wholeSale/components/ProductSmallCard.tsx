@@ -24,25 +24,26 @@ const ProductSmallCard = ({ wholeProduct, isFirst, onComplete }) => {
   };
 
   return (
-    <div key={wholeProduct._id} className="relative flex h-[400px] w-[350px] ">
-      <Button onClick={goTo}>
-        <Image
-          src={readFile((wholeProduct.attachment || {}).url)}
-          className={`${
-            isFirst && !isFinished ? 'object-cover' : ''
-          } hover:scale-105 transition duration-100 cursor-pointer ease-in`}
-          fill={false}
-          alt="name"
-        />
-
-        <p className="flex pl-40 text-lg text-gray-400 pb-72 ">
+    <div key={wholeProduct._id} className="relative flex group ">
+      <Button onClick={goTo} className="flex flex-col gap-4 ">
+        <p className="self-end text-lg text-gray-400 ">
           {isFinished ? 'Timer Finished' : countDown}
         </p>
-
-        <div className="flex flex-col pt-64 items-center pl-5 absolute ">
-          <span className="pb-1 pt-5 text-black">{wholeProduct.name}</span>
-          <div className="flex gap-10 text-center text-[10 px]">
-            {' '}
+        <div className="relative object-cover rounded-3lg">
+          <Image
+            src={readFile((wholeProduct.attachment || {}).url)}
+            className={`${
+              isFirst && !isFinished ? 'object-cover' : ''
+            } group-hover:scale-105 transition duration-100 cursor-pointer ease-in w-fit h-fit object-cover `}
+            fill
+            width={400}
+            height={400}
+            alt="name"
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-black">{wholeProduct.name}</span>
+          <div className="flex gap-5 text-center">
             <span className=" text-black line-through">
               {wholeProduct.unitPrice}
             </span>

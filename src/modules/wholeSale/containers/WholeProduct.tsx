@@ -3,12 +3,10 @@ import { useQuery } from '@apollo/client';
 import WholeProduct from '../components/WholeProduct';
 import { getProducts } from '../graphql/queries';
 
-
-const WholeProductContainer = ({ productIds, wholeSales }) => {
+const WholeProductContainer = ({ productIds = [], wholeSales }) => {
   const { loading, error, data, refetch } = useQuery(getProducts, {
     variables: {
-      ids:productIds
-      
+      ids: productIds
     }
   });
 
@@ -17,7 +15,6 @@ const WholeProductContainer = ({ productIds, wholeSales }) => {
   if (error) return <div>Error</div>;
 
   const wholeProducts = data.poscProducts || [];
-
 
   return (
     <WholeProduct

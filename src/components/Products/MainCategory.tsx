@@ -1,8 +1,5 @@
 import clsx from 'clsx';
 import NavProductsContainer from 'modules/Products/NavProducts';
-// import NavProductsContainer from 'modules/Products/NavProducts';
-// import NavProductsContainer from 'modules/Products/NavProducts';
-
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -20,14 +17,14 @@ const MainCategory = ({
   const router = useRouter();
   const { category, sub } = router.query;
   const [hover, setHover] = useState('');
-  const [hoverSide, setHoverSide] = useState('');
 
-  const handleHover = (side: any) => {
-    setHoverSide(side);
+  const hovering = (id) => {
+    console.log(id);
+    setHover(id);
   };
 
   return (
-    <div className=" flex md:flex-col relative group">
+    <div className="container group ">
       <Link
         key={_id}
         href={{ pathname: '/products', query: { category: _id } }}
@@ -35,35 +32,48 @@ const MainCategory = ({
           '-active': category === _id
         })}
       >
-        <div className="md:flex group-hover:flex bg-bgprimary text-xs laptop:text-[15px]">
+        <div className="md:flex items-center justify-center gap-3 group-hover:flex bg-bgprimary text-xs laptop:text-[15px] pt-3 hover:text-yellow-400">
           {name}
         </div>
       </Link>
-      {!!subCategories?.length && (
-        <div className="relative w-full">
-          <div className="absolute min-w-full flex-col hidden group-hover:flex bg-bgprimary text-xs p-1 ">
-            {subCategories?.map((sub: any) => (
-              <Link
-                key={sub._id}
-                href={{
-                  pathname: '/products',
-                  query: { category: _id, sub: sub._id }
-                }}
-              >
-                <span
-                  className="px-3 py-2 text-white hover:underline w-full flex justify-between group relative"
-                  onMouseOver={() => setHover(sub._id)}
-                >
-                  {sub.name}
-                </span>
-              </Link>
-            ))}
-            <div className="absolute top-0 left-full z-20 group-hover:flex hidden w-[800px] h-60 bg-green-200">
+
+      <div className="">
+        {!!subCategories?.length && (
+          <div className="absolute w-screen top-12 left-7 flex-row hidden group-hover:flex bg-bgprimary text-xs p-1">
+            <div className="flex flex-col">
+              {subCategories &&
+                subCategories?.map((sub: any) => (
+                  <>
+                    <Link
+                      key={sub._id}
+                      href={{
+                        pathname: '/products',
+                        query: { category: _id, sub: sub._id }
+                      }}
+                      legacyBehavior
+                    >
+                      <a>
+                        <div className="w-48 h-16 pl-2 pt-2 bg-gray-700 flex-col justify-between items-start inline-flex">
+                          <div className="flex-col justify-center items-center flex">
+                            <div
+                              className="text-white hover:underline text-base font-bold leading-normal tracking-tight "
+                              onMouseOver={() => hovering(sub._id)}
+                            >
+                              {sub.name}
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </Link>
+                  </>
+                ))}
+            </div>
+            <div className="bg-bgprimary">
               <NavProductsContainer categoryId={hover} />
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

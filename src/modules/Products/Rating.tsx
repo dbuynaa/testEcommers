@@ -22,8 +22,6 @@ const Rating = ({ productId }: { productId: string }) => {
   useEffect(() => {
     console.log('dataaaa', data);
     if (data && data.getProductReviews) {
-      // const averageRating = half(data.productreview?.average);
-      // const averageRating = data.productreview?.average;
       const averageRating = data.getProductReviews.review;
       setRating(averageRating);
       console.log('averageRateing....', averageRating);

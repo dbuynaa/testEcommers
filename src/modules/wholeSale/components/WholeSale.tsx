@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import WholeProductContainer from '../containers/WholeProduct';
 
-const WholeSale = ({ wholeSales, productId }: any) => {
+const WholeSale = ({ wholeSales }: any) => {
   console.log('whooooooo===========', wholeSales);
   const products = useMemo(() => {
     let returnVal: any = [];

@@ -9,7 +9,7 @@ const NavProductsContainer = ({ categoryId }) => {
   const { loading, data, error } = useQuery(queries.products, {
     variables: {
       categoryId: categoryId,
-      perPage: 4,
+      perPage: 3,
       page: 1
     }
   });
@@ -17,6 +17,8 @@ const NavProductsContainer = ({ categoryId }) => {
   if (error) return <div>error()</div>;
 
   const navProducts = data.poscProducts || [];
+  console.log(navProducts, '<--');
+
   if (!(navProducts || []).length)
     return (
       <div className="row justify-center">
@@ -25,47 +27,30 @@ const NavProductsContainer = ({ categoryId }) => {
     );
 
   return (
-    <div>
-      {navProducts?.map((product: any) => {
-        return (
-          <>
-            <div
-              className="container relative text-black text-xs flex-col"
-              key={product._id}
-            >
-              <Image
-                src={readFile((product.attachment || {}).url || '')}
-                alt="pic"
-                sizes="50px"
-                contain
-                className="w-10 h-10"
-              />
-              <p>{product?.name}</p>
-              <p className="text-red-500 text-xs items-center">
-                {' '}
-                {product?.unitPrice}
-              </p>
+    <div className="container flex-row ">
+      {navProducts &&
+        navProducts?.map((product: any) => (
+          <div
+            className="flex-col justify-center items-center gap-5 inline-flex"
+            key={product._id}
+          >
+            <Image
+              className=" rounded-2xl"
+              src={readFile((product.attachment || {}).url || '')}
+              alt="pic"
+              width={150}
+              height={150}
+            />
+            <div className="flex-col justify-start items-center  flex">
+              <div className=" w-48 text-center text-white text-opacity-95 text-base font-normal leading-normal tracking-tight">
+                {product?.name}
+              </div>
+              <div className="text-yellow-400 text-xl font-bold leading-7 tracking-tight">
+                {product?.unitPrice}₮
+              </div>
             </div>
-            <div
-              className="container relative text-black text-xs flex-col"
-              key={product._id}
-            >
-              <Image
-                src={readFile((product.attachment || {}).url || '')}
-                alt="pic"
-                sizes="50px"
-                contain
-                className="w-10 h-10"
-              />
-              <p>{product?.name}</p>
-              <p className="text-red-500 text-xs items-center">
-                {' '}
-                {product?.unitPrice}
-              </p>
-            </div>
-          </>
-        );
-      })}
+          </div>
+        ))}
     </div>
   );
 };
