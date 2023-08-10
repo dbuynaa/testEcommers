@@ -89,8 +89,8 @@
   }
 }
 .countdown {
-  text-align: right;
-  margin-right: 1rem;
+  text-align: left;
+  margin-left: 1rem;
   color: #616e7c;
 }
 
@@ -115,4 +115,8 @@ h3.new-price {
   font-size: 14px;
   padding: 0.25rem 0.5rem;
   border-radius: 20px;
+}
+
+.product-sale-badge {
+  background: #ff3c38 !important;
 }
