@@ -60,8 +60,8 @@ const Page = () => {
 
   const { lng, lat } = marker || {};
 
-  const isAfterLastFiveMinutes = dayjs(paidDate).isAfter(
-    dayjs().subtract(0.5, 'minute')
+  const isAfter30s = dayjs(paidDate).isAfter(
+    dayjs().subtract(30, 'second')
   );
 
   return (
@@ -70,7 +70,7 @@ const Page = () => {
         <OrderStatus status={status} paidDate={paidDate} />
         <div className="row items-center py-3">
           {paidDate && <Ebarimt putResponses={putResponses} />}
-          {((status !== 'pending' && !paidDate) || isAfterLastFiveMinutes) && (
+          {((status !== 'pending' && !paidDate) || isAfter30s) && (
             <PaymentBtn orderDetail={orderDetail} refetch={refetch} />
           )}
           {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
