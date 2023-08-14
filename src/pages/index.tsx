@@ -1,36 +1,20 @@
 import FeaturedProducts from 'components/home/FeaturedProducts';
-import {
-  getGridBanners,
-  getFtCats,
-  sortPosts,
-  getBannerCats,
-  getImgBanner,
-  getSliderBanner,
-  getGridSliders
-} from 'lib/wp/posts';
+import { getGridBanners, getFtCats, sortPosts, getBannerCats, getImgBanner, getSliderBanner, getGridSliders } from 'lib/wp/posts';
 import FeaturedCategories from 'components/home/FeaturedCategories';
 import CategorySlider from 'components/home/CategorySlider';
 import Banner from 'components/home/Banner';
 import SliderBanner from 'components/home/Slider';
 import Latest from 'components/home/Latest';
-import Sale from 'components/home/Sale';
+// import Sale from 'components/home/Sale';
 
-
-const Home = ({
-  ftItems,
-  ftCats,
-  bannerCats,
-  imgBanners,
-  sliderBanners,
-  gridSliders
-}: any) => {
+const Home = ({ ftItems, ftCats, bannerCats, imgBanners, sliderBanners, gridSliders }: any) => {
   return (
     <div className="flex flex-col home pb-3">
       <FeaturedProducts ftItems={ftItems} gridSliders={gridSliders} />
       <FeaturedCategories ftCats={ftCats} />
       <CategorySlider bannerCats={bannerCats} />
       <Banner imgBanners={imgBanners} />
-      <Sale />
+      {/* <Sale /> */}
       <Latest />
       <SliderBanner sliderBanners={sliderBanners} />
       {/* <LastViewedItems /> */}
@@ -52,8 +36,8 @@ export const getStaticProps = async () => {
       sliderBanners: sortPosts(sliderBanners || []),
       bannerCats,
       imgBanners,
-      gridSliders: sortPosts(gridSliders || [])
-    }
+      gridSliders: sortPosts(gridSliders || []),
+    },
   };
 };
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
 import dayjs from 'dayjs';

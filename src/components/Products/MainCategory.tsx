@@ -35,24 +35,22 @@ const MainCategory = ({ _id, name, subCategories }: { _id: string; name: string;
               <div className="nav-left-sidebar">
                 {subCategories &&
                   subCategories?.map((sub: any) => (
-                    <>
-                      <Link
-                        style={{ display: 'inherit' }}
-                        key={sub._id}
-                        href={{
-                          pathname: '/products',
-                          query: { category: _id, sub: sub._id },
-                        }}
-                      >
-                        <div className="pl-2 pt-2 flex-col justify-between items-start inline-flex">
-                          <div className="flex-col justify-center items-center flex">
-                            <div className="side-link" onMouseOver={() => handleHover(sub._id)}>
-                              {sub.name}
-                            </div>
+                    <Link
+                      style={{ display: 'inherit' }}
+                      key={sub._id}
+                      href={{
+                        pathname: '/products',
+                        query: { category: _id, sub: sub._id },
+                      }}
+                    >
+                      <div className="pl-2 pt-2 flex-col justify-between items-start inline-flex">
+                        <div className="flex-col justify-center items-center flex">
+                          <div className="side-link" onMouseOver={() => handleHover(sub._id)}>
+                            {sub.name}
                           </div>
                         </div>
-                      </Link>
-                    </>
+                      </div>
+                    </Link>
                   ))}
               </div>
               <div className="nav-right-sidebar">

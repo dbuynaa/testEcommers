@@ -1,5 +1,4 @@
-// import Image from 'ui/Image';
-import Image from 'next/image';
+import Image from 'ui/Image';
 import { readFile } from 'utils';
 import Link from 'next/link';
 import useCountDownTimer from 'lib/useCountDownHook';
