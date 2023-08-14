@@ -5,16 +5,57 @@ import { useCurrentUser } from 'modules/appContext';
 import Link from 'next/link';
 import clsx from 'clsx';
 import ProductsSkeleton from 'components/Products/Skeleton';
-import { AnimatePresence, motion } from 'framer-motion';
-import Product, { PRODUCT_WRAPPER_CLASS } from 'components/Products/Product';
 
-const LastViewedItems = () => {
+import Product from 'components/Products/Product';
+import Slider from 'ui/Slider';
+const LastViewedItems = ({
+  category,
+  slidesToShow = 5,
+  slidesToScroll = 4,
+  className,
+  head,
+  infinite = true,
+  except
+}: {
+  category: string;
+  slidesToShow?: number;
+  slidesToScroll?: number;
+  className?: string;
+  head?: React.ReactNode;
+  except?: string[];
+  infinite?: boolean;
+}) => {
+  const changedSettings = {
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll - 1,
+    dots: false,
+    infinite,
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: slidesToShow - 1,
+          slidesToScroll: slidesToShow - 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          swipeToSlide: true,
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
   const { currentUser } = useCurrentUser();
   const { data, loading } = useQuery(queries.getLastProductView, {
     variables: {
       limit: 10,
-      customerId: currentUser?.erxesCustomerId,
-      createdAd:'createdAt '
+      customerId: currentUser?.erxesCustomerId
     },
     skip: !currentUser?.erxesCustomerId
   });
@@ -29,21 +70,13 @@ const LastViewedItems = () => {
         <h5> Сүүлд үзсэн бүтээгдэхүүн</h5>
       </div>
       <Link href={{ pathname: 'Wholesale' }}>
-        <div className="order-[100] flex gap-10 item-center ">
+        <Slider {...changedSettings} className={clsx('-slider', className)}>
           {lastSeen?.map((el: any) => (
-            <AnimatePresence key={el._id}>
-              <motion.div
-                className={clsx(PRODUCT_WRAPPER_CLASS, 'relative')}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10, width: 0 }}
-              >
-                <Product {...el?.product} />
-              </motion.div>
-            </AnimatePresence>
-        
+            <div key={el._id}>
+              <Product {...el?.product} />
+            </div>
           )) || <div>No items</div>}
-        </div>
+        </Slider>
       </Link>
     </div>
   );

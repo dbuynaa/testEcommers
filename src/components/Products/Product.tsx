@@ -4,7 +4,6 @@ import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
 import dayjs from 'dayjs';
 
-
 const Product = ({
   _id,
   name,
@@ -13,7 +12,7 @@ const Product = ({
   attachment,
   createdAt,
   wrapped,
-  children
+  children,
 }: IProduct & {
   onClick?: () => void;
   attachment: { url: string };
@@ -26,11 +25,7 @@ const Product = ({
   const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   const render = () => (
-    <Link
-      className="product text-center "
-      href={{ pathname: '/products/[id]', query: { id: _id } }}
-      onClick={onClick}
-    >
+    <Link className="product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
       <div className="img-wrap">
         <Image
           src={readFile((attachment || {}).url || '')}
@@ -42,11 +37,9 @@ const Product = ({
         />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
-  
+
       <div className="product-price">{price}</div>
-      {diffInDays < 60 && (
-        <small className="product-badge badge sbt">New</small>
-      )}
+      {diffInDays < 60 && <small className="product-badge badge sbt">New</small>}
     </Link>
   );
 

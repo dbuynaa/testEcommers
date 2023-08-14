@@ -80,7 +80,7 @@ const FormItem: FC<FormItemProps> = (props) => {
               )
             }
           >
-            {inputType === 'password' ? <EyeSlash /> : <Eye />}
+            {inputType === 'password' ? <EyeSlash /> : <Eye regular={undefined} />}
           </Button>
         )}
       </div>

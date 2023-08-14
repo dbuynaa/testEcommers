@@ -45,7 +45,7 @@ const Avatar = () => {
         open={open}
         onOpenChange={() => setOpen((prev) => !prev)}
       >
-        <AvatarUpload onSave={onAvatarUpload} />
+        <AvatarUpload onCancel={()=>setOpen(false)} onSave={onAvatarUpload} />
       </Modal>
     </>
   );

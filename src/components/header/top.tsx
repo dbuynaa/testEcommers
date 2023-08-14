@@ -19,9 +19,7 @@ const Top = ({ contact }) => {
         <Link href="/" className="text-xs">
           Tech Store-д тавтай морилно уу
         </Link>
-        <span className="text-xs text-[#febe0b]">
-          Монгол улсын аль ч хэсэгт хүргэнэ.
-        </span>
+
         <b className="flex justify-end gap-2 divide-x-2 divide-white">
           <div className="flex gap-2 px-2">
             <Link href={facebook} target="_blank">

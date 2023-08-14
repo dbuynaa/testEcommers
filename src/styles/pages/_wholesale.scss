@@ -17,3 +17,106 @@
     }
   }
 }
+
+.wholesale-big-card {
+  .wholesale-bg {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .caption {
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem;
+      border-radius: 50px 50px 16px 16px;
+      background: linear-gradient(109.33deg, #2b3b92 11.29%, #44529f 116.19%);
+      h5 {
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.whole-banner {
+  height: auto;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  img {
+    height: auto !important;
+  }
+}
+
+.wholesale-product {
+  box-shadow: 2px 2px 4px 0px #00000040;
+  transform: scale(1);
+  transition: 0.3s;
+  &:hover {
+    .img-wrapper {
+      img {
+        transform: scale(1.05);
+        transition: 0.3s;
+      }
+    }
+  }
+  .img-wrapper {
+    text-align: center;
+    img {
+      margin: 0 auto;
+      max-width: 250px;
+    }
+  }
+  .product-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .price {
+      font-size: 12px;
+      margin-right: 1rem;
+      text-decoration: line-through;
+    }
+    .sale-price {
+      color: #2b3b92;
+    }
+  }
+}
+.countdown {
+  text-align: left;
+  margin-left: 1rem;
+  color: #616e7c;
+}
+
+h4.old-price {
+  font-size: 20px;
+  text-decoration: line-through;
+  margin-right: 1rem;
+}
+
+h3.new-price {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ff3c38;
+}
+
+.wholesale-badge {
+  background: #ff3c38;
+  display: inline;
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+}
+
+.product-sale-badge {
+  background: #ff3c38 !important;
+}

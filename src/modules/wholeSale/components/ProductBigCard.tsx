@@ -2,10 +2,10 @@
 import Image from 'next/image';
 import { readFile } from 'utils';
 import Link from 'next/link';
-// import useCountDownTimer from '../../lib/useCountDownHook';
+import useCountDownTimer from 'lib/useCountDownHook';
 
 const ProductBigCard = ({ wholeProduct, onComplete }) => {
-  // const { isFinished, countDown } = useCountDownTimer(wholeProduct.endDate, onComplete);
+  const { isFinished, countDown } = useCountDownTimer(wholeProduct.endDate, onComplete);
   console.log(wholeProduct, 'whp');
   return (
     <div key={wholeProduct._id} className="wholesale-big-card">
@@ -23,10 +23,7 @@ const ProductBigCard = ({ wholeProduct, onComplete }) => {
           <Image src={readFile((wholeProduct.attachment || {}).url)} height={800} width={400} alt="name" />
           <div className="caption">
             <h5>Дуусах хугацаа</h5>
-            <h3>
-              <strong>05:13:27</strong>
-            </h3>
-            {/* <div className="wholesale-countdown">{isFinished ? 'Хугацаа дууссан' : countDown}</div> */}
+            <div className="wholesale-countdown">{isFinished ? 'Хугацаа дууссан' : countDown}</div>
           </div>
         </div>
         {/* 

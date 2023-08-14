@@ -21,17 +21,17 @@ const ErxesForm = ({
       form_id: formId,
       onAction: (data) => {
         onCompleted && onCompleted(data);
-      },
+      }
     });
 
     const id = 'erxes-script-' + formId;
 
     const script = document.createElement('script');
     script.id = id;
-    script.src =
-      'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
+    script.src = 'http://localhost:3200/build/formWidget.bundle.js';
+    // 'https://techstore.erxes.io/widgets/build/formWidget.bundle.js';
     script.async = true;
-    
+
     const entry = document.getElementsByTagName('script')[0];
     // @ts-ignore
     entry.parentNode.insertBefore(script, entry);

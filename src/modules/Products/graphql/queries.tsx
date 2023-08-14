@@ -20,8 +20,8 @@ query PoscProductCategories($perPage: Int, $excludeEmpty: Boolean, $parentId: St
 `;
 
 const products = gql`
-query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue: String, $sortDirection: Int, $sortField: String){ 
-  poscProducts(categoryId: $categoryId, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField) {
+query poscProducts($categoryId: String, $tag: String, $page: Int, $perPage: Int, $searchValue: String, $sortDirection: Int, $sortField: String){ 
+  poscProducts(categoryId: $categoryId, tag: $tag, page: $page, perPage: $perPage, searchValue: $searchValue, sortDirection: $sortDirection, sortField: $sortField) {
       ${commonFields}
       unitPrice
       remainder
@@ -32,17 +32,40 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
   }
 }
 `;
+
+const productPricingPlans = gql`
+  query PricingPlans($status: String, $productId: String, $findOne: Boolean) {
+    pricingPlans(status: $status, productId: $productId, findOne: $findOne) {
+      _id
+      name
+      status
+      type
+      value
+      products
+      productsBundle
+      categories
+      startDate
+      endDate
+      quantityRules {
+        type
+        value
+        discountType
+        discountValue
+        discountBonusProduct
+      }
+      priceRules {
+        type
+        value
+        discountType
+        discountValue
+        discountBonusProduct
+      }
+    }
+  }
+`;
 const productsCount = gql`
-  query productsCount(
-    $categoryId: String
-    $type: String
-    $searchValue: String
-  ) {
-    poscProductsTotalCount(
-      categoryId: $categoryId
-      type: $type
-      searchValue: $searchValue
-    )
+  query productsCount($categoryId: String, $type: String, $searchValue: String) {
+    poscProductsTotalCount(categoryId: $categoryId, type: $type, searchValue: $searchValue)
   }
 `;
 
@@ -70,7 +93,6 @@ const productDetail = gql`
       description
       name
       remainder
-      sku
       tagIds
       type
       unitPrice
@@ -163,11 +185,10 @@ const getLastProductView = gql`
 `;
 
 const getProductReviews = gql`
-  query Productreviews($productId: [String], $customerId: String) {
-    productreviews(productId: $productId, customerId: $customerId) {
+  query Productreviews($productIds: [String], $customerId: String) {
+    productreviews(productIds: $productIds, customerId: $customerId) {
       _id
       customerId
-      productId
       review
     }
   }
@@ -193,6 +214,7 @@ const queries = {
   wishlist,
   productDetailWithCustomFields,
   productIds,
+  productPricingPlans,
   productDetailMeta,
   getLastProductView,
   getProductAverageReview,

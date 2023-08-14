@@ -2,7 +2,7 @@ import NavLink from './NavLink';
 
 const Nav = () => {
   return (
-    <nav className="flex items-center  mx-4 hidden-mobile">
+    <nav className="flex items-center  mx-4 hidden-mobile ">
       <NavLink href="/" className="me-2">
         Нүүр
       </NavLink>
@@ -10,11 +10,14 @@ const Nav = () => {
         Бөөндий
       </NavLink>
 
-      <NavLink href="/trade-in" className="mx-2">
+      {/* <NavLink href="/trade-in" className="mx-2">
         Бренд
-      </NavLink>
+      </NavLink> */}
       <NavLink href="/news" className="ms-2">
         Мэдээлэл
+      </NavLink>
+      <NavLink href="/leasing-form" className="ms-2">
+        Зээлээр авах
       </NavLink>
     </nav>
   );
