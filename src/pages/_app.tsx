@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Open_Sans } from 'next/font/google';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
-
+import Script from 'next/script';
 
 type Props = {
   pageProps: any;
@@ -21,7 +21,6 @@ type Props = {
   mainCategories: any;
   metaData: any;
   categories: any;
-  
 };
 
 // If loading a variable font, you don't need to specify the font weight
@@ -34,7 +33,6 @@ function MyApp({
   mainCategories,
   metaData,
   categories,
-
 }: Props) {
   const getLayout = Component.getLayout || ((page: any) => page);
 
@@ -56,6 +54,7 @@ function MyApp({
       Router.events.off('routeChangeError', stop);
     };
   }, []);
+
   return (
     <>
       <style jsx global>{`
@@ -67,10 +66,28 @@ function MyApp({
         mainCategories={mainCategories}
         categories={categories}
         metaData={metaData}
-        >
-
+      >
         {getLayout(<Component {...pageProps} router={router} />)}
-     
+        <Script
+          id="messenger"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.erxesSettings = {
+            messenger: {
+              brand_id: "NMoDpG",
+            },
+          };
+      
+          const script = document.createElement("script");
+          script.src =
+            "https://xos.techstore.mn/widgets/build/messengerWidget.bundle.js";
+          script.async = true;
+          const entry = document.getElementsByTagName("script")[0];
+          entry.parentNode.insertBefore(script, entry);
+        `,
+          }}
+        ></Script>
       </Layout>
     </>
   );
