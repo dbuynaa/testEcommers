@@ -61,7 +61,7 @@ const Page = () => {
   const { lng, lat } = marker || {};
 
   const isAfter30s = dayjs(paidDate).isAfter(
-    dayjs().subtract(30, 'second')
+    dayjs().subtract(3, 'second')
   );
 
   return (
