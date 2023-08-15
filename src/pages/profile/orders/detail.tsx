@@ -14,11 +14,13 @@ import OrderDetailLayout from 'components/profile/OrderDetailLayout';
 import { readFile } from 'utils';
 import OrderEnd from 'modules/checkout/OrderEnd';
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 
 const Page = () => {
   const router = useRouter();
   const { id } = router.query;
   const { currentUser } = useCurrentUser();
+  const [isAfter3s, setisAfter3s] = useState(false);
 
   const { loading, data, refetch } = useQuery(queries.orderDetail, {
     variables: {
@@ -29,6 +31,18 @@ const Page = () => {
       toast.error(error.message);
     },
   });
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (paidDate) {
+        setisAfter3s(dayjs(paidDate).isAfter(dayjs().subtract(3, 'second')));
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   if (loading)
     return (
@@ -59,18 +73,13 @@ const Page = () => {
   const { city, city_district, street } = address || {};
 
   const { lng, lat } = marker || {};
-
-  const isAfter30s = dayjs(paidDate).isAfter(
-    dayjs().subtract(3, 'second')
-  );
-
   return (
     <>
       <div className="row items-center order-detail-actions mt-3 ">
         <OrderStatus status={status} paidDate={paidDate} />
         <div className="row items-center py-3">
           {paidDate && <Ebarimt putResponses={putResponses} />}
-          {((status !== 'pending' && !paidDate) || isAfter30s) && (
+          {((status !== 'pending' && !paidDate) || isAfter3s) && (
             <PaymentBtn orderDetail={orderDetail} refetch={refetch} />
           )}
           {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
