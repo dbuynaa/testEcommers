@@ -54,9 +54,9 @@ const Image: FC<
   return (
     <NextImage
       {...updatedProps}
-      loader={
-        process.env.NEXT_PUBLIC_MODE === 'dev' ? undefined : cloudflareLoader
-      }
+      // loader={
+      //   process.env.NEXT_PUBLIC_MODE === 'dev' ? undefined : cloudflareLoader
+      // }
       onLoadingComplete={handleComplete}
       className={cls(
         'next-image',
