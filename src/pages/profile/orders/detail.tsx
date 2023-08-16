@@ -32,6 +32,18 @@ const Page = () => {
     },
   });
 
+  const { orderDetail } = data || {};
+
+  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
+    orderDetail || {};
+
+  const { firstName, lastName, phone, email, address, marker, description } =
+    deliveryInfo || {};
+
+  const { city, city_district, street } = address || {};
+
+  const { lng, lat } = marker || {};
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (paidDate) {
@@ -62,17 +74,6 @@ const Page = () => {
       </div>
     );
 
-  const { orderDetail } = data;
-
-  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
-    orderDetail || {};
-
-  const { firstName, lastName, phone, email, address, marker, description } =
-    deliveryInfo || {};
-
-  const { city, city_district, street } = address || {};
-
-  const { lng, lat } = marker || {};
   return (
     <>
       <div className="row items-center order-detail-actions mt-3 ">
