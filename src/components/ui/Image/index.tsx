@@ -96,12 +96,16 @@ export const cloudflareLoader = ({
   return `https://erxes.io/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
 };
 
+//xos.techstore.mn/gateway/read-file?key=0.021508049013006180.51531201349981501.png
 const normalizeSrc = (src) => {
-  return src.startsWith('/')
-    ? process.env.NEXT_PUBLIC_DOMAIN + src
-    : src.includes('http://plugin-core-api')
-    ? src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_DOMAIN)
-    : src;
+  if (src.startsWith('/')) return process.env.NEXT_PUBLIC_DOMAIN + src;
+
+  if (!src.includes('http'))
+    return process.env.NEXT_PUBLIC_ERXES_API_URL + '/read-file?key=' + src;
+
+  if (!src.includes('http://plugin-core-api')) return src;
+
+  return src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_DOMAIN);
 };
 
 export default memo(Image);
