@@ -17,7 +17,7 @@ const Image: FC<
     src,
     fill = true,
     alt = '',
-    onError = () => setSrcI(props.fallBack || '/product.png'),
+    // onError = () => setSrcI(props.fallBack || '/product.png'),
     width,
     height,
     fallBack,
@@ -44,10 +44,12 @@ const Image: FC<
     fill: !width && !height ? true : undefined,
     width,
     height,
-    onError,
+    // onError
   };
 
   if (srcI === '/product.png') return <Logo />;
+
+  console.log(cloudflareLoader);
 
   return (
     <NextImage
@@ -98,6 +100,12 @@ export const cloudflareLoader = ({
 
 //xos.techstore.mn/gateway/read-file?key=0.021508049013006180.51531201349981501.png
 const normalizeSrc = (src) => {
+  console.log(
+    src,
+    process.env.NEXT_PUBLIC_DOMAIN + src,
+    process.env.NEXT_PUBLIC_ERXES_API_URL + '/read-file?key=' + src,
+    src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_ERXES_API_URL)
+  );
   if (src.startsWith('/')) return process.env.NEXT_PUBLIC_DOMAIN + src;
 
   if (!src.includes('http'))
@@ -105,7 +113,10 @@ const normalizeSrc = (src) => {
 
   if (!src.includes('http://plugin-core-api')) return src;
 
-  return src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_ERXES_API_URL);
+  return src.replace(
+    'http://plugin-core-api',
+    process.env.NEXT_PUBLIC_ERXES_API_URL
+  );
 };
 
 export default memo(Image);
