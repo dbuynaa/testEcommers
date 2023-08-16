@@ -8,15 +8,15 @@ const Nav = () => {
       </NavLink>
       {/* <NavLink href="/wholesale" className="test-text mx-2">
         Бөөндий
-      </NavLink>
+      </NavLink> */}
 
-      <NavLink href="/trade-in" className="mx-2">
+      {/* <NavLink href="/trade-in" className="mx-2">
         Бренд
       </NavLink> */}
       <NavLink href="/news" className="ms-2">
         Мэдээлэл
       </NavLink>
-      <NavLink href='/leasingForm' className="mx-2">
+      <NavLink href="/leasing-form" className="ms-2">
         Зээлээр авах
       </NavLink>
     </nav>

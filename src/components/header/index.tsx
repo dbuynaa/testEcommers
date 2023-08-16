@@ -16,9 +16,7 @@ const Header = ({ mainCategories, contact }: any) => {
     <>
       <ScrollWrapper className="header scroll">
         <header>
-          <AnimatePresence>
-            {direction !== 'down' && <Top contact={contact} />}
-          </AnimatePresence>
+          <AnimatePresence>{direction !== 'down' && <Top contact={contact} />}</AnimatePresence>
           <div className="flex py-2 py-md-3 justify-between items-center container">
             <div className="col-md-9">
               <div className="flex items-center">
@@ -35,7 +33,7 @@ const Header = ({ mainCategories, contact }: any) => {
               <Profile />
             </div>
           </div>
-          <MainCategories mainCategories={mainCategories} />
+          <MainCategories mainCategories={mainCategories} _id={''} name={''} />
         </header>
       </ScrollWrapper>
     </>

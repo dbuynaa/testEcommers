@@ -23,7 +23,7 @@ const MobileCategories = ({ categories }: { categories: ICategory[] }) => {
             )}
             href={{
               pathname: 'products',
-              query: { ...router.query, sub: cat?._id },
+              query: { ...router.query, sub: cat?._id }
             }}
           >
             {cat?.name}

@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'ui/Image';
+import Image from '../../components/ui/Image';
 import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
 import dayjs from 'dayjs';
 
-const Product = ({
+const WholesaleProduct = ({
   _id,
   name,
   unitPrice,
@@ -13,38 +13,38 @@ const Product = ({
   createdAt,
   wrapped,
   children,
+  countDown,
+  isFinished,
 }: IProduct & {
   onClick?: () => void;
   attachment: { url: string };
   createdAt?: string;
   wrapped?: boolean;
   children?: React.ReactNode;
+  isFinished: boolean;
+  countDown: any;
 }) => {
   const price = formatCurrency(unitPrice);
 
   const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   const render = () => (
-    <Link className="product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
-      <div className="img-wrap">
-        <Image
-          src={readFile((attachment || {}).url || '')}
-          alt=""
-          sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
-          contain
-          withLoader
-          className=" hover:scale-105 transition duration-100 cursor-pointer ease-in"
-        />
+    <Link className="product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
+      {countDown && <div className="countdown">{countDown}</div>}
+      <div className="img-wrapper">
+        <Image src={readFile((attachment || {}).url || '')} width={250} height={200} alt="img" />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
-
-      <div className="product-price">{price}</div>
+      <div className="product-price">
+        <span className="price">{price}</span>
+        <span className="sale-price">{price}</span>
+      </div>
       {diffInDays < 60 && <small className="product-badge badge sbt">New</small>}
     </Link>
   );
 
   return wrapped ? (
-    <div className={PRODUCT_WRAPPER_CLASS}>
+    <div className={PRODUCT_WRAPPER_WHOLESALE_CLASS}>
       {render()}
       {children}
     </div>
@@ -56,6 +56,6 @@ const Product = ({
   );
 };
 
-export const PRODUCT_WRAPPER_CLASS = 'col-6 col-md-4 col-xl-3 px-1-5 pb-4';
+export const PRODUCT_WRAPPER_WHOLESALE_CLASS = 'col-6 col-md-6 col-xl-6 px-1-5 pb-3';
 
-export default Product;
+export default WholesaleProduct;
