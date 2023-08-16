@@ -17,7 +17,7 @@ const Image: FC<
     src,
     fill = true,
     alt = '',
-    // onError = () => setSrcI(props.fallBack || '/product.png'),
+    onError = () => setSrcI(props.fallBack || '/product.png'),
     width,
     height,
     fallBack,
@@ -44,7 +44,7 @@ const Image: FC<
     fill: !width && !height ? true : undefined,
     width,
     height,
-    // onError
+    onError
   };
 
   if (srcI === '/product.png') return <Logo />;
