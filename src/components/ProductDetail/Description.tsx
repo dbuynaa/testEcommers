@@ -107,6 +107,7 @@ const replaceImageSources = (htmlString) => {
       cloudflareLoader({
         src: imgTags[i].getAttribute('src'),
         width: 1400,
+        quality: 75,
       })
     );
   }

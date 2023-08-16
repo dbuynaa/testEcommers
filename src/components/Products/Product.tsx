@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'ui/Image';
-import { formatCurrency, readFile } from 'utils';
+import { formatCurrency } from 'utils';
 import { IProduct } from 'modules/types';
 import dayjs from 'dayjs';
 
@@ -25,10 +25,14 @@ const Product = ({
   const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   const render = () => (
-    <Link className="product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
+    <Link
+      className="product text-center "
+      href={{ pathname: '/products/[id]', query: { id: _id } }}
+      onClick={onClick}
+    >
       <div className="img-wrap">
         <Image
-          src={readFile((attachment || {}).url || '')}
+          src={(attachment || {}).url || ''}
           alt=""
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
           contain
@@ -39,7 +43,9 @@ const Product = ({
       <p className="product-name mb-1 mt-3">{name}</p>
 
       <div className="product-price">{price}</div>
-      {diffInDays < 60 && <small className="product-badge badge sbt">New</small>}
+      {diffInDays < 60 && (
+        <small className="product-badge badge sbt">New</small>
+      )}
     </Link>
   );
 
