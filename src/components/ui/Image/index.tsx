@@ -44,7 +44,7 @@ const Image: FC<
     fill: !width && !height ? true : undefined,
     width,
     height,
-    onError
+    onError,
   };
 
   if (srcI === '/product.png') return <Logo />;
@@ -77,7 +77,7 @@ const Image: FC<
 export const cloudflareLoader = ({
   src,
   width,
-  quality
+  quality,
 }: {
   src?: string | null;
   width?: number;
@@ -97,7 +97,11 @@ export const cloudflareLoader = ({
 };
 
 const normalizeSrc = (src) => {
-  return src.startsWith('/') ? process.env.NEXT_PUBLIC_DOMAIN + src : src;
+  return src.startsWith('/')
+    ? process.env.NEXT_PUBLIC_DOMAIN + src
+    : src.includes('http://plugin-core-api')
+    ? src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_DOMAIN)
+    : src;
 };
 
 export default memo(Image);
