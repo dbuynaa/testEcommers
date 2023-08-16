@@ -105,7 +105,7 @@ const normalizeSrc = (src) => {
 
   if (!src.includes('http://plugin-core-api')) return src;
 
-  return src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_DOMAIN);
+  return src.replace('http://plugin-core-api', process.env.NEXT_PUBLIC_ERXES_API_URL);
 };
 
 export default memo(Image);
