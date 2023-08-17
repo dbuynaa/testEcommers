@@ -40,6 +40,7 @@ const useHandleOrder = (onCompleted?: (data: any) => void) => {
       ...common,
       ...orderData,
       deliveryInfo: { ...deliveryInfo, ...orderData.deliveryInfo },
+      buttonType: 'order',
     };
 
     if (currentOrder) {
@@ -61,7 +62,7 @@ const useHandleOrder = (onCompleted?: (data: any) => void) => {
     }
 
     return ordersAdd({
-      variables: { ...common, ...orderData },
+      variables: { ...common, ...orderData, buttonType: 'order' },
       refetchQueries,
       onCompleted(data) {
         onCompleted && onCompleted((data || {}).ordersAdd || {});
