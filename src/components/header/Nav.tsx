@@ -19,6 +19,9 @@ const Nav = () => {
       <NavLink href="/leasing-form" className="ms-2">
         Зээлээр авах
       </NavLink>
+      <NavLink href="/sale" className="ms-2">
+        Хямдралтай
+      </NavLink>
     </nav>
   );
 };

@@ -29,10 +29,10 @@ const SaleProduct = ({
   const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   const render = () => (
-    <Link className="product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
+    <Link className="product sale-product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
       {countDown && <div className="countdown">{countDown}</div>}
       <div className="img-wrapper">
-        <Image src={readFile((attachment || {}).url || '')} width={250} height={200} alt="img" />
+        <Image className="" src={readFile((attachment || {}).url || '')} width={250} height={200} alt="img" />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
       <div className="product-price">
