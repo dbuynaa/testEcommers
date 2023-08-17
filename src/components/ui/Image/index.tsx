@@ -44,7 +44,7 @@ const Image: FC<
     fill: !width && !height ? true : undefined,
     width,
     height,
-    onError
+    onError,
   };
 
   if (srcI === '/product.png') return <Logo />;
@@ -74,7 +74,9 @@ const Image: FC<
 
 export function cloudflareLoader({ src, width, quality }) {
   const params = [`width=${width}`, `quality=${quality || 75}`, 'format=auto'];
-  return `https://erxes.io/cdn-cgi/image/${params.join(',')}/${src}`;
+  return `https://erxes.io/cdn-cgi/image/${params.join(',')}/${normalizeSrc(
+    src
+  )}`;
 }
 
 //xos.techstore.mn/gateway/read-file?key=0.021508049013006180.51531201349981501.png
