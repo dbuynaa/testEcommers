@@ -103,7 +103,7 @@ const Signup = () => {
           name="privacy"
         />
 
-        <Button className="btn flat p-3 mt-3 " type="submit" loading={loading}>
+        <Button className="p-3 mt-3 login-btn" type="submit" loading={loading}>
           Бүртгүүлэх
         </Button>
 

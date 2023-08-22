@@ -6,7 +6,13 @@ import Loading from 'ui/Loading';
 import { useEffect } from 'react';
 import LottieView from 'ui/Lottie';
 
-const PaymentContainer = ({ orderDetail }: { orderDetail: any }) => {
+const PaymentContainer = ({
+  orderDetail,
+  refetch,
+}: {
+  orderDetail: any;
+  refetch: any;
+}) => {
   const {
     billType,
     registerNumber,
@@ -34,12 +40,15 @@ const PaymentContainer = ({ orderDetail }: { orderDetail: any }) => {
     {
       refetchQueries: [
         {
-          query: queries.orderDetail,
+          query: queries.lastOrder,
         },
-        'OrderDetail',
+        'LastOrder',
       ],
       onError(error) {
         toast.error(error.message);
+      },
+      onCompleted(data) {
+        refetch();
       },
     }
   );

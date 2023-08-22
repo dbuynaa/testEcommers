@@ -1,4 +1,3 @@
-
 import { FC, useState, ReactNode } from 'react';
 import Input, { InputProps } from 'ui/Input';
 import clsx from 'clsx';
@@ -80,7 +79,7 @@ const FormItem: FC<FormItemProps> = (props) => {
               )
             }
           >
-            {inputType === 'password' ? <EyeSlash /> : <Eye regular={undefined} />}
+            {inputType === 'password' ? <EyeSlash /> : <Eye />}
           </Button>
         )}
       </div>

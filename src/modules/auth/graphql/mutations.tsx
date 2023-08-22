@@ -105,8 +105,8 @@ const userEdit = gql`
 `;
 
 const changePhone = gql`
-  mutation changePhone($id: String!, $phone: String) {
-    clientPortalUsersEdit(_id: $id, phone: $phone) {
+  mutation changePhone($_id: String!, $phone: String) {
+    clientPortalUsersEdit(_id: $_id, phone: $phone) {
       _id
     }
   }

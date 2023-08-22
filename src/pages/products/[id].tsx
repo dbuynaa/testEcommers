@@ -3,7 +3,7 @@ import ImageGallery from 'components/ProductDetail/Images';
 import Tabs, {
   TabsList,
   TabTrigger,
-  TabsContent
+  TabsContent,
 } from 'components/ProductDetail/Tabs';
 import Description from 'components/ProductDetail/Description';
 import Breadcrumb from 'components/ProductDetail/BreadCrumb';
@@ -15,7 +15,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import getProductIds from 'lib/getProductIds';
 import { NextSeo } from 'next-seo';
 import { readFile } from 'utils';
-
 import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
 import LastViewedItems from 'modules/Products/LastViewedItems';
 
@@ -34,9 +33,9 @@ const Product = ({ detail, videos }: any) => {
               url: readFile((attachment || {}).url),
               width: 800,
               height: 800,
-              alt: name
-            }
-          ]
+              alt: name,
+            },
+          ],
         }}
       />
       <LastViewedItemsAdd productId={_id} />
@@ -62,11 +61,12 @@ const Product = ({ detail, videos }: any) => {
             )}
           </TabsList>
           <TabsContent value="intro">
-            <Description />
+            <div className="w-full">
+              <Description />
+              <LastViewedItems />
+            </div>
           </TabsContent>
-          <TabsContent value="intro">
-            <LastViewedItems category="" />
-          </TabsContent>
+
           {(videos || []).length > 0 && (
             <TabsContent value="advice">
               <Advice videos={videos} />
@@ -86,10 +86,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = (params || {}).id + '';
   const { posts: videosById } = await getVideosByTag(id);
   const detail = await getProductDetail(id);
-  const { posts: videosByCat } = await getVideosByTag(detail.categoryId);
+  const { posts: videosByCat } = await getVideosByTag(detail?.categoryId);
 
   return {
-    props: { detail, videos: [...(videosById || []), ...(videosByCat || [])] }
+    props: {
+      detail: detail || {},
+      videos: [...(videosById || []), ...(videosByCat || [])],
+    },
   };
 };
 
@@ -102,7 +105,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true
+    fallback: true,
   };
 };
 

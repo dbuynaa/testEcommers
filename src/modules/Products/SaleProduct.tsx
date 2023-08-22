@@ -14,7 +14,6 @@ const SaleProduct = ({ productId }: any) => {
   });
   const pricingProducts = pricingData?.pricingPlans || []; // 2 id
 
-  console.log('pricingProduct', pricingProducts);
 
   const { data, loading } = useQuery(queries.products, {
     variables: {

@@ -32,6 +32,10 @@ const Layout = ({
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="nositelinkssearchbox" />
         <meta name="google" content="notranslate" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
       </Head>
       <DefaultSeo
         title="Techstore | Технологийн дэлгүүр"

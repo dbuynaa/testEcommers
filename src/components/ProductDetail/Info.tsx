@@ -24,11 +24,7 @@ const Info = ({ productId }) => {
   const isSale = useMemo(() => {
     return router.query.sale === 'true';
   }, [router.query]);
-  console.log('isSale==========', isSale);
-
-  console.log(isWholeSale, 'wholsale');
-
-  console.log('router', router);
+ 
   const { data: pricingData } = useQuery(getPricingPlans, {
     variables: {
       productId,
@@ -46,7 +42,6 @@ const Info = ({ productId }) => {
   const totalQuantity = pricingData?.pricingPlans[0]?.quantityRules[0]?.value || 0;
 
   const salePercentage = pricingData?.pricingPlans[0]?.discountValue || 0;
-  console.log('sale============', salePercentage);
 
   const isNameLong = name.length > 25;
 

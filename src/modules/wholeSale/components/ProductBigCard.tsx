@@ -5,7 +5,6 @@ import useCountDownTimer from 'lib/useCountDownHook';
 
 const ProductBigCard = ({ wholeProduct, onComplete }) => {
   const { isFinished, countDown } = useCountDownTimer(wholeProduct.endDate, onComplete);
-  console.log(wholeProduct, 'whp');
   return (
     <div key={wholeProduct._id} className="wholesale-big-card">
       <Link

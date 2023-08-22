@@ -21,11 +21,9 @@ const Rating = ({ productId }: { productId: string }) => {
   const [add] = useMutation(mutations.ReviewAdd);
 
   useEffect(() => {
-    console.log('dataaaa', data);
     if (data && data.getProductReviews) {
       const averageRating = data.getProductReviews.review;
       setRating(averageRating);
-      console.log('averageRateing....', averageRating);
     }
   }, [data]);
 

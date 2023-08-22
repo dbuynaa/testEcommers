@@ -1,4 +1,4 @@
-const Eye = ({ regular, ...props }) => {
+const Eye = ({ regular, ...props }: { regular?: boolean }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" {...props}>
       {regular ? (

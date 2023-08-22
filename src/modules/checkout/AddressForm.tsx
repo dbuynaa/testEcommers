@@ -187,6 +187,7 @@ const AddressForm = () => {
               label="Захиалагчийн и-мэйл хаяг"
               placeholder="example@example.com"
               name="email"
+              validate={{ pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
             />
           </div>
         </div>

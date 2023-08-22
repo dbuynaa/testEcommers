@@ -44,7 +44,7 @@ const Image: FC<
     fill: !width && !height ? true : undefined,
     width,
     height,
-    onError
+    onError,
   };
 
   if (srcI === '/product.png') return <Logo />;
@@ -52,9 +52,7 @@ const Image: FC<
   return (
     <NextImage
       {...updatedProps}
-      loader={
-        process.env.NEXT_PUBLIC_MODE === 'dev' ? undefined : cloudflareLoader
-      }
+      loader={cloudflareLoader}
       onLoadingComplete={handleComplete}
       className={cls(
         'next-image',
@@ -74,28 +72,14 @@ const Image: FC<
   );
 };
 
-export const cloudflareLoader = ({
-  src,
-  width,
-  quality
-}: {
-  src?: string | null;
-  width?: number;
-  quality?: number;
-}) => {
-  const params = [`format=avif`];
+export function cloudflareLoader({ src, width, quality }) {
+  const params = [`width=${width}`, `quality=${quality || 75}`, 'format=auto'];
+  return `https://erxes.io/cdn-cgi/image/${params.join(',')}/${normalizeSrc(
+    src
+  )}`;
+}
 
-  if (width) {
-    params.push(`width=${width}`);
-  }
-  if (quality) {
-    params.push(`quality=${quality}`);
-  }
-
-  const paramsString = params.join(',');
-  return `https://erxes.io/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
-};
-
+//xos.techstore.mn/gateway/read-file?key=0.021508049013006180.51531201349981501.png
 const normalizeSrc = (src) => {
   return src.startsWith('/') ? process.env.NEXT_PUBLIC_DOMAIN + src : src;
 };

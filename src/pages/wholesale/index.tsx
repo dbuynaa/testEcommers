@@ -8,7 +8,6 @@ import WholeBanner from 'modules/wholeSale/components/WholeBanner';
 import WholeSaleContainer from 'modules/wholeSale/containers/WholeSale';
 
 const Wholesale = ({ imgBanners, productId }) => {
-  console.log(productId, 'pppp');
   return (
     <div className="flex flex-col wholesale container">
       <div className="flex ">
@@ -21,7 +20,7 @@ const Wholesale = ({ imgBanners, productId }) => {
       <div className="pt-5 pb-5">
         <Latest />
       </div>
-      <LastViewedItems category={''} className="latest-slider pt-3" />
+      <LastViewedItems className="latest-slider pt-3" />
     </div>
   );
 };

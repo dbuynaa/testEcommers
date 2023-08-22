@@ -43,8 +43,6 @@ const Actions = ({ productId }) => {
 
   const totalQuantity = pricingData?.pricingPlans[0]?.quantityRules[0]?.value || 0;
 
-  console.log('actionQuantity--------', totalQuantity);
-
   const handleAdd = (go: boolean) => {
     if (!remainder || remainder < count + quantityInCart) {
       toast.error('Бүтээгдэхүүний үлдэгдэл хүрэлцэхгүй байна');

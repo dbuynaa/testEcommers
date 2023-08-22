@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       type: (params || {}).type,
     },
     revalidate: 60,
-  };  
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -7,7 +7,6 @@ import WholeSale from '../components/WholeSale';
 const now = new Date();
 
 const WholeSaleContainer = ({ productId }) => {
-  console.log(productId, 'pppppp com');
   const { data, loading, refetch } = useQuery(getPricingPlans, {
     variables: {
       status: 'active',
@@ -18,8 +17,6 @@ const WholeSaleContainer = ({ productId }) => {
   });
 
   if (loading) return <Loading />;
-
-  console.log('dataaa', data);
 
   const wholeSales = data?.pricingPlans || [];
 

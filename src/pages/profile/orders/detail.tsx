@@ -14,11 +14,13 @@ import OrderDetailLayout from 'components/profile/OrderDetailLayout';
 import { readFile } from 'utils';
 import OrderEnd from 'modules/checkout/OrderEnd';
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 
 const Page = () => {
   const router = useRouter();
   const { id } = router.query;
   const { currentUser } = useCurrentUser();
+  const [isAfter3s, setisAfter3s] = useState(false);
 
   const { loading, data, refetch } = useQuery(queries.orderDetail, {
     variables: {
@@ -29,6 +31,30 @@ const Page = () => {
       toast.error(error.message);
     },
   });
+
+  const { orderDetail } = data || {};
+
+  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
+    orderDetail || {};
+
+  const { firstName, lastName, phone, email, address, marker, description } =
+    deliveryInfo || {};
+
+  const { city, city_district, street } = address || {};
+
+  const { lng, lat } = marker || {};
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (paidDate) {
+        setisAfter3s(dayjs(paidDate).isAfter(dayjs().subtract(3, 'second')));
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   if (loading)
     return (
@@ -48,73 +74,53 @@ const Page = () => {
       </div>
     );
 
-  const { orderDetail } = data;
-
-  const {
-    paidDate,
-    status,
-    totalAmount,
-    deliveryInfo,
-    items,
-    putResponses,
-  } = orderDetail || {};
-
-  const {
-    firstName,
-    lastName,
-    phone,
-    email,
-    province,
-    district,
-    street,
-    details,
-  } = deliveryInfo || {};
-
-  const isAfterLastFiveMinutes = dayjs(paidDate).isAfter(
-    dayjs().subtract(5, 'minute')
-  );
-
   return (
     <>
       <div className="row items-center order-detail-actions mt-3 ">
         <OrderStatus status={status} paidDate={paidDate} />
         <div className="row items-center py-3">
           {paidDate && <Ebarimt putResponses={putResponses} />}
-          {((status !== 'pending' && !paidDate) || isAfterLastFiveMinutes) && (
-            <PaymentBtn orderDetail={orderDetail} />
+          {((status !== 'pending' && !paidDate) || isAfter3s) && (
+            <PaymentBtn orderDetail={orderDetail} refetch={refetch} />
           )}
           {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
         </div>
       </div>
 
-      {(province || district || street || details) && (
+      {(!!address || !!marker || !!description) && (
         <b className="block my-4">
           <big className="">
             <b>Хүргэлтийн мэдээлэл</b>
           </big>
           <div className="row pt-3">
-            {province && (
-              <div className="col-12 col-md-4">
-                <small className="text-mid-gray">Хот/аймаг</small>
-                <big className="block">{province}</big>
+            {!!address && (
+              <>
+                <div className="col-12 col-md-4">
+                  <small className="text-mid-gray">Хот/аймаг</small>
+                  <big className="block">{city}</big>
+                </div>
+                <div className="col-4">
+                  <small className="text-mid-gray">Дүүрэг</small>
+                  <big className="block">{city_district}</big>
+                </div>
+                <div className="col-4">
+                  <small className="text-mid-gray">Хороо/баг</small>
+                  <big className="block">{street}</big>
+                </div>
+              </>
+            )}
+            {marker && (
+              <div className="col-12 pt-3">
+                <small className="text-mid-gray">GPS координат</small>
+                <big className="block">
+                  {lng}, {lat}
+                </big>
               </div>
             )}
-            {district && (
-              <div className="col-4">
-                <small className="text-mid-gray">Дүүрэг</small>
-                <big className="block">{district}</big>
-              </div>
-            )}
-            {street && (
-              <div className="col-4">
-                <small className="text-mid-gray">Хороо/баг</small>
-                <big className="block">{street}</big>
-              </div>
-            )}
-            {details && (
+            {description && (
               <div className="col-12 pt-3">
                 <small className="text-mid-gray">Дэлгэрэнгүй</small>
-                <big className="block">{details}</big>
+                <big className="block">{description}</big>
               </div>
             )}
           </div>

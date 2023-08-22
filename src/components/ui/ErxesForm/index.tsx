@@ -28,7 +28,8 @@ const ErxesForm = ({
 
     const script = document.createElement('script');
     script.id = id;
-    script.src = 'https://xos.techstore.mn/widgets/build/formWidget.bundle.js';
+    script.src =
+      'https://xos.techstore.mn/widgets/build/formWidget.bundle.js';
     script.async = true;
 
     const entry = document.getElementsByTagName('script')[0];
@@ -36,7 +37,9 @@ const ErxesForm = ({
     entry.parentNode.insertBefore(script, entry);
 
     return () => {
-      w.erxesSettings.forms = w.erxesSettings.forms.filter((form: any) => form.form_id !== formId);
+      w.erxesSettings.forms = w.erxesSettings.forms.filter(
+        (form: any) => form.form_id !== formId
+      );
 
       const script = document.getElementById(id);
 
