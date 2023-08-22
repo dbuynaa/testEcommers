@@ -29,7 +29,7 @@ const useGetProducts = ({
       sortDirection,
       perPage,
       page: 1,
-      tag: 'DqqxcTxkf6FQzgiTE',
+      // tag: 'DqqxcTxkf6FQzgiTE',
     },
   });
 
