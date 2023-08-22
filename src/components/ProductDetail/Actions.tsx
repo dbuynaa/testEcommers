@@ -35,15 +35,13 @@ const Actions = ({ productId }) => {
   const { data: pricingData } = useQuery(getPricingPlans, {
     variables: {
       productId,
-      status: 'active'
-    }
+      status: 'active',
+    },
   });
 
-  const quantityInCart =
-    cart.find((item: ICartItem) => item.productId === _id)?.count || 0;
+  const quantityInCart = cart.find((item: ICartItem) => item.productId === _id)?.count || 0;
 
-  const totalQuantity =
-    pricingData?.pricingPlans[0]?.quantityRules[0]?.value || 0;
+  const totalQuantity = pricingData?.pricingPlans[0]?.quantityRules[0]?.value || 0;
 
   const handleAdd = (go: boolean) => {
     if (!remainder || remainder < count + quantityInCart) {
