@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { queries } from './graphql';
+import { mutations, queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
 import { useEffect } from 'react';
 
@@ -16,7 +16,28 @@ const CurrentUser = ({ children }: any) => {
 
   const router = useRouter();
   const { pathname, query } = router;
-  const { from } = query;
+  const { from, token } = query;
+
+  useQuery(queries.getConfigId, {
+    skip: !token,
+    fetchPolicy: 'cache-first',
+    onCompleted(data) {
+      const configId = data?.clientPortalGetConfigByDomain?._id;
+      loginWithSocialPay({
+        variables: {
+          clientPortalId: configId,
+          token,
+        },
+        onCompleted(data) {
+          if (data.clientPortalLoginWithSocialPay) {
+            router.push('/profile');
+          }
+        },
+      });
+    },
+  });
+
+  const [loginWithSocialPay] = useMutation(mutations.socialPayLogin);
 
   useQuery(queries.currentUser, {
     fetchPolicy: 'network-only',
@@ -32,7 +53,6 @@ const CurrentUser = ({ children }: any) => {
       from ? router.push(from + ' ') : router.push('/');
     }
   }, [currentUser]);
-
 
   return <>{children}</>;
 };
