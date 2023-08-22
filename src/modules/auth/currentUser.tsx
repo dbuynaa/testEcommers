@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useMutation, useQuery } from '@apollo/client';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { mutations, queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
@@ -15,11 +15,10 @@ const CurrentUser = ({ children }: any) => {
     useCurrentUser();
 
   const router = useRouter();
-  const { pathname, query } = router;
+  const { query } = router;
   const { from, token } = query;
 
-  useQuery(queries.getConfigId, {
-    skip: !token,
+  const [getConfigId] = useLazyQuery(queries.getConfigId, {
     fetchPolicy: 'cache-first',
     onCompleted(data) {
       const configId = data?.clientPortalGetConfigByDomain?._id;
@@ -43,6 +42,9 @@ const CurrentUser = ({ children }: any) => {
     fetchPolicy: 'network-only',
     onCompleted(data) {
       const { clientPortalCurrentUser } = data || {};
+      if (!clientPortalCurrentUser && !!token) {
+        getConfigId();
+      }
       setCurrentUser(clientPortalCurrentUser);
       setLoadingCurrentUser(false);
     },
