@@ -15,6 +15,7 @@ const SaleProduct = ({
   children,
   countDown,
   isFinished,
+  salePercentage,
 }: IProduct & {
   onClick?: () => void;
   attachment: { url: string };
@@ -23,23 +24,24 @@ const SaleProduct = ({
   children?: React.ReactNode;
   isFinished: boolean;
   countDown: any;
+  salePercentage: number;
 }) => {
   const price = formatCurrency(unitPrice);
 
   const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   const render = () => (
-    <Link className="product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
+    <Link className="product sale-product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
       {countDown && <div className="countdown">{countDown}</div>}
       <div className="img-wrapper">
-        <Image src={readFile((attachment || {}).url || '')} width={250} height={200} alt="img" />
+        <Image className="" src={readFile((attachment || {}).url || '')} width={250} height={200} alt="img" />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
       <div className="product-price">
         <span className="price">{price}</span>
         <span className="sale-price">{price}</span>
       </div>
-      {<small className="product-badge badge sbt product-sale-badge">sale 30%</small>}
+      {<small className="product-badge badge sbt product-sale-badge">sale {salePercentage || 30}%</small>}
     </Link>
   );
 
