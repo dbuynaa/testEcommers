@@ -21,6 +21,7 @@ const Nav = () => {
       </NavLink>
       <NavLink href="/sale" className="ms-2">
         Хямдралтай
+        <span className="sale-badge">sale</span>
       </NavLink>
     </nav>
   );

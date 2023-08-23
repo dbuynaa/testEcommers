@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { getProducts } from 'modules/wholeSale/graphql/queries';
 import Loading from 'ui/Loading';
 
-const SaleListContainer = ({ productIds }: { productIds: [string] }) => {
+const SaleListContainer = ({ productIds, productsWithValue }: { productIds: [string]; productsWithValue: any }) => {
   const { loading, data, error } = useQuery(getProducts, {
     variables: {
       ids: productIds,
@@ -18,6 +18,7 @@ const SaleListContainer = ({ productIds }: { productIds: [string] }) => {
 
   const props = {
     saleProducts,
+    productsWithValue,
   };
   return <SaleList {...props} />;
 };

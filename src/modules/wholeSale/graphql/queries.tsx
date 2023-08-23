@@ -7,8 +7,8 @@ const commonFields = `
 
 `;
 export const getPricingPlans = gql`
-  query PricingPlans($status: String, $productId: String, $findOne: Boolean,$date: Date) {
-    pricingPlans(status: $status, productId: $productId, findOne: $findOne,date: $date) {
+  query PricingPlans($status: String, $productId: String, $findOne: Boolean, $date: Date) {
+    pricingPlans(status: $status, productId: $productId, findOne: $findOne, date: $date) {
       status
       name
       _id
@@ -31,7 +31,9 @@ export const getPricingPlans = gql`
         discountType
         value
       }
+      value
       products
+      productIds
       productsBundle
       categories
       isEndDateEnabled
@@ -53,17 +55,35 @@ query poscProducts($categoryId: String, $page: Int, $perPage: Int, $searchValue:
   }
 }
 `;
-export const getPricingPlanCount=gql`
-query Query($status: String, $prioritizeRule: String, $totalAmount: String, $productId: String, $quantity: Float, $date: Date, $findOne: Boolean, $page: Int, $perPage: Int, $sortField: String, $sortDirection: Int) {
-  pricingPlansCount(status: $status, prioritizeRule: $prioritizeRule, totalAmount: $totalAmount, productId: $productId, quantity: $quantity, date: $date, findOne: $findOne, page: $page, perPage: $perPage, sortField: $sortField, sortDirection: $sortDirection)
-}
-`
-
-
-
-
-
-
+export const getPricingPlanCount = gql`
+  query Query(
+    $status: String
+    $prioritizeRule: String
+    $totalAmount: String
+    $productId: String
+    $quantity: Float
+    $date: Date
+    $findOne: Boolean
+    $page: Int
+    $perPage: Int
+    $sortField: String
+    $sortDirection: Int
+  ) {
+    pricingPlansCount(
+      status: $status
+      prioritizeRule: $prioritizeRule
+      totalAmount: $totalAmount
+      productId: $productId
+      quantity: $quantity
+      date: $date
+      findOne: $findOne
+      page: $page
+      perPage: $perPage
+      sortField: $sortField
+      sortDirection: $sortDirection
+    )
+  }
+`;
 
 export const getPricingPlanDetail = gql`
   query PricingPlanDetail($pricingPlanDetailId: String) {

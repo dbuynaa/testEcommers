@@ -9,3 +9,24 @@
     }
   }
 }
+.sale-badge {
+  background-color: #febe0b;
+  display: block;
+  position: absolute;
+  font-size: 12px;
+  padding: 0px 4px;
+  border-radius: 4px;
+  top: -3px;
+  right: -10px;
+  transform: rotate(15deg);
+  animation: beat 1s ease infinite alternate;
+}
+
+@keyframes beat {
+  from {
+    transform: rotate(15deg) scale(1);
+  }
+  to {
+    transform: rotate(10deg) scale(1.1);
+  }
+}

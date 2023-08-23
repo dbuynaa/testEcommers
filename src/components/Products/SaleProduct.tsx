@@ -15,6 +15,7 @@ const SaleProduct = ({
   children,
   countDown,
   isFinished,
+  salePercentage,
 }: IProduct & {
   onClick?: () => void;
   attachment: { url: string };
@@ -23,6 +24,7 @@ const SaleProduct = ({
   children?: React.ReactNode;
   isFinished: boolean;
   countDown: any;
+  salePercentage: number;
 }) => {
   const price = formatCurrency(unitPrice);
 
@@ -39,7 +41,7 @@ const SaleProduct = ({
         <span className="price">{price}</span>
         <span className="sale-price">{price}</span>
       </div>
-      {<small className="product-badge badge sbt product-sale-badge">sale 30%</small>}
+      {<small className="product-badge badge sbt product-sale-badge">sale {salePercentage || 30}%</small>}
     </Link>
   );
 
