@@ -2,7 +2,8 @@ import Link from 'next/link';
 import Image from 'ui/Image';
 import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
-import dayjs from 'dayjs';
+import { useQuery } from '@apollo/client';
+import { getSalePricingPlans } from 'modules/wholeSale/graphql/queries';
 
 const SaleProduct = ({
   _id,
@@ -15,7 +16,6 @@ const SaleProduct = ({
   children,
   countDown,
   isFinished,
-  salePercentage,
 }: IProduct & {
   onClick?: () => void;
   attachment: { url: string };
@@ -24,12 +24,22 @@ const SaleProduct = ({
   children?: React.ReactNode;
   isFinished: boolean;
   countDown: any;
-  salePercentage: number;
 }) => {
   const price = formatCurrency(unitPrice);
 
-  const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
+  const { data } = useQuery(getSalePricingPlans, {
+    variables: {
+      status: 'active',
+      isQuantityEnabled: false,
+      productId: _id,
+      findOne: true,
+    },
+  });
 
+  const pricingPlan = data?.pricingPlans[0] || null;
+  const salePercentage = pricingPlan?.value || null;
+
+  const salePrice = unitPrice - (unitPrice * salePercentage) / 100;
   const render = () => (
     <Link className="product sale-product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
       {countDown && <div className="countdown">{countDown}</div>}
@@ -39,9 +49,9 @@ const SaleProduct = ({
       <p className="product-name mb-1 mt-3">{name}</p>
       <div className="product-price">
         <span className="price">{price}</span>
-        <span className="sale-price">{price}</span>
+        <span className="sale-price">{formatCurrency(salePrice)}</span>
       </div>
-      {<small className="product-badge badge sbt product-sale-badge">sale {salePercentage || 30}%</small>}
+      {salePercentage && <small className="product-badge badge sbt product-sale-badge">sale {salePercentage}%</small>}
     </Link>
   );
 

@@ -7,8 +7,8 @@ const commonFields = `
 
 `;
 export const getPricingPlans = gql`
-  query PricingPlans($status: String, $productId: String, $findOne: Boolean, $date: Date) {
-    pricingPlans(status: $status, productId: $productId, findOne: $findOne, date: $date) {
+  query PricingPlans($status: String, $productId: String, $findOne: Boolean, $date: Date, $isQuantityEnabled: Boolean) {
+    pricingPlans(status: $status, productId: $productId, findOne: $findOne, date: $date, isQuantityEnabled: $isQuantityEnabled) {
       status
       name
       _id
@@ -39,6 +39,14 @@ export const getPricingPlans = gql`
       isEndDateEnabled
       startDate
       endDate
+    }
+  }
+`;
+
+export const getSalePricingPlans = gql`
+  query PricingPlans($status: String, $productId: String, $findOne: Boolean, $date: Date, $isQuantityEnabled: Boolean) {
+    pricingPlans(status: $status, productId: $productId, findOne: $findOne, date: $date, isQuantityEnabled: $isQuantityEnabled) {
+      value
     }
   }
 `;

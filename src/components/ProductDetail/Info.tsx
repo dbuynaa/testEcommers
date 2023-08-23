@@ -5,43 +5,45 @@ import AddToWishlist from 'modules/Products/AddToWishlist';
 import Share from 'modules/Products/Share';
 import clsx from 'clsx';
 import Rating from 'modules/Products/Rating';
-import { useWholeSaleProductDetail } from 'modules/appContext';
 import { useQuery } from '@apollo/client';
 import { getPricingPlans } from 'modules/wholeSale/graphql/queries';
 
 import { useRouter } from 'next/router';
 import useCountDownTimer from 'lib/useCountDownHook';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 const Info = ({ productId }) => {
-  const { setWholeSaleProductDetail } = useWholeSaleProductDetail();
   const router = useRouter();
-
-  const isWholeSale = useMemo(() => {
-    return router.query?.wholesale === 'true';
-  }, [router.query]);
-
-  const isSale = useMemo(() => {
-    return router.query.sale === 'true';
-  }, [router.query]);
- 
+  const [productType, setProductType] = useState('normal');
   const { data: pricingData } = useQuery(getPricingPlans, {
     variables: {
       productId,
       status: 'active',
+      isQuantityEnabled: router.query.wholesale === 'true' ? true : false,
     },
   });
 
+  const pricingPlan = pricingData?.pricingPlans[0] || null;
+
+  useEffect(() => {
+    if (pricingPlan?.quantityRules.length == 0) {
+      setProductType('sale');
+    } else if (pricingPlan?.quantityRules.length > 0) {
+      setProductType('wholesale');
+    } else {
+      setProductType('normal');
+    }
+  }, [pricingPlan]);
+  console.log(productType);
   const { name, code, unitPrice, remainder, description } = useDetailContext();
 
-  const saleTime = pricingData?.pricingPlans[0]?.endDate || '';
+  const isWholeSale = productType === 'wholesale';
+  const isSale = productType === 'sale';
+  const saleTime = pricingPlan?.endDate || '';
   const { isFinished, countDown } = useCountDownTimer(saleTime, () => console.log('finished'));
 
-  const wholeSalePercentage = pricingData?.pricingPlans[0]?.quantityRules[0]?.discountValue || 0;
-  const salePrice = unitPrice - (unitPrice * wholeSalePercentage) / 100;
-  const totalQuantity = pricingData?.pricingPlans[0]?.quantityRules[0]?.value || 0;
-
-  const salePercentage = pricingData?.pricingPlans[0]?.discountValue || 0;
+  const salePrice = unitPrice - (unitPrice * pricingPlan?.value) / 100;
+  const totalQuantity = pricingPlan?.quantityRules[0]?.value || 0;
 
   const isNameLong = name.length > 25;
 
@@ -55,14 +57,15 @@ const Info = ({ productId }) => {
       <p className="prDtl-code">Бүтээгдэхүүний код: {code}</p>
       <div className="flex items-center justify-between ">
         <div className="flex items-center">
-          <h4 className={` ${isWholeSale ? 'old-price' : ''}`}>{formatCurrency(unitPrice)}</h4>
-          {isWholeSale && <span className="wholesale-badge">40% хямдруулаад бөөндөөд ав.</span>}
+          <h4 className={` ${isWholeSale || isSale ? 'old-price' : ''}`}>{formatCurrency(unitPrice)}</h4>
+          {isWholeSale && <span className="wholesale-badge"> {pricingPlan.value} % хямдруулаад бөөндөөд ав.</span>}
+          {isSale && <span className="wholesale-badge"> {pricingPlan.value} % хямдрал</span>}
         </div>
 
         {isWholeSale && <h5 className=" text-blue-500 pl-2"> {countDown}</h5>}
       </div>
 
-      <div>{isWholeSale && <h3 className=" text-red-500 new-price ">{formatCurrency(salePrice)}</h3>}</div>
+      <div>{isWholeSale || (isSale && <h3 className=" text-red-500 new-price ">{formatCurrency(salePrice)}</h3>)}</div>
 
       <Rating productId={productId} />
       {isWholeSale && (

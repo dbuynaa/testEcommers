@@ -9,6 +9,7 @@ const PricingPlansContainer = () => {
     variables: {
       status: 'active',
       isQuantityEnabled: false,
+      findOne: false,
     },
   });
 

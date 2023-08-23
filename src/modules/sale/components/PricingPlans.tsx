@@ -14,12 +14,15 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: any }) => {
 
   const productsWithValue = mergedProductIds.map((productId) => {
     const obj = pricingPlans.find((item) => item.productIds.includes(productId));
-    console.log(obj, 'obj');
+    // console.log(obj, 'obj');
     return {
       value: obj.value,
       productId: productId,
     };
   });
+
+  console.log(pricingPlans, productsWithValue, 'pricingPlans');
+  // console.log(productsWithValue, 'productsWithValue', mergedProductIds);
 
   return <SaleListContainer productIds={mergedProductIds || []} productsWithValue={productsWithValue} />;
 };
