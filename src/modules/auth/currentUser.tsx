@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { mutations, queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
@@ -18,24 +18,6 @@ const CurrentUser = ({ children }: any) => {
   const { query } = router;
   const { from, token } = query;
 
-  const [getConfigId] = useLazyQuery(queries.getConfigId, {
-    fetchPolicy: 'cache-first',
-    onCompleted(data) {
-      const configId = data?.clientPortalGetConfigByDomain?._id;
-      loginWithSocialPay({
-        variables: {
-          clientPortalId: configId,
-          token,
-        },
-        onCompleted(data) {
-          if (data.clientPortalLoginWithSocialPay) {
-            router.push('/profile');
-          }
-        },
-      });
-    },
-  });
-
   const [loginWithSocialPay] = useMutation(mutations.socialPayLogin);
 
   useQuery(queries.currentUser, {
@@ -43,18 +25,28 @@ const CurrentUser = ({ children }: any) => {
     onCompleted(data) {
       const { clientPortalCurrentUser } = data || {};
       if (!clientPortalCurrentUser && !!token) {
-        getConfigId();
+        loginWithSocialPay({
+          variables: {
+            clientPortalId: process.env.NEXT_PUBLIC_CP_ID,
+            token,
+          },
+          onCompleted(data) {
+            if (data.clientPortalLoginWithSocialPay) {
+              router.push('/profile');
+            }
+          },
+          refetchQueries: [{ query: queries.currentUser }, 'currentUser'],
+        });
+      }
+      if (!!clientPortalCurrentUser && router.pathname?.includes('/auth')) {
+        from ? router.push(from.toString()) : router.push('/');
       }
       setCurrentUser(clientPortalCurrentUser);
       setLoadingCurrentUser(false);
     },
   });
 
-  useEffect(() => {
-    if (currentUser && router.pathname?.includes('/auth')) {
-      from ? router.push(from + ' ') : router.push('/');
-    }
-  }, [currentUser]);
+  useEffect(() => {}, [currentUser]);
 
   return <>{children}</>;
 };

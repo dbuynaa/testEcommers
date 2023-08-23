@@ -29,14 +29,6 @@ const currentConfig = gql`
   }
 `;
 
-const getConfigId = gql`
-  query clientPortalGetConfigByDomain {
-    clientPortalGetConfigByDomain {
-      _id
-    }
-  }
-`;
-
-const queries = { currentUser, currentConfig, getConfigId };
+const queries = { currentUser, currentConfig };
 
 export default queries;
