@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import LottieView from 'ui/Lottie';
 import CartItem from './CartItem';
+import { useDialog } from 'lib/CartContext';
 
 const Cart = () => {
   const router = useRouter();
@@ -21,7 +22,7 @@ const Cart = () => {
   const count = useItemsCount();
   const { removeAllFromCart, loading } = useHandleCart();
   const [show, setShow] = useState(false);
-
+  const { openDialog, closeDialog, showDialog } = useDialog();
   const currentCart: ICartItem[] = currentUser
     ? ((currentOrder || {}).items || []).map(({ productName, ...rest }: any) => ({
         name: productName,
@@ -30,8 +31,8 @@ const Cart = () => {
     : cart || [];
 
   useEffect(() => {
-    if (show) {
-      setShow(false);
+    if (showDialog) {
+      closeDialog();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname]);
@@ -65,7 +66,7 @@ const Cart = () => {
   };
 
   return (
-    <Dialog open={show} onOpenChange={() => setShow((prev) => !prev)}>
+    <Dialog open={showDialog} onOpenChange={() => openDialog()}>
       <DialogTrigger asChild>
         <Button className="cart-btn mx-1" variant="ghost">
           <CartIcon />
@@ -83,22 +84,6 @@ const Cart = () => {
         {renderContent()}
       </DialogContent>
     </Dialog>
-    // <Dropdown
-    //   className="cart"
-    //   // open={showCart}
-    //   // onOpenChange={changeShowCart}
-    //   trigger={
-    //     <Button className="cart-btn  mx-2" variant="ghost">
-    //       {!!cartCount(currentCart) && (
-    //         <div className="badge">{cartCount(currentCart)}</div>
-    //       )}
-    //       <CartIcon />
-    //       <small className="block">Сагс</small>
-    //     </Button>
-    //   }
-    // >
-    //   {renderContent()}
-    // </Dropdown>
   );
 };
 

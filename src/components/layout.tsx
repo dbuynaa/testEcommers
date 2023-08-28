@@ -9,33 +9,19 @@ import NavigationBar from 'components/header/NavigationBar';
 import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import Toast from 'ui/Toast';
+import { CartProvider } from 'lib/CartContext';
 
-const Layout = ({
-  children,
-  metaData,
-  categories,
-}: {
-  children: ReactNode;
-  mainCategories: any;
-  categories: any;
-  metaData: any;
-}) => {
+const Layout = ({ children, metaData, categories }: { children: ReactNode; mainCategories: any; categories: any; metaData: any }) => {
   return (
     <>
       <Head>
-        <meta
-          name="keywords"
-          content="Технологийн дэлгүүр,  Xiaomi, ухаалаг утас, зурагт, угаалгын машин, Amazefit, mi, oneplus"
-        />
+        <meta name="keywords" content="Технологийн дэлгүүр,  Xiaomi, ухаалаг утас, зурагт, угаалгын машин, Amazefit, mi, oneplus" />
         <meta name="author" content="Techstore" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="nositelinkssearchbox" />
         <meta name="google" content="notranslate" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Head>
       <DefaultSeo
         title="Techstore | Технологийн дэлгүүр"
@@ -65,14 +51,16 @@ const Layout = ({
       />
       <ApolloProvider>
         <StoreProvider categories={categories}>
-          <CurrentUser>
-            <CurrentOrder>
-              <Header mainCategories={categories} contact={metaData?.contact} />
-              <div className="layout">{children}</div>
-              <Footer metaData={metaData} />
-              <NavigationBar />
-            </CurrentOrder>
-          </CurrentUser>
+          <CartProvider>
+            <CurrentUser>
+              <CurrentOrder>
+                <Header mainCategories={categories} contact={metaData?.contact} />
+                <div className="layout">{children}</div>
+                <Footer metaData={metaData} />
+                <NavigationBar />
+              </CurrentOrder>
+            </CurrentUser>
+          </CartProvider>
         </StoreProvider>
       </ApolloProvider>
       <Toast />

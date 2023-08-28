@@ -9,10 +9,9 @@ import { toast } from 'react-toastify';
 import { useDetailContext } from './Context';
 import Storepay from './Storepay';
 import TechLeasing from './Techleasing';
-import { useRouter } from 'next/router';
 import { getPricingPlans } from 'modules/wholeSale/graphql/queries';
 import { useQuery } from '@apollo/client';
-
+import { useDialog } from 'lib/CartContext';
 const Actions = ({ productId }) => {
   const { name, unitPrice, attachment, _id, remainder } = useDetailContext();
   const [count, setCount] = useState<number>(1);
@@ -22,7 +21,6 @@ const Actions = ({ productId }) => {
   const { handleBuy } = useHandleBuy();
 
   const { handleAddToCart, loading } = useHandleCart();
-  const router = useRouter();
 
   const { data: pricingData } = useQuery(getPricingPlans, {
     variables: {
@@ -33,7 +31,7 @@ const Actions = ({ productId }) => {
 
   const quantityInCart = cart.find((item: ICartItem) => item.productId === _id)?.count || 0;
 
-  const totalQuantity = pricingData?.pricingPlans[0]?.quantityRules[0]?.value || 0;
+  const { openDialog, showDialog } = useDialog();
 
   const handleAdd = (go: boolean) => {
     if (!remainder || remainder < count + quantityInCart) {
@@ -57,7 +55,7 @@ const Actions = ({ productId }) => {
       Худалдан авах
     </Button>
   );
-  console.log(showCart, 'ss');
+
   return (
     <>
       <Storepay>{renderBuy()}</Storepay>
@@ -68,7 +66,7 @@ const Actions = ({ productId }) => {
           variant="slim"
           onClick={() => {
             handleAdd(false);
-            setShowCart(true);
+            openDialog();
           }}
           loading={!buy && loading}
         >
