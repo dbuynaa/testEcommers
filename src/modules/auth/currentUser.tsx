@@ -30,11 +30,6 @@ const CurrentUser = ({ children }: any) => {
             clientPortalId: process.env.NEXT_PUBLIC_CP_ID,
             token,
           },
-          onCompleted(data) {
-            if (data.clientPortalLoginWithSocialPay) {
-              router.push('/profile');
-            }
-          },
           refetchQueries: [{ query: queries.currentUser }, 'currentUser'],
         });
       }
