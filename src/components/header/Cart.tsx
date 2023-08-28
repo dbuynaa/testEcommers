@@ -1,12 +1,7 @@
 import CartIcon from 'icons/Cart';
 import Button from 'ui/Button';
 import { useCurrentUser, useCurrentOrder } from 'modules/appContext';
-import {
-  useItems,
-  useHandleCart,
-  useItemsTotal,
-  useItemsCount
-} from 'modules/contextHooks';
+import { useItems, useHandleCart, useItemsTotal, useItemsCount } from 'modules/contextHooks';
 import Link from 'next/link';
 import { ICartItem } from '../../modules/types';
 import { formatCurrency } from 'utils';
@@ -28,12 +23,10 @@ const Cart = () => {
   const [show, setShow] = useState(false);
 
   const currentCart: ICartItem[] = currentUser
-    ? ((currentOrder || {}).items || []).map(
-        ({ productName, ...rest }: any) => ({
-          name: productName,
-          ...rest
-        })
-      )
+    ? ((currentOrder || {}).items || []).map(({ productName, ...rest }: any) => ({
+        name: productName,
+        ...rest,
+      }))
     : cart || [];
 
   useEffect(() => {
@@ -47,10 +40,7 @@ const Cart = () => {
     if (!currentCart.length)
       return (
         <div className="my-5 py-3 cart-empty cart-items">
-          <LottieView
-            path="https://assets2.lottiefiles.com/packages/lf20_ry4iluja.json"
-            className="-empty"
-          />
+          <LottieView path="https://assets2.lottiefiles.com/packages/lf20_ry4iluja.json" className="-empty" />
           <b className="my-3 sbt block">Таны сагс хоосон байна</b>
         </div>
       );
@@ -86,13 +76,7 @@ const Cart = () => {
       <DialogContent className="cart-body p-3">
         <div className="flex items-center justify-between pb-3 cart-header">
           <b>Захиалгын мэдээлэл</b>
-          <Button
-            className="cart-clean text-blue"
-            variant="ghost"
-            onClick={removeAllFromCart}
-            loading={loading}
-            disabled={!cart.length}
-          >
+          <Button className="cart-clean text-blue" variant="ghost" onClick={removeAllFromCart} loading={loading} disabled={!cart.length}>
             <b>{!loading && 'Хоослох'}</b>
           </Button>
         </div>

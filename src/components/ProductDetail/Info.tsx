@@ -34,7 +34,7 @@ const Info = ({ productId }) => {
       setProductType('normal');
     }
   }, [pricingPlan]);
-  console.log(productType);
+
   const { name, code, unitPrice, remainder, description } = useDetailContext();
 
   const isWholeSale = productType === 'wholesale';
@@ -43,7 +43,6 @@ const Info = ({ productId }) => {
   const { isFinished, countDown } = useCountDownTimer(saleTime, () => console.log('finished'));
 
   const salePrice = unitPrice - (unitPrice * pricingPlan?.value) / 100;
-  const totalQuantity = pricingPlan?.quantityRules[0]?.value || 0;
 
   const isNameLong = name.length > 25;
 
@@ -68,18 +67,14 @@ const Info = ({ productId }) => {
       <div>{isWholeSale || (isSale && <h3 className=" text-red-500 new-price ">{formatCurrency(salePrice)}</h3>)}</div>
 
       <Rating productId={productId} />
-      {isWholeSale && (
+      {remainder > 0 ? (
         <div className="prDtl-remainder py-3 mb-2 sbt">
-          {' '}
-          Таны сонгосон бараа <b className="mx-2">{totalQuantity || 0}ш</b> байна.
+          Таны сонгосон бараа агуулахад: <b className="mx-1">{remainder}ш</b> байна.
         </div>
+      ) : (
+        <div className="prDtl-remainder py-3 mb-2 sbt">Таны сонгосон бараа агуулахад одоогоор ирээгүй байна.</div>
       )}
-      {!isWholeSale && (
-        <div className="prDtl-remainder py-3 mb-2 sbt">
-          Таны сонгосон бараа агуулахад: <b className="mx-2">{remainder || 0}ш</b> байна.
-        </div>
-      )}
-      <Actions productId={productId} />
+      {remainder > 0 && <Actions productId={productId} />}
     </div>
   );
 };

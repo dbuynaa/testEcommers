@@ -2,12 +2,13 @@ import Mail from 'icons/Mail';
 import Link from 'next/link';
 import Button from 'ui/Button';
 import Phone from 'icons/ThinPhone';
-import Marker from 'icons/Marker';
 import Facebook from 'icons/Facebook';
 import Instagram from '../icons/Instagram';
 import { useRouter } from 'next/router';
 import { isBlank } from 'utils';
 import clsx from 'clsx';
+import GoogleMapMarker from 'icons/GoogleMapMarker';
+import ErxesIcon from 'icons/erxes';
 
 const FooterTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => (
   <b className={clsx('footer-title sbt block', className)}>{children}</b>
@@ -20,7 +21,7 @@ const Col = ({ children, title, titleClass = 'pb-4' }: { children: React.ReactNo
   </div>
 );
 
-const FooterLink = ({ href, children, icon }: { href: string; children?: React.ReactNode; icon?: React.ReactNode }) => {
+const FooterLink = ({ href, children, icon, map }: { href: string; children?: React.ReactNode; icon?: React.ReactNode; map?: boolean }) => {
   if (icon && !children)
     return (
       <Button variant="naked" className="text-blue me-3" href={href} Component={Link} target="_blank">
@@ -31,7 +32,7 @@ const FooterLink = ({ href, children, icon }: { href: string; children?: React.R
   if (icon)
     return (
       <Link href={href} target={isBlank(href)} className="flex items-center mb-2 sbt">
-        <Button variant="naked" className="text-blue me-2">
+        <Button variant="naked" className={`text-blue me-2 ${map ? 'map-icon' : ''}`}>
           {icon}
         </Button>
         <span>{children}</span>
@@ -87,7 +88,7 @@ const Footer = ({ metaData }: any) => {
               </div>
             </Col>
             <Col title="ХАЯГ" titleClass="pb-3">
-              <FooterLink href={map || ''} icon={<Marker />}>
+              <FooterLink href={map || ''} icon={<GoogleMapMarker />} map>
                 <div dangerouslySetInnerHTML={{ __html: metaData?.content || '' }} />
               </FooterLink>
               <div className="pt-1"></div>
@@ -101,9 +102,21 @@ const Footer = ({ metaData }: any) => {
         </div>
       </div>
       <div className="copyright">
-        <div className="container row justify-between p-2">
-          Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}
-          <span>Techstore - Технологийн дэлгүүр</span>
+        <div className="container ">
+          <div className="wrapper justify-between row pt-3 pb-2">
+            <div>
+              Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}. &nbsp;<span>Techstore - Технологийн дэлгүүр</span>
+            </div>
+            <div className="developer">
+              <a href="https://erxes.mn" rel="noreferrer" target="_blank">
+                {' '}
+                <span className="by">Developed by</span> <span>er</span>
+                <span className="end">
+                  <ErxesIcon src="/images/x-white.svg" alt="erxes-logo" /> es Inc
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

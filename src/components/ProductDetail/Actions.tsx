@@ -17,7 +17,7 @@ const Actions = ({ productId }) => {
   const { name, unitPrice, attachment, _id, remainder } = useDetailContext();
   const [count, setCount] = useState<number>(1);
   const [buy, setBuy] = useState(false);
-
+  const [showCart, setShowCart] = useState(false);
   const cart = useItems();
   const { handleBuy } = useHandleBuy();
 
@@ -57,7 +57,7 @@ const Actions = ({ productId }) => {
       Худалдан авах
     </Button>
   );
-
+  console.log(showCart, 'ss');
   return (
     <>
       <Storepay>{renderBuy()}</Storepay>
@@ -68,6 +68,7 @@ const Actions = ({ productId }) => {
           variant="slim"
           onClick={() => {
             handleAdd(false);
+            setShowCart(true);
           }}
           loading={!buy && loading}
         >
