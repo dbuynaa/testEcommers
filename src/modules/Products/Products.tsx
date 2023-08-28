@@ -14,14 +14,13 @@ const ProductsContainer = () => {
   const router = useRouter();
   const { searchValue, category, sub, sortField, sortDirection } = router.query;
 
-  const { handleLoadMore, loading, products, productsCount, getProducts } =
-    useGetProducts({
-      searchValue: (searchValue || '').toString(),
-      category: (sub || category || '').toString(),
-      sortField: (sortField || '').toString(),
-      sortDirection: Number(sortDirection),
-      onCountCompleted: (productsCount: number) => setCount(productsCount),
-    });
+  const { handleLoadMore, loading, products, productsCount, getProducts } = useGetProducts({
+    searchValue: (searchValue || '').toString(),
+    category: (sub || category || '').toString(),
+    sortField: (sortField || '').toString(),
+    sortDirection: Number(sortDirection),
+    onCountCompleted: (productsCount: number) => setCount(productsCount),
+  });
 
   const { ref, inView } = useInView({
     /* Optional options */
@@ -40,12 +39,7 @@ const ProductsContainer = () => {
 
   if (!products.length || !productsCount)
     // cart-empty cart-items
-    return (
-      <Empty
-        className="cart-empty cart-items"
-        message="Бүтээгдэхүүн олдсонгүй"
-      />
-    );
+    return <Empty className="cart-empty cart-items" message="Бүтээгдэхүүн олдсонгүй" />;
 
   return (
     <div className="row products">

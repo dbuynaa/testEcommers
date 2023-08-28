@@ -9,25 +9,15 @@ import { toast } from 'react-toastify';
 import { useDetailContext } from './Context';
 import Storepay from './Storepay';
 import TechLeasing from './Techleasing';
-import { getPricingPlans } from 'modules/wholeSale/graphql/queries';
-import { useQuery } from '@apollo/client';
 import { useDialog } from 'lib/CartContext';
 const Actions = ({ productId }) => {
   const { name, unitPrice, attachment, _id, remainder } = useDetailContext();
   const [count, setCount] = useState<number>(1);
   const [buy, setBuy] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const cart = useItems();
   const { handleBuy } = useHandleBuy();
 
   const { handleAddToCart, loading } = useHandleCart();
-
-  const { data: pricingData } = useQuery(getPricingPlans, {
-    variables: {
-      productId,
-      status: 'active',
-    },
-  });
 
   const quantityInCart = cart.find((item: ICartItem) => item.productId === _id)?.count || 0;
 

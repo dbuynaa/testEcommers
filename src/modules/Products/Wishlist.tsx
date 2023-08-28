@@ -17,9 +17,9 @@ const WishlistContainer = () => {
   const { erxesCustomerId: customerId } = currentUser || {};
   const [getWishlist, { data, loading }] = useLazyQuery(queries.wishlist, {
     variables: {
-      customerId
+      customerId,
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   });
 
   useEffect(() => {
@@ -28,22 +28,19 @@ const WishlistContainer = () => {
     }
   }, [customerId, getWishlist]);
 
-  const [remove, { loading: loadingRemove }] = useMutation(
-    mutations.wishlistRemove,
-    {
-      refetchQueries: [{ query: queries.wishlist }, 'Wishlist'],
-      onCompleted(data) {
-        const { _id } = data?.wishlistRemove;
-        if (_id) {
-          toast.success('Амжилттай хаслаа');
-        }
+  const [remove, { loading: loadingRemove }] = useMutation(mutations.wishlistRemove, {
+    refetchQueries: [{ query: queries.wishlist }, 'Wishlist'],
+    onCompleted(data) {
+      const { _id } = data?.wishlistRemove;
+      if (_id) {
+        toast.success('Амжилттай хаслаа');
       }
-    }
-  );
-
+    },
+  });
   if (loading) return <ProductsSkeleton wrapped />;
 
   const { wishlist } = data || {};
+  console.log(wishlist, 'wishlist');
 
   if (!(wishlist || []).length)
     return (
@@ -63,12 +60,7 @@ const WishlistContainer = () => {
             exit={{ opacity: 0, y: 10, width: 0 }}
           >
             <Product {...el?.product} />
-            <Button
-              className="wishlist-remove"
-              variant="ghost"
-              disabled={loadingRemove}
-              onClick={() => remove({ variables: { id: el._id } })}
-            >
+            <Button className="wishlist-remove" variant="ghost" disabled={loadingRemove} onClick={() => remove({ variables: { id: el._id } })}>
               <Xmark />
               {/* <Counter count={0} productId={''} /> */}
             </Button>

@@ -45,7 +45,7 @@ const Info = ({ productId }) => {
   const salePrice = unitPrice - (unitPrice * pricingPlan?.value) / 100;
 
   const isNameLong = name.length > 25;
-
+  console.log(productId, 'remainder');
   return (
     <div className="col-12 col-md-6 px-md-4 prDtl-actions mt-3 mt-md-0">
       <div className={clsx('flex justify-between', isNameLong ? 'items-start' : 'items-center')}>

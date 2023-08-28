@@ -12,6 +12,7 @@ const Product = ({
   attachment,
   createdAt,
   wrapped,
+  remainder,
   children,
 }: IProduct & {
   onClick?: () => void;
@@ -19,33 +20,28 @@ const Product = ({
   createdAt?: string;
   wrapped?: boolean;
   children?: React.ReactNode;
+  remainder?: number;
 }) => {
   const price = formatCurrency(unitPrice);
-
   const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
 
   const render = () => (
-    <Link
-      className="product text-center "
-      href={{ pathname: '/products/[id]', query: { id: _id } }}
-      onClick={onClick}
-    >
-      <div className="img-wrap">
+    <Link className="product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
+      <div className={`img-wrap ${remainder === 0 ? 'out-of-stock-img' : ''}`}>
         <Image
           src={(attachment || {}).url || ''}
           alt=""
           sizes="(max-width: 768px) 50vw, (max-width: 1500px) 25vw, 20vw"
           contain
           withLoader
-          className=" hover:scale-105 transition duration-100 cursor-pointer ease-in"
+          className="hover:scale-105 transition duration-100 cursor-pointer ease-in"
         />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
 
       <div className="product-price">{price}</div>
-      {diffInDays < 60 && (
-        <small className="product-badge badge sbt">New</small>
-      )}
+      {diffInDays < 60 && <small className="product-badge badge sbt">Шинэ</small>}
+      {remainder === 0 && <small className="product-badge out-of-stock-badge badge sbt">Дууссан</small>}
     </Link>
   );
 
