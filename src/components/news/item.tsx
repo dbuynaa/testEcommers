@@ -5,16 +5,10 @@ import type { WpPost } from 'lib/wp/posts';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-const NewsItem = ({
-  className,
-  featuredImage,
-  title,
-  date,
-  id,
-}: WpPost & { className: string }) => {
+const NewsItem = ({ className, featuredImage, title, date, id }: WpPost & { className: string }) => {
   return (
     <div className={clsx('news-item row', className)}>
-      <div className="img-wrap ratio">  
+      <div className="img-wrap ratio">
         <Image
           alt=""
           src={featuredImage?.sourceUrl || ''}
@@ -29,14 +23,9 @@ const NewsItem = ({
         <Link href={`/news/${id}`}>
           <big className="block">{title}</big>
         </Link>
-        <div className="flex justify-between text-mid-gray items-center">
+        <div className="news-desc flex justify-between text-mid-gray items-center">
           {dayjs(date).format('YYYY-MM-DD')}
-          <Button
-            variant="ghost"
-            className="text-mid-gray"
-            Component={Link}
-            href={`/news/${id}`}
-          >
+          <Button variant="ghost" className="text-mid-gray" Component={Link} href={`/news/${id}`}>
             Цааш унших
           </Button>
         </div>

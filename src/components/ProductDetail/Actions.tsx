@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Button from 'ui/Button';
 import Counter from 'ui/Counter';
 import { useHandleCart, useItems } from 'modules/contextHooks';
@@ -23,14 +23,6 @@ const Actions = ({ productId }) => {
 
   const { handleAddToCart, loading } = useHandleCart();
   const router = useRouter();
-
-  const isWholeSale = useMemo(() => {
-    return router.query?.wholesale === 'true';
-  }, [router.query]);
-
-  const isSale = useMemo(() => {
-    return router.query.sale === 'true';
-  }, [router.query]);
 
   const { data: pricingData } = useQuery(getPricingPlans, {
     variables: {

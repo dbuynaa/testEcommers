@@ -87,3 +87,13 @@ footer {
   background-color: #fff !important;
   min-height: 100%;
 }
+
+.copyright {
+  background-color: #39394d;
+  color: rgba(#fff, 0.7);
+  font-size: 14px;
+  padding-bottom: 1rem;
+  .container {
+    border-top: 1px solid rgba(#fff, 0.5);
+  }
+}
