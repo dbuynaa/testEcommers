@@ -279,3 +279,26 @@ header {
     }
   }
 }
+.cart-btn {
+  &:hover {
+    svg {
+      transform: scale(1.1);
+    }
+  }
+  svg {
+    font-size: 24px;
+    transition: all 0.2s ease;
+  }
+}
+
+.wishlist-btn {
+  &:hover {
+    svg {
+      transform: scale(1.1);
+    }
+  }
+  svg {
+    font-size: 24px;
+    transition: all 0.2s ease;
+  }
+}

@@ -1,4 +1,4 @@
-const Heart = ({ fill, regular, ...props }: any) => {
+const HeartButton = ({ fill, regular, ...props }: any) => {
   if (regular)
     return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" {...props}>
@@ -17,6 +17,7 @@ const Heart = ({ fill, regular, ...props }: any) => {
           transform: `rotate(${fill ? 0 : 135}deg)`,
           transformOrigin: '75% 72%',
           transition: 'all 0.3s ease',
+          fill: '#febe0b',
         }}
         d="M576 368C576 447.5 511.5 512 432 512C352.5 512 288 447.5 288 368C288 288.5 352.5 224 432 224C511.5 224 576 288.5 576 368zM468.7 308.7L432 345.4L395.3 308.7C389.1 302.4 378.9 302.4 372.7 308.7C366.4 314.9 366.4 325.1 372.7 331.3L409.4 368L372.7 404.7C366.4 410.9 366.4 421.1 372.7 427.3C378.9 433.6 389.1 433.6 395.3 427.3L432 390.6L468.7 427.3C474.9 433.6 485.1 433.6 491.3 427.3C497.6 421.1 497.6 410.9 491.3 404.7L454.6 368L491.3 331.3C497.6 325.1 497.6 314.9 491.3 308.7C485.1 302.4 474.9 302.4 468.7 308.7V308.7z"
       />
@@ -24,4 +25,4 @@ const Heart = ({ fill, regular, ...props }: any) => {
   );
 };
 
-export default Heart;
+export default HeartButton;
