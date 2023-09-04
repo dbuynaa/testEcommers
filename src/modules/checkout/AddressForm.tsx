@@ -127,7 +127,7 @@ const AddressForm = () => {
           <ScrollWrapper className="mx-md-3 order-summary scroll">
             <Summary />
             <Button className="w-full p-3 sum-buy" type="submit" loading={loadingAction}>
-              Төлбөр төлөх
+              Баталгаажуулах
             </Button>
           </ScrollWrapper>
         }

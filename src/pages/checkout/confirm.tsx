@@ -1,13 +1,13 @@
 import Layout from 'components/checkout/layout';
-import AddressForm from 'modules/checkout/AddressForm';
+import AddressConfirm from 'modules/checkout/AddressConfirm';
 
 const Address = () => {
   return (
     <Layout>
-      <big className="mb-2 block">
-        <b>Захиалагчийн мэдээлэл</b>
+      <big className="block">
+        <b>Баталгаажуулах</b>
       </big>
-      <AddressForm />
+      <AddressConfirm />
     </Layout>
   );
 };

@@ -1,171 +1,165 @@
-import Button from 'ui/Button';
-import Form from 'ui/Form';
-import Ebarimt from './Ebarimt';
-import AddAddress from 'components/checkout/address/AddAddress';
-import AddressList from './AddressList';
-import Grid from 'components/checkout/layout/Grid';
-import ScrollWrapper from 'components/header/Wrapper';
-import Summary from 'components/checkout/summary';
-import { useQuery, useMutation } from '@apollo/client';
-import { queries } from './graphql';
-import Loading from 'ui/Loading';
-import useHandleOrder from 'lib/useHandleOrder';
-import { useRouter } from 'next/router';
-import { useCurrentOrder, useCurrentUser } from 'modules/appContext';
-import FormItem from 'ui/FormItem';
-import { mutations, queries as authQueries } from 'modules/auth/graphql';
+import { useQuery } from '@apollo/client';
+import { queries } from 'modules/checkout/graphql';
+import OrderStatus from 'components/profile/orderStatus';
+import LoadingDots from 'ui/LoadingDots';
+import NoData from 'icons/Robot';
 import { toast } from 'react-toastify';
+import PaymentBtn from 'components/profile/PaymentBtn';
+import { useCurrentUser } from 'modules/appContext';
+import Ebarimt from 'components/profile/Ebarimt';
+import { useRouter } from 'next/router';
+import OrderEnd from 'modules/checkout/OrderEnd';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
+import Summary from 'components/checkout/summary';
 
-const AddressForm = () => {
+const AddressConfirm = () => {
   const router = useRouter();
-  const { data, loading } = useQuery(queries.addresses);
+  const { id } = router.query;
+  const { currentUser } = useCurrentUser();
+  const [isAfter3s, setisAfter3s] = useState(false);
 
-  const [changePhone] = useMutation(mutations.changePhone, {
-    refetchQueries: [{ query: authQueries.currentUser }, 'clientPortalCurrentUser'],
+  const { loading, data, refetch } = useQuery(queries.orderDetail, {
+    variables: {
+      id,
+      customerId: (currentUser || {}).erxesCustomerId,
+    },
     onError(error) {
       toast.error(error.message);
     },
   });
 
-  const { addresses } = data?.clientPortalCurrentUser?.customer || {};
-  const onCompleted = (data: any) =>
-    router.push({
-      // pathname: `/profile/orders/detail`,
-      pathname: `/checkout/confirm`,
-      query: { id: data._id },
-    });
-  const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
-  const { currentOrder } = useCurrentOrder();
-  const { currentUser } = useCurrentUser();
+  const { orderDetail } = data || {};
 
-  const onSubmit = (data) => {
-    const { isCompany, registerNumber, companyName, deliveryInfo, others, street, city_district, city, marker, email, phone, firstName, lastName } =
-      data;
+  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } = orderDetail || {};
 
-    let sendData = {} as any;
+  const { firstName, lastName, phone, email, address, marker, description } = deliveryInfo || {};
 
-    if (isCompany && companyName) {
-      sendData.registerNumber = registerNumber;
-      sendData.billType = '3';
-    }
+  const { city, city_district, street } = address || {};
 
-    if (deliveryInfo === 'add') {
-      sendData.deliveryInfo = {
-        address: {
-          others,
-          street,
-          city_district,
-          city,
-        },
-        marker,
-        description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}`,
-        saveInfo: true,
-        email,
-        phone,
-        firstName,
-        lastName,
-      };
-    }
+  const { lng, lat } = marker || {};
 
-    if (deliveryInfo === 'skip') {
-      sendData.type = 'take';
-    }
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (paidDate) {
+        setisAfter3s(dayjs(paidDate).isAfter(dayjs().subtract(3, 'second')));
+      }
+    }, 1000);
 
-    const address = addresses?.find((address) => address?.id === deliveryInfo);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
-    if (address) {
-      const { id, location, short } = address || {};
-      sendData.deliveryInfo = {
-        id,
-        address: address?.address,
-        marker: location?.coordinates,
-        description: short,
-        email,
-        phone,
-        firstName,
-        lastName,
-      };
-    }
+  if (loading)
+    return (
+      <div className="p-5 m-5">
+        <div className="p-5 m-5 flex justify-center">
+          <LoadingDots />
+        </div>
+      </div>
+    );
 
-    if (phone && !currentUser?.phone) {
-      changePhone({
-        variables: {
-          _id: currentUser?._id,
-          phone: phone,
-        },
-      });
-    }
-
-    return handleOrder(sendData);
-  };
-
-  if (loading) return <Loading />;
-
-  const { billType, registerNumber, deliveryInfo } = currentOrder || {};
-  const { email, phone, firstName, lastName } = currentUser || {};
+  if (!(data || {}).orderDetail)
+    return (
+      <div className="p-5 m-5">
+        <div className="p-5 m-5 flex justify-center">
+          <NoData />
+        </div>
+      </div>
+    );
 
   return (
-    <Form
-      handleSubmit={onSubmit}
-      className="order-address "
-      args={{
-        defaultValues: {
-          deliveryInfo: addresses.find((address) => address.id === (deliveryInfo || {}).id)?.id || 'add',
-          isCompany: billType === '3',
-          registerNumber,
-          email: deliveryInfo?.email || email,
-          phone: deliveryInfo?.phone || phone,
-          firstName: deliveryInfo?.firstName || firstName,
-          lastName: deliveryInfo?.lastName || lastName,
-          ...(deliveryInfo?.address || {}),
-          marker: deliveryInfo?.marker,
-        },
-      }}
-    >
-      <Grid
-        side={
-          <ScrollWrapper className="mx-md-3 order-summary scroll">
+    <div className="confirm-page">
+      <div className="row">
+        <div className="col-12 col-md-8">
+          {(!!address || !!marker || !!description) && (
+            <div className="section my-4">
+              <h6>Хүргэлтийн мэдээлэл</h6>
+
+              <div className="row pt-3">
+                {!!address && (
+                  <>
+                    <div className="col-12 col-md-4">
+                      <small className="text-mid-gray">Хот/аймаг</small>
+                      <big className="block">{city}</big>
+                    </div>
+                    <div className="col-4">
+                      <small className="text-mid-gray">Дүүрэг</small>
+                      <big className="block">{city_district}</big>
+                    </div>
+                    <div className="col-4">
+                      <small className="text-mid-gray">Хороо/баг</small>
+                      <big className="block">{street}</big>
+                    </div>
+                  </>
+                )}
+                {marker && (
+                  <div className="col-12 pt-3">
+                    <small className="text-mid-gray">GPS координат</small>
+                    <big className="block">
+                      {lng}, {lat}
+                    </big>
+                  </div>
+                )}
+                {description && (
+                  <div className="col-12 pt-3">
+                    <small className="text-mid-gray">Дэлгэрэнгүй</small>
+                    <big className="block">{description}</big>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          {(firstName || lastName || phone || email) && (
+            <div className="section my-4">
+              <h6>Захиалагчийн мэдээлэл</h6>
+              <div className="row justify-between pt-3 -">
+                {lastName && (
+                  <div>
+                    <small className="text-mid-gray">Oвог</small>
+                    <big className="block">{lastName}</big>
+                  </div>
+                )}
+                {firstName && (
+                  <div>
+                    <small className="text-mid-gray">Нэр</small>
+                    <big className="block">{firstName}</big>
+                  </div>
+                )}
+
+                {phone && (
+                  <div>
+                    <small className="text-mid-gray">Утас</small>
+                    <big className="block">{phone}</big>
+                  </div>
+                )}
+                {email && (
+                  <div>
+                    <small className="text-mid-gray">Имэйл</small>
+                    <big className="block">{email}</big>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="col-12 col-md-4">
+          <div className="mx-3 mt-4">
             <Summary />
-            <Button className="w-full p-3 sum-buy" type="submit" loading={loadingAction}>
-              Төлбөр төлөх
-            </Button>
-          </ScrollWrapper>
-        }
-      >
-        <div className="row mx--2 pb-2">
-          <div className="col-md-6 col-12 px-2 ">
-            <FormItem label="Захиалагчийн нэр" placeholder="Бат-эрдэнэ" name="firstName" required min="8" />
           </div>
-          <div className="col-md-6 col-12 px-2">
-            <FormItem label="Захиалагчийн Овог" placeholder="Хашбат" name="lastName" />
-          </div>
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн утасны дугаар"
-              placeholder="99999999"
-              name="phone"
-              type="number"
-              validate={{ pattern: /\d{8}/ }}
-              errorMsgs={{
-                pattern: 'Зөв утасны дугаар оруулана уу',
-              }}
-            />
-          </div>
-          <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн и-мэйл хаяг"
-              placeholder="example@example.com"
-              name="email"
-              validate={{ pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
-            />
+          <div className="row items-center order-detail-actions mt-3 mx-3 ">
+            <OrderStatus status={status} paidDate={paidDate} />
+            <div className="grid grid-cols-2 gap-4 w-full my-3">
+              {paidDate && <Ebarimt putResponses={putResponses} />}
+              {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
+            </div>
+            {((status !== 'pending' && !paidDate) || isAfter3s) && <PaymentBtn orderDetail={orderDetail} refetch={refetch} />}
           </div>
         </div>
-        <Ebarimt />
-        <AddressList addresses={addresses} />
-        <AddAddress />
-      </Grid>
-    </Form>
+      </div>
+    </div>
   );
 };
 
-export default AddressForm;
+export default AddressConfirm;
