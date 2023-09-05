@@ -15,6 +15,7 @@ import { useCurrentOrder, useCurrentUser } from 'modules/appContext';
 import FormItem from 'ui/FormItem';
 import { mutations, queries as authQueries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
+import ChevronLeft from 'icons/ChevronLeft';
 
 const AddressForm = () => {
   const router = useRouter();
@@ -39,8 +40,22 @@ const AddressForm = () => {
   const { currentUser } = useCurrentUser();
 
   const onSubmit = (data) => {
-    const { isCompany, registerNumber, companyName, deliveryInfo, others, street, city_district, city, marker, email, phone, firstName, lastName } =
-      data;
+    const {
+      isCompany,
+      registerNumber,
+      companyName,
+      deliveryInfo,
+      additional,
+      others,
+      street,
+      city_district,
+      city,
+      marker,
+      email,
+      phone,
+      firstName,
+      lastName,
+    } = data;
 
     let sendData = {} as any;
 
@@ -56,9 +71,10 @@ const AddressForm = () => {
           street,
           city_district,
           city,
+          additional,
         },
         marker,
-        description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}`,
+        description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}, Нэмэлт мэдээлэл: ${additional}`,
         saveInfo: true,
         email,
         phone,
@@ -103,7 +119,7 @@ const AddressForm = () => {
 
   const { billType, registerNumber, deliveryInfo } = currentOrder || {};
   const { email, phone, firstName, lastName } = currentUser || {};
-
+  console.log(deliveryInfo, 'df');
   return (
     <Form
       handleSubmit={onSubmit}
@@ -129,6 +145,10 @@ const AddressForm = () => {
             <Button className="w-full p-3 sum-buy" type="submit" loading={loadingAction}>
               Баталгаажуулах
             </Button>
+            <div className="order-back">
+              <ChevronLeft />
+              <span onClick={() => router.push('/checkout/cart')}> Өмнөх алхамруу буцах</span>
+            </div>
           </ScrollWrapper>
         }
       >

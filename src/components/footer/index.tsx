@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { isBlank } from 'utils';
 import clsx from 'clsx';
 import GoogleMapMarker from 'icons/GoogleMapMarker';
-import ErxesIcon from 'icons/erxes';
+import ErxesIcon from '../icons/Erxes';
 
 const FooterTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => (
   <b className={clsx('footer-title sbt block', className)}>{children}</b>

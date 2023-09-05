@@ -12,6 +12,7 @@ import OrderEnd from 'modules/checkout/OrderEnd';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import Summary from 'components/checkout/summary';
+import ChevronLeft from 'icons/ChevronLeft';
 
 const AddressConfirm = () => {
   const router = useRouter();
@@ -155,6 +156,10 @@ const AddressConfirm = () => {
               {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
             </div>
             {((status !== 'pending' && !paidDate) || isAfter3s) && <PaymentBtn orderDetail={orderDetail} refetch={refetch} />}
+          </div>
+          <div className="order-back">
+            <ChevronLeft />
+            <span onClick={() => router.push('/checkout/address')}> Өмнөх алхамруу буцах</span>
           </div>
         </div>
       </div>

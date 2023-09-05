@@ -20,21 +20,21 @@ const AddAddress = () => {
             <FormItem label="Хот/Aймаг" placeholder="Улаанбаатар" name="city" />
           </div>
           <div className="col-md-4 col-12 px-2">
-            <FormItem
-              label="Дүүрэг/сум"
-              placeholder="Баянгол"
-              name="city_district"
-            />
+            <FormItem label="Дүүрэг/сум" placeholder="Баянгол" name="city_district" />
           </div>
           <div className="col-md-4 col-12 px-2">
             <FormItem label="Хороо/баг" placeholder="6-хороо" name="street" />
           </div>
           <div className="col-12 px-2">
+            <FormItem label="Дэлгэрэнгүй хаяг" placeholder="Алтан өргөө цогцолбор, Наран ундраа төв" element="textarea" name="others" />
+          </div>
+          <div className="col-12 px-2">
             <FormItem
-              label="Дэлгэрэнгүй хаяг"
-              placeholder="Алтан өргөө цогцолбор, Наран ундраа төв"
+              label="Нэмэлт мэдээлэл"
+              placeholder="Хүргэхийн өмнө залгах, Оройн цагаар хүргэх, Нялх хүүхэдтэй гэх мэт"
               element="textarea"
-              name="others"
+              name="additional"
+              required={false}
             />
           </div>
           <div className="form-item col-12">
@@ -50,10 +50,7 @@ const AddAddress = () => {
                   <label className="block px-2" htmlFor="marker">
                     Газрын зураг
                   </label>
-                  <Map
-                    latLong={field.value}
-                    setLatLong={(value) => field.onChange(value)}
-                  />
+                  <Map latLong={field.value} setLatLong={(value) => field.onChange(value)} />
                 </>
               )}
             />

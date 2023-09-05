@@ -15,12 +15,8 @@ const Cart = () => {
       <Grid
         side={
           <ScrollWrapper className="mx-md-3 order-summary scroll">
-            <Summary />
-            <Button
-              className="block w-full p-3 sum-buy"
-              Component={Link}
-              href="/checkout/address"
-            >
+            <Summary showImage={false} />
+            <Button className="block w-full p-3 sum-buy" Component={Link} href="/checkout/address">
               Худалдан авах
             </Button>
           </ScrollWrapper>

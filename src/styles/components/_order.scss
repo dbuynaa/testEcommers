@@ -18,9 +18,34 @@
       font-size: 16px;
     }
   }
+  &.order {
+  }
 }
 
 .order-btn-row {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
+}
+
+.order-back {
+  font-size: 14px;
+  color: #0a107b;
+  text-align: center;
+  margin-top: 1rem;
+  position: relative;
+  cursor: pointer;
+  svg {
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+  }
+  &:hover {
+    text-decoration: underline;
+    svg {
+      left: 23%;
+      transition: all 0.3s ease-in-out;
+    }
+  }
 }
