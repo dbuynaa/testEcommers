@@ -4,21 +4,24 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { mutations, queries } from './graphql';
 import { useCurrentUser } from 'modules/appContext';
-import { useEffect } from 'react';
+import { setLocal } from 'utils';
 
 export interface State {
   currentUser: any;
 }
 
 const CurrentUser = ({ children }: any) => {
-  const { currentUser, setCurrentUser, setLoadingCurrentUser } =
-    useCurrentUser();
+  const { setCurrentUser, setLoadingCurrentUser } = useCurrentUser();
 
   const router = useRouter();
   const { query } = router;
   const { from, token } = query;
 
-  const [loginWithSocialPay] = useMutation(mutations.socialPayLogin);
+  const [loginWithSocialPay] = useMutation(mutations.socialPayLogin, {
+    onCompleted() {
+      setLocal('socialPayToken', token);
+    },
+  });
 
   useQuery(queries.currentUser, {
     fetchPolicy: 'network-only',
@@ -40,8 +43,6 @@ const CurrentUser = ({ children }: any) => {
       setLoadingCurrentUser(false);
     },
   });
-
-  useEffect(() => {}, [currentUser]);
 
   return <>{children}</>;
 };
