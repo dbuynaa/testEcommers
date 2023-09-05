@@ -24,11 +24,12 @@
         position: relative;
         color: $blue;
       }
-      .px-2 {
+      .order-step-item {
         position: relative;
         background-color: #fff;
         display: inline-block;
       }
+
       &.checked {
         .circle {
           background: $blue;
