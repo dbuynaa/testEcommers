@@ -22,18 +22,14 @@ const NewsBanner = ({ post }: { post: WpPost }) => {
         </div>
         <div className="-content p-3 p-md-5">
           <p className="-tag pb-1">
-            #technews{' '}
-            <span className="ps-1">{dayjs(date).format('YYYY-MM-DD')}</span>
+            #technews <span className="ps-1">{dayjs(date).format('YYYY-MM-DD')}</span>
           </p>
           <Link href={`/news/${id}`}>
-            <h5>{title}</h5>
+            <h5>
+              <strong>{title}</strong>
+            </h5>
           </Link>
-          <Button
-            variant="slim"
-            className="mt-3"
-            Component={Link}
-            href={`/news/${id}`}
-          >
+          <Button variant="slim" className="mt-3" Component={Link} href={`/news/${id}`}>
             Цааш унших
           </Button>
         </div>

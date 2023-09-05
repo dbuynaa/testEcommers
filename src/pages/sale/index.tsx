@@ -3,10 +3,8 @@ import React from 'react';
 
 const index = () => {
   return (
-    <div>
-      <div className="container">
-        <PricingPlansContainer />
-      </div>
+    <div className="container sale-page">
+      <PricingPlansContainer />
     </div>
   );
 };

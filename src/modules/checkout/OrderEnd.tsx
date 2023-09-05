@@ -28,18 +28,15 @@ const OrderEnd = ({ refetch }) => {
     },
   });
 
-  const [afterFormSubmit, { loading: loadFormSubmit }] = useMutation(
-    mutations.afterFormSubmit,
-    {
-      onCompleted() {
-        changeStatus();
-        setOpen(false);
-      },
-      onError(error) {
-        toast.error(error.message);
-      },
-    }
-  );
+  const [afterFormSubmit, { loading: loadFormSubmit }] = useMutation(mutations.afterFormSubmit, {
+    onCompleted() {
+      changeStatus();
+      setOpen(false);
+    },
+    onError(error) {
+      toast.error(error.message);
+    },
+  });
 
   const onCompleted = (data: any) => {
     if ((data || {}).status === 'SUCCESS') {
@@ -59,13 +56,11 @@ const OrderEnd = ({ refetch }) => {
     <>
       <Modal
         trigger={
-          <Button
-            className="-pay-btn mx-2"
-            variant="slim"
-            loading={loading || loadFormSubmit}
-          >
-            Зээлээр авах
-          </Button>
+          <div className="w-full">
+            <Button className="-pay-btn w-full bg-gray-200 p-2" variant="slim" loading={loading || loadFormSubmit}>
+              Зээлээр авах
+            </Button>
+          </div>
         }
         open={open}
         onOpenChange={() => setOpen((prev) => !prev)}
@@ -75,18 +70,17 @@ const OrderEnd = ({ refetch }) => {
       </Modal>
       <Modal
         trigger={
-          <Button variant="slim" className="-pay-btn" loading={loading}>
-            Шууд захиалах
-          </Button>
+          <div className="w-full">
+            <Button variant="slim" className="-pay-btn w-full bg-gray-200 p-2" loading={loading}>
+              Шууд захиалах
+            </Button>
+          </div>
         }
         open={openDirect}
         onOpenChange={() => setOpenDirect((prev) => !prev)}
         contentClassName="order-detail-direct p-5"
       >
-        <p>
-          Та шууд захиалга хийхдээ итгэлтэй байна уу? Онлайн ажилтан тантай тун
-          удахгүй холбогдох болно.
-        </p>
+        <p>Та шууд захиалга хийхдээ итгэлтэй байна уу? Онлайн ажилтан тантай тун удахгүй холбогдох болно.</p>
         <div className="flex-center order-detail-direct pt-3">
           <Button
             className="-pay-btn me-3"

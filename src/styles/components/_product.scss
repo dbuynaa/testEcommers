@@ -20,6 +20,11 @@
     overflow: hidden;
     border-radius: 1rem;
     background: inherit;
+    &.out-of-stock-img {
+      img {
+        filter: grayscale(100%);
+      }
+    }
   }
   &-name {
     font-size: 1rem;
@@ -42,6 +47,9 @@
     right: 1.25rem;
     border-radius: 0.5rem;
     background-color: $dark-green;
+    &.out-of-stock-badge {
+      background-color: grey;
+    }
   }
   .product-badgeRed {
     padding: 4px 12px;

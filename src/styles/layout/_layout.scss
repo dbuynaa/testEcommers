@@ -87,3 +87,54 @@ footer {
   background-color: #fff !important;
   min-height: 100%;
 }
+
+.copyright {
+  background-color: #39394d;
+  color: rgba(#fff, 0.7);
+  font-size: 14px;
+  padding-bottom: 1rem;
+  .wrapper {
+    border-top: 1px solid rgba(#fff, 0.5);
+    width: 100%;
+  }
+}
+
+.map-icon {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.developer {
+  font-size: 12px;
+
+  &:hover {
+    a span {
+      color: #fff;
+      transition: all 0.2s ease-in-out;
+    }
+    a span.end svg {
+      fill: red;
+      transform: scale(1.2);
+    }
+  }
+  span {
+    color: rgba(#fff, 0.5);
+    &.by {
+      font-size: 12px;
+    }
+    &.end {
+      margin-left: 6px;
+      position: relative;
+      svg {
+        display: inline;
+        position: absolute;
+        font-size: 24px;
+        left: -13px;
+        top: -3px;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+}

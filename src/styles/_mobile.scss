@@ -160,7 +160,6 @@
     height: 2rem;
     font-size: 14px;
     line-height: 1rem;
-  
   }
   .ratio-md-1x1 {
     &::before {
@@ -277,6 +276,20 @@
           width: 100px;
         }
       }
+    }
+  }
+  .order-info {
+    .row {
+      display: none;
+    }
+    .pt-3 {
+      padding-top: 0;
+    }
+  }
+  .confirm-page {
+    margin-bottom: 5rem;
+    .order-info {
+      border: 0;
     }
   }
 }

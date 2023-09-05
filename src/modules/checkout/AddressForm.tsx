@@ -15,16 +15,14 @@ import { useCurrentOrder, useCurrentUser } from 'modules/appContext';
 import FormItem from 'ui/FormItem';
 import { mutations, queries as authQueries } from 'modules/auth/graphql';
 import { toast } from 'react-toastify';
+import ChevronLeft from 'icons/ChevronLeft';
 
 const AddressForm = () => {
   const router = useRouter();
   const { data, loading } = useQuery(queries.addresses);
 
   const [changePhone] = useMutation(mutations.changePhone, {
-    refetchQueries: [
-      { query: authQueries.currentUser },
-      'clientPortalCurrentUser',
-    ],
+    refetchQueries: [{ query: authQueries.currentUser }, 'clientPortalCurrentUser'],
     onError(error) {
       toast.error(error.message);
     },
@@ -33,7 +31,8 @@ const AddressForm = () => {
   const { addresses } = data?.clientPortalCurrentUser?.customer || {};
   const onCompleted = (data: any) =>
     router.push({
-      pathname: `/profile/orders/detail`,
+      // pathname: `/profile/orders/detail`,
+      pathname: `/checkout/confirm`,
       query: { id: data._id },
     });
   const { handleOrder, loading: loadingAction } = useHandleOrder(onCompleted);
@@ -46,6 +45,7 @@ const AddressForm = () => {
       registerNumber,
       companyName,
       deliveryInfo,
+      additional,
       others,
       street,
       city_district,
@@ -71,9 +71,10 @@ const AddressForm = () => {
           street,
           city_district,
           city,
+          additional,
         },
         marker,
-        description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}`,
+        description: `Аймаг/Хот: ${city}, Сум/Дүүрэг: ${city_district}, Баг/Хороо: ${street}, Дэлгэрэнгүй: ${others}, Нэмэлт мэдээлэл: ${additional}`,
         saveInfo: true,
         email,
         phone,
@@ -118,16 +119,14 @@ const AddressForm = () => {
 
   const { billType, registerNumber, deliveryInfo } = currentOrder || {};
   const { email, phone, firstName, lastName } = currentUser || {};
-
+  console.log(deliveryInfo, 'df');
   return (
     <Form
       handleSubmit={onSubmit}
       className="order-address "
       args={{
         defaultValues: {
-          deliveryInfo:
-            addresses.find((address) => address.id === (deliveryInfo || {}).id)
-              ?.id || 'add',
+          deliveryInfo: addresses.find((address) => address.id === (deliveryInfo || {}).id)?.id || 'add',
           isCompany: billType === '3',
           registerNumber,
           email: deliveryInfo?.email || email,
@@ -143,32 +142,22 @@ const AddressForm = () => {
         side={
           <ScrollWrapper className="mx-md-3 order-summary scroll">
             <Summary />
-            <Button
-              className="w-full p-3 sum-buy"
-              type="submit"
-              loading={loadingAction}
-            >
-              Төлбөр төлөх
+            <Button className="w-full p-3 sum-buy" type="submit" loading={loadingAction}>
+              Баталгаажуулах
             </Button>
+            <div className="order-back">
+              <ChevronLeft />
+              <span onClick={() => router.push('/checkout/cart')}> Өмнөх алхамруу буцах</span>
+            </div>
           </ScrollWrapper>
         }
       >
         <div className="row mx--2 pb-2">
           <div className="col-md-6 col-12 px-2 ">
-            <FormItem
-              label="Захиалагчийн нэр"
-              placeholder="Бат-эрдэнэ"
-              name="firstName"
-              required
-              min="8"
-            />
+            <FormItem label="Захиалагчийн нэр" placeholder="Бат-эрдэнэ" name="firstName" required min="8" />
           </div>
           <div className="col-md-6 col-12 px-2">
-            <FormItem
-              label="Захиалагчийн Овог"
-              placeholder="Хашбат"
-              name="lastName"
-            />
+            <FormItem label="Захиалагчийн Овог" placeholder="Хашбат" name="lastName" />
           </div>
           <div className="col-md-6 col-12 px-2">
             <FormItem

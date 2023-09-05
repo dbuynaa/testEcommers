@@ -22,9 +22,7 @@ const Context = ({ children }: any) => {
       const detail = (data || {}).poscProductDetail || {};
       const { attachment, attachmentMore } = detail;
 
-      const moreImage = (attachmentMore || []).map(({ url }: { url: string }) =>
-        readFile(url)
-      );
+      const moreImage = (attachmentMore || []).map(({ url }: { url: string }) => readFile(url));
 
       setStore({
         ...detail,
@@ -36,16 +34,14 @@ const Context = ({ children }: any) => {
   });
 
   const { name, unitPrice } = (data || {}).poscProductDetail || {};
-
+  console.log(data, 'data');
   if (loading) return null;
 
   if (!name || !unitPrice || id !== (store || {})._id) {
     return null;
   }
 
-  return (
-    <DetailContext.Provider value={store}>{children}</DetailContext.Provider>
-  );
+  return <DetailContext.Provider value={store}>{children}</DetailContext.Provider>;
 };
 
 export default Context;

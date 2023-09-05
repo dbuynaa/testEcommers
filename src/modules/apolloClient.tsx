@@ -16,6 +16,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       'Access-Control-Allow-Origin': `${process.env.NEXT_PUBLIC_ERXES_API_URL}/graphql`,
+      'erxes-app-token': process.env.NEXT_PUBLIC_ERXES_APP_TOKEN,
     },
   };
 });

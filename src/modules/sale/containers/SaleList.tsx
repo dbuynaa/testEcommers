@@ -5,9 +5,10 @@ import { getProducts } from 'modules/wholeSale/graphql/queries';
 import Loading from 'ui/Loading';
 
 const SaleListContainer = ({ productIds, productsWithValue }: { productIds: [string]; productsWithValue: any }) => {
+  const ids = productsWithValue.map((item: any) => item.productId);
   const { loading, data, error } = useQuery(getProducts, {
     variables: {
-      ids: productIds,
+      ids,
     },
   });
 
@@ -15,7 +16,7 @@ const SaleListContainer = ({ productIds, productsWithValue }: { productIds: [str
   if (error) return <div></div>;
 
   const saleProducts = data.poscProducts || [];
-
+  console.log(saleProducts, 'saleProducts');
   const props = {
     saleProducts,
     productsWithValue,

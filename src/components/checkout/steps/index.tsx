@@ -6,6 +6,7 @@ function OrderSteps() {
   const steps = {
     cart: 'Taны сагс',
     address: 'Хүргэлтийн Хаяг',
+    confirm: 'Баталгаажуулах',
     payment: 'Төлбөр төлөх',
   };
   const pathname = usePathname();
@@ -16,11 +17,11 @@ function OrderSteps() {
 
   return (
     <>
-      <div className="flex justify-between items-center order-steps container c-md pt-4 pb-3">
+      <div className="flex mt-6 justify-between items-center order-steps container c-md pt-4 pb-3 ">
         {keys.map((step, idx) => (
           <div
             className={clsx(
-              'order-steps-step text-center block',
+              'order-steps-step mt-6 text-center block',
               {
                 checked: idx < keys.indexOf(current),
               },
@@ -36,9 +37,7 @@ function OrderSteps() {
                 <Check />
               </div>
             </div>
-            <small className="mt-1 block text-mid-gray">
-              {steps[step as keyof typeof steps]}
-            </small>
+            <small className="mt-1 block text-mid-gray">{steps[step as keyof typeof steps]}</small>
           </div>
         ))}
       </div>

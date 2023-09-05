@@ -8,8 +8,6 @@ import { toast } from 'react-toastify';
 
 const Rating = ({ productId }: { productId: string }) => {
   const { currentUser } = useCurrentUser();
-
-  // const half = (n: any) => Number((Math.round(n * 2) / 2).toFixed(1));
   const [rating, setRating] = useState(0);
   const { data } = useQuery(queries.getProductReviews, {
     variables: {

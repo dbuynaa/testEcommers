@@ -34,11 +34,9 @@ const Page = () => {
 
   const { orderDetail } = data || {};
 
-  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } =
-    orderDetail || {};
+  const { paidDate, status, totalAmount, deliveryInfo, items, putResponses } = orderDetail || {};
 
-  const { firstName, lastName, phone, email, address, marker, description } =
-    deliveryInfo || {};
+  const { firstName, lastName, phone, email, address, marker, description } = deliveryInfo || {};
 
   const { city, city_district, street } = address || {};
 
@@ -75,23 +73,11 @@ const Page = () => {
     );
 
   return (
-    <>
-      <div className="row items-center order-detail-actions mt-3 ">
-        <OrderStatus status={status} paidDate={paidDate} />
-        <div className="row items-center py-3">
-          {paidDate && <Ebarimt putResponses={putResponses} />}
-          {((status !== 'pending' && !paidDate) || isAfter3s) && (
-            <PaymentBtn orderDetail={orderDetail} refetch={refetch} />
-          )}
-          {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
-        </div>
-      </div>
-
+    <div className="confirm-page order">
       {(!!address || !!marker || !!description) && (
-        <b className="block my-4">
-          <big className="">
-            <b>Хүргэлтийн мэдээлэл</b>
-          </big>
+        <div className="block my-4 section">
+          <h6>Хүргэлтийн мэдээлэл</h6>
+
           <div className="row pt-3">
             {!!address && (
               <>
@@ -124,26 +110,26 @@ const Page = () => {
               </div>
             )}
           </div>
-        </b>
+        </div>
       )}
       {(firstName || lastName || phone || email) && (
-        <b className="block my-4">
-          <big className="">
-            <b>Захиалагчийн мэдээлэл</b>
-          </big>
+        <div className="section my-4">
+          <h6>Захиалагчийн мэдээлэл</h6>
+
           <div className="row justify-between pt-3 -">
-            {firstName && (
-              <div>
-                <small className="text-mid-gray">Нэр</small>
-                <big className="block">{firstName}</big>
-              </div>
-            )}
             {lastName && (
               <div>
                 <small className="text-mid-gray">Oвог</small>
                 <big className="block">{lastName}</big>
               </div>
             )}
+            {firstName && (
+              <div>
+                <small className="text-mid-gray">Нэр</small>
+                <big className="block">{firstName}</big>
+              </div>
+            )}
+
             {phone && (
               <div>
                 <small className="text-mid-gray">Утас</small>
@@ -157,43 +143,45 @@ const Page = () => {
               </div>
             )}
           </div>
-        </b>
+        </div>
       )}
-      <div className="block mt-3">
-        <big>
-          <b>Таны захиалсан бараанууд</b>
-        </big>
-        {(items || []).map(
-          (
-            { productName, unitPrice, count, productId, productImgUrl }: any,
-            idx: number
-          ) => (
-            <div className="flex py-3 order-product" key={idx}>
-              <div className="img-wrap">
-                <Image src={readFile(productImgUrl)} alt="" sizes="20vw" />
+      <div className="section mt-3">
+        <h6>Таны захиалсан бараанууд</h6>
+        {(items || []).map(({ productName, unitPrice, count, productId, productImgUrl }: any, idx: number) => (
+          <div className="flex py-3 order-product" key={idx}>
+            <div className="img-wrap">
+              <Image src={readFile(productImgUrl)} alt="" sizes="20vw" />
+            </div>
+            <div className="row items-center justify-between ps-3">
+              <div className="order-product-name ">
+                <small className="text-mid-gray block">{productId}</small>
+                <p>{productName}</p>
               </div>
-              <div className="row items-center justify-between ps-3">
-                <div className="order-product-name ">
-                  <small className="text-mid-gray block">{productId}</small>
-                  <big>{productName}</big>
-                </div>
-                <div className="flex items-center">
-                  {unitPrice.toLocaleString()} ₮
-                  <div className="mx-3 px-2 rounded order-product-count">
-                    x{count}
-                  </div>
-                  <b>{(unitPrice * count).toLocaleString()} ₮</b>
-                </div>
+              <div className="flex items-center">
+                {unitPrice.toLocaleString()} ₮<div className="mx-3 px-2 rounded order-product-count">x{count}</div>
+                <b>{(unitPrice * count).toLocaleString()} ₮</b>
               </div>
             </div>
-          )
-        )}
+          </div>
+        ))}
         <big className="flex justify-between py-3">
           <b>Нийт</b>
           <b>{totalAmount.toLocaleString()}₮</b>
         </big>
       </div>
-    </>
+      <div className="grid grid-cols-2 items-center order-detail-actions mt-3 mb-12 ">
+        <OrderStatus status={status} paidDate={paidDate} />
+        <div className="row items-center order-detail-actions mt-3">
+          <div className="grid grid-cols-2 gap-4 w-full my-3">
+            {paidDate && <Ebarimt putResponses={putResponses} />}
+            {status === 'new' && !paidDate && <OrderEnd refetch={refetch} />}
+          </div>
+          <div className="mt-1 w-full">
+            {((status !== 'pending' && !paidDate) || isAfter3s) && <PaymentBtn orderDetail={orderDetail} refetch={refetch} />}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

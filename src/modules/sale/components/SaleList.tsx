@@ -2,6 +2,7 @@ import { SaleProduct } from 'components/Products/SaleProduct';
 import React from 'react';
 
 const SaleList = ({ saleProducts, productsWithValue }: { saleProducts: any; productsWithValue: any }) => {
+  console.log(productsWithValue, 'productsWithValue gg');
   return (
     <div className="sale-list">
       <div className="flex justify-between">
@@ -16,7 +17,7 @@ const SaleList = ({ saleProducts, productsWithValue }: { saleProducts: any; prod
       <div className="products row">
         {saleProducts.map((saleProduct: any, index: number) => (
           <div className="col-6 col-md-3 col-xl-2 px-3 pb-6" key={saleProduct._id}>
-            <SaleProduct {...saleProduct} salePercentage={productsWithValue[index].value} />
+            <SaleProduct {...saleProduct} />
           </div>
         ))}
       </div>

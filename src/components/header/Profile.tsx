@@ -12,12 +12,7 @@ const Profile = () => {
 
   if (!currentUser)
     return (
-      <Button
-        href="/auth/login"
-        variant="slim"
-        className="profile-login  mx-2"
-        Component={Link}
-      >
+      <Button href="/auth/login" variant="slim" className="profile-login  mx-2" Component={Link}>
         Нэвтрэх
       </Button>
     );
@@ -26,13 +21,7 @@ const Profile = () => {
     <Dropdown
       trigger={
         <Button className="profile-btn mx-2 h-10 w-10" variant="ghost">
-          <Image
-            height={36}
-            src={currentUser?.avatar || '/images/user.png'}
-            width={36}
-            alt=""
-            className="h-full w-full"
-          />
+          <Image height={36} width={36} src={currentUser?.avatar || '/images/user.png'} alt="" className="h-full w-full" />
         </Button>
       }
     >

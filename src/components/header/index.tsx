@@ -9,6 +9,7 @@ import Profile from './Profile';
 import Top from './top';
 import useScrollDirection from 'lib/useScrollDirection';
 import { AnimatePresence } from 'framer-motion';
+import Wishlist from './Wishlist';
 
 const Header = ({ mainCategories, contact }: any) => {
   const direction = useScrollDirection();
@@ -29,6 +30,7 @@ const Header = ({ mainCategories, contact }: any) => {
             </div>
             <div className="flex items-center">
               <Search />
+              <Wishlist />
               <Cart />
               <Profile />
             </div>
