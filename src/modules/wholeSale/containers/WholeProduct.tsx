@@ -4,8 +4,8 @@ import WholeProduct from '../components/WholeProduct';
 import { getProducts } from '../graphql/queries';
 import Loading from 'ui/Loading';
 
-const WholeProductContainer = ({ productIds = [], wholeSales }) => {
-  const { loading, error, data, refetch } = useQuery(getProducts, {
+const WholeProductContainer = ({ productIds = [], endDate }) => {
+  const { loading, error, data } = useQuery(getProducts, {
     variables: {
       ids: productIds,
     },
@@ -16,8 +16,7 @@ const WholeProductContainer = ({ productIds = [], wholeSales }) => {
   if (error) return <div></div>;
 
   const wholeProducts = data.poscProducts || [];
-
-  return <WholeProduct wholeProducts={wholeProducts} wholeSales={wholeSales} refetch={refetch} />;
+  return <WholeProduct wholeProducts={wholeProducts} endDate={endDate} />;
 };
 
 export default WholeProductContainer;

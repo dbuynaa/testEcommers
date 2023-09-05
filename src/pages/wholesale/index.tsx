@@ -16,7 +16,7 @@ const Wholesale = ({ imgBanners, productId }) => {
       <div className="my-3 my-md-4 ">
         <h5 className="text-blue mb-2 text-center">Ширхэг барааг ч бөөний үнээр</h5>
       </div>
-      <WholeSaleContainer productId={productId} />
+      <WholeSaleContainer />
       <div className="pt-5 pb-5">
         <Latest />
       </div>

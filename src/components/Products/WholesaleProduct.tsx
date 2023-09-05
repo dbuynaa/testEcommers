@@ -2,7 +2,9 @@ import Link from 'next/link';
 import Image from '../../components/ui/Image';
 import { formatCurrency, readFile } from 'utils';
 import { IProduct } from 'modules/types';
-import dayjs from 'dayjs';
+import CountDown from 'modules/wholeSale/components/CountDown';
+import { useQuery } from '@apollo/client';
+import { getPricingPlans } from 'modules/wholeSale/graphql/queries';
 
 const WholesaleProduct = ({
   _id,
@@ -26,20 +28,39 @@ const WholesaleProduct = ({
 }) => {
   const price = formatCurrency(unitPrice);
 
-  const diffInDays = dayjs().diff(dayjs(createdAt), 'day');
+  const { data } = useQuery(getPricingPlans, {
+    variables: {
+      status: 'active',
+      isQuantityEnabled: true,
+      productId: _id,
+      findOne: true,
+    },
+  });
 
+  const pricingPlan = data?.pricingPlans[0] || null;
+  const salePercentage = pricingPlan?.value || null;
+  const endDate = pricingPlan?.endDate || null;
+  const salePrice = unitPrice - (unitPrice * salePercentage) / 100;
   const render = () => (
-    <Link className="product wholesale-product text-center " href={{ pathname: '/products/[id]', query: { id: _id } }} onClick={onClick}>
-      {countDown && <div className="countdown">{countDown}</div>}
+    <Link
+      className="product wholesale-product text-center "
+      href={{ pathname: '/products/[id]', query: { id: _id, wholesale: 'true' } }}
+      onClick={onClick}
+    >
+      {
+        <div className="countdown">
+          <CountDown big={false} endDate={endDate} />
+        </div>
+      }
       <div className="img-wrapper">
         <Image src={readFile((attachment || {}).url || '')} width={250} height={200} alt="img" />
       </div>
       <p className="product-name mb-1 mt-3">{name}</p>
       <div className="product-price">
         <span className="price">{price}</span>
-        <span className="sale-price">{price}</span>
+        <span className="sale-price">{formatCurrency(salePrice)}</span>
       </div>
-      {diffInDays < 60 && <small className="product-badge badge sbt">New</small>}
+      {<small className="product-badge badge sbt product-sale-badge">sale {salePercentage} %</small>}
     </Link>
   );
 

@@ -63,9 +63,7 @@ const ProductsSlider = ({
 
   if (loading) return <Loading />;
 
-  const filteredProducts = (products || []).filter(
-    (el: any) => !except?.includes(el._id)
-  );
+  const filteredProducts = (products || []).filter((el: any) => !except?.includes(el._id));
 
   if (filteredProducts.length === 0) return <></>;
 
@@ -74,27 +72,16 @@ const ProductsSlider = ({
       {!!head && head}
       <Slider {...changedSettings} className={clsx('-slider', className)}>
         {(filteredProducts || []).map((el: any, index: number) => (
-          <div
-            className={clsx(
-              'flex flex-col -item ',
-              index === 0 ? 'pe-1' : 'px-1'
-            )}
-            key={index}
-          >
+          <div className={clsx('flex flex-col -item ', index === 0 ? 'pe-1' : 'px-2')} key={index}>
             <Product {...el} />
           </div>
         ))}
         {products.length > 15 && (
           <>
-            <Button
-              className="-more text-black me-2"
-              Component={Link}
-              href={'/products?category=' + category}
-            >
+            <Button className="-more text-black me-2" Component={Link} href={'/products?category=' + category}>
               <h5>Бүгдийг үзэх</h5>
               <ArrowRight className="ms-2" />
             </Button>
-            <div className="-item" />
           </>
         )}
       </Slider>

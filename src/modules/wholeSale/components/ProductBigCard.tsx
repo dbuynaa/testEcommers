@@ -1,10 +1,9 @@
 import Image from 'ui/Image';
 import { readFile } from 'utils';
 import Link from 'next/link';
-import useCountDownTimer from 'lib/useCountDownHook';
+import CountDown from './CountDown';
 
-const ProductBigCard = ({ wholeProduct, onComplete }) => {
-  const { isFinished, countDown } = useCountDownTimer(wholeProduct.endDate, onComplete);
+const ProductBigCard = ({ wholeProduct, endDate }) => {
   return (
     <div key={wholeProduct._id} className="wholesale-big-card">
       <Link
@@ -21,7 +20,9 @@ const ProductBigCard = ({ wholeProduct, onComplete }) => {
           <Image src={readFile((wholeProduct.attachment || {}).url)} height={800} width={400} alt="name" />
           <div className="caption">
             <h5>Дуусах хугацаа</h5>
-            <div className="wholesale-countdown">{isFinished ? 'Хугацаа дууссан' : countDown}</div>
+            <div className="wholesale-countdown">
+              <CountDown endDate={endDate} big={true} />
+            </div>
           </div>
         </div>
         {/* 

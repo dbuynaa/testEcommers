@@ -1,18 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import WholeProductContainer from '../containers/WholeProduct';
 
 const WholeSale = ({ wholeSales }: any) => {
-  const products = useMemo(() => {
-    let returnVal: any = [];
-    wholeSales?.map((el: any) => {
-      returnVal = [...returnVal, ...el.products];
-    });
-    return returnVal;
-  }, [wholeSales]);
-
+  const productIds = wholeSales[0].productIds || [];
+  const endDate = wholeSales[0].endDate || '';
+  // const endDate = '2021-09-30T00:00:00.000Z';
   return (
     <div className="container flex">
-      <WholeProductContainer productIds={products} wholeSales={wholeSales} />
+      <WholeProductContainer productIds={productIds} endDate={endDate} />
     </div>
   );
 };
