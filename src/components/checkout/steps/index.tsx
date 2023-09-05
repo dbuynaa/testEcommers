@@ -31,13 +31,13 @@ function OrderSteps() {
             )}
             key={idx}
           >
-            <div className="px-2">
+            <div className="order-step-item px-1 md:px-2">
               <div className="flex items-center justify-center circle">
-                <p className="sbt">{idx + 1}</p>
+                <p className="sbt ">{idx + 1}</p>
                 <Check />
               </div>
             </div>
-            <small className="mt-1 block text-mid-gray">{steps[step as keyof typeof steps]}</small>
+            <small className=" sm:text-xs mt-1 block text-mid-gray step-title">{steps[step as keyof typeof steps]}</small>
           </div>
         ))}
       </div>

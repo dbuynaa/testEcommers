@@ -292,6 +292,23 @@
       border: 0;
     }
   }
+  .order-back {
+    svg {
+      left: 15%;
+      &:hover {
+        left: 13% !important;
+      }
+    }
+  }
+  .step-title {
+    max-width: 80px;
+  }
+  .order-steps.container {
+    padding: 0;
+  }
+  .order-steps-step {
+    width: 60px;
+  }
 }
 
 @media (min-width: 999px) {
