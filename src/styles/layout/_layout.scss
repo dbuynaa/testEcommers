@@ -61,7 +61,7 @@ footer {
         font-weight: 600;
       }
       &::after {
-        content: '';
+        content: "";
         width: 100%;
         position: absolute;
         height: 3px;
@@ -89,7 +89,7 @@ footer {
 }
 
 .copyright {
-  background-color: #39394d;
+  background-color: $bg-primary;
   color: rgba(#fff, 0.7);
   font-size: 14px;
   padding-bottom: 1rem;

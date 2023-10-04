@@ -1,17 +1,21 @@
-import 'styles/global.css';
-import 'nprogress/nprogress.css';
-import 'styles/styles.scss';
-import React, { useEffect } from 'react';
+import "styles/global.css";
+import "nprogress/nprogress.css";
+import "styles/styles.scss";
+import React, { useEffect } from "react";
 
-import Layout from 'components/layout';
-import NextApp from 'next/app';
-import getCategories from 'lib/getCategories';
-import { getFooter } from 'lib/wp/page';
-import 'react-toastify/dist/ReactToastify.css';
-import { Open_Sans } from 'next/font/google';
-import NProgress from 'nprogress';
-import { Router } from 'next/router';
-import Script from 'next/script';
+import Layout from "components/layout";
+import NextApp from "next/app";
+import getCategories from "lib/getCategories";
+import { getFooter } from "lib/wp/page";
+import "react-toastify/dist/ReactToastify.css";
+import { Open_Sans } from "next/font/google";
+import NProgress from "nprogress";
+import { Router } from "next/router";
+import Script from "next/script";
+
+import localFont from "next/font/local";
+
+// Font files can be colocated inside of `pages`
 
 type Props = {
   pageProps: any;
@@ -24,8 +28,32 @@ type Props = {
 };
 
 // If loading a variable font, you don't need to specify the font weight
-const open_sans = Open_Sans({ subsets: ['latin', 'cyrillic', 'cyrillic-ext'] });
-
+// const open_sans = Open_Sans({ subsets: ["latin", "cyrillic", "cyrillic-ext"] });
+// const myFont = localFont({ src: "/font/NeoSansProRegular.woff" });
+const NeoSans = localFont({
+  src: [
+    {
+      path: "../../font/NeoSansProRegular.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../font/NeoSansProItalic.woff",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../font/NeoSansProBold.woff",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../font/NeoSansProBoldIt.woff",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+});
 function MyApp({
   Component,
   pageProps,
@@ -44,28 +72,31 @@ function MyApp({
       NProgress.done();
     };
 
-    Router.events.on('routeChangeStart', start);
-    Router.events.on('routeChangeComplete', stop);
-    Router.events.on('routeChangeError', stop);
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", stop);
+    Router.events.on("routeChangeError", stop);
 
     return () => {
-      Router.events.off('routeChangeStart', start);
-      Router.events.off('routeChangeComplete', stop);
-      Router.events.off('routeChangeError', stop);
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", stop);
+      Router.events.off("routeChangeError", stop);
     };
   }, []);
 
   return (
-    <>
-      <style jsx global>{`
-        html {
-          font-family: ${open_sans.style.fontFamily};
+    <main className={NeoSans.className}>
+      {/* <style jsx global>{`
+        @import url("https://fonts.cdnfonts.com/css/neo-sans-pro");
+
+        x html {
+          font-family: "Neo Sans Pro", sans-serif;
         }
-      `}</style>
+      `}</style> */}
       <Layout
         mainCategories={mainCategories}
         categories={categories}
         metaData={metaData}
+        // font={myFont}
       >
         {getLayout(<Component {...pageProps} router={router} />)}
         <Script
@@ -89,7 +120,7 @@ function MyApp({
           }}
         ></Script>
       </Layout>
-    </>
+    </main>
   );
 }
 

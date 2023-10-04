@@ -1,52 +1,69 @@
-import { ReactNode } from 'react';
-import Header from 'components/header';
-import ApolloProvider from 'modules/apolloClient';
-import { StoreProvider } from 'modules/appContext';
-import Footer from './footer';
-import CurrentOrder from 'modules/checkout/currentOrder';
-import CurrentUser from 'modules/auth/currentUser';
-import NavigationBar from 'components/header/NavigationBar';
-import Head from 'next/head';
-import { DefaultSeo } from 'next-seo';
-import Toast from 'ui/Toast';
-import { CartProvider } from 'lib/CartContext';
+import { ReactNode } from "react";
+import Header from "components/header";
+import ApolloProvider from "modules/apolloClient";
+import { StoreProvider } from "modules/appContext";
+import Footer from "./footer";
+import CurrentOrder from "modules/checkout/currentOrder";
+import CurrentUser from "modules/auth/currentUser";
+import NavigationBar from "components/header/NavigationBar";
+import Head from "next/head";
+import { DefaultSeo } from "next-seo";
+import Toast from "ui/Toast";
+import { CartProvider } from "lib/CartContext";
 
-const Layout = ({ children, metaData, categories }: { children: ReactNode; mainCategories: any; categories: any; metaData: any }) => {
+const Layout = ({
+  children,
+  metaData,
+  categories,
+}: // font,
+{
+  children: ReactNode;
+  mainCategories: any;
+  categories: any;
+  metaData: any;
+  // font: any;
+}) => {
   return (
     <>
       <Head>
-        <meta name="keywords" content="Технологийн дэлгүүр,  Xiaomi, ухаалаг утас, зурагт, угаалгын машин, Amazefit, mi, oneplus" />
+        <meta
+          name="keywords"
+          content="Технологийн дэлгүүр,  Xiaomi, ухаалаг утас, зурагт, угаалгын машин, Amazefit, mi, oneplus"
+        />
         <meta name="author" content="Techstore" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="nositelinkssearchbox" />
         <meta name="google" content="notranslate" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
       </Head>
       <DefaultSeo
         title="Techstore | Технологийн дэлгүүр"
         description="Технологийн дэвшлийг Тechstore -оос..."
         facebook={{
-          appId: '235931783264550',
+          appId: "235931783264550",
         }}
         openGraph={{
-          type: 'website',
-          locale: 'mn_MN',
-          url: 'https://techstore.mn/',
-          site_name: 'Techstore',
+          type: "website",
+          locale: "mn_MN",
+          url: "https://techstore.mn/",
+          site_name: "Techstore",
           images: [
             {
-              url: '/images/og.jpg',
+              url: "/images/og.jpg",
               width: 1200,
               height: 630,
-              alt: 'Techstore',
+              alt: "Techstore",
             },
           ],
         }}
         twitter={{
-          handle: '@techstore',
-          site: '@techstore',
-          cardType: 'summary_large_image',
+          handle: "@techstore",
+          site: "@techstore",
+          cardType: "summary_large_image",
         }}
       />
       <ApolloProvider>
@@ -54,7 +71,10 @@ const Layout = ({ children, metaData, categories }: { children: ReactNode; mainC
           <CartProvider>
             <CurrentUser>
               <CurrentOrder>
-                <Header mainCategories={categories} contact={metaData?.contact} />
+                <Header
+                  mainCategories={categories}
+                  contact={metaData?.contact}
+                />
                 <div className="layout">{children}</div>
                 <Footer metaData={metaData} />
                 <NavigationBar />
