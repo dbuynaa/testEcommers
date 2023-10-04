@@ -10,7 +10,6 @@ import Top from "./top";
 import useScrollDirection from "lib/useScrollDirection";
 import { AnimatePresence } from "framer-motion";
 import Wishlist from "./Wishlist";
-import Image from "next/image";
 
 const Header = ({ mainCategories, contact }: any) => {
   const direction = useScrollDirection();

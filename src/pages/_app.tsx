@@ -8,7 +8,6 @@ import NextApp from "next/app";
 import getCategories from "lib/getCategories";
 import { getFooter } from "lib/wp/page";
 import "react-toastify/dist/ReactToastify.css";
-import { Open_Sans } from "next/font/google";
 import NProgress from "nprogress";
 import { Router } from "next/router";
 import Script from "next/script";

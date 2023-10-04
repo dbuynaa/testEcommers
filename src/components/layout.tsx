@@ -10,6 +10,7 @@ import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 import Toast from "ui/Toast";
 import { CartProvider } from "lib/CartContext";
+import Script from "next/script";
 
 const Layout = ({
   children,
@@ -25,6 +26,21 @@ const Layout = ({
 }) => {
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+
+      <Script strategy="lazyOnload">
+        {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                    page_path: window.location.pathname,
+                    });
+                `}
+      </Script>
       <Head>
         <meta
           name="keywords"
