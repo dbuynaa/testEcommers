@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Logo = ({ ...props }) => {
   return (
-    <Image src={content.logo} {...props} alt="logo" width={120} height={120} />
+    <Image src={content.logo} {...props} alt="logo" width={400} height={400} />
   );
 };
 

@@ -24,7 +24,7 @@ const Header = ({ mainCategories, contact }: any) => {
             <div className="col-md-9">
               <div className="flex items-center">
                 <Link href="/">
-                  <Logo className="logo filter brightness-0 invert scale-150" />
+                  <Logo className="logo filter brightness-0 invert" />
                 </Link>
                 <Search desktop />
                 <Nav />

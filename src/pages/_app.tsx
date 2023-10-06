@@ -11,8 +11,9 @@ import "react-toastify/dist/ReactToastify.css";
 import NProgress from "nprogress";
 import { Router } from "next/router";
 import Script from "next/script";
+import { Open_Sans } from "next/font/google";
 
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 
 // Font files can be colocated inside of `pages`
 
@@ -27,32 +28,8 @@ type Props = {
 };
 
 // If loading a variable font, you don't need to specify the font weight
-// const open_sans = Open_Sans({ subsets: ["latin", "cyrillic", "cyrillic-ext"] });
-// const myFont = localFont({ src: "/font/NeoSansProRegular.woff" });
-const NeoSans = localFont({
-  src: [
-    {
-      path: "../../font/NeoSansProRegular.woff",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../font/NeoSansProItalic.woff",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../../font/NeoSansProBold.woff",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../font/NeoSansProBoldIt.woff",
-      weight: "700",
-      style: "italic",
-    },
-  ],
-});
+const open_sans = Open_Sans({ subsets: ["latin", "cyrillic", "cyrillic-ext"] });
+
 function MyApp({
   Component,
   pageProps,
@@ -83,19 +60,11 @@ function MyApp({
   }, []);
 
   return (
-    <main className={NeoSans.className}>
-      {/* <style jsx global>{`
-        @import url("https://fonts.cdnfonts.com/css/neo-sans-pro");
-
-        x html {
-          font-family: "Neo Sans Pro", sans-serif;
-        }
-      `}</style> */}
+    <main className={open_sans.className}>
       <Layout
         mainCategories={mainCategories}
         categories={categories}
         metaData={metaData}
-        // font={myFont}
       >
         {getLayout(<Component {...pageProps} router={router} />)}
         <Script

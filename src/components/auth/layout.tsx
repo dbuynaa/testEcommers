@@ -1,11 +1,17 @@
-import Image from 'ui/Image';
+import Image from "ui/Image";
 
-const Layout = ({ children, image }: any) => {
+const Layout = ({
+  children,
+  image,
+}: {
+  children: React.ReactNode;
+  image?: string;
+}) => {
   return (
     <div className="login">
       <Image
         alt="login"
-        src={image || ''}
+        src={image || ""}
         sizes="(max-width: 768px) 0vw, 50vw"
         quality={100}
       />

@@ -10,8 +10,8 @@ const content = {
     youtube: "",
     linkedin: "https://www.linkedin.com/company/safe-time-group-llc/",
   },
-  logo: "/images/Zulzagan_Dul_Logo_final.png",
-  favicon: "/favicon.svg",
+  logo: "/images/logo.png",
+  favicon: "/images/logo.png",
   title: "Сэйф Тайм Групп ХХК",
   description: "Building Safe Future",
 };

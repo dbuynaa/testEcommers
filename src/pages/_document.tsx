@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/next-script-for-ga */
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { content } from "lib/Settings";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   render() {
@@ -8,8 +9,8 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <link href="/images/logo.png" rel="shortcut icon" />
-          <link rel="preconnect" href="https://xos.techstore.mn" />
+          <link href={content.favicon} rel="shortcut icon" />
+          <link rel="preconnect" href="https://bolovsrol.app.erxes.io/" />
         </Head>
         <body>
           <Main />
