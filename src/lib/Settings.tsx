@@ -12,8 +12,14 @@ const content = {
   },
   logo: "/images/logo.png",
   favicon: "/images/logo.png",
-  title: "Сэйф Тайм Групп ХХК",
+  title: "Боловсрол сторе",
   description: "Building Safe Future",
+};
+
+const headers = {
+  title: "Боловсрол сторе",
+  description: "Building Safe Future",
+  keywords: "tech, techstore, building, safe, future",
 };
 const colors = {
   primary: "#FCBA14",
@@ -23,7 +29,7 @@ const colors = {
 const loginImage = "/images/login.jpg";
 const verifyMessage =
   "Таны и-мэйл хаягаар илгээсэн нууц үгийг оруулна уу. Нэвтэрсэний дараа нууц үгээ солино уу.";
-const imgMainSrc = "https://safetimegroup.api.erxes.io/api/read-file?key=";
+const imgMainSrc = "https://xos.techstore.mn/gateway/read-file?key=";
 // const imgMainSrc = 'http://localhost:4000/read-file?key=';
 
-export { content, imgMainSrc, colors, loginImage, verifyMessage };
+export { content, imgMainSrc, colors, loginImage, verifyMessage, headers };

@@ -9,6 +9,7 @@ import { isBlank } from "utils";
 import clsx from "clsx";
 import GoogleMapMarker from "icons/GoogleMapMarker";
 import ErxesIcon from "../icons/Erxes";
+import { content } from "lib/Settings";
 
 const FooterTitle = ({
   children,
@@ -154,7 +155,7 @@ const Footer = ({ metaData }: any) => {
           <div className="wrapper justify-between row pt-3 pb-2">
             <div>
               Бүх эрх хуулиар хамгаалагдсан © {new Date().getFullYear()}. &nbsp;
-              <span>Techstore - Технологийн дэлгүүр</span>
+              <span>{content.title}</span>
             </div>
             <div className="developer">
               <a href="https://erxes.mn" rel="noreferrer" target="_blank">

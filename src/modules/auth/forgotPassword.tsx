@@ -1,11 +1,11 @@
-import Button from 'ui/Button';
-import { useForm, FormProvider } from 'react-hook-form';
-import FormItem from 'ui/FormItem';
-import { useMutation } from '@apollo/client';
-import { mutations } from 'modules/auth/graphql';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import Button from "ui/Button";
+import { useForm, FormProvider } from "react-hook-form";
+import FormItem from "ui/FormItem";
+import { useMutation } from "@apollo/client";
+import { mutations } from "modules/auth/graphql";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   email: string;
@@ -21,8 +21,8 @@ const ForgotPassword = () => {
     },
     onCompleted(data) {
       if (data) {
-        toast.success('Taны имэйл хаяг руу имэйл сэргээх холбоос илгээлээ');
-        return router.push('/auth/login');
+        toast.success("Taны имэйл хаяг руу имэйл сэргээх холбоос илгээлээ");
+        return router.push("/auth/login");
       }
     },
   });
@@ -39,9 +39,9 @@ const ForgotPassword = () => {
         <h5 className="text-blue pb-3 text-center">Нууц үг сэргээх</h5>
         <FormItem
           label="Имэйл"
-          placeholder="example@techstore.mn"
+          placeholder="example@Email.mn"
           errorMsgs={{
-            pattern: ' Зөв имэйл оруулана уу',
+            pattern: " Зөв имэйл оруулана уу",
           }}
           validate={{
             pattern: /^(.+@.+)$/,

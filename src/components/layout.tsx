@@ -10,6 +10,7 @@ import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 import Toast from "ui/Toast";
 import { CartProvider } from "lib/CartContext";
+import { content, headers } from "lib/Settings";
 
 const Layout = ({
   children,
@@ -29,7 +30,7 @@ const Layout = ({
           name="keywords"
           content="Технологийн дэлгүүр,  Xiaomi, ухаалаг утас, зурагт, угаалгын машин, Amazefit, mi, oneplus"
         />
-        <meta name="author" content="Techstore" />
+        <meta name="author" content={content.title} />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="nositelinkssearchbox" />
@@ -40,8 +41,8 @@ const Layout = ({
         />
       </Head>
       <DefaultSeo
-        title="Techstore | Технологийн дэлгүүр"
-        description="Технологийн дэвшлийг Тechstore -оос..."
+        title={headers.title}
+        description={headers.description}
         facebook={{
           appId: "235931783264550",
         }}
@@ -55,7 +56,7 @@ const Layout = ({
               url: "/images/og.jpg",
               width: 1200,
               height: 630,
-              alt: "Techstore",
+              alt: "Image",
             },
           ],
         }}

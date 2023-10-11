@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Facebook from "icons/Facebook";
 import Instagram from "icons/Instagram";
+import { content } from "lib/Settings";
 // import Phone from 'icons/phone';
 import Link from "next/link";
 
@@ -17,7 +18,7 @@ const Top = ({ contact }) => {
         {/*
          */}
         <Link href="/" className="text-xs">
-          Боловсрол сторе-д тавтай морилно уу
+          {content.title}-д тавтай морилно уу
         </Link>
 
         <b className="flex justify-end gap-2 divide-x-2 divide-white">

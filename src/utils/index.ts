@@ -3,15 +3,16 @@ import type {
   IAddItem,
   IChangeCount,
   IOrderItemResponse,
-} from 'modules/types';
-import { IOrderItem } from '../modules/types';
-import { toast } from 'react-toastify';
+} from "modules/types";
+import { IOrderItem } from "../modules/types";
+import { toast } from "react-toastify";
+import { imgMainSrc } from "lib/Settings";
 
 export const formatCurrency = (
   num: number | string,
   splitter?: any
 ): string => {
-  const checked = typeof num === 'string' ? Number(num) : num;
+  const checked = typeof num === "string" ? Number(num) : num;
 
   return checked
     ? checked
@@ -22,8 +23,8 @@ export const formatCurrency = (
             maximumFractionDigits: 2,
           }
         )
-        .replaceAll(',', splitter ? splitter : `'`) + ' ₮'
-    : '0';
+        .replaceAll(",", splitter ? splitter : `'`) + " ₮"
+    : "0";
 };
 
 export const getTotalValue = (arr: IOrderItem[]) => {
@@ -37,20 +38,20 @@ export const getTotalValue = (arr: IOrderItem[]) => {
 };
 
 export const getLocal = (name: string) => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     try {
       return (
         !!localStorage.getItem(name) &&
-        JSON.parse(localStorage.getItem(name) || '')
+        JSON.parse(localStorage.getItem(name) || "")
       );
     } catch (error) {
-      console.error('error', error);
+      console.error("error", error);
     }
   }
 };
 
 export const setLocal = (name: string, value: any) => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     localStorage.setItem(name, JSON.stringify(value));
   }
 };
@@ -162,20 +163,20 @@ function deg2rad(deg: number) {
   return deg * (Math.PI / 180);
 }
 
-export const readFile = (url: string = '') => {
-  const READ_FILE = '/read-file?key=';
+export const readFile = (url: string = "") => {
+  const READ_FILE = "/read-file?key=";
 
-  if ((url || '').includes(READ_FILE)) {
+  if ((url || "").includes(READ_FILE)) {
     const apiUrl = url.split(READ_FILE)[0];
-    return url.replace(apiUrl, process.env.NEXT_PUBLIC_ERXES_API_URL || '');
+    return url.replace(apiUrl, process.env.NEXT_PUBLIC_ERXES_API_URL || "");
   }
-  if (!(url || '').includes('http') && !(url || '').startsWith('/'))
+  if (!(url || "").includes("http") && !(url || "").startsWith("/"))
     return process.env.NEXT_PUBLIC_ERXES_API_URL + READ_FILE + url;
   return url;
 };
 
 export const isBlank = (link) =>
-  (link || '').includes('http') ? '_blank' : undefined;
+  (link || "").includes("http") ? "_blank" : undefined;
 
 export const getCookie = (name: string) => {};
 
@@ -189,7 +190,7 @@ type FileInfo = {
 };
 
 type AfterUploadParams = {
-  status: 'ok' | 'error';
+  status: "ok" | "error";
   response: any;
   fileInfo: FileInfo;
 };
@@ -218,8 +219,8 @@ export const uploadHandler = async (params: Params) => {
     afterUpload,
     afterRead,
     url = `${API_URL}/upload-file`,
-    kind = 'main',
-    responseType = 'text',
+    kind = "main",
+    responseType = "text",
     userId,
     extraFormData = [],
   } = params;
@@ -246,7 +247,7 @@ export const uploadHandler = async (params: Params) => {
       duration: 0,
     } as any;
 
-    if (file.type.includes('audio') || file.type.includes('video')) {
+    if (file.type.includes("audio") || file.type.includes("video")) {
       const duration = await getVideoDuration(file);
 
       fileInfo = { ...fileInfo, duration };
@@ -273,16 +274,16 @@ export const uploadHandler = async (params: Params) => {
       }
 
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
 
       for (const data of extraFormData) {
         formData.append(data.key, data.value);
       }
 
       fetch(`${url}?kind=${kind}`, {
-        method: 'post',
+        method: "post",
         body: formData,
-        credentials: 'include',
+        credentials: "include",
         ...(userId ? { headers: { userId } } : {}),
       })
         .then((response) => {
@@ -290,7 +291,7 @@ export const uploadHandler = async (params: Params) => {
             .then((text) => {
               if (!response.ok) {
                 return afterUpload({
-                  status: 'error',
+                  status: "error",
                   response,
                   fileInfo,
                 });
@@ -298,7 +299,7 @@ export const uploadHandler = async (params: Params) => {
 
               // after upload
               if (afterUpload) {
-                afterUpload({ status: 'ok', response: text, fileInfo });
+                afterUpload({ status: "ok", response: text, fileInfo });
               }
             })
             .catch((error) => {
@@ -337,5 +338,6 @@ const getVideoDuration = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-  export const imgSrc= 'https://xos.techstore.mn/gateway/read-file?key='
-  export const REACT_APP_API_URL = 'https://xos.techstore.mn/gateway';
+export const imgSrc = imgMainSrc;
+// export const REACT_APP_API_URL = "https://xos.techstore.mn/gateway";
+export const REACT_APP_API_URL = process.env.NEXT_PUBLIC_ERXES_API_URL;
