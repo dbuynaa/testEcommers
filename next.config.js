@@ -6,19 +6,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.erxes.io',
+        hostname: 'bolovsrol.app.erxes.io',
       },
       {
         protocol: 'https',
-        hostname: 'admin.techstore.mn',
-      },
-      {
-        protocol: 'http',
-        hostname: '192.168.8.3',
+        hostname: 'bolovsrol.nmma.co',
       },
       {
         protocol: 'http',
         hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bolovsrol-store.pages.dev',
       },
     ],
   },
