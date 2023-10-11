@@ -107,7 +107,7 @@ const Footer = ({ metaData }: any) => {
               <FooterLink href="https://www.zangia.mn/company/JC-electronics">
                 Ажлын байр
               </FooterLink>
-              <FooterLink href="/branches">Салбарууд</FooterLink>
+              {/* <FooterLink href="/branches">Салбарууд</FooterLink> */}
             </Col>
             <Col title="ТУСЛАМЖ">
               <FooterLink href="/terms-of-service">
@@ -143,8 +143,8 @@ const Footer = ({ metaData }: any) => {
               <div className="pt-1"></div>
               <FooterTitle className="pt-4 pb-3">ЦАГИЙН ХУВААРЬ</FooterTitle>
               <div className="sbt">
-                Даваа-Баасан: 09:00-20:00
-                <br /> Бямба-Ням: 10:00-18:00
+                Өдөр бүр: 09:00-18:00
+                {/* <br /> Бямба-Ням: 10:00-18:00 */}
               </div>
             </Col>
           </div>
