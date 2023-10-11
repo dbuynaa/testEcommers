@@ -1,4 +1,4 @@
-import NavLink from './NavLink';
+import NavLink from "./NavLink";
 
 const Nav = () => {
   return (
@@ -16,9 +16,9 @@ const Nav = () => {
       <NavLink href="/news" className="ms-2">
         Мэдээлэл
       </NavLink>
-      <NavLink href="/leasing-form" className="ms-2">
+      {/* <NavLink href="/leasing-form" className="ms-2">
         Зээлээр авах
-      </NavLink>
+      </NavLink> */}
       {/* <NavLink href="/sale" className="ms-2">
         Хямдралтай
         <span className="sale-badge">sale</span>

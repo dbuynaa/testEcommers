@@ -22,19 +22,25 @@ const Top = ({ contact }) => {
 
         <b className="flex justify-end gap-2 divide-x-2 divide-white">
           <div className="flex gap-2 px-2">
-            <Link href={facebook} target="_blank">
-              <Facebook />
-            </Link>
-            <Link href={instagram} target="_blank">
-              <Instagram />
-            </Link>
+            {facebook && (
+              <Link href={facebook} target="_blank">
+                <Facebook />
+              </Link>
+            )}
+            {instagram && (
+              <Link href={instagram} target="_blank">
+                <Instagram />
+              </Link>
+            )}
           </div>
-          <Link className="flex items-center px-2" href={`tel:${phone}`}>
-            <span className="text-xs">{phone}</span>
-          </Link>
-          <Link href="/branches" className="text-xs px-2">
+          {phone && (
+            <Link className="flex items-center px-2" href={`tel:${phone}`}>
+              <span className="text-xs">{phone}</span>
+            </Link>
+          )}
+          {/* <Link href="/branches" className="text-xs px-2">
             Салбарууд
-          </Link>
+          </Link> */}
         </b>
       </div>
     </motion.div>
