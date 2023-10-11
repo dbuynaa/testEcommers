@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion';
-import Facebook from 'icons/Facebook';
-import Instagram from 'icons/Instagram';
+import { motion } from "framer-motion";
+import Facebook from "icons/Facebook";
+import Instagram from "icons/Instagram";
 // import Phone from 'icons/phone';
-import Link from 'next/link';
+import Link from "next/link";
 
 const Top = ({ contact }) => {
   const { phone, facebook, instagram } = contact || {};
   return (
     <motion.div
       initial={{ height: 0 }}
-      animate={{ height: 'auto' }}
+      animate={{ height: "auto" }}
       exit={{ height: 0 }}
       className="overflow-hidden"
     >
@@ -17,7 +17,7 @@ const Top = ({ contact }) => {
         {/*
          */}
         <Link href="/" className="text-xs">
-          Tech Store-д тавтай морилно уу
+          Боловсрол сторе-д тавтай морилно уу
         </Link>
 
         <b className="flex justify-end gap-2 divide-x-2 divide-white">
