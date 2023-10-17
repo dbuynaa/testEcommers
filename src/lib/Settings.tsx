@@ -12,7 +12,7 @@ const content = {
   },
   logo: "/images/logo.png",
   favicon: "/images/logo.png",
-  title: "Test",
+  title: "Test Title",
   description: "Building Safe Future",
 };
 
