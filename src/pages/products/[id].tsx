@@ -1,22 +1,22 @@
-import getProductDetail from 'lib/getProductDetail';
-import ImageGallery from 'components/ProductDetail/Images';
+import getProductDetail from "lib/getProductDetail";
+import ImageGallery from "components/ProductDetail/Images";
 import Tabs, {
   TabsList,
   TabTrigger,
   TabsContent,
-} from 'components/ProductDetail/Tabs';
-import Description from 'components/ProductDetail/Description';
-import Breadcrumb from 'components/ProductDetail/BreadCrumb';
-import Info from 'components/ProductDetail/Info';
-import Context from 'components/ProductDetail/Context';
-import Advice from 'modules/Products/Advice';
-import { getVideosByTag } from 'lib/wp/posts';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import getProductIds from 'lib/getProductIds';
-import { NextSeo } from 'next-seo';
-import { readFile } from 'utils';
-import LastViewedItemsAdd from 'modules/Products/LastViewedItemsAdd';
-import LastViewedItems from 'modules/Products/LastViewedItems';
+} from "components/ProductDetail/Tabs";
+import Description from "components/ProductDetail/Description";
+import Breadcrumb from "components/ProductDetail/BreadCrumb";
+import Info from "components/ProductDetail/Info";
+import Context from "components/ProductDetail/Context";
+import Advice from "modules/Products/Advice";
+import { getVideosByTag } from "lib/wp/posts";
+import { GetStaticPaths, GetStaticProps } from "next";
+import getProductIds from "lib/getProductIds";
+import { NextSeo } from "next-seo";
+import { readFile } from "utils";
+import LastViewedItemsAdd from "modules/Products/LastViewedItemsAdd";
+import LastViewedItems from "modules/Products/LastViewedItems";
 
 const Product = ({ detail, videos }: any) => {
   const { name, attachment, customFieldsDataByFieldCode, _id } = detail || {};
@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return { notFound: true };
   }
 
-  const id = (params || {}).id + '';
+  const id = (params || {}).id + "";
   const { posts: videosById } = await getVideosByTag(id);
   const detail = await getProductDetail(id);
   const { posts: videosByCat } = await getVideosByTag(detail?.categoryId);
