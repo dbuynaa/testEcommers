@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
-import Video from './Video';
-import ProductsSlider from 'modules/Products/Slider';
-import { useDetailContext } from './Context';
-import { cloudflareLoader } from 'ui/Image';
+import { useRouter } from "next/router";
+import Video from "./Video";
+import ProductsSlider from "modules/Products/Slider";
+import { useDetailContext } from "./Context";
+import { cloudflareLoader } from "ui/Image";
 
 const PropertyItem = ({ text, value }: any) => (
   <p className="flex prDtl-property justify-between sbt pb-2 mb-1">
@@ -26,14 +26,14 @@ const Description = () => {
 
   const values = Object.values(properties || {});
   const keys = Object.keys(properties || {});
-  const filter = ['intro', 'video'];
+  const filter = ["intro", "video"];
 
   const intro = properties?.intro?.value;
   const video = properties?.video?.value;
 
   const filteredValues = getFlattenValue(values).filter(
     (item: any, idx) =>
-      !filter.includes(keys[idx]) && !!(item?.value || '').trim()
+      !filter.includes(keys[idx]) && !!(item?.value || "").trim()
   );
 
   const odd = filteredValues.filter(
@@ -48,7 +48,7 @@ const Description = () => {
     '<img loading="lazy"'
   );
 
-  const colClass = 'col-12 col-md-6 px-md-3 px-2';
+  const colClass = "col-12 col-md-6 px-md-3 px-2";
 
   return (
     <div className="prDtl-overview py-3 py-md-4 container text-blue">
@@ -83,7 +83,7 @@ const Description = () => {
       <ProductsSlider
         category={categoryId}
         slidesToShow={4}
-        except={[router.query.id?.toString() || '']}
+        except={[router.query.id?.toString() || ""]}
         head={<p className="my-3 bold">Танд санал болгох бүтээгдэхүүн</p>}
       />
       {description && (
@@ -98,14 +98,14 @@ const Description = () => {
 
 const replaceImageSources = (htmlString) => {
   const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlString, 'text/html');
+  const doc = parser.parseFromString(htmlString, "text/html");
 
-  const imgTags = doc.getElementsByTagName('img');
+  const imgTags = doc.getElementsByTagName("img");
   for (let i = 0; i < imgTags.length; i++) {
     imgTags[i].setAttribute(
-      'src',
+      "src",
       cloudflareLoader({
-        src: imgTags[i].getAttribute('src'),
+        src: imgTags[i].getAttribute("src"),
         width: 1400,
         quality: 75,
       })
