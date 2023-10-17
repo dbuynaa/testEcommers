@@ -17,7 +17,7 @@ const content = {
 };
 
 const headers = {
-  title: "Боловсрол сторе",
+  title: "Боловсрол",
   description: "Building Safe Future",
   keywords: "tech, techstore, building, safe, future",
 };
